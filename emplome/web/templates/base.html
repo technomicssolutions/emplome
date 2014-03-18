@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="emplome" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+       <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      {% include 'header.html' %}
+      {% block content %}
+      {% endblock content %}
+      
+      {% block content %}
+      {% include 'footer.html'%}
+      {% endblock content %}
+
+    </div>
+  </body>
+</html>
+
+
+

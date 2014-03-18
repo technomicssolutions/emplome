@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block title %}Full Time
+{% endblock title %}
+{% block body_id %}full_time{% end block %}
+
+{% block content %}
+	<div class="div3">
+		<h2 class="hd1">Full Time Jobs</h2>
+		<p style="float:right; color:red">*Required Fields</p>
+		<br>
+		<br>
+		<table>
+			<tr>
+			<td> Job Title*:</td><td> <input type="text" name="Job"></td>
+			</tr>
+			<tr>
+			<td> Ref Code:</td><td> <input type="text" name="Ref"></td>
+			</tr>
+		</table>
+		<h3>Job Description</h3>
+		<table>
+			<tr>
+			<td>Job Summary*</td><td><textarea rows="4" cols="50"></textarea></td>
+			</tr>
+			<tr>
+			<td></td><td>Max 250 characters</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+			<td>Job Details*</td><td>Provide Job details below or <a href="#">Pick a document</a>
+			</td>
+			</tr>
+			<td></td>
+			<tr>
+			<td></td>
+			<td style="width=50px">
+			<select>
+				<option>Font</option>
+				<option>Ariel Black</option>
+				<option>Times New Roman</option>
+				<option>Comic Sans ms</option>
+				<option>Verdana</option>
+			</select>
+			<select>
+				<option>Size</option>
+				<option>10</option>
+				<option>12</option>
+				<option>14</option>
+				<option>16</option>
+				<option>20</option>
+				<option>24</option>
+				<option>28</option>
+			</select>
+			</td>
+			</tr>
+		</table>
+
+		<table>
+			<tr>
+			<td></td>
+			<td><textarea rows="10" cols="50"></textarea></td>
+			</tr>
+		</table>
+
+
+		<table>
+			<tr>
+			<td> Enter your Email ID*:</td><td> <input type="text" name="email"></td>
+			</tr>
+		</table>
+		<br>
+		<h3>Matching Criteria</h3>
+		<br>
+		<table>
+			<tr>
+			<td> Keywords/Skills*:</td><td> <input type="text" name="Skills"></td>
+			</tr>
+			<tr>
+			<td> Experience*:</td>
+			<td>
+			<select>
+				<option>Min</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+			</select>
+			<select>
+				<option>Max</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td> Job Location*:</td>
+			<td>
+			<select>
+				<option>Select Location</option>
+				<option>Cochin</option>
+				<option>Chennai</option>
+				<option>Banglore</option>
+				<option>Trivandrum</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td> Industry*:</td>
+			<td>
+			<select>
+				<option>Select Industry</option>
+				<option>Cognizant</option>
+				<option>Tata Consultancy</option>
+				<option>Infosys</option>
+				<option>Wipro</option>
+				<option>Technomics</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td>Category/Function*</td>
+			<td>
+			<select>
+				<option>Select Function</option>
+				<option>Software Engineer</option>
+				<option>HR</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td>Role*</td>
+			<td>
+			<select>
+				<option>Select Role</option>
+				<option>Team Lead</option>
+				<option>Manager</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td>Education requirement*</td>
+			<td style="width:auto">
+			<select>
+				<option>Select Degree</option>
+				<option>B.E./B.Tech</option>
+				<option>M.E./M.Tech</option>
+				<option>MCA</option>
+				<option>MBA</option>
+			</select>
+			<select>
+				<option>Specialization</option>
+				<option>Computer Science Engineering</option>
+				<option>Information Technology</option>
+				<option>Electronics and Communication Engineering</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td>Nationality</td>
+			<td>
+			<select>
+				<option>Select</option>
+				<option>Indian</option>
+			</select>
+			</td>
+			</tr>
+			</table>
+
+			<h3>Job Owner Details</h3>
+
+			<table>
+				<tr>
+				<td>name*</td><td> <input type="text" name="name"></td><td>Phone
+				<input type="text" name="phone"></td>
+				</tr>
+				<tr>
+				<td>Email ID*:</td><td> <input type="text" name="email"></td>
+				</tr>
+				<tr>
+				<td>Company Profile</td>
+				<td><textarea rows="10" cols="50"></textarea></td>
+				</tr>
+			</table>
+		<br><br><br>
+		<div class="btn">
+			<input type="checkbox" name="reveal">Reveal contact details to job seekers who have applied for the job<br><br>
+			<input type="submit" value="Submit">
+		</div>
+
+		
+
+		</div>
+	      
+	</div>
+{% endblock content %}
+
