@@ -1,18 +1,18 @@
 .container
 {
-	background-color:#d0d0d0;
+/*	background-color:#d0d0d0;*/
 	width:100%;
 	height:auto;
 }
 .hd
 {
 	margin-left:250px;
-vertical-align:center;
+    vertical-align:center;
 	font-size:40px;
-	//font-family:comic sans ms;
+/*	//font-family:comic sans ms;
 	//margin-top: 3%;
 	//text-align:bottom;
-	//padding:150px;
+	//padding:150px;*/
 }
 .hd1
 {
@@ -160,41 +160,39 @@ text-align:center;
 li {display:inline;}
 
 
-ul
-{
-float:right;
-width:auto;
-padding:0;
-margin:0;
-list-style-type:none;
+ul{
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
 }
 
 .hide{
-display:none;
+    display:none;
 }
-
-.menu ul li a
-{
-float:left;
-width:150px;
-text-decoration:none;
-text-align:center;
-color:black;
-background-color:#FFEB99;
-padding:0.2em 0.6em;
-border-right:1px solid white;
+.hide li{
+    width: auto;
+    display: block;
+}
+.menu ul li a{
+    background-color: #800080;
+    border-right: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    float: left;
+    padding: 0.2em 0.6em;
+    text-decoration: none;
+    width: 190px;
 }
 
 
 .menu{
-width:auto;
-height:auto;
-margin-top:-1100px;
-margin-left:800px;
+    width:100%;
+    height:6em;
 }
 
 ul li:hover ul{
-display:block;
+    display:block;
 
 }
 
@@ -270,4 +268,72 @@ color:white;
 .hd3
 {
 background-color:#FFCCFF;
+}
+
+.row{
+    margin: 0 auto;
+    max-width: 62.5rem;
+    width: 100%;
+}
+.input-box{
+  width:100%;
+  height :auto;
+}
+.company{
+    border:1px solid black;
+    width:38%;
+    padding: 1em;
+}
+
+.footer {
+    background-color: #F3F3F3;
+    border: 1px solid #CCCCCC;
+    height: 5em;
+    left: 5px;
+    position: absolute;
+    width: 70em;
+}
+.job{
+    float: right;
+position: relative;
+    width:50%;
+}
+
+
+.form_container {
+    margin: auto;
+    width: 35%;
+    min-height: 100%
+}
+.form_container .control {
+    width: 100%;
+    height: 30px;
+    float: left;
+    padding: 10px;
+}
+.form_container label{
+    display: block !important;
+    float: left;
+    width: 45%;
+}
+
+.form_container input{
+    float: left;
+    display: block;
+    width: 50%;
+}
+.form_container input[type="button"]{
+    width: auto;
+}
+.form_container select{
+    float: left;
+    display: block;
+    width: 50%;
+}
+
+form {
+    display: block;
+    float: left;
+    min-height: 100%;
+    width: 100%;
 }

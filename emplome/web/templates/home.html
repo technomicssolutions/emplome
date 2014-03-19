@@ -1,1 +1,40 @@
 {% extends 'base.html' %}
+{% block title %}Full Time
+{% endblock title %}
+{% block body_id %}full_time{% endblock body_id %}
+
+{% block content %}
+
+<div class="company">
+	<br>
+	<h3> YOUR COMPANY LOGO HERE </h3>
+	<select>
+		<option>Jobs</option>
+	</select>
+	<input type="text" name="fname">
+	<select>
+		<option>All</option>
+	</select>
+	<input type="submit" value="Submit">
+	<br>
+	<br>
+	<a href="Home.html">Jobs by Role</a>
+	<a href="Home.html">Jobs by Company</a>
+	<a href="Home.html">Advanced Job Search</a>
+</div>
+<span class="job">
+	<h2>Find Your Perfect Job</h2>
+	<p>
+	Choose from 9523 jobs.
+	<br>
+	Let employers find you online.
+	<br>
+	Receive matching jobs by Email.
+	<br>
+	Easy and 100% free.
+	<br>
+	</p>
+	<input type="submit" value="Post your CV">
+</span>
+
+{% endblock content %}
