@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html ng-app="emplome" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-       <link rel="stylesheet" href="/static/css/style.css">
-  </head>
+    <head>
+        <title>{% block title %}{% endblock title%} | EmployeeMe </title>
+        <link rel="shortcut icon" href="/static/images/f_icon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="/static/css/style.css">
+        {% block extrahead %}
+        {% endblock extrahead %}
+    </head>
 
-  <body>
-    <div class="container">
-      {% include 'header.html' %}
-      {% block content %}
-      {% endblock content %}
-      
-      {% block content %}
-      {% include 'footer.html'%}
-      {% endblock content %}
+    <body>
+        <div class="container">
+          {% include 'header.html' %}
+          {% block content %}
+          {% endblock content %}
+          
+          {% block footer %}
+            {% include 'footer.html'%}
+          {% endblock footer %}
 
-    </div>
-  </body>
+        </div>
+    </body>
 </html>
 
 
