@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+{% block title %}Job Seeker Registration
+{% endblock title %}
+{% block body_id %}job_seeker_registration{% endblock body_id %}
+
+{% block content %}
+
+<div class="div3">
+	<!-- <form class="form_container"> -->
+	<div class="separation">
+		<br>
+		<h2 class="hd1">Job Seeker's Registration</h2>
+		<p class="mandatory">* Required Fields</p>
+		<br>
+		<h3>Getting Started</h3>
+		<br>
+		<div class="formrow">
+			<label>Email Address*</label>
+			<input type="text" name="email">
+		</div>
+		<div class="formrow">
+			<label>First Name*</label>
+			<input type="text" name="first_name">
+		</div>
+	
+
+		<div class="formrow">
+			<label>Last Name</label>
+			<input type="text" name="last_name">
+		</div>
+
+		<div class="formrow">
+			<label>Desired Username*</label>
+			<input type="text" name="username">
+		</div>
+		<div class="formrow">
+			<label>Choose Password*</label> 
+			<input type="text" name="password">
+		</div>
+		<div class="formrow">
+			<label>Re-enter Password*</label> 
+			<input type="text" name="password">
+		</div>
+		
+		<br>
+	</div>
+
+	<div class="separation">
+		<br>
+		<h3>Personnal Details</h3>
+		<br>
+		<div class="formrow">
+		<label>Passport Nationality*</label>
+		<select>
+			<option>Select Nationality</option>
+			<option>Afganistan</option>
+			<option>Albania</option>
+			<option>Algerian</option>
+			<option>American Samoa</option>
+			<option>Andorra</option>
+			<option>Angola</option>
+			<option>Anguilla</option>
+			<option>Antarctica</option>
+			<option>Antigua and Barbuda</option>
+			<option>Argentina</option>
+			<option>Armenia</option>
+			<option>Aruba</option>
+			<option>Australian</option>
+			<option>Austria</option>
+			<option>Azerbaijan</option>
+			<option>Bahamas</option>
+			<option>Bahraini</option>
+			<option>Bangladeshi</option>
+			<option>Barbados</option>
+			<option>Belarus</option>
+			<option>Belgium</option>
+			<option>Belize</option>
+			<option>Benin</option>
+			<option>Bermuda</option>
+			<option>Bhutan</option>
+			<option>Bolivia</option>
+			<option>Bosnia and Herzegovina</option>
+			<option>Botswana</option>
+			<option>Bouvet Island</option>
+			<option>Brazil</option>
+			<option>British Indian Ocean Territory</option>
+			<option>Brunei Darussalam</option>
+			<option>Bulgaria</option>
+			<option>Burkina Faso</option>
+			<option>Burundi</option>
+			<option>Cambodia</option>
+			<option>Cameroon</option>
+			<option>Canadian</option>
+			<option>Cape Verde</option>
+			<option>Cayman Islands</option>
+			<option>Central African Republic</option>
+			<option>Chad</option>
+			<option>Chile</option>
+			<option>Chinese</option>
+			<option>Christmas Island</option>
+			<option>Cocos (Keeling) Islands</option>
+			<option>Colombia</option>
+			<option>Comoros</option>
+			<option>Congo</option>
+			<option>Congo</option>
+			<option>Cook Islands</option>
+			<option>Costa Rica</option>
+			<option>Cote D'Ivoire</option>
+			<option>Croatia</option>
+			<option>Cuba</option>
+			<option>Cyprus</option>
+			<option>Czech Republic</option>
+			<option>Denmark</option>
+			<option>Djibouti</option>
+			<option>Dominica</option>
+			<option>Dominican Republic</option>
+			<option>Ecuador</option>
+			<option>Egyptian</option>
+			<option>El Salvador</option>
+			<option>Emirati</option>
+			<option>Equatorial Guinea</option>
+			<option>Eritrea</option>
+			<option>Estonia</option>
+			<option>Ethiopia</option>
+			<option>Falkland Islands (Malvinas)</option>
+			<option>Faroe Islands</option>
+			<option>Fiji</option>
+			<option>Filipino</option>
+			<option>Finland</option>
+			<option>French</option>
+			<option>French Guiana</option>
+			<option>French Polynesia</option>
+			<option>French Southern Territories</option>
+			<option>Gabon</option>
+			<option>Georgia</option>
+			<option>German</option>
+			<option>Ghana</option>
+			<option>Gibraltar</option>
+			<option>Greece</option>
+			<option>Greenland</option>
+			<option>Grenada</option>
+			<option>Guadeloupe</option>
+			<option>Guam</option>
+			<option>Guinea</option>
+			<option>Guinea-Bissau</option>
+			<option>Guyana</option>
+			<option>Haiti</option>
+			<option>Heard Island and Mcdonald Islands</option>
+			<option>Holy See (Vatican City State)</option>
+			<option>Honduras</option>
+			<option>Hong Kong</option>
+			<option>Hungary</option>
+			<option>Iceland</option>
+			<option>Indian</option>
+			<option>Indonesian</option>
+			<option>Iranian</option>
+			<option>Ireland</option>
+			<option>Israel</option>
+			<option>Japan</option>
+			<option>Jordanian</option>
+			<option>Kazakhstan</option>
+			<option>Kenyan</option>
+			<option>Kiribati</option>
+			<option>Korea, Democratic People's Republic of</option>
+			<option>Korea, Republic of</option>
+			<option>Kuwaiti</option>
+			<option>Kyrgyzstan</option>
+			<option>Lao People's Democratic Republic</option>
+			<option>Latvia</option>
+			<option>Lebanese</option>
+			<option>Lesotho</option>
+			<option>Liberia</option>
+			<option>Libyan Arab Jamahiriya</option>
+			<option>Liechtenstein</option>
+			<option>Lithuania</option>
+			<option>Luxembourg</option>
+			<option>Macao</option>
+			<option>Macedonia, the Former Yugoslav Republic of</option>
+			<option>Madagascar</option>
+			<option>Malawi</option>
+			<option>Malaysian</option>
+			<option>Maldives</option>
+			<option>Mali</option>
+			<option>Malta</option>
+			<option>Marshall Islands</option>
+			<option>Martinique</option>
+			<option>Mauritania</option>
+			<option>Mauritius</option>
+			<option>Mayotte</option>
+			<option>Mexico</option>
+			<option>Micronesia, Federated States of</option>
+			<option>Moldova, Republic of</option>
+			<option>Monaco</option>
+			<option>Mongolia</option>
+			<option>Montserrat</option>
+			<option>Moroccan</option>
+			<option>Mozambique</option>
+			<option>Myanmar</option>
+			<option>Namibia</option>
+			<option>Nauru</option>
+			<option>Nepalese</option>
+			<option>Netherlands</option>
+			<option>Netherlands Antilles</option>
+			<option>New Caledonia</option>
+			<option>New Zealand</option>
+			<option>Nicaragua</option>
+			<option>Niger</option>
+			<option>Nigerian</option>
+			<option>Niue</option>
+			<option>Norfolk Island</option>
+			<option>Northern Mariana Islands</option>
+			<option>Norway</option>
+			<option>Omani</option>
+			<option>Pakistani</option>
+			<option>Palau</option>
+			<option>Palestinian Territory, Occupied</option>
+			<option>Panama</option>
+			<option>Papua New Guinea</option>
+			<option>Paraguay</option>
+			<option>Peru</option>
+			<option>Pitcairn</option>
+			<option>Poland
+			<option>Portugal</option>
+			<option>Puerto Rico</option>
+			<option>Qatari</option>
+			<option>Reunion</option>
+			<option>Romania</option>
+			<option>Russian</option>
+			<option>Rwanda</option>
+			<option>Saint Helena</option>
+			<option>Saint Kitts and Nevis</option>
+			<option>Saint Lucia</option>
+			<option>Saint Pierre and Miquelon</option>
+			<option>Saint Vincent and the Grenadines</option>
+			<option>Samoa</option>
+			<option>San Marino</option>
+			<option>Sao Tome and Principe</option>
+			<option>Saudi</option>
+			<option>Senegal</option>
+			<option>Serbia and Montenegro</option>
+			<option>Seychelles</option>
+			<option>Sierra Leone</option>
+			<option>Singaporean</option>
+			<option>Slovakia</option>
+			<option>Slovenia</option>
+			<option>Solomon - Islands	</option>
+			<option>Somalia</option>
+			<option>South African</option>
+			<option>South Georgia and the South Sandwich Islands</option>
+			<option>Spanish</option>
+			<option>Sri Lankan</option>
+			<option>Sudanese</option>
+			<option>Suriname</option>
+			<option>Svalbard and Jan Mayen</option>
+			<option>Swaziland</option>
+			<option>Sweden</option>
+			<option>Switzerland</option>
+			<option>Syrian</option>
+			<option>Taiwanese</option>
+			<option>Tajikistan</option>
+			<option>Tanzania, United Republic of</option>
+			<option>Thai</option>
+			<option>Timor-Leste</option>
+			<option>Togo</option>
+			<option>Tokelau</option>
+			<option>Tonga</option>
+			<option>Trinidad and Tobago</option>
+			<option>Tunisia</option>
+			<option>Turkey</option>
+			<option>Turkmenistan</option>
+			<option>Turks and Caicos Islands</option>
+			<option>Tuvalu</option>
+			<option>Uganda</option>
+			<option>Ukraine</option>
+			<option>United Kingdom</option>
+			<option>United States</option>
+			<option>United States Minor Outlying Islands</option>
+			<option>Uruguay</option>
+			<option>Uzbekistan</option>
+			<option>Vanuatu</option>
+			<option>Venezuela</option>
+			<option>Vietnamese</option>
+			<option>Virgin Islands, British</option>
+			<option>Virgin Islands, U.s.</option>
+			<option>Wallis and Futuna</option>
+			<option>Western Sahara</option>
+			<option>Yemeni</option>
+			<option>Zambia</option>
+			<option>Zimbabwe</option>
+			<option>Other</option>
+		</select>
+		</div>
+		<div class="formrow">
+		<label>Current Location*</label>
+		<input type="text" name="location">
+		</div>
+		<div class="formrow">
+		<label>Mobile Number*</label>
+		<input type="text" name="mobile">
+		</div>
+		<div class="formrow">
+		<label>Gender*</label> 
+		<input type="radio" name="gender">Male
+		<input type="radio" name="gender">Female
+		</div>
+		<br>
+	</div>
+
+	<div class="separation">
+		<br>
+		<h3>Professioal Details</h3>
+		<br>
+		<div class="formrow">
+		<label>Job Type*</label>
+		<input type="text" name="nationality">
+		</div>
+		<div class="formrow">
+		<label>Total Experience*</label>
+		<input type="text" name="location">
+		</div>
+		<div class="formrow">
+		<label>Current/Preffered Industry*</label>
+		<input type="text" name="industry">
+		</div>
+		<div class="formrow">
+		<label>Function*</label>
+		<input type="text" name="function">
+		</div>
+		<div class="formrow">
+		<label>Key Skills*</label>
+		<input type="text" name="location">
+		</div>
+		<br>
+	</div>
+
+	<div class="separation">
+		<br>
+		<div class="formrow">
+		<label>Resume Title*</label>
+		<input type="text" name="resume">
+		</div>
+		<div class="formrow">
+		<label>Detailed Resume*</label>
+		<input type="button" name="browse" value="Browse">
+		</div>
+		<br>
+	</div>
+
+	<div class="separation">
+		<br>
+		<h3>Subscriptions</h3>
+		<p>I would like to recevie Emails/SMS,Voice Calls/Social Media updates for:</p>
+		<div class="formrow">
+		<label></label>
+		<input type="checkbox" name="checkbox">Important notifications on products, job seeker services and career advice
+		</div>
+		<div class="formrow">
+			<label></label>
+			<input type="checkbox" name="checkbox">Promotions and special offers
+		</div>
+		<br>
+	</div>
+
+	<div class="separation">
+		<br>
+		<div class="formrow">
+			<label></label>
+			<input type="checkbox" name="checkbox">I have read and agree to the privacy statement and terms of use"
+		</div>
+		<div class="formrow">
+			<label></label>
+			<input type="submit" name="submit" value="Submit">
+		</div>
+		<br>
+
+	</div>
+</div>
+
+{% endblock content %}
+
+
+
+	
+		
