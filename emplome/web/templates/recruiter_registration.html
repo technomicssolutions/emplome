@@ -1,21 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}Recruitment{% endblock title %}
 {% block body_id %}recruiter{% endblock body_id %}
-
-<div>
-	Company Name
-	<input type="text" />
-	Industry Type
-	<input type="text" />
-	Mobile
-	<input type="text" />
-	Land Number
-	<input type="text" />
-	City
-	<input type="text" />
-	Country
-	<input type="text" />
-</div>
-
 {% block content %}
+
+<div class="alert alert-info" align="Center"><h4>Register Recruiter</h4></div>
+<div class="form_container">
+	<form class="" name="add_item" method="post" action="{% url 'register' %}">
+		{% csrf_token %}
+		<div class="control">
+			<label > Company Name</label>  
+			<input type="text"  name="name" value="">
+		</div>
+		<div class="control">
+			<label> Industry Type</label>
+			<input type="text" name="type" value="">
+		</div>
+		<div class="control">
+			<label> Mobile</label>
+			<input type="text" name="mobile" value="">
+		</div>
+		<div class="control">
+			<label> Land Number</label>
+			<input type="text" name="phone" value="">
+		</div>
+		<div class="control">
+			<label> City</label>
+			<input type="text" name="city" value="">
+		</div>
+		<div class="control">
+			<label> Country</label>
+			<input type="text" name="country" value="">
+		</div>
+		
+		<div  align="Center">
+			<div class="buttons">
+				<input type="submit" value="Register">	
+			</div>
+		</div>
+	</form>
+</div>
 {% endblock content %}

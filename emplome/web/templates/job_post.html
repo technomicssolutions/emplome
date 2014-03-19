@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Job Host{% endblock title %}
+{% block body_id %}jobpost{% endblock body_id %}
+
+{% block content %}
+
+<div class="alert alert-info" align="Center"><h4>Register Recruiter</h4></div>
+<div class="form_container">
+	<form class="" name="add_item" method="post" action="{% url 'register' %}">
+		{% csrf_token %}
+		<div class="control">
+			<label > Job Title</label>  
+			<input type="text"  name="title" value="">
+		</div>
+		<div class="control">
+			<label> Ref Code</label>
+			<input type="text" name="code" value="">
+		</div>
+		<div class="control">
+			<label> Job Summary</label>
+			<textarea name="summary"></textarea>
+		</div>
+		<div class="control">
+			<label>Job Details</label>
+			<input type="file" name="description">
+			<textarea name="details"></textarea>
+		</div>
+		<div class="control">
+			<label> Keywords/Skills</label>
+			<input type="text" name="skill" value="">
+		</div>
+		<div class="control">
+			<label> Experiance</label>
+			<input type="text" name="experiance" value="">
+		</div>
+		<div class="control">
+			<label> Job Location</label>
+			<select></select>
+		</div>
+		<div class="control">
+			<label> Industry</label>
+			<select></select>
+		</div>
+		<div class="control">
+			<label> Category/function</label>
+			<select></select>
+		</div>
+		<div class="control">
+			<label> Role</label>
+			<select></select>
+		</div>
+		<div class="control">
+			<label> Education Requirement</label>
+			<select></select>
+		</div>
+		<div class="control">
+			<label> Nationality</label>
+			<select></select>
+		</div>
+		<div class="control">
+			<label> Name</label>
+			<input type="text" name="name" value="">
+		</div>
+		<div class="control">
+			<label> Phone</label>
+			<input type="text" name="experiance" value="">
+		</div>
+		<div class="control">
+			<label> Email</label>
+			<input type="text" name="email" value="">
+		</div>
+		<div class="control">
+			<label> Company Profile</label>
+			<input type="text" name="profile" value="">
+		</div>
+		<div  align="Center">
+			<div class="buttons">
+				<input type="submit" value="Submit">	
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock content %}

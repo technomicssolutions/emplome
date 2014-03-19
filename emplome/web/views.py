@@ -27,8 +27,36 @@ class FullTime(View):
 		context = {}
 		return render(request, 'full_time.html', context)
 
+class RecruiterRegistrationView(View):
+
+	def get(self, request, *args, **kwargs):
+		context = {}
+		return render(request, 'recruiter_registration.html', context)
+
+	def post(self, request, *args, **kwargs):
+
+		user, created = User.objects.get_or_create(username=request.POST['name'])
+		user.save()
+		userprofile = UserProfile()
+		userprofile.user = user
+		userprofile.mobile=request.POST['mobile']
+		userprofile.land_num=request.POST['phone']
+		userprofile.city=request.POST['city']
+		userprofile.country=request.POST['country']
+		userprofile.save()
+		companyprofile = CompanyProfile() 
+		companyprofile.user = userprofile
+		companyprofile.company_name = request.POST['name']
+		companyprofile.company_name = request.POST['type']
+		companyprofile.save()
+
+		context = {}
+		return render(request, 'job_post.html', context)
+
+	
 class JobSeekerRegistration(View):
 	def get(self, request,*args, **kwargs):
 		context = {}
 		return render(request, 'job_seeker_registration.html', context)
+
 
