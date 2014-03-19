@@ -75,10 +75,6 @@ class CompanyProfile(models.Model):
 	#employer_name = models.CharField('Employer Name', max_length=15)
 	company_name = models.CharField('Company Name', max_length=20)
 	industry_type = models.CharField('Industry Type', max_length=20)
-	mobile = models.IntegerField('Mobile')
-	land_num = models.IntegerField('Land Phone', null=True, blank=True)
-	city = models.CharField('City', null=True, blank=True, max_length=20)
-	country = models.CharField('Country', null=True, blank=True, max_length=15)
 
 	def __unicode__(self):
 		return self.company_name
