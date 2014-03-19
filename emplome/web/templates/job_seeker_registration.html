@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Job Seeker Registration
+{% endblock title %}
+{% block body_id %}job_seeker_registration{% endblock body_id %}
+
+{% block content %}
+
+<div class="div3">
+	<div class="separation">
+		<h2 class="hd1">Job Seeker' Registration</h2>
+		<p>* Required Fields</p>
+
+		<h3>Getting Started</h3>
+		<label>Email Address*</label> <input type="text" name="email">
+		<label>First Name*</label> <input type="text" name="lirst_name">
+		<label>Last Name</label> <input type="text" name="last_name">
+		<label>Desired Username*</label> <input type="text" name="username">
+		<label>Choose Password*</label> <input type="text" name="password">
+		<label>Re-enter Password*</label> <input type="text" name="password">
+	</div>
+
+	<div class="separation">
+		<h3>Personnal Details</h3>
+		<label>Passport Nationality*</label> <input type="text" name="nationality">
+		<label>Current Location*</label> <input type="text" name="location">
+		<label>Mobile Number*</label> <input type="text" name="mobile">
+		<label>Gender*</label> 
+		<input type="radio" name="gender">Male
+		<input type="radio" name="gender">Female
+	</div>
+
+	<div class="separation">
+		<h3>Professioal Details</h3>
+		<label>Job Type*</label> <input type="text" name="nationality">
+		<label>Total Experience*</label> <input type="text" name="location">
+		<label>Current/Preffered Industry*</label> <input type="text" name="industry">
+		<label>Function*</label> <input type="text" name="function">
+		<label>Key Skills*</label> <input type="text" name="location">
+	</div>
+
+	<div class="separation">
+		<label>Resume Title*</label> <input type="text" name="resume">
+		<label>Detailed Resume*</label> <input type="button" name="browse" value="browse">
+	</div>
+
+	<div class="separation">
+		<h3>Subscriptions</h3>
+		<p><strong>I would like to recevie Emails/SMS,Voice Calls/Social Media updates for:</strong><p>
+		<label></label> <input type="checkbox" name="checkbox" value="Important notifications on products, job seeker services and career advice">
+		<label></label> <input type="checkbox" name="checkbox" value="Promotions and special offers">
+	</div>
+
+	<div>
+		<label></label> <input type="checkbox" name="checkbox" value="I have read and agree to the privacy statement and terms of use">
+		<label></label> <input type="submit" name="submit" value="Submit">
+
+
+	</div>
+
+
+
+</div>
+
+{% endblock content %}
+
+
+
+	
+		

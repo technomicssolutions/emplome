@@ -9,10 +9,10 @@
 	margin-left:250px;
 vertical-align:center;
 	font-size:40px;
-	//font-family:comic sans ms;
+	/*//font-family:comic sans ms;
 	//margin-top: 3%;
 	//text-align:bottom;
-	//padding:150px;
+	//padding:150px;*/
 }
 .hd1
 {
@@ -45,7 +45,17 @@ height:auto;
 /*background-color:#80b280;   //#E6E6FA;*/
 border:1px solid blue;
 }
+.separation{
+  border:1px solid blue;
+  background-color:white;
+}
 
+.mandatory{
+  float:right;
+  color:red;
+}
+
+}
 ul {
   margin: 0;
   padding: 0;

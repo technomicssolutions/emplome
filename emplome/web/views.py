@@ -26,3 +26,9 @@ class FullTime(View):
 	def get(self, request, *args, **kwargs):
 		context = {}
 		return render(request, 'full_time.html', context)
+
+class JobSeekerRegistration(View):
+	def get(self, request,*args, **kwargs):
+		context = {}
+		return render(request, 'job_seeker_registration.html', context)
+
