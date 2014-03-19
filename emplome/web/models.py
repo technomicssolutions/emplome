@@ -23,15 +23,33 @@ class UserProfile(models.Model):
 	religion = models.CharField('Religion', null=True, blank=True, max_length=10)
 	marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=10)
 
+	def __unicode__(self):
+		return self.user.username
+	class Meta:
+		verbose_name = 'UserProfile'
+		verbose_name_plural = 'UserProfile'
+
+
+
 class Employment(models.Model):
 	user = models.ForeignKey(UserProfile)
-	exp_yrs = land_num = models.IntegerField('Experience in Years', blank=True)
-	exp_mnths = models.IntegerField('Experience in Months', blank=True)
+	exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True)
+	exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True)
 	salary = models.IntegerField('Salary', null=True, blank=True)
 	designation = models.CharField('Designation', null=True, blank=True, max_length=15)
 	industry_type = models.CharField('Industry Type', null=True, blank=True, max_length=20)
 	skills = models.CharField('Key Skills', null=True, blank=True, max_length=20)
 	curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=20)
+
+	def __unicode__(self):
+		return self.user.username
+
+	class Meta:
+
+		verbose_name = 'Employment'
+		verbose_name_plural = 'Employment'
+
+
 
 class Education(models.Model):
 	user = models.ForeignKey(UserProfile)
@@ -40,10 +58,21 @@ class Education(models.Model):
 	masters = models.CharField('Masters', null=True, blank=True, max_length=15)
 	master_spl = models.CharField('Specialisation2', null=True, blank=True, max_length=20)
 	doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=20)
+	resume = models.FileField (upload_to = "uploads/files/", max_length=20000,  null=True, blank=True)
+
+	def __unicode__(self):
+		return self.user.username
+
+	class Meta:
+
+		verbose_name = 'Education'
+		verbose_name_plural = 'Education'
+
+
 
 class CompanyProfile(models.Model):
 	user = models.ForeignKey(UserProfile)
-	employer_name = models.CharField('Employer Name', max_length=15)
+	#employer_name = models.CharField('Employer Name', max_length=15)
 	company_name = models.CharField('Company Name', max_length=20)
 	industry_type = models.CharField('Industry Type', max_length=20)
 	mobile = models.IntegerField('Mobile')
@@ -51,12 +80,35 @@ class CompanyProfile(models.Model):
 	city = models.CharField('City', null=True, blank=True, max_length=20)
 	country = models.CharField('Country', null=True, blank=True, max_length=15)
 
+	def __unicode__(self):
+		return self.company_name
+
+	class Meta:
+
+		verbose_name = 'CompanyProfile'
+		verbose_name_plural = 'CompanyProfile'
+
+
+
 class JobPosting(models.Model):
-	job_type = models.CharField('Job Type', max_length=20)
-	posting_date = models.DateTimeField('Posting Date', null=True, blank=True)
-	last_date = models.DateTimeField('Last Date', null=True, blank=True)
-	exp_req = models.IntegerField('Experience Required', null=True, blank=True)
-	skills = models.CharField('Skills Required', null=True, blank=True, max_length=20)
+	job_title = models.CharField('Job Title', max_length=20)
+	ref_code = models.CharField('Ref Code', max_length=10)
+	job_details = models.CharField('Job Details', max_length=100,null=True, blank=True)
+	document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+	#posting_date = models.DateTimeField('Posting Date', null=True, blank=True)
+	#last_date = models.DateTimeField('Last Date', null=True, blank=True)
+	#exp_req = models.IntegerField('Experience Required', null=True, blank=True)
+	#skills = models.CharField('Skills Required', null=True, blank=True, max_length=20)
+
+	def __unicode__(self):
+		return self.job_type
+
+	class Meta:
+
+		verbose_name = 'JobPosting'
+		verbose_name_plural = 'JobPosting'
+
+
 
 		
 
