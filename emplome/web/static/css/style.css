@@ -1,3 +1,75 @@
+.form_container {
+  margin: auto;
+  width: 80%;
+  min-height: 100%
+}
+.form_container .control {
+  width: 100%;
+  height: 30px;
+  float: left;
+  padding: 10px;
+}
+.form_container label{
+  display: block !important;
+    float: left;
+    width: 45%;
+}
+
+.form_container input{
+  float: left;
+  display: block;
+  width: 50%;
+}
+.form_container input[type="button"]{
+  width: auto;
+}
+.form_container select{
+  float: left;
+  display: block;
+  width: 50%;
+}
+
+form {
+  display: block;
+  float: left;
+  min-height: 100%;
+  width: 100%;
+}
+
+
+
+
+/*.section_1 {
+  float: left;
+  width: 50%;
+}
+.section_2 {
+  float: left;
+  width: 50%;
+}
+*/
+.formrow {
+  min-height: 40px;
+    width: 100%;
+    padding: 3px;
+}
+
+.formrow label{
+  float: left;
+  width: 45%;"
+}
+/*.formtext {
+  float: left;
+    width: 95px;
+}
+.forminput {
+  float: left;
+}*/
+
+
+
+
+
 .container
 {
 	background-color:#d0d0d0;
@@ -48,6 +120,7 @@ border:1px solid blue;
 .separation{
   border:1px solid blue;
   background-color:white;
+  padding-left: 6%;
 }
 
 .mandatory{
