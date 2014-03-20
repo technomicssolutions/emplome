@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="div3">
-	<!-- <form class="form_container"> -->
+	<!-- <form> -->
 	<div class="separation">
 		<br>
 		<h2 class="hd1">Job Seeker's Registration</h2>
@@ -51,7 +51,8 @@
 		<br>
 		<div class="formrow">
 		<label>Passport Nationality*</label>
-		<select>
+		<select name="nationality">
+			<option>------------------Select------------------</option>
 			<option>Select Nationality</option>
 			<option>Afganistan</option>
 			<option>Albania</option>
@@ -292,7 +293,214 @@
 		</div>
 		<div class="formrow">
 		<label>Current Location*</label>
-		<input type="text" name="location">
+		<select name="current_location">
+			<option>------------------Select------------------</option>
+			<option>United Arab Emirates</option>
+			<option>- Abu Dhabi</option>
+			<option>- Ajman</option>
+			<option>- Al Ain</option>
+			<option>- Dubai</option>
+			<option>- Fujairah</option>
+			<option>- Ras Al Khaimah</option>
+			<option>- Sharjah</option>
+			<option> Umm Al Qaiwain</option></option>
+			<option>- Other</option></option>
+			<option>Saudi Arabia</option></option>
+			<option> - Abha</option></option>
+			<option> - Abu Areesh</option></option>
+			<option> - Alahsa</option></option>
+			<option> - Albaha</option></option>
+			<option> - Alkharj</option></option>
+			<option> - Alqasim</option></option>
+			<option> - Alqunfithah</option>
+			<option> - Altaif</option>
+			<option> - Al Madina Al Munawarah</option>
+			<option> - Arar</option>
+			<option> - Aseer</option>
+			<option> - Buraidah</option>
+			<option> - Dammam</option>
+			<option> - Eastern Province</option>
+			<option> - Haeil</option>
+			<option> - Hafr Albaten</option>
+			<option> - Hofof</option>
+			<option> - Jazan</option>
+			<option> - Jeddah
+			<option> - Jizan</option>
+			<option> - Jouf</option>
+			<option> - Jubail</option>
+			<option> - Jubail/ Al Jubail</option>
+			<option> - Khamis Mushait</option>
+			<option> - Khobar</option>
+			<option> - Makkah Al Mukarramah</option>
+			<option> - Mecca</option>
+			<option> - Medina</option>
+			<option> - Najran</option>
+			<option> - Onaizah</option>
+			<option> - Qaseem</option>
+			<option> - Qatif</option>
+			<option> - Riyadh</option>
+			<option> - Sabia</option>
+			<option> - Sakaka</option>
+			<option> - Tabouk</option>
+			<option> - Yanbu</option>
+			<option> - Other</option>
+			<option>Qatar</option>
+			<option> - Doha</option>
+			<option> - Other</option>
+			<option>Bahrain</option>
+			<option> - Manama</option>
+			<option> - Other</option>
+			<option>Oman</option>
+			<option> - Ibri</option>
+			<option> - Khasab</option>
+			<option> - Muscat</option>
+			<option> - Nizwa</option>
+			<option> - Salalah</option>
+			<option> - Sohar</option>
+			<option> - Sur</option>
+			<option> - Zufar</option>
+			<option> - Other</option>
+			<option>Kuwait</option>
+			<option> - Al Ahmadi</option>
+			<option> - Al Farawaniyah</option>
+			<option> - Al Jahra</option>
+			<option> - Al Kuwait</option>
+			<option> - Al Zour Mina Saud</option>
+			<option> - Hawali</option>
+			<option> - Joint Operations Wafra</option>
+			<option> - Other</option>
+			<option>Lebanon</option>
+			<option> - Beirut</option>
+			<option> - Bekaa</option>
+			<option> - Saidon</option>
+			<option> - Tripoli</option>
+			<option> - Other</option>
+			<option>Jordan</option>
+			<option> - Ajloun</option>
+			<option> - Amman</option>
+			<option> - Aqaba</option>
+			<option> - Irbid</option>
+			<option> - Jerash</option>
+			<option> - Karak</option>
+			<option> - Maan</option>
+			<option> - Madaba</option>
+			<option> - Mafraq</option>
+			<option> - Salt</option>
+			<option> - Tafila</option>
+			<option> - Zarqa</option>
+			<option> - Other</option>
+			<option>Egypt</option>
+			<option> - Alexandria</option>
+			<option> - Asyut</option>
+			<option> - Cairo</option>
+			<option> - Damietta</option>
+			<option> - Hurghada</option>
+			<option> - Ismailia</option>
+			<option> - Luxor</option>
+			<option> - Port Said</option>
+			<option> - Sharm el Sheikh</option>
+			<option> - Suez</option>
+			<option> - Other</option>
+			<option>Iraq</option>
+			<option>- Al Nagaf</option>
+			<option> - Baghdad</option>
+			<option> - Basra</option>
+			<option> - Erbil</option>
+			<option> - Hillah</option>
+			<option> - Karbala</option>
+			<option> - Kirkuk</option>
+			<option> - Mosul</option>
+			<option> - Sulaymaniyah</option>
+			<option> - Other</option>
+			<option>Afghanistan</option>
+			<option>Africa</option>
+			<option>Algeria</option>
+			<option>Angola</option>
+			<option>Australia</option>
+			<option>Bangladesh</option>
+			<option>Belgium</option>
+			<option>Benin</option>
+			<option>Botswana</option>
+			<option>Burkina Faso</option>
+			<option>Burundi</option>
+			<option>Cameroon</option>
+			<option>Canada</option>
+			<option>Cape Verde</option>
+			<option>Central African Republic</option>
+			<option>Chad</option>
+			<option>China</option>
+			<option>Cote d Ivoire</option>
+			<option>Democratic Republic of Congo</option>
+			<option>Djibouti</option>
+			<option>Equatorial Guinea</option>
+			<option>Eritrea</option>
+			<option>Ethiopia</option>
+			<option>France</option>
+			<option>Gabon</option>
+			<option>Gambia</option>
+			<option>Germany</option>
+			<option>Ghana</option>
+			<option>Guinea</option>
+			<option>Guinea Bissau</option>
+			<option>Hongkong</option>
+			<option>India</option>
+			<option>Indonesia</option>
+			<option>Ireland</option>
+			<option>Japan</option>
+			<option>Kenya</option>
+			<option>Lesotho</option>
+			<option>Liberia</option>
+			<option>Libya</option>
+			<option>Macau</option>
+			<option>Madagascar</option>
+			<option>Malawi</option>
+			<option>Malaysia</option>
+			<option>Maldives</option>
+			<option>Mali</option>
+			<option>Mauritania</option>
+			<option>Mauritius</option>
+			<option>Mexico</option>
+			<option>Morocco</option>
+			<option>Mozambique</option>
+			<option>Namibia</option>
+			<option>Nepal</option>
+			<option>Netherlands</option>
+			<option>New Zealand</option>
+			<option>Niger</option>
+			<option>Nigeria</option>
+			<option>Pakistan</option>
+			<option>Philippines</option>
+			<option>Republic of Congo</option>
+			<option>Russia</option>
+			<option>Rwanda</option>
+			<option>Senegal</option>
+			<option>Seychelles</option>
+			<option>Sierra Leone</option>
+			<option>Singapore</option>
+			<option>Somalia</option>
+			<option>South Africa</option>
+			<option>South Korea</option>
+			<option>Spain</option>
+			<option>SriLanka</option>
+			<option>Sudan</option>
+			<option>Swaziland</option>
+			<option>Sweden</option>
+			<option>Switzerland</option>
+			<option>Taiwan</option>
+			<option>Tanzania</option>
+			<option>Thailand</option>
+			<option>Togo</option>
+			<option>Tunisia</option>
+			<option>UK</option>
+			<option>US</option>
+			<option>Uganda</option>
+			<option>Vietnam</option>
+			<option>Yemen</option>
+			<option>Zambia</option>
+			<option>Zimbabwe</option>
+			<option>Other International</option>	
+		</select>
+					<!-- <input type="text" name="location"> -->
 		</div>
 		<div class="formrow">
 		<label>Mobile Number*</label>
@@ -312,23 +520,182 @@
 		<br>
 		<div class="formrow">
 		<label>Job Type*</label>
-		<input type="text" name="nationality">
+		<select name="job_type" multiple>
+			<option>-----------Select---------</option>
+			<option> Permanent Full Time </option>
+			<option> Permanent Part Time </option>
+			<option> Contract </option>
+		</select>
+		<!-- <input type="text" name="job_type"> -->
 		</div>
 		<div class="formrow">
 		<label>Total Experience*</label>
-		<input type="text" name="location">
+		<select class="year" name="years" style="width: 115px">
+			<option>Years</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
+			<option>11</option>
+			<option>12</option>
+			<option>13</option>
+			<option>14</option>
+			<option>15</option>
+			<option>16</option>
+			<option>17</option>
+			<option>18</option>
+			<option>19</option>
+			<option>20</option>
+			<option>21</option>
+			<option>22</option>
+			<option>23</option>
+			<option>24</option>
+			<option>25</option>
+			<option>26</option>
+			<option>27</option>
+			<option>28</option>
+			<option>29</option>
+			<option>20</option>
+			<option>31</option>
+			<option>32</option>
+			<option>33</option>
+			<option>34</option>
+			<option>35</option>
+			<option>36</option>
+			<option>37</option>
+			<option>38</option>
+			<option>39</option>
+			<option>40</option>
+			<option>41</option>
+			<option>42</option>
+			<option>43</option>
+			<option>44</option>
+			<option>45</option>
+			<option>46</option>
+			<option>47</option>
+			<option>48</option>
+			<option>49</option>
+			<option>50</option>
+		</select>
+		<select name="months" style="width: 115px">
+			<option>Months</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
+			<option>11</option>
+		</select>
+
+
+		<!-- <input type="text" name="experience"> -->
 		</div>
 		<div class="formrow">
 		<label>Current/Preffered Industry*</label>
-		<input type="text" name="industry">
+		<select name="industry" multiple> 
+			<option>--------------Select------------</option>
+			<option>Automotive/ Ancillaries</option>
+			<option>Banking/ Financial Services</option>
+			<option>Bio Technology & Life Sciences</option>
+			<option>Chemicals/Petrochemicals</option>
+			<option>Construction</option>
+			<option>FMCG</option>
+			<option>Education</option>
+			<option>Entertainment/ Media/ Publishing</option>
+			<option>Insurance</option>
+			<option>ITES/BPO</option>
+			<option>IT/ Computers - Hardware</option>
+			<option>IT/ Computers - Software</option>
+			<option>KPO/Analytics</option>
+			<option>Machinery/ Equipment Mfg.</option>
+			<option>Oil/ Gas/ Petroleum</option>
+			<option>Pharmaceuticals</option>
+			<option>Plastic/ Rubber</option>
+			<option>Power/Energy</option>
+			<option>Real Estate</option>
+			<option>Retailing</option>
+			<option>Telecom</option>
+			<option>Advertising/PR/Events</option>
+			<option>Agriculture/ Dairy Based</option>
+			<option>Aviation/Aerospace</option>
+			<option>Beauty/Fitness/PersonalCare/SPA</option>
+			<option>Beverages/ Liquor</option>
+			<option>Cement</option>
+			<option>Ceramics & Sanitary Ware</option>
+			<option>Consultancy</option>
+			<option>Courier/ Freight/ Transportation</option>
+			<option>Dotcom</option>
+			<option>Electrical/Switchgear</option>
+			<option>Engineering, Procurement, Construction</option>
+			<option>Environmental Service</option>
+			<option>Facility management</option>
+			<option>Fertilizer/ Pesticides</option>
+			<option>Food & Packaged Food</option>
+			<option>Textiles / Yarn / Fabrics / Garments</option>
+			<option>Gems & Jewellery</option>
+			<option>Government/ PSU/ Defence</option>
+			<option>Consumer Electronics/Appliances</option>
+			<option>Hospitals/ Health Care</option>
+			<option>Hotels/ Restaurant</option>
+			<option>Import / Export</option>
+			<option>Iron/ Steel</option>
+			<option>ISP</option>
+			<option>Law Enforcement/Security Services</option>
+			<option>Leather</option>
+			<option>Market Research</option>
+			<option>Medical Transcription</option>
+			<option>Mining</option>
+			<option>NGO</option>
+			<option>Non-Ferrous Metals</option>
+			<option>Office Equipment/Automation</option>
+			<option>Paints</option>
+			<option>Paper</option>
+			<option>Printing/ Packaging</option>
+			<option>Public Relations (PR)</option>
+			<option>Shipping/ Marine Services</option>
+			<option>Travel/ Tourism</option>
+			<option>Tyres</option>
+			<option>Wood</option>
+			<option>Other</option>
+			<optiones</option>
+			<option>Travel/ Tourism</option>
+			<option>Any</option>
+		</select>
+		<!-- Select maximum 2 -->
+		<!-- <input type="text" name="industry"> -->
 		</div>
 		<div class="formrow">
-		<label>Function*</label>
-		<input type="text" name="function">
+			<label>Function*</label>
+			<select name ="function" multiple>
+				<option>---------------Select-------------</option>
+				<option>IT</option>
+				<option>Sales/ Business Development</option>
+				<option>Marketing & Communications</option>
+				<option>Finance & Accounts</option>
+				<option>Customer Service/ Call Centre/ BPO</option>
+				<option>Human Resources</option>
+				<option>Admin/Secretarial</option>
+				<option>Legal</option>
+				<option>Purchase/ Logistics/ Supply Chain</option>
+			</select>
+			<!-- Select maximum 2 -->
+
+		<!-- <input type="text" name="function"> -->
 		</div>
 		<div class="formrow">
 		<label>Key Skills*</label>
-		<input type="text" name="location">
+		<input type="text" name="skills">
 		</div>
 		<br>
 	</div>
@@ -340,8 +707,8 @@
 		<input type="text" name="resume">
 		</div>
 		<div class="formrow">
-		<label>Detailed Resume*</label>
-		<input type="button" name="browse" value="Browse">
+				<label>Detailed Resume*</label>
+				<input type="button" name="browse" value="Browse">
 		</div>
 		<br>
 	</div>
@@ -368,12 +735,15 @@
 			<input type="checkbox" name="checkbox">I have read and agree to the privacy statement and terms of use"
 		</div>
 		<div class="formrow">
+			<div class="btn">
 			<label></label>
-			<input type="submit" name="submit" value="Submit">
+			<input class="button" type="submit" name="submit" value="Submit">
+			</div>
 		</div>
 		<br>
 
 	</div>
+	<!-- </form> -->
 </div>
 
 {% endblock content %}
