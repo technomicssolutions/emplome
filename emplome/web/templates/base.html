@@ -18,7 +18,7 @@
         {% endblock extrahead %}
     </head>
 
-    <body>
+    <body id="{% block body_id %}base{% endblock %}">
         <div class="container">
             {% block header %}
                 {% include 'header.html' %}
