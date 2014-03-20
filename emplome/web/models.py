@@ -7,12 +7,15 @@ USER_TYPE = (
 	('employer', 'Employer'),
 	('job_seeker', 'Job Seeker'),
 )
-
+GENDER = (
+	('male', 'Male'),
+	('female', 'Female'),
+)
 class UserProfile(models.Model):
 	user = models.ForeignKey(User)
 	user_type = models.CharField('User Type', max_length=20, choices=USER_TYPE)
-	gender = models.CharField('Gender', max_length=1)
-	nationality = models.CharField('Nationality', max_length=10)
+	gender = models.CharField('Gender', max_length=1, choices=GENDER)
+	nationality = models.CharField('Nationality', max_length=10,)
 	current_location = models.CharField('Current Loction', null=True, blank=True, max_length=20)
 	country = models.CharField('Country', null=True, blank=True, max_length=20)
 	city = models.CharField('City', null=True, blank=True, max_length=20)
@@ -25,6 +28,7 @@ class UserProfile(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
+
 	class Meta:
 		verbose_name = 'UserProfile'
 		verbose_name_plural = 'UserProfile'
@@ -71,6 +75,7 @@ class Education(models.Model):
 
 
 class CompanyProfile(models.Model):
+
 	user = models.ForeignKey(UserProfile)
 	#employer_name = models.CharField('Employer Name', max_length=15)
 	company_name = models.CharField('Company Name', max_length=20)
@@ -105,7 +110,4 @@ class JobPosting(models.Model):
 		verbose_name_plural = 'JobPosting'
 
 
-
 		
-
-# Create your models here.
