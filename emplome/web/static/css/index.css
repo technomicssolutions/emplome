@@ -1,0 +1,255 @@
+/************** Base styles *********************/
+
+.content {
+  width: 100%;
+  margin: auto;
+}
+
+.container{
+    width:80%;
+    margin: auto;
+}
+/************* end base styles *****************/
+
+.year{
+  width: 115px;
+}
+
+.button{
+  width: 100px;
+}
+
+.formrow {
+    min-height: 40px;
+    width: 100%;
+    padding: 3px;
+}
+
+.form{
+    display: inline;
+}
+
+ .hd1{
+    color:black; 
+    text-decoration:underline;
+    text-align:center;
+}
+
+.mandatory{
+  float:right;
+  color:red;
+}
+
+.separation{
+  border:1px solid blue;
+  background-color:white;
+  padding-left: 6%;
+}
+
+.formrow select{
+  width: 300px;
+}
+.job span{
+    padding-top: 2px;
+    margin-left: 11%;
+}
+
+.formrow label{
+  float: left;
+  width: 45%;"
+}
+
+.formrow input{
+  width: 300px;
+}
+
+.main-header{
+  background-color:#663399;
+  color:white;
+  width:100%;
+  height:54px;
+  border-bottom:1px solid #ffffff;
+}
+
+body {
+    font: 400 14px/1 Arial,Helvetica,sans-serif;
+}
+
+
+.logodiv{
+    height: 66px;
+    overflow: hidden;
+}
+/*HEADER STYLE START*/
+
+
+
+
+.logodiv {
+    height: 66px;
+    overflow: hidden;
+}
+#bms {
+    margin-left: 300px;
+    max-width: 670px;
+    overflow: hidden;
+}
+.navi {
+    background: linear-gradient(to bottom, #89BBE5 0px, #67AADD 47%, #4D9CD5 66%, #2E8BCB 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 0.417em;
+    font: 400 12px/1 Arial,Helvetica,sans-serif;
+}
+.middle {
+    height: 35px;
+    padding: 2px 0 0 0.583em;
+}
+.middle li {
+    display: inline;
+    float: left;
+    height: 100%;
+}
+.middle a {
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: 700;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 5px;
+    padding: 0 10px;
+}
+.middle a:hover, .middle a.active {
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+.middle em.home {
+    background-position: right 0;
+    display: inline-block;
+    height: 26px;
+    margin-top: 3px;
+    overflow: hidden;
+    width: 25px;
+}
+.middle li.ddn {
+    position: relative;
+}
+.ddn:hover a {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #3D79B8 #3D79B8 -moz-use-text-color;
+    border-image: none;
+    border-radius: 0.417em 0.417em 0 0;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    color: #000000;
+    padding: 0 9px;
+}
+.ddn em.downArr {
+    border-color: #FFFFFF rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 4px 4px 0;
+    display: inline-block;
+    height: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+    vertical-align: text-top;
+    width: 0;
+}
+.ddn:hover em.downArr, .ddn a.active em.downArr {
+    border-color: #000000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+}
+.ddn .ddNC {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: -moz-use-text-color #3D79B8 #3D79B8;
+    border-image: none;
+    border-right: 1px solid #3D79B8;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    box-shadow: 5px 6px 5px #BFBFBF;
+    display: none;
+    left: 0;
+    padding-bottom: 5px;
+    position: absolute;
+    top: 35px;
+    width: 148px;
+}
+.ddn:hover .ddNC a, .ddNC a, .ddNC a:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    border-color: -moz-use-text-color -moz-use-text-color #D6D6D6;
+    border-image: none;
+    border-style: none none dotted;
+    border-width: 0 0 1px;
+    color: #0100FE;
+    display: block;
+    font-weight: 400;
+    height: auto;
+    line-height: 1.5;
+    margin: 3px 0 0;
+    padding: 0 0 3px 14px;
+}
+.ddNC a.nbdr {
+    border-bottom: medium none !important;
+}
+.ddn:hover .ddNC {
+    display: block;
+}
+.ddn a:focus {
+    outline: 0 none;
+}
+
+/*HEADER STYLE END*/
+
+.sub-container{
+    width:100%;
+    border:1px solid #cccccc;
+    height: 288px;
+}
+
+.box{
+    width:45%;
+    padding:0.75em;
+}
+.box1{
+    float: left;
+    width:50%;
+}
+.sub-box1{
+    width:54%;
+}
+.sub-box2{
+    width:40%;
+}
+.company{
+    text-align: center;
+    padding: 0.1em;
+    width:45%;
+    float:left;
+    border-right:1px solid #cccccc;
+    height:20em;
+}
+.job{
+    text-align: center;
+    width:54%;
+    float:left;
+    height:20em;
+}
+.full-box{
+    border:1px solid #cccccc;
+    padding:1.1em;
+    height:auto;
+    width: 97%;
+}
+.left{
+    text-align: left;
+}
