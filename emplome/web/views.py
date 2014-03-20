@@ -19,6 +19,10 @@ class Home(View):
         context = {}
         return render(request, 'home.html', context)
 
+class RecruiterHomeView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'recruiter_home.html', {})
+
 class FullTime(View):
 	def get(self, request, *args, **kwargs):
 		context = {}
