@@ -5,29 +5,37 @@
 
 <div class="alert alert-info" align="Center"><h4>Register Recruiter</h4></div>
 <div class="form_container">
-	<form class="" name="add_item" method="post" action="{% url 'register' %}">
+	<form class="" name="" method="post" action="{% url 'register' %}">
 		{% csrf_token %}
-		<div class="control">
+		<div class="formrow">
 			<label > Company Name</label>  
 			<input type="text"  name="name" value="">
 		</div>
-		<div class="control">
+		<div class="formrow">
 			<label> Industry Type</label>
 			<input type="text" name="type" value="">
 		</div>
-		<div class="control">
+		<div class="formrow">
+			<label > Email</label>  
+			<input type="text"  name="email" value="">
+		</div>
+		<div class="formrow">
+			<label> Password</label>
+			<input type="password" name="password" value="">
+		</div>
+		<div class="formrow">
 			<label> Mobile</label>
 			<input type="text" name="mobile" value="">
 		</div>
-		<div class="control">
+		<div class="formrow">
 			<label> Land Number</label>
 			<input type="text" name="phone" value="">
 		</div>
-		<div class="control">
+		<div class="formrow">
 			<label> City</label>
 			<input type="text" name="city" value="">
 		</div>
-		<div class="control">
+		<div class="formrow">
 			<label> Country</label>
 			<input type="text" name="country" value="">
 		</div>

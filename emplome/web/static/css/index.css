@@ -237,8 +237,6 @@ body {
     width:40%;
     display: inline-block;
     display: -moz-stack;
-    
-
 }
 .sub-box3{
     margin-left:1%;
@@ -269,4 +267,65 @@ body {
 }
 .left{
     text-align: left;
+}
+.large-box{
+    width:55%;
+    float:left;
+    background-color: #F3FAFF;
+    padding-top: 0px;
+    padding-left: 1%;
+    margin-right: 5%;
+}
+.large-box p{
+    line-height: 1.5;
+    font-size: 12px;
+}
+.small-box h4,.large-box h4{
+    background-color: #BFDEF2;
+    margin-top: 0px;
+}
+.blue-button{
+    color:#FFFFFF; 
+    font-weight:bold; 
+    line-height:23px;
+    background-color: #0E5BA8;
+    display: block;
+    border:1px solid #000000;
+    text-decoration: none;
+    width:25%;
+    margin-left: 25%;
+    margin-bottom: 2%;
+    padding-left: 3%;
+}
+.small-box{
+    border:1px solid #D6EBF9;
+    float: left;
+    width: 35%;
+    padding:1%;
+    padding-top: 0px;
+    margin-bottom: 4%;
+}
+.small-box input{
+   width: 50%;
+}
+.buttons{
+    width: 50%;
+}
+#email{
+    margin-left: 8%;
+}
+/*PROFILE PAGE*/
+.profile-box{
+    width:50%;
+}
+.profile-box label{
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/************* RECRUITER STYLE *****************/
+.form_container{
+    width:60%;
+    margin-left: 20%;
 }

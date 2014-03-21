@@ -19,6 +19,44 @@ class Home(View):
         context = {}
         return render(request, 'home.html', context)
 
+class LoginView(View):
+	def get(self, request, *args, **kwargs):
+		context = {}
+		return render(request, 'login_job_seeker.html', context)	
+
+	def post(self, request, *args, **kwargs):
+		user = authenticate(username=request.POST['email'], password=request.POST['password'])
+		print "user",user
+		userdata = UserProfile.objects.get(user = user)
+		print "userdata",userdata.user_type
+		if user and user.is_active:
+			login(request, user)
+		else:
+			context = {
+				'message' : 'Username or password is incorrect',
+			}
+			return render(request, 'login_job_seeker.html',context)
+
+		if userdata.user_type == 'employer':
+			return HttpResponseRedirect(reverse('empprofile',args=[user.id]))
+		else:
+			return HttpResponseRedirect(reverse('profile',args=[user.id]))
+
+class JobSeekerProfileView(View):
+	def get(self, request, *args, **kwargs):
+		context = {}
+		try:
+			user = User.objects.get(id = kwargs['user_id'])
+			profile = UserProfile.objects.get(user = user)
+			context = {
+				'profile': profile,
+			}
+		except:
+		    context = {
+		        'error':'You have no profile'
+		}
+		return render(request, 'job_seeker_profile.html', context)	
+
 class RecruiterHomeView(View):
 	def get(self, request, *args, **kwargs):
 		return render(request, 'recruiter_home.html', {})
@@ -35,11 +73,14 @@ class RecruiterRegistrationView(View):
 		return render(request, 'recruiter_registration.html', context)
 
 	def post(self, request, *args, **kwargs):
-
-		user, created = User.objects.get_or_create(username=request.POST['name'])
+		post_dict = request.POST
+		user, created = User.objects.get_or_create(username=request.POST['email'])
+		user.email = request.POST['email']
+		user.set_password(post_dict['password'])
 		user.save()
 		userprofile = UserProfile()
 		userprofile.user = user
+		userprofile.user_type = "employer"
 		userprofile.mobile=request.POST['mobile']
 		userprofile.land_num=request.POST['phone']
 		userprofile.city=request.POST['city']
@@ -59,5 +100,11 @@ class JobSeekerRegistration(View):
 	def get(self, request,*args, **kwargs):
 		context = {}
 		return render(request, 'job_seeker_registration.html', context)
+
+class EmployerProfileView(View):
+	def get(self, request,*args, **kwargs):
+		context = {}
+		return render(request, 'recruiter_home.html', context)
+
 
 

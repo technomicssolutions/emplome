@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+{% block body_id %}profile{% endblock body_id %}
+
+{% block content %}
+
+<div class="profile-box">
+	<strong>{{error}}</strong><br />
+	<label>Welcome to your Home Page</label><br />
+	<label>Update CV, browse/search jobs... do lots more on your page!</label><br />
+	<label>Your profile picture is missing. Upload one to increase your visibility and searchability.</label><br />
+	<div class="profile-det">
+		<h4>My CV</h4>
+		<h3>{{profile.user.first_name}}</h3>
+		Email id :{{profile.user.email}}
+		Mobile:{{ profile.mobile }}
+		Functional Area :
+ 		Industry Type :
+ 		Work Experience :
+ 		Highest Education:
+	</div>
+</div>
+
+{% endblock content %}
