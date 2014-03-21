@@ -1,34 +1,36 @@
-<div class="main">
-    <div class="empS">
-        <form action="" name="frmMnjLogin" method="post">
-            <span>
-                <label >Job Seekers Login:</label>
-                <input  type="text" maxlength="80" placeholder="Username" name="username">
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Login">
-                <label>|</label>
-                <a href="" title="Forgot">Forgot password?</a>
-            </span>
-        </form>
-    </div>
-
-    <img src=""/>
-    <nav id="nav" role="navigation">
-        <a href="#nav" title="Show navigation">Show navigation</a>
-        <a href="#" title="Hide navigation">Hide navigation</a>
-        <ul class="clearfix">
-            <li>
-                <a href="" aria-haspopup="true"><span>Search Jobs</span></a>
-                <ul>
-                    <li><a href="">Advanced Search</a></li>
-                    <li><a href="">Jobs By Category</a></li>
-                    <li><a href="">Jobs By Location</a></li>
-                    <li><a href="">Jobs By Skills</a></li>
-                    <li><a href="">Jobs By Designation</a></li>
-                </ul>
-            </li>
-            <li><a href="">Post Resume</a></li>
-            <li><a href="">Job Seeker</a></li>
-        </ul>
-    </nav>
+<div class="logodiv">
+    <a title="NaukriGulf.com" href="http://www.naukrigulf.com/">
+        <img class="fl" width="246" height="72" src="http://static.naukimg.com/ni/nistatic/nihome/images/naukrigulf_arabic.gif" alt="NaukriGulf.com">
+    </a>
+</div>
+<div class="navi">
+    <ul class="middle">
+        <li>
+            <a class="active" title="Home" href="?tracksrc=502">
+                <em class="home"></em>
+            </a>
+        </li>
+        <li id="ddN" class="ddn">
+            <a title="Search Jobs" href="search-jobs?tracksrc=503">
+                Search Jobs
+                <em class="downArr"> </em>
+            </a>
+            <div class="ddNC">
+                <a title="" href="#">Advance Search</a>
+                <a title="" href="#">Jobs By Category</a>
+                <a title="" href="#">Jobs By Location</a>
+                <a title="" href="#">Jobs By Skills</a>
+                <a class="nbdr" title="" href="#">Jobs By Designation</a>
+            </div>
+        </li>
+        <li>
+            <a class="tabUnsel" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
+            Post Resume
+                <!-- <sup>Free</sup> -->
+            </a>
+        </li>
+        <li>
+            <a class="tabUnsel" title="Job Seekers Login" href="#">Job Seekers</a>
+        </li>
+    </ul>
 </div>

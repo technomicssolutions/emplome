@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}Home
-{% endblock title %}
+{% block title %}Home{% endblock title %}
 {% block body_id %}home{% endblock body_id %}
 
 {% block content %}
-
-<div class="main">
+<div class="sub-container">
 	<div class="company">
 		<br>
 		<h3> YOUR COMPANY LOGO HERE </h3>
@@ -19,24 +17,83 @@
 		<input type="submit" value="Submit">
 		<br>
 		<br>
-		<a href="Home.html">Jobs by Role</a>
-		<a href="Home.html">Jobs by Company</a>
-		<a href="Home.html">Advanced Job Search</a>
+		<a href="">Jobs by Role</a>
+		<a href="">Jobs by Company</a>
+		<a href="">Advanced Job Search</a>
 	</div>
 
 	<div class="job">
 		<h2>Find Your Perfect Job</h2>
 		<p>
 		Choose from 9523 jobs.
-		<br>
 		Let employers find you online.
-		<br>
 		Receive matching jobs by Email.
-		<br>
 		Easy and 100% free.
-		<br>
 		</p>
-		<input type="submit" value="Post your CV">
+		<button href="{% url 'job_seeker_registration' %}">Post your CV</button>
+	</div>
+</div>
+<div class="full-box">
+	<h1>Success Stories</h1>
+</div>
+<div class="sub-container">
+	<div class="company left">
+		<h2>Browse Jobs in India and Middle East</h2>
+		<div class="sub-box1">
+			<a><h4>By Job Role</h4></a><br />
+			<a href="#">Accounting/Banking/Finance Jobs(472)</a><br />
+			<a href="#">Administration Jobs(328)</a><br />
+			<a href="#">Art/Design/Creative Jobs</a><br />
+			<a href="#">Customer Service jobs(203)</a><br />
+		</div>
+		<div class="sub-box2">
+			<a><h4>By Job Location</h4></a><br />
+			<a href="#">Jobs in Bahrain</a><br />
+			<a href="#">Jobs in Iraq</a><br />
+			<a href="#">Jobs in Egypt</a><br />
+			<a href="#">Jobs in Jordan</a><br />
+		</div>
+	</div>
+	<div class="job left">
+		<h3>RECOMMENDATIONS FROM EMPLOME</h3>
+		<img src="#">
+	</div>
+</div>
+<div class="full-box">
+	<h4>FEATURED EMPLOYERS IN INDIA AND MIDDLE EAST</h4>
+</div>
+<div class="sub-container">
+	<div class="company left">
+		<h3>Newsletter Signup</h3>
+		<p>Track the latest collections and offers at Jabong.</p>
+		<p><strong>Sign up for our newsletter and get a Rs. 1500 Voucher!</strong></p>
+		<input type="text" name="fname">
+		<input type="submit" value="Submit">
+		<p>Your data will not be shared with others and you can unsubscribe at any time.</p>
+		<p>*Voucher is valid only on new registrations.</p>
+	</div>
+	<div class="job left">
+		<div class="sub-box3">
+			<h4>Company</h4>
+			<a href="#">About Us</a><br>
+			<a href="#">Contact Us</a><br>
+			<a href="#">Careers</a><br>
+			<a href="#">Press Corner</a><br>
+		</div>
+		<div class="sub-box3">
+			<h4>Quick Links</h4>
+			<a href="#">Help</a><br>
+			<a href="#">Site Map</a><br>
+			<a href="#">Mobile</a><br>
+			<a href="#">The Network</a><br>
+		</div>
+		<div class="sub-box3">
+			<h4>Follow</h4>
+			<a href="#">Google+</a><br>
+			<a href="#">Facebook</a><br>
+			<a href="#">Twitter</a><br>
+			<a href="#">You Tube</a><br>
+		</div>
 	</div>
 </div>
 {% endblock content %}
