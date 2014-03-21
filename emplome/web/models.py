@@ -271,13 +271,416 @@ COUNTRY_CHOICES = (
     ('Zimbabwe','Zimbabwe'),
 )
 
+INDUSTRY = (
+    ('Automotive/ Ancillaries', 'Automotive/ Ancillaries'),
+    ('Banking/ Financial Services', 'Banking/ Financial Services'),
+    ('Bio Technology & Life Sciences', 'Bio Technology & Life Sciences'),
+    ('Chemicals/Petrochemicals', 'Bio Technology & Life Sciences'),
+    ('Construction', 'Construction'),
+    ('FMCG', 'FMCG'),
+    ('Education', 'Education'),
+    ('Entertainment/ Media/ Publishing', 'Entertainment/ Media/ Publishing'),
+    ('Insurance', 'Insurance'),
+    ('ITES/BPO', 'ITES/BPO'),
+    ('IT/ Computers - Hardware', 'IT/ Computers - Hardware'),
+    ('IT/ Computers - Software', 'IT/ Computers - Software'),
+    ('KPO/Analytics', 'KPO/Analytics'),
+    ('Machinery/ Equipment Mfg.', 'Machinery/ Equipment Mfg.'),
+    ('Oil/ Gas/ Petroleum', 'Oil/ Gas/ Petroleum'),
+    ('Pharmaceuticals', 'Pharmaceuticals'),
+    ('Plastic/ Rubber', 'Plastic/ Rubber'),
+    ('Power/Energy', 'Power/Energy'),
+    ('Real Estate', 'Real Estate'),
+    ('Retailing', 'Retailing'),
+    ('Telecom', 'Telecom'),
+    ('Advertising/PR/Events', 'Advertising/PR/Events'),
+    ('Agriculture/ Dairy Based', 'Agriculture/ Dairy Based'),
+    ('Aviation/Aerospace', 'Aviation/Aerospace'),
+    ('Beauty/Fitness/PersonalCare/SPA', 'Beauty/Fitness/PersonalCare/SPA'),
+    ('Beverages/ Liquor', 'Beverages/ Liquor'),
+    ('Cement', 'Cement'),
+    ('Ceramics & Sanitary Ware', 'Ceramics & Sanitary Ware'),
+    ('Consultancy', 'Consultancy'),
+    ('Courier/ Freight/ Transportation', 'Courier/ Freight/ Transportation'),
+    ('Dotcom', 'Dotcom'),
+    ('Electrical/Switchgear', 'Electrical/Switchgear'),
+    ('Engineering, Procurement, Construction', 'Engineering, Procurement, Construction'),
+    ('Environmental Service', 'Environmental Service'),
+    ('Facility management', 'Facility management'),
+    ('Fertilizer/ Pesticides', 'Fertilizer/ Pesticides'),
+    ('Food & Packaged Food', 'Food & Packaged Food'),
+    ('Textiles / Yarn / Fabrics / Garments', 'Textiles / Yarn / Fabrics / Garments'),
+    ('Gems & Jewellery', 'Gems & Jewellery'),
+    ('Government/ PSU/ Defence', 'Government/ PSU/ Defence'),
+    ('Consumer Electronics/Appliances', 'Consumer Electronics/Appliances'),
+    ('Hospitals/ Health Care', 'Hospitals/ Health Care'),
+    ('Hotels/ Restaurant', 'Hotels/ Restaurant'),
+    ('Import / Export', 'Import / Export'),
+    ('Iron/ Steel', 'Iron/ Steel'),
+    ('ISP', 'ISP'),
+    ('Law Enforcement/Security Services', 'Law Enforcement/Security Services'),
+    ('Leather', 'Leather'),
+    ('Market Research','Market Research'),
+    ('Med', 'Med'),
+    ('Medical Transcription', 'Medical Transcription'),
+    ('Mining', 'Mining'),
+    ('NGO', 'NGO'),
+    ('Non-Ferrous Metals (Aluminium, Zinc etc.)', 'Non-Ferrous Metals (Aluminium, Zinc etc.)'),
+    ('Office Equipment/Automation', 'Office Equipment/Automation'),
+    ('Paints', 'Paints'),
+    ('Paper', 'Paper'),
+    ('Printing/ Packaging', 'Printing/ Packaging'),
+    ('Public Relations (PR)', 'Public Relations (PR)'),
+    ('Shipping/ Marine Services', 'Shipping/ Marine Services'),
+    ('Travel/ Tourism', 'Travel/ Tourism'),
+    ('Tyres', 'Tyres'),
+    ('Wood', 'Wood'),
+    ('Other', 'Other'),
+    ('Any', 'Any'),
+)
+
+FUNCTIONS = (
+        ('Construction', 'Construction'),
+        ('Banking/Financial Services/Broking', 'Banking/Financial Services/Broking'),
+        ('Oil & Gas/Petroleum', 'Oil & Gas/Petroleum'),
+        ('IT - Software Services', 'IT - Software Services'),
+        ('Medical/Healthcare/Diagnistics/Medical Devices', 'Medical/Healthcare/Diagnistics/Medical Devices'),
+        ('Hotels/Hospitality/Tourism/Recreative', 'Hotels/Hospitality/Tourism/Recreative'),
+        ('Advertising/Pr/Events', 'Advertising/Pr/Events'),
+        ('Agriculture/Dairy/Poultry', 'Agriculture/Dairy/Poultry'),
+        ('Hotels/Hospitality/Tourism/Recreative', 'Hotels/Hospitality/Tourism/Recreative'),
+        ('Air Conditioning/Rion', 'Air Conditioning/Rion'),
+        ('Airline/Aviation', 'Airline/Aviation'),
+        ('Architecture/Interior Designing', 'Architecture/Interior Designing'),
+        ('Automotive/Auto Ancillary', 'Automotive/Auto Ancillary'),
+        ('Chemicals/PetroChemical', 'Chemicals/PetroChemical'),
+        ('Consumer Durables/Consumer Electronics', 'Consumer Durables/Consumer Electronics'),
+        ('Courier/Logistics/Transportation/Warehousing', 'Courier/Logistics/Transportation/Warehousing'),
+        ('Defence/Militarnmenty/Government', 'Defence/Militarnmenty/Government'),
+        ('Education/Training/Teaching', 'Education/Training/Teaching'),
+        ('Export/Import/General Trading', 'Export/Import/General Trading'),
+        ('Fertilizers/Pesticides', 'Fertilizers/Pesticides'),
+        ('FMGG/Foods/Beverage', 'FMGG/Foods/Beverage'),
+        ('Fresher - No industry Experience/Not Employed/Intern', 'Fresher - No industry Experience/Not Employed/Intern'),
+        ('Gems & Jwellery', 'Gems & Jwellery'),
+        ('Industrial Products/Heavy Machinery', 'Industrial Products/Heavy Machinery'),
+        ('Insurance', 'Insurance'),
+        ('Internet/E-Commerece/Dotcom', 'Internet/E-Commerece/Dotcom'),
+        ('IT - Hardware & Networking', 'IT - Hardware & Networking'),
+        ('Media/Entertainment/Publishing', 'Media/Entertainment/Publishing'),
+        ('Metals/Steel/Iron/Aluminium/Foundry/Electroplating', 'Metals/Steel/Iron/Aluminium/Foundry/Electroplating'),
+        ('Mining/Forestry/Fishing', 'Mining/Forestry/Fishing'),
+        ('NGO/Social Services', 'NGO/Social Services'),
+        ('Office Automation/Equipment/Stationary', 'Office Automation/Equipment/Stationary'),
+        ('Paper', 'Paper'),
+        ('Pharma/Biotech/Clinical Research', 'Pharma/Biotech/Clinical Research'),
+        ('Plastics/Rubber', 'Plastics/Rubber'),
+        ('Power/Energy', 'Power/Energy'),
+        ('Printing/Packing', 'Printing/Packing'),
+        ('Real Estate', 'Real Estate'),
+        ('Recruitment/Placement Firm', 'Recruitment/Placement Firm'),
+        ('Restaurants/Catering', 'Restaurants/Catering'),
+        ('Retail', 'Retail'),
+        ('Security/Law Enforcement', 'Security/Law Enforcement'),
+        ('Shipping/Freight', 'Shipping/Freight'),
+        ('Telecom/ISP', 'Telecom/ISP'),
+        ('Textiles/Garments/Accesories/Fashion', 'Textiles/Garments/Accesories/Fashion'),
+        ('Tyres', 'Tyres'),
+)
+
+MARITAL_STATUS = (
+    ('Single', 'Single'),
+    ('Married', 'Married'),
+    ('Divorced', 'Divorced'),
+    ('Widow(er)', 'Widow(er)'),
+
+)
+
+YEARS = (
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+    ('10', '10'),
+    ('11', '11'),
+    ('12', '12'),
+    ('13', '13'),
+    ('14', '14'),
+    ('15', '15'),
+    ('16', '16'),
+    ('17', '17'),
+    ('18', '18'),
+    ('19', '19'),
+    ('20', '20'),
+    ('21', '21'),
+    ('22', '22'),
+    ('23', '23'),
+    ('24', '24'),
+    ('25', '25'),
+    ('26', '26'),
+    ('27', '27'),
+    ('28', '28'),
+    ('29', '29'),
+    ('30', '30'),
+    ('31', '31'),
+    ('32', '32'),
+    ('33', '33'),
+    ('34', '34'),
+    ('35', '35'),
+    ('36', '36'),
+    ('37', '37'),
+    ('38', '38'),
+    ('39', '39'),
+    ('40', '40'),
+    ('41', '41'),
+    ('42', '42'),
+    ('43', '43'),
+    ('44', '44'),
+    ('45', '45'),
+    ('46', '46'),
+    ('47', '47'),
+    ('48', '48'),
+    ('49', '49'),
+    ('50', '50'),
+)
+
+MONTHS =(
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+    ('10', '10'),
+    ('11', '11'),
+
+)
+
+
+# LOCATION = (
+#     ('United Arab Emirates', 'United Arab Emirates'),
+#     ('Abu Dhabi', 'Abu Dhabi'),
+#     ('Ajman', 'Ajman'),
+#     ('Al Ain', 'Al Ain'),
+#     ('Dubai', 'Dubai'),
+#     ('Fujairah', 'Fujairah'),
+#     ('Ras Al Khaimah', 'Ras Al Khaimah'),
+#     ('Sharjah', 'Sharjah'),
+#     ('Umm Al Qaiwain', 'Umm Al Qaiwain'),
+#     - Other
+#     ('Saudi Arabia', 'Saudi Arabia'
+#     Abha
+#     Abu Areesh
+#     Alahsa
+#     Albaha
+#     Alkharj
+#     Alqasim
+#     Alqunfithah
+#     Altaif
+#     Al Madina Al Munawarah
+#     Arar
+#     Aseer
+#     Buraidah
+#     Dammam
+#     Eastern Province
+#     Haeil
+#     Hafr Albaten
+#     Hofof
+#     Jazan
+#     Jeddah
+#     Jizan
+#     Jouf
+#     Jubail
+#     Jubail/ Al Jubail
+#     Khamis Mushait
+#     Khobar
+#     Makkah Al Mukarramah
+#     Mecca
+#     Medina
+#     Najran
+#     Onaizah
+#     Qaseem
+#     Qatif
+#     Riyadh
+#     Sabia
+#     Sakaka
+#     Tabouk
+#     Yanbu
+#      - Other
+#     Qatar
+#     Doha
+#      - Other
+#     Bahrain
+#     Manama
+#      - Other
+#     Oman
+#     Ibri
+#     Khasab
+#     Muscat
+#     Nizwa
+#     Salalah
+#     Sohar
+#     Sur
+#     Zufar
+#      - Other
+#     Kuwait
+#     Al Ahmadi
+#     Al Farawaniyah
+#     Al Jahra
+#     Al Kuwait
+#     Al Zour Mina Saud
+#     Hawali
+#     Joint Operations Wafra
+#      - Other
+#     Lebanon
+#     Beirut
+#     Bekaa
+#     Saidon
+#     Tripoli
+#     Other
+#     Jordan
+#     Ajloun
+#     Amman
+#     Aqaba
+#     Irbid
+#     Jerash
+#     Karak
+#     Maan
+#     Madaba
+#     Mafraq
+#     Salt
+#     Tafila
+#     Zarqa
+#      - Other
+#     Egypt
+#     Alexandria
+#     Asyut
+#     Cairo
+#     Damietta
+#     Hurghada
+#     Ismailia
+#     Luxor
+#     Port Said
+#     Sharm el Sheikh
+#     Suez
+#      - Other
+#     Iraq
+#     Al Nagaf
+#     Baghdad
+#     Basra
+#     Erbil
+#     Hillah
+#     Karbala
+#     Kirkuk
+#     Mosul
+#     Sulaymaniyah
+#     Other
+#     Afghanistan
+#     Africa
+#     Algeria
+#     Angola
+#     Australia
+#     Bangladesh
+#     Belgium
+#     Benin
+#     Botswana
+#     Burkina Faso
+#     Burundi
+#     Cameroon
+#     Canada
+#     Cape Verde
+#     Central African Republic
+#     Chad
+#     China
+#     Cote d Ivoire
+#     Democratic Republic of Congo
+#     Djibouti
+#     Equatorial Guinea
+#     Eritrea
+#     Ethiopia
+#     France
+#     Gabon
+#     Gambia
+#     Germany
+#     Ghana
+#     Guinea
+#     Guinea Bissau
+#     Hongkong
+#     India
+#     Indonesia
+#     Ireland
+#     Japan
+#     Kenya
+#     Lesotho
+#     Liberia
+#     Libya
+#     Macau
+#     Madagascar
+#     Malawi
+#     Malaysia
+#     Maldives
+#     Mali
+#     Mauritania
+#     Mauritius
+#     Mexico
+#     Morocco
+#     Mozambique
+#     Namibia
+#     Nepal
+#     Netherlands
+#     New Zealand
+#     Niger
+#     Nigeria
+#     Pakistan
+#     Philippines
+#     Republic of Congo
+#     Russia
+#     Rwanda
+#     Senegal
+#     Seychelles
+#     Sierra Leone
+#     Singapore
+#     Somalia
+#     South Africa
+#     South Korea
+#     Spain
+#     SriLanka
+#     Sudan
+#     Swaziland
+#     Sweden
+#     Switzerland
+#     Taiwan
+#     Tanzania
+#     Thailand
+#     Togo
+#     Tunisia
+#     UK
+#     US
+#     Uganda
+#     Vietnam
+#     Yemen
+#     Zambia
+#     Zimbabwe
+#     Other International
+
+# )
+
+
 
 class UserProfile(models.Model):
 	user = models.ForeignKey(User)
 	user_type = models.CharField('User Type', max_length=20, choices=USER_TYPE)
 	gender = models.CharField('Gender', max_length=1, choices=GENDER)
 	nationality = models.CharField('Nationality', max_length=20, choices=COUNTRY_CHOICES)
-	current_location = models.CharField('Current Loction', null=True, blank=True, max_length=20,)
+	current_location = models.CharField('Current Loction', null=True, blank=True, max_length=20, choices=COUNTRY_CHOICES)
 	country = models.CharField('Country', null=True, blank=True, max_length=20, choices=COUNTRY_CHOICES)
 	city = models.CharField('City', null=True, blank=True, max_length=20)
 	mobile = models.IntegerField ('Mobile')
@@ -285,7 +688,7 @@ class UserProfile(models.Model):
 	# mail_id = models.CharField('Email Id', max_length=25)
 	Alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=25)
 	religion = models.CharField('Religion', null=True, blank=True, max_length=10)
-	marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=10)
+	marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=10, choices=MARITAL_STATUS)
 
 	def __unicode__(self):
 		return self.user.username
@@ -298,13 +701,13 @@ class UserProfile(models.Model):
 
 class Employment(models.Model):
 	user = models.ForeignKey(UserProfile)
-	exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True)
-	exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True)
+	exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
+	exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
 	salary = models.IntegerField('Salary', null=True, blank=True)
 	designation = models.CharField('Designation', null=True, blank=True, max_length=15)
-	industry_type = models.CharField('Industry Type', null=True, blank=True, max_length=20)
+	# industry_type = models.CharField('Industry Type', null=True, blank=True, max_length=20, choices=INDUSTRY)
 	skills = models.CharField('Key Skills', null=True, blank=True, max_length=20)
-	curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=20)
+	curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=20, choices=INDUSTRY)
 
 	def __unicode__(self):
 		return self.user.username

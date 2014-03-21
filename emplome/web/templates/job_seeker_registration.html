@@ -15,15 +15,15 @@
 		<h3>Create your Account</h3>
 		<br>
 		<div class="formrow">
-			<label>Email Id*</label>
+			<label>Email Id<span class="red">*</span></label>
 			<input type="text" name="email">
 		</div>
 		<div class="formrow">
-			<label>Choose Password*</label> 
+			<label>Choose Password<span class="red">*</span></label> 
 			<input type="password" name="password">
 		</div>
 		<div class="formrow">
-			<label>Re-enter Password*</label> 
+			<label>Re-enter Password<span class="red">*</span></label> 
 			<input type="password" name="password">
 		</div>
 	</div>
@@ -34,22 +34,33 @@
 		<h3>Personnal Details</h3>
 		<br>
 		<div class="formrow">
-			<label>Fulll Name*</label>
+			<label>Fulll Name<span class="red">*</span></label>
 			<input type="text" name="first_name">
 		</div>
 		<div class="formrow">
-			<label>Gender*</label> 
+			<label>Gender<span class="red">*</span></label> 
 			<input type="radio" name="gender">Male
 			<input type="radio" name="gender">Female
 		</div>
 
 		<div class="formrow">
-			<label>Religion*</label>
-			<input type="text" name="religion">
+			<label>Religion<span class="red">*</span></label>
+			<select name="marital_status">
+				<option>------------------Select------------------</option>
+				<option>Islam</option>
+				<option>Christian</option>
+				<option>Hindu</option>
+				<option>Buddhist</option>
+				<option>Sikh</option>
+				<option>Jain</option>
+				<option>Zoroaster</option>
+				<option>Other</option>
+				<option>Do not wish to Disclose</option>
+			</select>
 		</div>
 
 		<div class="formrow">
-			<label>Marital Status*</label>
+			<label>Marital Status<span class="red">*</span></label>
 			<select name="marital_status">
 				<option>------------------Select------------------</option>
 				<option>Single</option>
@@ -60,7 +71,7 @@
 		</div>
 
 		<div class="formrow">
-			<label>Nationality*</label>
+			<label>Nationality<span class="red">*</span></label>
 			<select name="nationality">
 				<option>------------------Select------------------</option>
 				<option>Afganistan</option>
@@ -301,7 +312,7 @@
 			</select>
 		</div>
 		<div class="formrow">
-			<label>Current Location*</label>
+			<label>Current Location<span class="red">*</span></label>
 			<select name="current_location">
 				<option>------------------Select------------------</option>
 				<option>United Arab Emirates</option>
@@ -511,10 +522,9 @@
 			</select>
 		</div>
 		<div class="formrow">
-			<label>Country*</label> 
+			<label>Country<span class="red">*</span></label> 
 			<select>
 				<option>------------------Select------------------</option>
-				<option>Select Nationality</option>
 				<option>Afganistan</option>
 				<option>Albania</option>
 				<option>Algerian</option>
@@ -754,13 +764,13 @@
 		</div>
 
 		<div class="formrow">
-			<label>City*</label>
+			<label>City<span class="red">*</span></label>
 			<input type="text" name="city">
 		</div>
 
 
 		<div class="formrow">
-			<label>Mobile Number*</label>
+			<label>Mobile Number<span class="red">*</span></label>
 			<input type="text" name="mobile">
 		</div>
 
@@ -777,8 +787,8 @@
 		<h3>Current Employment Details</h3>
 		<br>
 		<div class="formrow">
-			<label>Total Experience*</label>
-			<select class="year" name="years" style="width: 115px">
+			<label>Total Experience<span class="red">*</span></label>
+			<select name="years" style="width: 115px">
 				<option>Years</option>
 				<option>1</option>
 				<option>2</option>
@@ -847,15 +857,15 @@
 			</select>
 		</div>
 		<div class="formrow">
-			<label>Monthly Salary*</label>
+			<label>Monthly Salary</label>
 			<input type="text" name="salary">
 		</div>
 		<div class="formrow">
-			<label>Current Designation*</label>
+			<label>Current Designation</label>
 			<input type="text" name="designation">
 		</div>
 		<div class="formrow">
-			<label>Current Industry*</label>
+			<label>Current Industry</label>
 			<select name="industry"> 
 				<option>--------------Select------------</option>
 				<option>Automotive/ Ancillaries</option>
@@ -921,30 +931,68 @@
 				<option>Tyres</option>
 				<option>Wood</option>
 				<option>Other</option>
-				<optiones</option>
+				
 				<option>Travel/ Tourism</option>
 				<option>Any</option>
 			</select>
 		</div>
 
 		<div class="formrow">
-			<label>Function*</label>
-			<select name ="function">
+			<label>Function</label>
+			<select name ="function" multiple>
 				<option>---------------Select-------------</option>
-				<option>IT</option>
-				<option>Sales/ Business Development</option>
-				<option>Marketing & Communications</option>
-				<option>Finance & Accounts</option>
-				<option>Customer Service/ Call Centre/ BPO</option>
-				<option>Human Resources</option>
-				<option>Admin/Secretarial</option>
-				<option>Legal</option>
-				<option>Purchase/ Logistics/ Supply Chain</option>
+				<option>Construction</option>
+				<option>Banking/Financial Services/Broking</option>
+				<option>Oil & Gas/Petroleum</option>
+				<option>IT - Software Services</option>
+				<option>Medical/Healthcare/Diagnistics/Medical Devices</option>
+				<option>Hotels/Hospitality/Tourism/Recreative</option>
+
+				<option>Advertising/Pr/Events</option>
+				<option>Agriculture/Dairy/Poultry</option><option>Hotels/Hospitality/Tourism/Recreative</option>
+				<option>Air Conditioning/Refrigeration</option>
+				<option>Airline/Aviation</option>
+				<option>Architecture/Interior Designing</option>
+				<option>Automotive/Auto Ancillary</option>
+				<option>Chemicals/PetroChemical</option>
+				<option>Consumer Durables/Consumer Electronics</option>
+				<option>Courier/Logistics/Transportation/Warehousing</option>
+				<option>Defence/Militarnmenty/Government</option>
+				<option>Education/Training/Teaching</option>
+				<option>Export/Import/General Trading</option>
+				<option>Fertilizers/Pesticides</option>
+				<option>FMGG/Foods/Beverage</option>
+				<option>Fresher - No industry Experience/Not Employed/Intern</option>
+				<option>Gems & Jwellery</option>
+				<option>Industrial Products/Heavy Machinery</option>
+				<option>Insurance</option>
+				<option>Internet/E-Commerece/Dotcom</option>
+				<option>IT - Hardware & Networking</option>
+				<option>Media/Entertainment/Publishing</option>
+				<option>Metals/Steel/Iron/Aluminium/Foundry/Electroplating</option>
+				<option>Mining/Forestry/Fishing</option>
+				<option>NGO/Social Services</option>
+				<option>Office Automation/Equipment/Stationary</option>
+				<option>Paper</option>
+				<option>Pharma/Biotech/Clinical Research</option>
+				<option>Plastics/Rubber</option>
+				<option>Power/Energy</option>
+				<option>Printing/Packing</option>
+				<option>Real Estate</option>
+				<option>Recruitment/Placement Firm</option>
+				<option>Restaurants/Catering</option>
+				<option>Retail</option>
+				<option>Security/Law Enforcement</option>
+				<option>Shipping/Freight</option>
+				<option>Telecom/ISP</option>
+				<option>Textiles/Garments/Accesories/Fashion</option>
+				<option>Tyres</option>
+				<option>Other</option>
 			</select>
 		</div>
 	
 		<div class="formrow">
-			<label>Key Skills*</label>
+			<label>Key Skills<span class="red">*</span></label>
 			<textarea rows="4" cols="20" name="skills" ></textarea>
 		</div>
 
@@ -956,7 +1004,7 @@
 		<h3>Education Details</h3>
 		<br>
 		<div class="formrow">
-			<label>Basic Education*</label>
+			<label>Basic Education<span class="red">*</span></label>
 			<select>
 				<option>Select Bachelor's/Diploma/School</option>
 				<option>----Bachelor's Course----</option>
@@ -982,7 +1030,7 @@
 			</select>
 		</div>
 		<div class="formrow">
-			<label>Year of Passing*</label>
+			<label>Year of Passing<span class="red">*</span></label>
 			<select name="pass" style="width: 115px">
 				<option>Select</option>
 				<option>1990</option>
@@ -1014,7 +1062,7 @@
 		</div>
 
 		<div class="formrow">
-			<label>Masters Education*</label>
+			<label>Masters Education<span class="red">*</span></label>
 			<select>
 				<option>-------------Select-------------</option>
 				<option>Chartered Accountant</option>
@@ -1038,7 +1086,7 @@
 			</select>
 		</div>
 		<div class="formrow">
-			<label>Year of Passing*</label>
+			<label>Year of Passing<span class="red">*</span></label>
 			<select name="pass" style="width: 115px">
 				<option>Select</option>
 				<option>1990</option>

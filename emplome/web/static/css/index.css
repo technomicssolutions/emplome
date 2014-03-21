@@ -11,12 +11,30 @@
 }
 /************* end base styles *****************/
 
+/****************Start Job Seeker Styles**************/
 .year{
   width: 115px;
 }
 
+.btn
+{
+/*background-color:#cce6ff; #FFE4C4;*/
+text-align:center;
+width: auto;
+/*border:1px solid black;*/
+}
+
 .button{
   width: 100px;
+}
+
+.div3
+{
+  margin: auto;
+  margin-top:50px;
+  width:900px;
+  height:auto;
+  border:1px solid blue;
 }
 
 .formrow {
@@ -24,6 +42,25 @@
     width: 100%;
     padding: 3px;
 }
+
+.formrow select{
+  width: 35%;
+}
+
+.formrow label{
+  float: left;
+  width: 45%;"
+}
+
+.formrow input{
+  width: 35%;
+}
+
+.formrow textarea{
+    width: 35%;
+}
+
+
 
 .form{
     display: inline;
@@ -40,28 +77,33 @@
   color:red;
 }
 
+.red{
+    color: red;
+}
+
 .separation{
   border:1px solid blue;
   background-color:white;
   padding-left: 6%;
 }
 
-.formrow select{
-  width: 300px;
+.div3
+{
+  margin: auto;
+  margin-top:50px;
+  width:900px;
+  height:auto;
+  border:1px solid blue;
 }
+
+/*******************End Job SeekerStyles*************/
+
 .job span{
     padding-top: 2px;
     margin-left: 11%;
 }
 
-.formrow label{
-  float: left;
-  width: 45%;"
-}
 
-.formrow input{
-  width: 300px;
-}
 
 .main-header{
   background-color:#663399;
