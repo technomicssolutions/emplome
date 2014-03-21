@@ -7,7 +7,7 @@
     width: 995px;
     background-color: #F3F3F3;
   }
-.main-header{
+.main-content{
   background-color:#663399;
   color:white;
   width:100%;
@@ -112,6 +112,14 @@ form {
   width: 300px;
 }
 
+.formrow textarea
+{
+   width: 300px;
+}
+
+.red{
+  color: red;
+}
 .year{
   width: 115px;
 }
