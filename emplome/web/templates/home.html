@@ -30,7 +30,7 @@
 		Receive matching jobs by Email.
 		Easy and 100% free.
 		</p>
-		<input type="button" value="Post your CV" href="{% url 'job_seeker_registration' %}">
+		<button href="{% url 'job_seeker_registration' %}">Post your CV</button>
 	</div>
 </div>
 <div class="full-box">
@@ -73,15 +73,27 @@
 		<p>*Voucher is valid only on new registrations.</p>
 	</div>
 	<div class="job left">
-		<span >
-			<h4 class="form">Company</h4>
-		</span>
-		<span>
-			<h4 class="form">Company</h4>
-		</span>
-		<span>
-			<h4 class="form">Company</h4>
-		</span>
+		<div class="sub-box3">
+			<h4>Company</h4>
+			<a href="#">About Us</a><br>
+			<a href="#">Contact Us</a><br>
+			<a href="#">Careers</a><br>
+			<a href="#">Press Corner</a><br>
+		</div>
+		<div class="sub-box3">
+			<h4>Quick Links</h4>
+			<a href="#">Help</a><br>
+			<a href="#">Site Map</a><br>
+			<a href="#">Mobile</a><br>
+			<a href="#">The Network</a><br>
+		</div>
+		<div class="sub-box3">
+			<h4>Follow</h4>
+			<a href="#">Google+</a><br>
+			<a href="#">Facebook</a><br>
+			<a href="#">Twitter</a><br>
+			<a href="#">You Tube</a><br>
+		</div>
 	</div>
 </div>
 {% endblock content %}
