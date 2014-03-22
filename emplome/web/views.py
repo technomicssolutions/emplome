@@ -19,6 +19,11 @@ class Home(View):
         context = {}
         return render(request, 'home.html', context)
 
+class Logout(View):
+	def get(self, request, *args, **kwargs):
+		logout(request)
+		return HttpResponseRedirect(reverse('home'))
+
 class LoginView(View):
 	def get(self, request, *args, **kwargs):
 		context = {}
@@ -38,6 +43,7 @@ class LoginView(View):
 			return render(request, 'login_job_seeker.html',context)
 
 		if userdata.user_type == 'employer':
+			print "employer"
 			return HttpResponseRedirect(reverse('empprofile',args=[user.id]))
 		else:
 			return HttpResponseRedirect(reverse('profile',args=[user.id]))
@@ -89,11 +95,11 @@ class RecruiterRegistrationView(View):
 		companyprofile = CompanyProfile() 
 		companyprofile.user = userprofile
 		companyprofile.company_name = request.POST['name']
-		companyprofile.company_name = request.POST['type']
+		companyprofile.industry_type = request.POST['type']
 		companyprofile.save()
 
 		context = {}
-		return render(request, 'job_post.html', context)
+		return render(request, 'recruiter_profile.html', context)
 
 	
 class JobSeekerRegistration(View):
@@ -102,9 +108,22 @@ class JobSeekerRegistration(View):
 		return render(request, 'job_seeker_registration.html', context)
 
 class EmployerProfileView(View):
+	def get(self, request, *args, **kwargs):
+		context = {}
+		try:
+			user = User.objects.get(id = kwargs['user_id'])
+			profile = UserProfile.objects.get(user = user)
+			context = {
+				'profile': profile,
+			}
+		except:
+		    context = {
+		        'error':'You have no profile'
+		}
+		return render(request, 'recruiter_profile.html', context)
+
+class PostJobsView(View):
 	def get(self, request,*args, **kwargs):
 		context = {}
-		return render(request, 'recruiter_home.html', context)
-
-
+		return render(request, 'job_post.html', context)
 
