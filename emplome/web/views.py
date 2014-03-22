@@ -107,6 +107,11 @@ class JobSeekerRegistration(View):
 		context = {}
 		return render(request, 'job_seeker_registration.html', context)
 
+class JobSeekerRegistration2(View):
+	def get(self, request,*args, **kwargs):
+		context = {}
+		return render(request, 'job_seeker_registration_2.html', context)
+
 class EmployerProfileView(View):
 	def get(self, request, *args, **kwargs):
 		context = {}
