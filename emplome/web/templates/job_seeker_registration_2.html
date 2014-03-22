@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% block title %}Job Seeker Registration
+{% endblock title %}
+{% block body_id %}job_seeker_registration{% endblock body_id %}
+
+{% block controller %}ng-controller="JobSeekerController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+
+{% block content %}
+
+<div class="div3">
+	<!-- <form> -->
+	<div class="separation">
+		<br>
+		<h2 class="hd1">Job Seeker's Registration</h2>
+		<p class="mandatory">* Required Fields</p>
+		<br>
+		<h3>Current Employment Details</h3>
+		<br>
+		<div class="formrow">
+			<label>Total Experience<span class="red">*</span></label>
+			<select name="years" style="width: 115px">
+				<option>Years</option>
+				<!-- <option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>13</option>
+				<option>14</option>
+				<option>15</option>
+				<option>16</option>
+				<option>17</option>
+				<option>18</option>
+				<option>19</option>
+				<option>20</option>
+				<option>21</option>
+				<option>22</option>
+				<option>23</option>
+				<option>24</option>
+				<option>25</option>
+				<option>26</option>
+				<option>27</option>
+				<option>28</option>
+				<option>29</option>
+				<option>20</option>
+				<option>31</option>
+				<option>32</option>
+				<option>33</option>
+				<option>34</option>
+				<option>35</option>
+				<option>36</option>
+				<option>37</option>
+				<option>38</option>
+				<option>39</option>
+				<option>40</option>
+				<option>41</option>
+				<option>42</option>
+				<option>43</option>
+				<option>44</option>
+				<option>45</option>
+				<option>46</option>
+				<option>47</option>
+				<option>48</option>
+				<option>49</option>
+				<option>50</option> -->
+				<option ng-repeat="expr in experience" value="[[expr]]">[[expr]]</option>
+			</select>
+			<select name="months" style="width: 115px">
+				<option>Months</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+			</select>
+		</div>
+		<div class="formrow">
+			<label>Monthly Salary</label>
+			<input type="text" name="salary">
+		</div>
+		<div class="formrow">
+			<label>Current Designation</label>
+			<input type="text" name="designation">
+		</div>
+		<div class="formrow">
+			<label>Current Industry</label>
+			<select name="industry"> 
+				<option>--------------Select------------</option>
+				<!-- <option>Automotive/ Ancillaries</option>
+				<option>Banking/ Financial Services</option>
+				<option>Bio Technology & Life Sciences</option>
+				<option>Chemicals/Petrochemicals</option>
+				<option>Construction</option>
+				<option>FMCG</option>
+				<option>Education</option>
+				<option>Entertainment/ Media/ Publishing</option>
+				<option>Insurance</option>
+				<option>ITES/BPO</option>
+				<option>IT/ Computers - Hardware</option>
+				<option>IT/ Computers - Software</option>
+				<option>KPO/Analytics</option>
+				<option>Machinery/ Equipment Mfg.</option>
+				<option>Oil/ Gas/ Petroleum</option>
+				<option>Pharmaceuticals</option>
+				<option>Plastic/ Rubber</option>
+				<option>Power/Energy</option>
+				<option>Real Estate</option>
+				<option>Retailing</option>
+				<option>Telecom</option>
+				<option>Advertising/PR/Events</option>
+				<option>Agriculture/ Dairy Based</option>
+				<option>Aviation/Aerospace</option>
+				<option>Beauty/Fitness/PersonalCare/SPA</option>
+				<option>Beverages/ Liquor</option>
+				<option>Cement</option>
+				<option>Ceramics & Sanitary Ware</option>
+				<option>Consultancy</option>
+				<option>Courier/ Freight/ Transportation</option>
+				<option>Dotcom</option>
+				<option>Electrical/Switchgear</option>
+				<option>Engineering, Procurement, Construction</option>
+				<option>Environmental Service</option>
+				<option>Facility management</option>
+				<option>Fertilizer/ Pesticides</option>
+				<option>Food & Packaged Food</option>
+				<option>Textiles / Yarn / Fabrics / Garments</option>
+				<option>Gems & Jewellery</option>
+				<option>Government/ PSU/ Defence</option>
+				<option>Consumer Electronics/Appliances</option>
+				<option>Hospitals/ Health Care</option>
+				<option>Hotels/ Restaurant</option>
+				<option>Import / Export</option>
+				<option>Iron/ Steel</option>
+				<option>ISP</option>
+				<option>Law Enforcement/Security Services</option>
+				<option>Leather</option>
+				<option>Market Research</option>
+				<option>Medical Transcription</option>
+				<option>Mining</option>
+				<option>NGO</option>
+				<option>Non-Ferrous Metals</option>
+				<option>Office Equipment/Automation</option>
+				<option>Paints</option>
+				<option>Paper</option>
+				<option>Printing/ Packaging</option>
+				<option>Public Relations (PR)</option>
+				<option>Shipping/ Marine Services</option>
+				<option>Travel/ Tourism</option>
+				<option>Tyres</option>
+				<option>Wood</option>
+				<option>Travel/ Tourism</option> -->
+				<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+				<option>Other</option>
+				<option>Any</option>
+			</select>
+		</div>
+
+		<div class="formrow">
+			<label>Function</label>
+			<select name ="function" multiple>
+				<option>---------------Select-------------</option>
+				<!-- <option>Construction</option>
+				<option>Banking/Financial Services/Broking</option>
+				<option>Oil & Gas/Petroleum</option>
+				<option>IT - Software Services</option>
+				<option>Medical/Healthcare/Diagnistics/Medical Devices</option>
+				<option>Hotels/Hospitality/Tourism/Recreative</option>
+				<option>Advertising/Pr/Events</option>
+				<option>Agriculture/Dairy/Poultry</option><option>Hotels/Hospitality/Tourism/Recreative</option>
+				<option>Air Conditioning/Refrigeration</option>
+				<option>Airline/Aviation</option>
+				<option>Architecture/Interior Designing</option>
+				<option>Automotive/Auto Ancillary</option>
+				<option>Chemicals/PetroChemical</option>
+				<option>Consumer Durables/Consumer Electronics</option>
+				<option>Courier/Logistics/Transportation/Warehousing</option>
+				<option>Defence/Militarnmenty/Government</option>
+				<option>Education/Training/Teaching</option>
+				<option>Export/Import/General Trading</option>
+				<option>Fertilizers/Pesticides</option>
+				<option>FMGG/Foods/Beverage</option>
+				<option>Fresher - No industry Experience/Not Employed/Intern</option>
+				<option>Gems & Jwellery</option>
+				<option>Industrial Products/Heavy Machinery</option>
+				<option>Insurance</option>
+				<option>Internet/E-Commerece/Dotcom</option>
+				<option>IT - Hardware & Networking</option>
+				<option>Media/Entertainment/Publishing</option>
+				<option>Metals/Steel/Iron/Aluminium/Foundry/Electroplating</option>
+				<option>Mining/Forestry/Fishing</option>
+				<option>NGO/Social Services</option>
+				<option>Office Automation/Equipment/Stationary</option>
+				<option>Paper</option>
+				<option>Pharma/Biotech/Clinical Research</option>
+				<option>Plastics/Rubber</option>
+				<option>Power/Energy</option>
+				<option>Printing/Packing</option>
+				<option>Real Estate</option>
+				<option>Recruitment/Placement Firm</option>
+				<option>Restaurants/Catering</option>
+				<option>Retail</option>
+				<option>Security/Law Enforcement</option>
+				<option>Shipping/Freight</option>
+				<option>Telecom/ISP</option>
+				<option>Textiles/Garments/Accesories/Fashion</option>
+				<option>Tyres</option> -->
+				<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+				<option>Other</option>
+			</select>
+		</div>
+	
+		<div class="formrow">
+			<label>Key Skills<span class="red">*</span></label>
+			<textarea rows="4" cols="20" name="skills" ></textarea>
+		</div>		
+	</div>
+
+	<div class="separation">
+		<br>
+		<h3>Attach Your Resume</h3>
+		<br>
+		<div class="formrow">
+			<label>Resume Title<span class="red">*</span></label>
+			<input type="text" name="resume">
+		</div>
+		<div class="formrow">
+			<label>Attach CV</label>
+			<input type="file" name="browse" value="Browse">
+		</div>
+		<div class="formrow">
+			<label>Copy and Paste Resume Here</label>
+			<textarea rows="4" cols="20" name="skills" ></textarea>
+		</div>
+	</div>
+		
+	<div class="separation">
+		<br>
+		<div class="formrow">
+			<label></label>
+			<input type="checkbox" name="checkbox">I have read and agree to the privacy statement and terms of use
+		</div>
+
+		<!-- <div class="formrow"> -->
+			<div class="btn">
+				<!-- <label></label> -->
+				<input class="button" type="submit" name="submit" value="Save & Edit">
+			</div>
+		<!-- </div> -->
+		<br>
+
+	</div>
+	<!-- </form> -->
+</div>
+{% endblock content %}

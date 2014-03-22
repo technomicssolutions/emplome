@@ -464,215 +464,127 @@ MONTHS =(
 
 )
 
+PASS_YEAR = (
+    ('1980', '1980'),
+    ('1981', '1981'),
+    ('1982', '1982'),
+    ('1983', '1983'),
+    ('1984', '1984'),
+    ('1985', '1985'),
+    ('1986', '1986'),
+    ('1987', '1987'),
+    ('1988', '1988'),
+    ('1989', '1989'),
+    ('1990', '1990'),
+    ('1991', '1991'),
+    ('1992', '1992'),
+    ('1993', '1993'),
+    ('1994', '1994'),
+    ('1995', '1995'),
+    ('1996', '1996'),
+    ('1997', '1997'),
+    ('1998', '1998'),
+    ('1999', '1999'),
+    ('2000', '2000'),
+    ('2001', '2001'),
+    ('2002', '2002'),
+    ('2003', '2003'),
+    ('2004', '2004'),
+    ('2005', '2005'),
+    ('2006', '2006'),
+    ('2007', '2007'),
+    ('2008', '2008'),
+    ('2009', '2009'),
+    ('2010', '2010'),
+    ('2011', '2011'),
+    ('2012', '2012'),
+    ('2013', '2013'),
+    ('2014', '2014'),
 
-# LOCATION = (
-#     ('United Arab Emirates', 'United Arab Emirates'),
-#     ('Abu Dhabi', 'Abu Dhabi'),
-#     ('Ajman', 'Ajman'),
-#     ('Al Ain', 'Al Ain'),
-#     ('Dubai', 'Dubai'),
-#     ('Fujairah', 'Fujairah'),
-#     ('Ras Al Khaimah', 'Ras Al Khaimah'),
-#     ('Sharjah', 'Sharjah'),
-#     ('Umm Al Qaiwain', 'Umm Al Qaiwain'),
-#     - Other
-#     ('Saudi Arabia', 'Saudi Arabia'
-#     Abha
-#     Abu Areesh
-#     Alahsa
-#     Albaha
-#     Alkharj
-#     Alqasim
-#     Alqunfithah
-#     Altaif
-#     Al Madina Al Munawarah
-#     Arar
-#     Aseer
-#     Buraidah
-#     Dammam
-#     Eastern Province
-#     Haeil
-#     Hafr Albaten
-#     Hofof
-#     Jazan
-#     Jeddah
-#     Jizan
-#     Jouf
-#     Jubail
-#     Jubail/ Al Jubail
-#     Khamis Mushait
-#     Khobar
-#     Makkah Al Mukarramah
-#     Mecca
-#     Medina
-#     Najran
-#     Onaizah
-#     Qaseem
-#     Qatif
-#     Riyadh
-#     Sabia
-#     Sakaka
-#     Tabouk
-#     Yanbu
-#      - Other
-#     Qatar
-#     Doha
-#      - Other
-#     Bahrain
-#     Manama
-#      - Other
-#     Oman
-#     Ibri
-#     Khasab
-#     Muscat
-#     Nizwa
-#     Salalah
-#     Sohar
-#     Sur
-#     Zufar
-#      - Other
-#     Kuwait
-#     Al Ahmadi
-#     Al Farawaniyah
-#     Al Jahra
-#     Al Kuwait
-#     Al Zour Mina Saud
-#     Hawali
-#     Joint Operations Wafra
-#      - Other
-#     Lebanon
-#     Beirut
-#     Bekaa
-#     Saidon
-#     Tripoli
-#     Other
-#     Jordan
-#     Ajloun
-#     Amman
-#     Aqaba
-#     Irbid
-#     Jerash
-#     Karak
-#     Maan
-#     Madaba
-#     Mafraq
-#     Salt
-#     Tafila
-#     Zarqa
-#      - Other
-#     Egypt
-#     Alexandria
-#     Asyut
-#     Cairo
-#     Damietta
-#     Hurghada
-#     Ismailia
-#     Luxor
-#     Port Said
-#     Sharm el Sheikh
-#     Suez
-#      - Other
-#     Iraq
-#     Al Nagaf
-#     Baghdad
-#     Basra
-#     Erbil
-#     Hillah
-#     Karbala
-#     Kirkuk
-#     Mosul
-#     Sulaymaniyah
-#     Other
-#     Afghanistan
-#     Africa
-#     Algeria
-#     Angola
-#     Australia
-#     Bangladesh
-#     Belgium
-#     Benin
-#     Botswana
-#     Burkina Faso
-#     Burundi
-#     Cameroon
-#     Canada
-#     Cape Verde
-#     Central African Republic
-#     Chad
-#     China
-#     Cote d Ivoire
-#     Democratic Republic of Congo
-#     Djibouti
-#     Equatorial Guinea
-#     Eritrea
-#     Ethiopia
-#     France
-#     Gabon
-#     Gambia
-#     Germany
-#     Ghana
-#     Guinea
-#     Guinea Bissau
-#     Hongkong
-#     India
-#     Indonesia
-#     Ireland
-#     Japan
-#     Kenya
-#     Lesotho
-#     Liberia
-#     Libya
-#     Macau
-#     Madagascar
-#     Malawi
-#     Malaysia
-#     Maldives
-#     Mali
-#     Mauritania
-#     Mauritius
-#     Mexico
-#     Morocco
-#     Mozambique
-#     Namibia
-#     Nepal
-#     Netherlands
-#     New Zealand
-#     Niger
-#     Nigeria
-#     Pakistan
-#     Philippines
-#     Republic of Congo
-#     Russia
-#     Rwanda
-#     Senegal
-#     Seychelles
-#     Sierra Leone
-#     Singapore
-#     Somalia
-#     South Africa
-#     South Korea
-#     Spain
-#     SriLanka
-#     Sudan
-#     Swaziland
-#     Sweden
-#     Switzerland
-#     Taiwan
-#     Tanzania
-#     Thailand
-#     Togo
-#     Tunisia
-#     UK
-#     US
-#     Uganda
-#     Vietnam
-#     Yemen
-#     Zambia
-#     Zimbabwe
-#     Other International
+)
 
-# )
+BASIC_EDU = (
+    ('Bachelor of Architecture', 'Bachelor of Architecture'),
+    ('Bachelor of Arts', 'Bachelor of Arts'),
+    ('Bachelor of Business Administration', 'Bachelor of Business Administration'),
+    ('Bachelor of Commerce', 'Bachelor of Commerce'),
+    ('Bachelor of Dental Sugery', 'Bachelor of Dental Sugery'),
+    ('Bachelor of Education', 'Bachelor of Education'),
+    ('Bachelor of Hotel Management', 'Bachelor of Hotel Management'),
+    ('Bachelor of Laws (LLB)', 'Bachelor of Laws (LLB)'),
+    ('Bachelor of Pharmacy', 'Bachelor of Pharmacy'),
+    ('Bachelor of Science', 'Bachelor of Science'),
+    ('Bachelor of Technology/Engineering', 'Bachelor of Technology/Engineering'),
+    ('Bachelor of Vetirenary Science', 'Bachelor of Vetirenary Science'),
+    ('Bachelor of Computer Application', 'Bachelor of Computer Application'),
+    ('MBBS', 'MBBS'),
+    ('Diploma', 'Diploma'),
+    ('Intermediate', 'Intermediate'),
+    ('Secondary', 'Secondary'),
 
+)
+
+
+MASTERS_EDU = (
+    ('Chartered Accountant', 'Chartered Accountant'),
+    ('CA Inter', 'CA Inter'),
+    ('Chartered Financial Analyst', 'Chartered Financial Analyst'),
+    ('Company Secretary', 'Company Secretary'),
+    ('Doctor of Medicine (MD)', 'Doctor of Medicine (MD)'),
+    ('Doctor of Surgery (MS)', 'Doctor of Surgery (MS)'),
+    ('Inst. of Cost & Works Accountants', 'Inst. of Cost & Works Accountants'),
+    ('ICWA Inter', 'ICWA Inter'),
+    ('Master of Architecture', 'Master of Architecture'),
+    ('Master of Arts', 'Master of Arts'),
+    ('Master of Commerce', 'Master of Commerce'),
+    ('Master of Education', 'Master of Education'),
+    ('Master of Laws (LLM)', 'Master of Laws (LLM)'),
+    ('Master of Pharmacy', 'Master of Pharmacy'),
+    ('Master of Technology/Engineering', 'Master of Technology/Engineering'),
+    ('Master of Vetirenary Science', 'Master of Vetirenary Science'),
+    ('Master of Computer Application', 'Master of Computer Application'),
+    ('MBA/PG Diploma in Business Mgmt ', 'MBA/PG Diploma in Business Mgmt '),
+
+)
+
+EDUCATION_REQUIRED = (
+    ('Bachelor of Architecture', 'Bachelor of Architecture'),
+    ('Bachelor of Arts', 'Bachelor of Arts'),
+    ('Bachelor of Business Administration', 'Bachelor of Business Administration'),
+    ('Bachelor of Commerce', 'Bachelor of Commerce'),
+    ('Bachelor of Dental Sugery', 'Bachelor of Dental Sugery'),
+    ('Bachelor of Education', 'Bachelor of Education'),
+    ('Bachelor of Hotel Management', 'Bachelor of Hotel Management'),
+    ('Bachelor of Laws (LLB)', 'Bachelor of Laws (LLB)'),
+    ('Bachelor of Pharmacy', 'Bachelor of Pharmacy'),
+    ('Bachelor of Science', 'Bachelor of Science'),
+    ('Bachelor of Technology/Engineering', 'Bachelor of Technology/Engineering'),
+    ('Bachelor of Vetirenary Science', 'Bachelor of Vetirenary Science'),
+    ('Bachelor of Computer Application', 'Bachelor of Computer Application'),
+    ('MBBS', 'MBBS'),
+    ('Diploma', 'Diploma'),
+    ('Intermediate', 'Intermediate'),
+    ('Secondary', 'Secondary'),
+    ('Chartered Accountant', 'Chartered Accountant'),
+    ('CA Inter', 'CA Inter'),
+    ('Chartered Financial Analyst', 'Chartered Financial Analyst'),
+    ('Company Secretary', 'Company Secretary'),
+    ('Doctor of Medicine (MD)', 'Doctor of Medicine (MD)'),
+    ('Doctor of Surgery (MS)', 'Doctor of Surgery (MS)'),
+    ('Inst. of Cost & Works Accountants', 'Inst. of Cost & Works Accountants'),
+    ('ICWA Inter', 'ICWA Inter'),
+    ('Master of Architecture', 'Master of Architecture'),
+    ('Master of Arts', 'Master of Arts'),
+    ('Master of Commerce', 'Master of Commerce'),
+    ('Master of Education', 'Master of Education'),
+    ('Master of Laws (LLM)', 'Master of Laws (LLM)'),
+    ('Master of Pharmacy', 'Master of Pharmacy'),
+    ('Master of Technology/Engineering', 'Master of Technology/Engineering'),
+    ('Master of Vetirenary Science', 'Master of Vetirenary Science'),
+    ('Master of Computer Application', 'Master of Computer Application'),
+    ('MBA/PG Diploma in Business Mgmt ', 'MBA/PG Diploma in Business Mgmt '),
+
+)
 
 
 class UserProfile(models.Model):
@@ -685,7 +597,6 @@ class UserProfile(models.Model):
 	city = models.CharField('City', null=True, blank=True, max_length=20)
 	mobile = models.IntegerField ('Mobile')
 	land_num = models.IntegerField('Land Phone', blank=True)
-	# mail_id = models.CharField('Email Id', max_length=25)
 	Alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=25)
 	religion = models.CharField('Religion', null=True, blank=True, max_length=10)
 	marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=10, choices=MARITAL_STATUS)
@@ -705,7 +616,6 @@ class Employment(models.Model):
 	exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
 	salary = models.IntegerField('Salary', null=True, blank=True)
 	designation = models.CharField('Designation', null=True, blank=True, max_length=15)
-	# industry_type = models.CharField('Industry Type', null=True, blank=True, max_length=20, choices=INDUSTRY)
 	skills = models.CharField('Key Skills', null=True, blank=True, max_length=20)
 	curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=20, choices=INDUSTRY)
 
@@ -717,62 +627,76 @@ class Employment(models.Model):
 		verbose_name = 'Employment'
 		verbose_name_plural = 'Employment'
 
-
-
-class Education(models.Model):
-	user = models.ForeignKey(UserProfile)
-	basic_edu = models.CharField('Basic Education', max_length=15)
-	basic_spl = models.CharField('Specialisation1', max_length=20)
-	masters = models.CharField('Masters', null=True, blank=True, max_length=15)
-	master_spl = models.CharField('Specialisation2', null=True, blank=True, max_length=20)
-	doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=20)
-	resume = models.FileField (upload_to = "uploads/files/", max_length=20000,  null=True, blank=True)
-
-	def __unicode__(self):
-		return self.user.username
-
-	class Meta:
-
-		verbose_name = 'Education'
-		verbose_name_plural = 'Education'
-
-
-
 class CompanyProfile(models.Model):
 
-	user = models.ForeignKey(UserProfile)
-	#employer_name = models.CharField('Employer Name', max_length=15)
-	company_name = models.CharField('Company Name', max_length=20)
-	industry_type = models.CharField('Industry Type', max_length=20)
+    user = models.ForeignKey(UserProfile)
+    company_name = models.CharField('Company Name', max_length=20)
+    industry_type = models.CharField('Industry Type', max_length=20)
 
-	def __unicode__(self):
-		return self.company_name
+    def __unicode__(self):
+    	return self.company_name
 
-	class Meta:
+    class Meta:
 
-		verbose_name = 'CompanyProfile'
-		verbose_name_plural = 'CompanyProfile'
+    	verbose_name = 'CompanyProfile'
+    	verbose_name_plural = 'CompanyProfile'
 
 
 
 class JobPosting(models.Model):
-	job_title = models.CharField('Job Title', max_length=20)
-	ref_code = models.CharField('Ref Code', max_length=10)
-	job_details = models.CharField('Job Details', max_length=100,null=True, blank=True)
-	document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
-	order = models.IntegerField('Order')
+
+    company_name = models.ForeignKey(CompanyProfile)
+    job_title = models.CharField('Job Title', max_length=20)
+    ref_code = models.CharField('Ref Code', max_length=10, null=True, blank=True)
+
+
+    summary = models.CharField('Summary', max_length=250)
+    job_details = models.CharField('Job Details', max_length=100)
+    document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    skills = models.CharField('Skills Required', null=True, blank=True, max_length=20)
+    order = models.IntegerField('Order')
+    industry = models.CharField('Industry', max_length=20, choices=INDUSTRY)
+    job_location = models.CharField('Job Location', max_length=20, choices=COUNTRY_CHOICES)
+    function = models.CharField('Function', max_length=20, choices=FUNCTIONS)
+    # role = models.CharField('Role', max_length=20)
+    education_req = models.CharField('Education Required', max_length=20, choices=EDUCATION_REQUIRED)
+    specialization = models.CharField('Specialization', max_length=20, null=True, blank=True)
+    nationality = models.CharField('Nationality', max_length=20, null=True, blank=True, choices=COUNTRY_CHOICES)
+    name = models.CharField('Name', max_length=20)
+    mail_id = models.CharField('Email Id', max_length=30)
+    company_profile = models.CharField('Job Location', max_length=250)
     #posting_date = models.DateTimeField('Posting Date', null=True, blank=True)
-	#last_date = models.DateTimeField('Last Date', null=True, blank=True)
-	#exp_req = models.IntegerField('Experience Required', null=True, blank=True)
-	#skills = models.CharField('Skills Required', null=True, blank=True, max_length=20)
+    #last_date = models.DateTimeField('Last Date', null=True, blank=True)
+    exp_req_min = models.IntegerField('Experience Required Min', choices=YEARS)
+    exp_req_max = models.IntegerField('Experience Required Max', choices=YEARS)
+	
 
-	def __unicode__(self):
-		return self.job_type
+    def __unicode__(self):
+        return self.job_type
 
-	class Meta:
+    class Meta:
 
-		verbose_name = 'JobPosting'
-		verbose_name_plural = 'JobPosting'
+        verbose_name = 'JobPosting'
+        verbose_name_plural = 'JobPosting'
+
+
+class Education(models.Model):
+    user = models. ForeignKey(UserProfile)
+    pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
+    masters = models.CharField('Masters', null=True, blank=True, max_length=15, choices=MASTERS_EDU)
+    pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
+    doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=20)
+    resume = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    basic_edu = models.CharField('Basic Education', max_length=15, choices=BASIC_EDU)
+
+    def __unicode__(self):
+        return self.user.username
+
+    class Meta:
+
+        verbose_name = 'Education'
+        verbose_name_plural = 'Education'
+
 
 
 		
