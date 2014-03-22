@@ -3,6 +3,8 @@
 {% endblock title %}
 {% block body_id %}job_seeker_registration{% endblock body_id %}
 
+{% block controller %}ng-controller="JobSeekerController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+
 {% block content %}
 
 <div class="div3">
@@ -525,7 +527,7 @@
 			<label>Country<span class="red">*</span></label> 
 			<select>
 				<option>------------------Select------------------</option>
-				<option>Afganistan</option>
+				<!-- <option>Afganistan</option>
 				<option>Albania</option>
 				<option>Algerian</option>
 				<option>American Samoa</option>
@@ -758,7 +760,8 @@
 				<option>Western Sahara</option>
 				<option>Yemeni</option>
 				<option>Zambia</option>
-				<option>Zimbabwe</option>
+				<option>Zimbabwe</option> -->
+				<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
 				<option>Other</option>
 			</select>
 		</div>
