@@ -1,16 +1,27 @@
-<div class="main-header">
-	<div class="main-logo">
-		<h4>EmployeMe</h4>
-	</div>
-	<div class="right-navbar">
-		<nav>
-			<a href="{% url 'home' %}">Jobseeker</a> |
-			<a href="">Help</a> |
-			<a href="">Security</a> |
-			<a href="">Learning Center</a>
-			<a href="">Ecomm</a>
-			<a href="">Sign In</a>
-		</nav>
-	</div>
+<div class="logodiv">
+    <a title="NaukriGulf.com" href="http://www.naukrigulf.com/">
+        <img class="fl" width="246" height="72" src="http://static.naukimg.com/ni/nistatic/nihome/images/naukrigulf_arabic.gif" alt="NaukriGulf.com">
+    </a>
 </div>
-
+<div class="navi">
+    <ul class="middle">
+        <li>
+            <a class="active" title="Home" href="?tracksrc=502">
+                <em class="home"></em>
+            </a>
+        </li>
+        <li id="ddN" class="ddn">
+            <a title="Registration" href="{% url 'register' %}">
+                Recruiter Registration
+            </a>
+        </li>
+        <li>
+            <a class="tabUnsel" title="Post Jobs" href="{% url 'job_seeker_registration' %}">
+            Job Posting
+            </a>
+        </li>
+        <li>
+            <a class="tabUnsel" title="Recruiter Login" href="{% url 'login' %}">Recruiter</a>
+        </li>
+    </ul>
+</div>
