@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 USER_TYPE = (
-	('admin', 'Admin'),
-	('employer', 'Employer'),
-	('job_seeker', 'Job Seeker'),
+    ('admin', 'Admin'),
+    ('employer', 'Employer'),
+    ('job_seeker', 'Job Seeker'),
 )
 GENDER = (
-	('male', 'Male'),
-	('female', 'Female'),
+    ('male', 'Male'),
+    ('female', 'Female'),
 )
 
 COUNTRY_CHOICES = (
@@ -521,7 +521,6 @@ BASIC_EDU = (
     ('Diploma', 'Diploma'),
     ('Intermediate', 'Intermediate'),
     ('Secondary', 'Secondary'),
-
 )
 
 
@@ -588,44 +587,47 @@ EDUCATION_REQUIRED = (
 
 
 class UserProfile(models.Model):
-	user = models.ForeignKey(User)
-	user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
-	gender = models.CharField('Gender', max_length=1, choices=GENDER)
-	nationality = models.CharField('Nationality', max_length=50, choices=COUNTRY_CHOICES)
-	current_location = models.CharField('Current Loction', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
-	country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
-	city = models.CharField('City', null=True, blank=True, max_length=50)
-	mobile = models.IntegerField ('Mobile')
-	land_num = models.CharField('Land Phone', blank=True,max_length=20)
-	Alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
-	religion = models.CharField('Religion', null=True, blank=True, max_length=20)
-	marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
+    user = models.ForeignKey(User)
+    user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
+    gender = models.CharField('Gender', max_length=1, choices=GENDER)
+    nationality = models.CharField('Nationality', max_length=50, choices=COUNTRY_CHOICES)
+    current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
+    country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
+    city = models.CharField('City', null=True, blank=True, max_length=50)
+    mobile = models.CharField ('Mobile', max_length=20)
+    land_num = models.CharField('Land Phone', blank=True, max_length=20)
+    alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
+    photo = models.FileField( upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
+    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
+    
+    def __unicode__(self):
+        return self.user.username
 
-	def __unicode__(self):
-		return self.user.username
-
-	class Meta:
-		verbose_name = 'UserProfile'
-		verbose_name_plural = 'UserProfile'
+    class Meta:
+        verbose_name = 'UserProfile'
+        verbose_name_plural = 'UserProfile'
 
 
 
 class Employment(models.Model):
-	user = models.ForeignKey(UserProfile)
-	exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
-	exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
-	salary = models.IntegerField('Salary', null=True, blank=True)
-	designation = models.CharField('Designation', null=True, blank=True, max_length=50)
-	skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
-	curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
+    user = models.ForeignKey(UserProfile)
+    exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
+    exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
+    salary = models.IntegerField('Salary', null=True, blank=True)
+    designation = models.CharField('Designation', null=True, blank=True, max_length=50)
+    skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
+    curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
+    function = models.CharField('Function', null=True, blank=True, max_length=50)
 
-	def __unicode__(self):
-		return self.user.username
 
-	class Meta:
+    def __unicode__(self):
+        return self.user.username
 
-		verbose_name = 'Employment'
-		verbose_name_plural = 'Employment'
+    class Meta:
+
+        verbose_name = 'Employment'
+        verbose_name_plural = 'Employment'
 
 class CompanyProfile(models.Model):
 
@@ -634,12 +636,12 @@ class CompanyProfile(models.Model):
     industry_type = models.CharField('Industry Type', max_length=20)
 
     def __unicode__(self):
-    	return self.company_name
+        return self.company_name
 
     class Meta:
 
-    	verbose_name = 'CompanyProfile'
-    	verbose_name_plural = 'CompanyProfile'
+        verbose_name = 'CompanyProfile'
+        verbose_name_plural = 'CompanyProfile'
 
 
 
@@ -668,7 +670,7 @@ class JobPosting(models.Model):
     #last_date = models.DateTimeField('Last Date', null=True, blank=True)
     exp_req_min = models.IntegerField('Experience Required Min', choices=YEARS)
     exp_req_max = models.IntegerField('Experience Required Max', choices=YEARS)
-	
+    
 
     def __unicode__(self):
         return self.job_title
@@ -681,12 +683,15 @@ class JobPosting(models.Model):
 
 class Education(models.Model):
     user = models. ForeignKey(UserProfile)
+    basic_edu = models.CharField('Basic Education', max_length=15, choices=BASIC_EDU)
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
     masters = models.CharField('Masters', null=True, blank=True, max_length=15, choices=MASTERS_EDU)
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
     doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=20)
+    resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
-    basic_edu = models.CharField('Basic Education', max_length=15, choices=BASIC_EDU)
+    resume_text = models.CharField('Resume', null=True, blank=True, max_length=20000)
+    certificate = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
 
     def __unicode__(self):
         return self.user.username
@@ -698,4 +703,5 @@ class Education(models.Model):
 
 
 
-		
+
+        

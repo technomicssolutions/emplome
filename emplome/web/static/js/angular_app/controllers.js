@@ -220,6 +220,52 @@ function get_countries($scope){
     ]
 }
 
+function get_basic_education($scope){
+	$scope.basic_education = [
+		'Bachelor of Architecture',
+		'Bachelor of Arts',
+		'Bachelor of Business Administration',
+		'Bachelor of Commerce'	,
+		'Bachelor of Dental Sugery'	,
+		'Bachelor of Education'	,
+		'Bachelor of Hotel Management'	,
+		'Bachelor of Laws (LLB)'	,
+		'Bachelor of Pharmacy'	,
+		'Bachelor of Science'	,
+		'Bachelor of Technology/Engineering'	,
+		'Bachelor of Vetirenary Science'	,
+		'Bachelor of Computer Application'	,
+		'MBBS',
+		// 'Diploma',
+		// 'Intermediate',
+		// 'Secondary',
+	]
+}
+
+function get_masters_education($scope){
+	$scope.masters_education = [
+		'Chartered Accountant',
+		'CA Inter',
+		'Chartered Financial Analyst',
+		'Company Secretary',
+		'Doctor of Medicine (MD)',
+		'Doctor of Surgery (MS)',
+		'Inst. of Cost & Works Accountants',
+		'ICWA Inter',
+		'Master of Architecture',
+		'Master of Arts',
+		'Master of Commerce',
+		'Master of Education',
+		'Master of Laws (LLM)',
+		'Master of Pharmacy',
+		'Master of Technology/Engineering',
+		'Master of Vetirenary Science',
+		'Master of Computer Application',
+		'MBA/PG Diploma in Business Mgmt ',
+	]
+
+}
+
 function get_education_required($scope){
 	$scope.education_required = [
 		'Bachelor of Architecture',
@@ -643,6 +689,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		get_nationalities($scope);
 		get_industries($scope);
 		get_functions($scope);
+		get_basic_education($scope);
+		get_masters_education($scope);
 		for(var i=1970; i<=2000; i++){
       	 	$scope.year.push(i);
     	}
@@ -654,47 +702,60 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 	$scope.save_reg = function(){
 		var file = $scope.resume_doc.src;
-		alert(file);
 		params = {
-			'seeker':angular.toJson($scope.jobpost),
+			'seeker':angular.toJson($scope.seeker),
 			"csrfmiddlewaretoken" : $scope.csrf_token,				
 		}
 		console.log($scope.seeker);
-		var fd = new FormData()
+		var fd = new FormData();
+		fd.append('resume_doc', $scope.resume_doc.src);
+		for(var key in params){
+			fd.append(key, params[key]);			
+		}
+		var url = "/job_seeker_registration/";
+		$http.post(url, fd, {
+			transformRequest: angular.identity,
+			headers: {'Content-Type': undefined
+			}
+		}).success(function(data, status){
+		console.log("Successfully Saved");
+
+		}).error(function(data, status){
+		alert(status);
+
+		});
 	}
 
-
-	$scope.save_job = function(){
-		var file = $scope.product_pdf.src;
-		alert(file);
+	$scope.save_reg1 = function(){
+		var file = $scope.photo_img.src;
+		var file = $scope.certificate_img.src;
 		params = {
-                'jobpost':angular.toJson($scope.jobpost),
-                "csrfmiddlewaretoken" : $scope.csrf_token,
-            }
-        console.log($scope.jobpost);
-        var fd = new FormData();
-        fd.append('product_pdf', $scope.product_pdf.src);
-        for(var key in params){
-          fd.append(key, params[key]);
-        }
-        var url = "/recruiter/post-jobs/";
-        $http.post(url, fd, {
-                transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}
-                
-            }).success(function(data, status){
-                console.log("Successfully Saved");
-        
-          }).error(function(data, status){
-              alert(status);
-        });
+			'seeker1':angular.toJson($scope.seeker1),
+			"csrfmiddlewaretoken" : $scope.csrf_token,				
+		}
+		console.log($scope.seeker1);
+		var fd = new FormData();
+		fd.append('photo_img', $scope.photo_img.src);
+		fd.append('certificate_img', $scope.certificate_img.src)
+		for(var key in params){
+			fd.append(key, params[key]);			
+		}
+		var url = "/job_seeker_registration_2/";
+		$http.post(url, fd, {
+			transformRequest: angular.identity,
+			headers: {'Content-Type': undefined
+			}
+		}).success(function(data, status){
+		console.log("Successfully Saved");
+
+		}).error(function(data, status){
+		alert(status);
+
+		});
 	}
 }
 
 
-
-
-}
 function RecruiterController($scope, $element, $http, $timeout) {
 
 
