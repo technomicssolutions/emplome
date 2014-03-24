@@ -648,8 +648,6 @@ class JobPosting(models.Model):
     company_name = models.ForeignKey(CompanyProfile)
     job_title = models.CharField('Job Title', max_length=20)
     ref_code = models.CharField('Ref Code', max_length=10, null=True, blank=True)
-
-
     summary = models.CharField('Summary', max_length=250)
     job_details = models.CharField('Job Details', max_length=100)
     document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
@@ -658,11 +656,12 @@ class JobPosting(models.Model):
     industry = models.CharField('Industry', max_length=20, choices=INDUSTRY)
     job_location = models.CharField('Job Location', max_length=20, choices=COUNTRY_CHOICES)
     function = models.CharField('Function', max_length=20, choices=FUNCTIONS)
-    # role = models.CharField('Role', max_length=20)
+    role = models.CharField('Role', max_length=20)
     education_req = models.CharField('Education Required', max_length=20, choices=EDUCATION_REQUIRED)
     specialization = models.CharField('Specialization', max_length=20, null=True, blank=True)
     nationality = models.CharField('Nationality', max_length=20, null=True, blank=True, choices=COUNTRY_CHOICES)
     name = models.CharField('Name', max_length=20)
+    phone = models.CharField('Phone', max_length=20,null=True, blank=True)
     mail_id = models.CharField('Email Id', max_length=30)
     company_profile = models.CharField('Job Location', max_length=250)
     #posting_date = models.DateTimeField('Posting Date', null=True, blank=True)
@@ -672,7 +671,7 @@ class JobPosting(models.Model):
 	
 
     def __unicode__(self):
-        return self.job_type
+        return self.job_title
 
     class Meta:
 

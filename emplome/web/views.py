@@ -2,6 +2,9 @@
 import datetime
 from datetime import timedelta
 
+import simplejson
+import ast
+
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import View
 from django.http import Http404, HttpResponse, HttpResponseRedirect
@@ -31,9 +34,7 @@ class LoginView(View):
 
 	def post(self, request, *args, **kwargs):
 		user = authenticate(username=request.POST['email'], password=request.POST['password'])
-		print "user",user
 		userdata = UserProfile.objects.get(user = user)
-		print "userdata",userdata.user_type
 		if user and user.is_active:
 			login(request, user)
 		else:
@@ -43,7 +44,6 @@ class LoginView(View):
 			return render(request, 'login_job_seeker.html',context)
 
 		if userdata.user_type == 'employer':
-			print "employer"
 			return HttpResponseRedirect(reverse('empprofile',args=[user.id]))
 		else:
 			return HttpResponseRedirect(reverse('profile',args=[user.id]))
@@ -129,6 +129,43 @@ class EmployerProfileView(View):
 
 class PostJobsView(View):
 	def get(self, request,*args, **kwargs):
-		context = {}
+		context = {
+		}
 		return render(request, 'job_post.html', context)
+
+	def post(self, request, *args, **kwargs):
+
+		jobPosting =JobPosting()
+		post_data = request.POST
+		jobpost = ast.literal_eval(post_data['jobpost'])
+		current_user = request.user
+		profile = UserProfile.objects.get(user = current_user)
+		company = CompanyProfile.objects.get(user = profile)
+		jobPosting.company_name = company
+		jobPosting.job_title = jobpost['title']
+		jobPosting.ref_code = jobpost['code']
+		jobPosting.summary = jobpost['summary']
+		jobPosting.job_details = jobpost['details']
+		jobPosting.document = request.FILES['product_pdf']
+		jobPosting.skills =jobpost['skills']
+		jobPosting.order = 1
+		jobPosting.industry = jobpost['industry']
+		jobPosting.job_location = jobpost['location']
+		jobPosting.function = jobpost['function']
+		# role = models.CharField('Role', max_length=20)
+		jobPosting.education_req = jobpost['requirement']
+		jobPosting.specialization = jobpost['specialisation']
+		jobPosting.nationality = jobpost['nationality']
+		jobPosting.name = jobpost['name']
+		jobPosting.mail_id = jobpost['email']
+		jobPosting.company_profile = jobpost['profile']
+		# jobPosting.exp_req_min = jobpost['min']
+		# jobPosting.exp_req_max = jobpost['max']
+		jobPosting.exp_req_min =1
+		jobPosting.exp_req_max = 2
+		jobPosting.save()
+		return render(request, 'job_post.html', {})
+
+
+
 

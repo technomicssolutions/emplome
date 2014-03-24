@@ -3,10 +3,11 @@
         <img class="fl" width="246" height="72" src="http://static.naukimg.com/ni/nistatic/nihome/images/naukrigulf_arabic.gif" alt="NaukriGulf.com">
     </a>
 </div>
+{{user}}
 <div class="navi">
     <ul class="middle">
         <li>
-            <a class="active" title="Home" href="?tracksrc=502">
+            <a class="active" title="Home" href="">
                 <em class="home"></em>
             </a>
         </li>
@@ -22,6 +23,7 @@
         </li>
         <li>
         	{% if user.is_authenticated %}
+
 				<a class="tabUnsel" title="Recruiter Login" href="{% url 'logout' %}">Logout</a>
 			{% else %}
 				<a class="tabUnsel" title="Recruiter Login" href="{% url 'login' %}">Recruiter</a>			

@@ -14,5 +14,5 @@ urlpatterns = patterns('',
 	url(r'^logout/$', Logout.as_view(), name='logout'),
 	url(r'^job_seeker-profile/(?P<user_id>\d+)/$',login_required(JobSeekerProfileView.as_view()), name='profile'),
 	url(r'^employer-profile/(?P<user_id>\d+)/$',login_required(EmployerProfileView.as_view()), name='empprofile'),
-	url(r'^post-jobs/$',login_required(PostJobsView.as_view()), name='postjobs'),
+	url(r'^recruiter/post-jobs/$',login_required(PostJobsView.as_view()), name='postjobs'),
 	)

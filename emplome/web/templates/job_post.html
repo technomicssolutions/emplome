@@ -2,83 +2,124 @@
 {% block title %}Job Host{% endblock title %}
 {% block body_id %}jobpost{% endblock body_id %}
 
+{% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+
 {% block content %}
-
-<div class="alert alert-info" align="Center"><h4>Register Recruiter</h4></div>
-<div class="form_container">
-	<form class="" name="add_item" method="post" action="{% url 'register' %}">
-		{% csrf_token %}
-		<div class="control">
-			<label > Job Title</label>  
-			<input type="text"  name="title" value="">
+<div class= "left-box">
+		<div align="Center"><h2>Job Posting</h2></div>
+		<div class="form_container1">
+			<div class="right"><span class="red">*</span>Required Feild</div>
+			<br />
+			<form class="" name="add_item" method="post" action="">
+				{% csrf_token %}
+				<div class="inner">
+					<label>Job Title<span class="red">*</span></label>
+					<input type ="text" name="title" ng-model="jobpost.title">
+				</div>
+				<div class="inner">
+					<label>Ref Code</label>
+					<input type ="text" name="code" ng-model="jobpost.code">
+				</div>
+				<h3>Job Description</h3>
+				<hr />
+				<div class="inner">
+					<label>Job Summary<span class="red">*</span></label>
+					<textarea ng-model="jobpost.summary" cols="50"> </textarea>
+				</div>
+				<div class="inner">
+					<label>Job Details<span class="red">*</span></label>
+					<label>Provide job details below or Pick from the doccument</label>
+					<input type="file" fileread="product_pdf.src"/>
+				    <input type="hidden" ng-model="product_pdf.src" />
+					<textarea class="inner1" ng-model="jobpost.details"> </textarea>
+				</div>
+				<h3>Matching Criteria</h3>
+				<hr />
+				<div class="inner">
+					<label>Keyword/Skills<span class="red">*</span></label>
+					<input type ="text" name="skills" ng-model="jobpost.skills">
+				</div>
+				<div class="inner2">
+					<label>Experiance<span class="red">*</span></label>
+					<div class="inner3">
+						<select name="min" ng-model="jobpost.min">
+							<option>-min-</option>
+							<option ng-repeat="min in Min" value="[[min]]">[[min]]</option>
+						</select>
+						<select name="max" ng-model="jobpost.max">
+							<option>-max-</option>
+							<option ng-repeat="max in Max" value="[[max]]">[[max]]</option>
+						</select>
+					</div>
+				</div>
+				<div class="inner">
+					<label>Job Location<span class="red">*</span></label>
+					<select name="location" ng-model="jobpost.location">
+						<option>-select-</option>
+					</select>
+				</div>
+				<div class="inner">
+					<label>Industry<span class="red">*</span></label>
+					<select name="industry" ng-model="jobpost.industry">
+						<option>-select-</option>
+						<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+					</select>
+				</div>
+				<div class="inner">
+					<label>Category/Function<span class="red">*</span></label>
+					<select name="function" ng-model="jobpost.function">
+						<option>-select-</option>
+						<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+					</select>
+				</div>
+				<div class="inner">
+					<label>Role<span class="red">*</span></label>
+					<select name="role" ng-model="jobpost.role">
+						<option>-select-</option>
+					</select>
+				</div>
+				<div class="inner2">
+					<label>Education Requirement<span class="red">*</span></label>
+					<select name="requirement" ng-model="jobpost.requirement">
+						<option>-select-</option>
+						<option ng-repeat="education in education_required" value="[[education]]">[[education]]</option>
+					</select>
+					<select name="specialisation" ng-model="jobpost.specialisation">
+						<option>-select-</option>
+					</select>
+				</div>
+				<div class="inner">
+					<label>Nationality<span class="red">*</span></label>
+					<select name="nationality" ng-model="jobpost.nationality">
+						<option>-select-</option>
+						<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
+					</select>
+				</div>
+				<h3>Job Owner Details</h3>
+				<hr />
+				<div class="inner">
+					<label>Name<span class="red">*</span></label>
+					<input type ="text" name="name" ng-model="jobpost.name">
+				</div>
+				<div class="inner">
+					<label>Phone<span class="red">*</span></label>
+					<input type ="text" name="phone" ng-model="jobpost.phone">
+				</div>
+				<div class="inner">
+					<label>Email<span class="red">*</span></label>
+					<input type ="text" name="email" ng-model="jobpost.email">
+				</div>
+				<div class="inner">
+					<label>Company profile<span class="red">*</span></label>
+					<textarea ng-model="jobpost.profile"> </textarea>
+				</div>
+				<div class="inner">
+					<input type="checkbox">
+					<label>Reveal contact details to seekers who applied job</label>
+				</div>
+				<div align="Center"><input type="button" value="submit" ng-click="save_job()"></div>
+			</form>
 		</div>
-		<div class="control">
-			<label> Ref Code</label>
-			<input type="text" name="code" value="">
-		</div>
-		<div class="control">
-			<label> Job Summary</label>
-			<textarea name="summary"></textarea>
-		</div>
-		<div class="control">
-			<label>Job Details</label>
-			<input type="file" name="description">
-			<textarea name="details"></textarea>
-		</div>
-		<div class="control">
-			<label> Keywords/Skills</label>
-			<input type="text" name="skill" value="">
-		</div>
-		<div class="control">
-			<label> Experiance</label>
-			<input type="text" name="experiance" value="">
-		</div>
-		<div class="control">
-			<label> Job Location</label>
-			<select></select>
-		</div>
-		<div class="control">
-			<label> Industry</label>
-			<select></select>
-		</div>
-		<div class="control">
-			<label> Category/function</label>
-			<select></select>
-		</div>
-		<div class="control">
-			<label> Role</label>
-			<select></select>
-		</div>
-		<div class="control">
-			<label> Education Requirement</label>
-			<select></select>
-		</div>
-		<div class="control">
-			<label> Nationality</label>
-			<select></select>
-		</div>
-		<div class="control">
-			<label> Name</label>
-			<input type="text" name="name" value="">
-		</div>
-		<div class="control">
-			<label> Phone</label>
-			<input type="text" name="experiance" value="">
-		</div>
-		<div class="control">
-			<label> Email</label>
-			<input type="text" name="email" value="">
-		</div>
-		<div class="control">
-			<label> Company Profile</label>
-			<input type="text" name="profile" value="">
-		</div>
-		<div  align="Center">
-			<div class="buttons">
-				<input type="submit" value="Submit">	
-			</div>
-		</div>
-	</form>
 </div>
-
+			
 {% endblock content %}
