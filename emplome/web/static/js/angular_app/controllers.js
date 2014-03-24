@@ -263,9 +263,9 @@ function get_education_required($scope){
 
 function get_nationalities($scope){
     $scope.nationalities = [
-          'Afghanistan',
-          'Albania',
-          'Algerian',
+        	'Afghanistan',
+        	'Albania',
+        	'Algerian',
 			'American Samoa',
 			'Andorra',
 			'Angola',
@@ -650,8 +650,50 @@ function JobSeekerController($scope, $element, $http, $timeout) {
       	 	$scope.experience.push(i);
     	}
 
-
 	}
+
+	$scope.save_reg = function(){
+		var file = $scope.resume_doc.src;
+		alert(file);
+		params = {
+			'seeker':angular.toJson($scope.jobpost),
+			"csrfmiddlewaretoken" : $scope.csrf_token,				
+		}
+		console.log($scope.seeker);
+		var fd = new FormData()
+	}
+
+
+	$scope.save_job = function(){
+		var file = $scope.product_pdf.src;
+		alert(file);
+		params = {
+                'jobpost':angular.toJson($scope.jobpost),
+                "csrfmiddlewaretoken" : $scope.csrf_token,
+            }
+        console.log($scope.jobpost);
+        var fd = new FormData();
+        fd.append('product_pdf', $scope.product_pdf.src);
+        for(var key in params){
+          fd.append(key, params[key]);
+        }
+        var url = "/recruiter/post-jobs/";
+        $http.post(url, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+                
+            }).success(function(data, status){
+                console.log("Successfully Saved");
+        
+          }).error(function(data, status){
+              alert(status);
+        });
+	}
+}
+
+
+
+
 }
 function RecruiterController($scope, $element, $http, $timeout) {
 
