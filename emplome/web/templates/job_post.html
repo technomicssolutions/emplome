@@ -62,14 +62,14 @@
 					<label>Industry<span class="red">*</span></label>
 					<select name="industry" ng-model="jobpost.industry">
 						<option>-select-</option>
-						<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+						<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
 					</select>
 				</div>
 				<div class="inner">
 					<label>Category/Function<span class="red">*</span></label>
 					<select name="function" ng-model="jobpost.function">
 						<option>-select-</option>
-						<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+						<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
 					</select>
 				</div>
 				<div class="inner">
