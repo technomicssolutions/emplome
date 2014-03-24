@@ -152,17 +152,16 @@ class PostJobsView(View):
 		jobPosting.industry = jobpost['industry']
 		jobPosting.job_location = jobpost['location']
 		jobPosting.function = jobpost['function']
-		# role = models.CharField('Role', max_length=20)
+		jobPosting.role = jobpost['role']
 		jobPosting.education_req = jobpost['requirement']
 		jobPosting.specialization = jobpost['specialisation']
 		jobPosting.nationality = jobpost['nationality']
 		jobPosting.name = jobpost['name']
+		jobPosting.phone = jobpost['phone']
 		jobPosting.mail_id = jobpost['email']
 		jobPosting.company_profile = jobpost['profile']
-		# jobPosting.exp_req_min = jobpost['min']
-		# jobPosting.exp_req_max = jobpost['max']
-		jobPosting.exp_req_min =1
-		jobPosting.exp_req_max = 2
+		jobPosting.exp_req_min = jobpost['min']
+		jobPosting.exp_req_max = jobpost['max']
 		jobPosting.save()
 		return render(request, 'job_post.html', {})
 
