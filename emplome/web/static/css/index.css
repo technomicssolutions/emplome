@@ -373,3 +373,40 @@ body {
     border:1px solid #000000;
     padding: 2%;
 }
+.left-box{
+    width:62%;
+    background-color: #ECE7F8;
+    padding:2%;
+    line-height: 2;
+    border-top:1px solid #663399;
+}
+.right{
+    float: right;
+}
+.inner{
+    width:100%;
+    padding-left: 2%;
+}
+.inner input{
+    margin-left: 13%;
+    width:56%;
+}
+.inner textarea{
+    margin-left: 2%;
+    width:56%;
+    height: 110px;
+}
+.inner select{
+    margin-left: 2%;
+}
+.inner1{
+    margin-left: 18% !important;
+}
+.inner2{
+    width:100%;
+    display: inline;
+    margin-left: 2%;
+}
+.inner3{
+    float: right;
+}

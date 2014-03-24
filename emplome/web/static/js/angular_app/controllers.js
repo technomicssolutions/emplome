@@ -220,6 +220,47 @@ function get_countries($scope){
     ]
 }
 
+function get_education_required($scope){
+	$scope.education_required = [
+		'Bachelor of Architecture',
+		'Bachelor of Arts',
+		'Bachelor of Business Administration',
+		'Bachelor of Commerce'	,
+		'Bachelor of Dental Sugery'	,
+		'Bachelor of Education'	,
+		'Bachelor of Hotel Management'	,
+		'Bachelor of Laws (LLB)'	,
+		'Bachelor of Pharmacy'	,
+		'Bachelor of Science'	,
+		'Bachelor of Technology/Engineering'	,
+		'Bachelor of Vetirenary Science'	,
+		'Bachelor of Computer Application'	,
+		'MBBS',
+		'Diploma',
+		'Intermediate',
+		'Secondary',
+		'Chartered Accountant',
+		'CA Inter',
+		'Chartered Financial Analyst',
+		'Company Secretary',
+		'Doctor of Medicine (MD)',
+		'Doctor of Surgery (MS)',
+		'Inst. of Cost & Works Accountants',
+		'ICWA Inter',
+		'Master of Architecture',
+		'Master of Arts',
+		'Master of Commerce',
+		'Master of Education',
+		'Master of Laws (LLM)',
+		'Master of Pharmacy',
+		'Master of Technology/Engineering',
+		'Master of Vetirenary Science',
+		'Master of Computer Application',
+		'MBA/PG Diploma in Business Mgmt ',
+	]
+
+}
+
 function get_nationalities($scope){
     $scope.nationalities = [
           'Afghanistan',
@@ -538,7 +579,8 @@ function get_functions($scope){
 		'Medical/Healthcare/Diagnistics/Medical Devices',
 		'Hotels/Hospitality/Tourism/Recreative',
 		'Advertising/Pr/Events',
-		'Agriculture/Dairy/Poultry</option><option>Hotels/Hospitality/Tourism/Recreative',
+		'Agriculture/Dairy/Poultry',
+		'Hotels/Hospitality/Tourism/Recreative',
 		'Air Conditioning/Refrigeration',
 		'Airline/Aviation',
 		'Architecture/Interior Designing',
@@ -601,7 +643,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		get_nationalities($scope);
 		get_industries($scope);
 		get_functions($scope);
-		 for(var i=1970; i<=2000; i++){
+		for(var i=1970; i<=2000; i++){
       	 	$scope.year.push(i);
     	}
     	for(var i=0; i<=50; i++){
@@ -618,5 +660,70 @@ function RecruiterController($scope, $element, $http, $timeout) {
 		$scope.csrf_token = csrf_token;
 		get_countries($scope);
 		
+	}
+}
+
+function  JobPostingController($scope,$element,$http,$timeout){
+	$scope.Min = [];
+	$scope.Max = [];
+	$scope.init = function(csrf_token) {
+		$scope.csrf_token = csrf_token;
+		$scope.product_pdf = {};
+    	$scope.product_pdf.src = "";
+		get_countries($scope);
+		get_nationalities($scope);
+		get_industries($scope);
+		get_functions($scope);
+		get_education_required($scope);
+		for(var i=0; i<=50; i++){
+      	 	$scope.Min.push(i);
+      	 	$scope.Max.push(i);
+    	}				
+    	$scope.jobpost = {
+            'title': '',
+            'code': '',
+            'summary': '',
+            'details': '',
+            'skills': '',
+            'location': '-select-',
+            'industry': '-select-',
+            'function': '-select-',
+            'role': '-select-',
+            'requirement': '-select-',
+            'specialisation': '-select-',
+            'nationality': '-select-',
+            'name': '',
+            'phone': '',
+            'email': '',
+            'profile': '',
+            'min':'min',
+            'max':'max',
+        }
+		
+	}
+	$scope.save_job = function(){
+		var file = $scope.product_pdf.src;
+		alert(file);
+		params = {
+                'jobpost':angular.toJson($scope.jobpost),
+                "csrfmiddlewaretoken" : $scope.csrf_token,
+            }
+        console.log($scope.jobpost);
+        var fd = new FormData();
+        fd.append('product_pdf', $scope.product_pdf.src);
+        for(var key in params){
+          fd.append(key, params[key]);
+        }
+        var url = "/recruiter/post-jobs/";
+        $http.post(url, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+                
+            }).success(function(data, status){
+                console.log("Successfully Saved");
+        
+          }).error(function(data, status){
+              alert(status);
+        });
 	}
 }
