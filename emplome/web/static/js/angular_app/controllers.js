@@ -611,3 +611,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 	}
 }
+function RecruiterController($scope, $element, $http, $timeout) {
+
+
+	$scope.init = function(csrf_token) {
+		$scope.csrf_token = csrf_token;
+		get_countries($scope);
+		
+	}
+}

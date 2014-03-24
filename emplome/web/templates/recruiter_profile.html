@@ -1,0 +1,24 @@
+{% extends 'recruiter_base.html' %}
+{% block title %}RecruiterProfile{% endblock title %}
+{% block body_id %}recruiterprofile{% endblock body_id %}
+
+{% block content %}
+
+<div class="profile-box">
+	<strong>{{error}}</strong><br />
+	<label>Welcome to your Home Page</label><br />
+	<label>Post jobs and find the best</label><br />
+
+	<div class="profile-det">
+		<h4>My CV</h4>
+		<h3>{{profile.company_name}}</h3>
+		Email id :{{profile.user.email}}
+		Mobile:{{ profile.mobile }}
+		Functional Area :
+ 		Industry Type :
+ 		Work Experience :
+ 		Highest Education:
+	</div>
+</div>
+
+{% endblock content %}

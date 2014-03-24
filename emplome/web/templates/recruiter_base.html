@@ -18,7 +18,7 @@
         {% endblock extrahead %}
     </head>
 
-    <body>
+    <body id="{% block body_id %}base{% endblock %}" {% block controller %}{% endblock controller %}>
         <div class="container">
             {% block header %}
                 {% include 'recruiter_header.html' %}
@@ -28,7 +28,7 @@
             {% endblock content %}
 
             {% block footer %}
-<!--                 {% include 'recruiter_footer.html'%} -->
+                {% include 'footer.html'%}
             {% endblock footer %}
 
         </div>

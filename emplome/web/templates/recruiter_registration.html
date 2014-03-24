@@ -2,6 +2,8 @@
 {% block title %}Recruiter Registration{% endblock title %}
 {% block body_id %}recreg{% endblock body_id %}
 
+{% block controller %}ng-controller="RecruiterController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+
 {% block content %}
 
 <div class="alert alert-info" align="Center"><h4>Register Recruiter</h4></div>
@@ -33,14 +35,16 @@
 			<input type="text" name="phone" value="">
 		</div>
 		<div class="formrow">
+			<label> Country</label>
+			<select name="country">
+				<option>-----Select----<option>
+				<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
+			</select>
+		</div>
+		<div class="formrow">
 			<label> City</label>
 			<input type="text" name="city" value="">
 		</div>
-		<div class="formrow">
-			<label> Country</label>
-			<input type="text" name="country" value="">
-		</div>
-		
 		<div  align="Center">
 			<div class="buttons">
 				<input type="submit" value="Register">	
