@@ -223,7 +223,105 @@ class PostJobsView(View):
 		jobPosting.exp_req_min = jobpost['min']
 		jobPosting.exp_req_max = jobpost['max']
 		jobPosting.save()
-		return render(request, 'job_post.html', {})
+		print "jobPosting",jobPosting.id
+		res = {
+			'id' : jobPosting.id,
+		} 
+		response = simplejson.dumps(res)
+		status_code = 200
+		return HttpResponse(response, status = status_code, mimetype="application/json")
+
+class EditPostJobsView(View):
+	def post(self, request, *args, **kwargs):
+		jobPosting =JobPosting.objects.get(id= kwargs['user_id'])
+		print "jobPosting",jobPosting
+		post_data = request.POST
+		jobpost = ast.literal_eval(post_data['jobpost'])
+		jobPosting.job_title = jobpost['title']
+		jobPosting.ref_code = jobpost['code']
+		jobPosting.summary = jobpost['summary']
+		jobPosting.job_details = jobpost['details']
+		jobPosting.document = request.FILES['product_pdf']
+		jobPosting.skills =jobpost['skills']
+		jobPosting.order = 1
+		jobPosting.industry = jobpost['industry']
+		jobPosting.job_location = jobpost['location']
+		jobPosting.function = jobpost['function']
+		jobPosting.role = jobpost['role']
+		jobPosting.education_req = jobpost['requirement']
+		jobPosting.specialization = jobpost['specialisation']
+		jobPosting.nationality = jobpost['nationality']
+		jobPosting.name = jobpost['name']
+		jobPosting.phone = jobpost['phone']
+		jobPosting.mail_id = jobpost['email']
+		jobPosting.company_profile = jobpost['profile']
+		jobPosting.exp_req_min = jobpost['min']
+		jobPosting.exp_req_max = jobpost['max']
+		jobPosting.save()
+		context = {}
+		res = {
+			'id' : jobPosting.id,
+		} 
+		response = simplejson.dumps(res)
+		status_code = 200
+		return HttpResponse(response, status = status_code, mimetype="application/json")
+
+
+class ListExistingJobs(View):
+	def get(self, request,*args, **kwargs):
+		ctx_jobs = []
+		current_user = request.user
+		profile = UserProfile.objects.get(user = current_user)
+		company = CompanyProfile.objects.get(user = profile)
+		jobs = JobPosting.objects.filter(company_name = company)
+		if request.is_ajax():
+			if len(jobs) > 0:
+				for job in jobs:
+					ctx_jobs.append({
+						'ref_code': job.ref_code
+					})
+			res = {
+				'existing_jobs': ctx_jobs,
+			}
+		response = simplejson.dumps(res)
+		status_code = 200
+		return HttpResponse(response, status = status_code, mimetype="application/json")
+
+class ListExistingJobDetails(View):
+	def get(self, request,*args, **kwargs):
+		ctx_jobs = []
+		current_user = request.user
+		profile = UserProfile.objects.get(user = current_user)
+		company = CompanyProfile.objects.get(user = profile)
+		job = JobPosting.objects.filter(ref_code = kwargs['ref_code'],company_name = company)
+		print "jobs",job
+		if request.is_ajax():
+			ctx_jobs.append({
+				'job_title': job[0].job_title,
+				'summarys': job[0].summary,
+				'job_details': job[0].job_details,
+				'skills': job[0].skills,
+				'order': job[0].order,
+				'industry': job[0].industry,
+				'job_location': job[0].job_location,
+				'functions': job[0].function,
+				'role': job[0].role,
+				'education_req': job[0].education_req,
+				'specialization': job[0].specialization,
+				'nationality': job[0].nationality,
+				'company_profile': job[0].company_profile,
+				'exp_req_min': job[0].exp_req_min,
+				'exp_req_max': job[0].exp_req_max,
+			})
+			res = {
+				'existing_job_details': ctx_jobs,
+			}
+		response = simplejson.dumps(res)
+		status_code = 200
+		return HttpResponse(response, status = status_code, mimetype="application/json")
+
+
+
 
 
 

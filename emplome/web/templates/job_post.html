@@ -7,14 +7,22 @@
 {% block content %}
 <div class= "left-box">
 		<div align="Center"><h2>Job Posting</h2></div>
+		<div class="right">
+			<select name="existing_job" ng-model="existing_job" ng-change="get_job_details()">
+				<option>------Copy From existing job----</option>
+				<option ng-repeat="job in existing_job" value="[[job.ref_code]]">[[job.ref_code]]</option>
+			</select>
+		</div>
 		<div class="form_container1">
+						<br />
+
 			<div class="right"><span class="red">*</span>Required Feild</div>
 			<br />
 			<form class="" name="add_item" method="post" action="">
 				{% csrf_token %}
 				<div class="inner">
 					<label>Job Title<span class="red">*</span></label>
-					<input type ="text" name="title" ng-model="jobpost.title">
+					<input type ="text" name="title" ng-model="jobpost.title" value="">
 				</div>
 				<div class="inner">
 					<label>Ref Code</label>
@@ -23,15 +31,16 @@
 				<h3>Job Description</h3>
 				<hr />
 				<div class="inner">
-					<label>Job Summary<span class="red">*</span></label>
-					<textarea ng-model="jobpost.summary" cols="50"> </textarea>
+					<label>Job Summary<span class="red">*</span>
+						<textarea ng-model="jobpost.summary" cols="50"> </textarea>
+					</label>
 				</div>
 				<div class="inner">
 					<label>Job Details<span class="red">*</span></label>
 					<label>Provide job details below or Pick from the doccument</label>
 					<input type="file" fileread="product_pdf.src"/>
 				    <input type="hidden" ng-model="product_pdf.src" />
-					<textarea class="inner1" ng-model="jobpost.details"> </textarea>
+					<textarea class="inner1" ng-model="jobpost.details"></textarea>
 				</div>
 				<h3>Matching Criteria</h3>
 				<hr />
@@ -42,7 +51,7 @@
 				<div class="inner2">
 					<label>Experiance<span class="red">*</span></label>
 					<div class="inner3">
-						<select name="min" ng-model="jobpost.min">
+						<select class="select1" name="min" ng-model="jobpost.min">
 							<option>-min-</option>
 							<option ng-repeat="min in Min" value="[[min]]">[[min]]</option>
 						</select>
@@ -56,6 +65,7 @@
 					<label>Job Location<span class="red">*</span></label>
 					<select name="location" ng-model="jobpost.location">
 						<option>-select-</option>
+						<option ng-repeat="country in countries" value="[[country]]" ng-selected="jobpost.location == existing_job_detail.0.job_location">[[country]]</option>
 					</select>
 				</div>
 				<div class="inner">
@@ -84,7 +94,7 @@
 						<option>-select-</option>
 						<option ng-repeat="education in education_required" value="[[education]]">[[education]]</option>
 					</select>
-					<select name="specialisation" ng-model="jobpost.specialisation">
+					<select  name="specialisation" ng-model="jobpost.specialisation">
 						<option>-select-</option>
 					</select>
 				</div>
@@ -110,8 +120,9 @@
 					<input type ="text" name="email" ng-model="jobpost.email">
 				</div>
 				<div class="inner">
-					<label>Company profile<span class="red">*</span></label>
-					<textarea ng-model="jobpost.profile"> </textarea>
+					<label>Company profile<span class="red">*</span>
+						<textarea ng-model="jobpost.profile"> </textarea>
+					</label>
 				</div>
 				<div class="inner">
 					<input type="checkbox">

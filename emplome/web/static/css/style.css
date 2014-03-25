@@ -426,11 +426,11 @@ border:1px solid red;
   display: block;
   min-height: 100%;
   padding: 4px 10px;
-text-decoration:none;
+  text-decoration:none;
   background-color:#FFCCFF; //#FFEB99;
-font-family: Ariel black;
-font-size:20px;   //Shade of blue
-color:white;
+  font-family: Ariel black;
+  font-size:20px;   //Shade of blue
+  color:white;
   border-radius: 6px 6px 0 0;
 }
 .hd3
