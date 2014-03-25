@@ -292,21 +292,20 @@ class ListExistingJobDetails(View):
 		print "jobs",job
 		if request.is_ajax():
 			ctx_jobs.append({
-				'job_title': job[0].job_title,
-				'summarys': job[0].summary,
-				'job_details': job[0].job_details,
+				'title':job[0].job_title,
+				'summary': job[0].summary,
+				'details': job[0].job_details,
 				'skills': job[0].skills,
-				'order': job[0].order,
-				'industry': job[0].industry,
-				'job_location': job[0].job_location,
-				'functions': job[0].function,
-				'role': job[0].role,
-				'education_req': job[0].education_req,
-				'specialization': job[0].specialization,
+				'location':job[0].job_location,
+				'industry':job[0].industry,
+				'function': job[0].function,
+				'role':job[0].role,
+				'requirement': job[0].education_req,
+				'specialisation':job[0].specialization,
 				'nationality': job[0].nationality,
-				'company_profile': job[0].company_profile,
-				'exp_req_min': job[0].exp_req_min,
-				'exp_req_max': job[0].exp_req_max,
+				'min':job[0].exp_req_min,
+				'max':job[0].exp_req_max,
+
 			})
 			res = {
 				'existing_job_details': ctx_jobs,

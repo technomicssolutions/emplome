@@ -10,7 +10,7 @@
 		<div class="right">
 			<select name="existing_job" ng-model="existing_job" ng-change="get_job_details()">
 				<option>------Copy From existing job----</option>
-				<option ng-repeat="job in existing_job" value="[[job.ref_code]]">[[job.ref_code]]</option>
+				<option ng-repeat="job in existing_jobs" value="[[job.ref_code]]">[[job.ref_code]]</option>
 			</select>
 		</div>
 		<div class="form_container1">
