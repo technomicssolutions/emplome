@@ -8,12 +8,13 @@
 {% block content %}
 
 <div class="div3">
+	<form name="registration" method="post" action="">
 	<div class="separation">
 		<br>
 		<h2 class="hd1">Job Seeker's Registration</h2>
 		<p class="mandatory">* Required Fields</p>
 		<br>
-		<form name="registration" method="post" action="">
+		<!-- <form name="registration" method="post" action=""> -->
 			<h3>Create your Account</h3>
 			<br>
 			<div class="formrow">
@@ -882,7 +883,7 @@
 			</div>
 			<div class="formrow">
 				<label>Year of Passing<span class="red">*</span></label>
-				<select name="pass_year_masters" style="width: 115px" ng-model="seeker.pass_year_masters">
+				<select name="pass_year_masters" style="width: 14%" ng-model="seeker.pass_year_masters">
 					<option>Select</option>
 					<!-- <option>1990</option>
 					<option>1991</option>
