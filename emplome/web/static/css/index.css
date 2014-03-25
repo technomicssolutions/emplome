@@ -32,7 +32,7 @@ width: auto;
 {
   margin: auto;
   margin-top:50px;
-  width:900px;
+  width:80%;
   height:auto;
   border:1px solid blue;
 }
@@ -83,15 +83,15 @@ width: auto;
 
 .separation{
   border:1px solid blue;
-  background-color:white;
+  /*background-color:white;*/
   padding-left: 6%;
 }
 
 .div3
 {
   margin: auto;
-  margin-top:50px;
-  width:900px;
+  /*margin-top:50px;*/
+  width:90%;
   height:auto;
   border:1px solid blue;
 }
@@ -380,12 +380,20 @@ body {
     display: block;
 }
 .left-box{
-    width:62%;
+    /*width:62%;*/
     background-color: #ECE7F8;
     padding:2%;
-    line-height: 2;
+    /*line-height: 2;*/
     border-top:1px solid #663399;
+
+    margin: auto;
+    width:85%;
+  height:auto;
+  /*border:1px solid blue;*/
 }
+
+
+
 .right{
     float: right;
 }

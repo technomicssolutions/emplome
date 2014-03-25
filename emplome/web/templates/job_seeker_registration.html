@@ -8,12 +8,13 @@
 {% block content %}
 
 <div class="div3">
+	<form name="registration" method="post" action="">
 	<div class="separation">
 		<br>
 		<h2 class="hd1">Job Seeker's Registration</h2>
 		<p class="mandatory">* Required Fields</p>
 		<br>
-		<form name="registration" method="post" action="">
+		<!-- <form name="registration" method="post" action=""> -->
 			<h3>Create your Account</h3>
 			<br>
 			<div class="formrow">
@@ -26,7 +27,7 @@
 			</div>
 			<div class="formrow">
 				<label>Re-enter Password<span class="red">*</span></label> 
-				<input type="password1" name="password" ng-model="seeker.password1">
+				<input type="password" name="password1" ng-model="seeker.password1">
 			</div>
 		</div>
 
@@ -882,7 +883,7 @@
 			</div>
 			<div class="formrow">
 				<label>Year of Passing<span class="red">*</span></label>
-				<select name="pass_year_masters" style="width: 115px" ng-model="seeker.pass_year_masters">
+				<select name="pass_year_masters" style="width: 14%" ng-model="seeker.pass_year_masters">
 					<option>Select</option>
 					<!-- <option>1990</option>
 					<option>1991</option>
@@ -914,8 +915,8 @@
 				</select>
 			</div>
 			<div class="formrow">
-				<label>.</label>
-				<input type="button" name="add_doctrate" value="Add Doctrate" ng-model="seeker.add_doctrate">
+				<label>Doctrate</label>
+				<!-- <input type="button" name="add_doctrate" value="Add Doctrate" ng-model="seeker.add_doctrate"> -->
 				<select name="doctrate" ng-model="seeker.doctrate">
 					<option>select</option>
 				</select>
@@ -947,7 +948,7 @@
 		<!-- <div class="formrow"> -->
 			<div class="btn">
 				<label></label>
-				<input class="button" type="submit" name="submit" value="Save & Edit">
+				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg()">
 			</div>
 			
 			<br>

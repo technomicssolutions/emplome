@@ -109,13 +109,18 @@ class JobSeekerRegistration(View):
 
 	def post(self, request, *args, **kwargs):
 		post_data = request.POST
-		seeker = ast.literal_eval(post_data['seeker]'])
+		print request.FILES
+		print post_data
+		seeker = ast.literal_eval(post_data['seeker'])
+		user = User.objects.create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
+		user.set_password(seeker['password'])
+		user.save()
+
 		userprofile = UserProfile()
 		userprofile.user = user
-		userprofile.user_type = job_seeker
-		userProfile.user.email = seeker['email']
-		user.set_password(post_dict['password'])
-		userprofile.gender = seeker['gender']
+		userprofile.user_type = 'job_seeker'
+		
+		# userprofile.gender = seeker['gender']
 		userprofile.religion = seeker['religion']
 		userprofile.marital_status = seeker['marital_status']
 		userprofile.nationality = seeker['nationality']
@@ -132,7 +137,7 @@ class JobSeekerRegistration(View):
 		education.doctrate = seeker['doctrate']
 		education.resume_title = seeker['resume_title']
 		education.resume = request.FILES['resume_doc']
-		education.resume_text = seeker['resume_doc']
+		education.resume_text = seeker['resume_text']
 		education.save()
 
 		return render(request, 'job_seeker_registration.html', {})
@@ -147,7 +152,7 @@ class JobSeekerRegistration2(View):
 
 	def post(self, request, *args, **kwargs):
 		post_data = request.POST
-		seeker1 = ast.literal_eval(post_data['seeker1]'])
+		seeker1 = ast.literal_eval(post_data['seeker1'])
 		employment = Employment()
 		employment.exp_yrs = seeker1['years']
 		employment.exp_mnths = seeker1['months']
