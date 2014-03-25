@@ -26,7 +26,7 @@
 			</div>
 			<div class="formrow">
 				<label>Re-enter Password<span class="red">*</span></label> 
-				<input type="password1" name="password" ng-model="seeker.password1">
+				<input type="password" name="password1" ng-model="seeker.password1">
 			</div>
 		</div>
 
@@ -914,8 +914,8 @@
 				</select>
 			</div>
 			<div class="formrow">
-				<label>.</label>
-				<input type="button" name="add_doctrate" value="Add Doctrate" ng-model="seeker.add_doctrate">
+				<label>Doctrate</label>
+				<!-- <input type="button" name="add_doctrate" value="Add Doctrate" ng-model="seeker.add_doctrate"> -->
 				<select name="doctrate" ng-model="seeker.doctrate">
 					<option>select</option>
 				</select>
@@ -947,7 +947,7 @@
 		<!-- <div class="formrow"> -->
 			<div class="btn">
 				<label></label>
-				<input class="button" type="submit" name="submit" value="Save & Edit">
+				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg()">
 			</div>
 			
 			<br>

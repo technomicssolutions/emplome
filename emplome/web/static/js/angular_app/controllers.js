@@ -606,6 +606,24 @@ function get_industries($scope){
 		'Paper',
 		'Printing/ Packaging',
 		'Public Relations (PR)',
+		'Import / Export',
+		'Iron/ Steel',
+		'ISP',
+		'Law Enforcement/Security Services',
+		'Leather',
+		'Market Research',
+		'Medical Transcription',
+		'Mining',
+		'NGO',
+		'Import / Export',
+		'Iron/ Steel',
+		'ISP',
+		'Law Enforcement/Security Services',
+		'Leather',
+		'Market Research',
+		'Medical Transcription',
+		'Mining',
+		'NGO',
 		'Shipping/ Marine Services',
 		'Travel/ Tourism',
 		'Tyres',
@@ -683,6 +701,16 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	$scope.year = [];
 	$scope.experience =[];
 
+	$scope.certificate_img = {};
+	$scope.certificate_img.src = "";
+
+	$scope.photo_img = {};
+	$scope.photo_img.src = "";
+
+	$scope.resume_doc = {};
+	$scope.resume_doc.src = "";
+
+
 	$scope.init = function(csrf_token) {
 		$scope.csrf_token = csrf_token;
 		get_countries($scope);
@@ -691,12 +719,46 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		get_functions($scope);
 		get_basic_education($scope);
 		get_masters_education($scope);
-		for(var i=1970; i<=2000; i++){
+		for(var i=1970; i<=2014; i++){
       	 	$scope.year.push(i);
     	}
     	for(var i=0; i<=50; i++){
       	 	$scope.experience.push(i);
     	}
+
+	}
+
+	$scope.seeker = {
+		'email': '',
+		'password': '', 
+		'password1': '',
+		'first_name': '',
+		'gender': '',
+		'religion': '-select-',
+		'marital_status': '-select-',
+		'nationality': '-select-',
+		'country': '-select-',
+		'city': '',
+		'mobile': '',
+		'alt_email': '',
+		'basic_edu': '-select-',
+		'pass_year_basic': '',
+		'masters_edu': '-select-',
+		'pass_year_masters': '',
+		'doctrate': '',
+		'resume_title': '',
+		'resume_text': '',
+
+	}
+
+	$scope.seeker1 = {
+		'years': '',
+		'months': '-select-',
+		'salary': '',
+		'designation': '',
+		'industry': '-select-',
+		'function': '-select-',
+		'skills': '',
 
 	}
 
@@ -709,6 +771,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		console.log($scope.seeker);
 		var fd = new FormData();
 		fd.append('resume_doc', $scope.resume_doc.src);
+		alert(fd);
 		for(var key in params){
 			fd.append(key, params[key]);			
 		}
@@ -725,6 +788,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 		});
 	}
+	
 
 	$scope.save_reg1 = function(){
 		var file = $scope.photo_img.src;
@@ -820,7 +884,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
         var url = "/recruiter/post-jobs/";
         $http.post(url, fd, {
                 transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}
+                headers: {'Content-Type': undefined
+            	}
                 
             }).success(function(data, status){
                 console.log("Successfully Saved");
