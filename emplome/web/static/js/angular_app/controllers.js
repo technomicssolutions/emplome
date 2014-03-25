@@ -666,10 +666,13 @@ function RecruiterController($scope, $element, $http, $timeout) {
 function  JobPostingController($scope,$element,$http,$timeout){
 	$scope.Min = [];
 	$scope.Max = [];
-	$scope.init = function(csrf_token) {
+	$scope.edit =1;
+	$scope.existing_job = '------Copy From existing job----';
+	$scope.init = function(csrf_token,id) {
 		$scope.csrf_token = csrf_token;
 		$scope.product_pdf = {};
     	$scope.product_pdf.src = "";
+    	$scope.get_existing_jobs();
 		get_countries($scope);
 		get_nationalities($scope);
 		get_industries($scope);
@@ -678,9 +681,9 @@ function  JobPostingController($scope,$element,$http,$timeout){
 		for(var i=0; i<=50; i++){
       	 	$scope.Min.push(i);
       	 	$scope.Max.push(i);
-    	}				
+    	}	
     	$scope.jobpost = {
-            'title': '',
+            'title':'',
             'code': '',
             'summary': '',
             'details': '',
@@ -696,14 +699,14 @@ function  JobPostingController($scope,$element,$http,$timeout){
             'phone': '',
             'email': '',
             'profile': '',
-            'min':'min',
-            'max':'max',
+            'min':'-min-',
+            'max':'-max-',
         }
 		
 	}
 	$scope.save_job = function(){
 		var file = $scope.product_pdf.src;
-		alert(file);
+		var edit =$scope.edit;
 		params = {
                 'jobpost':angular.toJson($scope.jobpost),
                 "csrfmiddlewaretoken" : $scope.csrf_token,
@@ -714,16 +717,51 @@ function  JobPostingController($scope,$element,$http,$timeout){
         for(var key in params){
           fd.append(key, params[key]);
         }
-        var url = "/recruiter/post-jobs/";
+        if(edit == 1){
+        	var url = "/recruiter/post-jobs/";
+        }
+        else{
+        	var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
+        }
         $http.post(url, fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
                 
             }).success(function(data, status){
                 console.log("Successfully Saved");
-        
+                $scope.id = data.id;
           }).error(function(data, status){
-              alert(status);
+              console.log(status);
         });
+        $scope.edit = edit +1;  
+	}
+	$scope.get_existing_jobs = function() {
+		$http.get('/jobs/list/').success(function(data)
+	    {
+	        $scope.existing_job = data.existing_jobs;
+			console.log(data.existing_jobs);		
+	    }).error(function(data, status)
+	    {
+	        console.log(data || "Request failed");
+	    });
+	}
+	$scope.get_job_details = function(){
+		alert($scope.existing_job);
+		$http.get('/jobs/details/'+$scope.existing_job+'/').success(function(data)
+	    {
+	    	$scope.existing_job_detail = data.existing_job_details;
+	    	console.log(data.existing_job_details);
+	    	$scope.jobpost = {
+            	'title':$scope.existing_job_detail[0].job_title,
+	            'summary':$scope.existing_job_detail[0].summarys,
+	            'details':$scope.existing_job_detail[0].job_details,
+	            'skills':$scope.existing_job_detail[0].skills,
+
+        	}
+	    }).error(function(data, status)
+	    {
+	        console.log(data || "Request failed");
+	    });
+
 	}
 }

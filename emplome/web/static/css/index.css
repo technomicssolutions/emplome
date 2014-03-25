@@ -353,6 +353,9 @@ body {
 .buttons{
     width: 50%;
 }
+.select1{
+    margin-left:16%;
+}
 #email{
     margin-left: 8%;
 }
@@ -372,6 +375,9 @@ body {
     margin-left: 20%;
     border:1px solid #000000;
     padding: 2%;
+}
+.form_container1{
+    display: block;
 }
 .left-box{
     width:62%;
@@ -398,6 +404,7 @@ body {
 }
 .inner select{
     margin-left: 2%;
+    width: 50%;
 }
 .inner1{
     margin-left: 18% !important;
@@ -408,5 +415,8 @@ body {
     margin-left: 2%;
 }
 .inner3{
-    float: right;
+    display: inline;
+}
+label textarea{
+    vertical-align: middle;
 }
