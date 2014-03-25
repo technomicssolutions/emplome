@@ -223,9 +223,9 @@ class PostJobsView(View):
 		jobPosting.exp_req_min = jobpost['min']
 		jobPosting.exp_req_max = jobpost['max']
 		jobPosting.save()
-		print "jobPosting",jobPosting.id
 		res = {
 			'id' : jobPosting.id,
+			'message':'data posted on our server'
 		} 
 		response = simplejson.dumps(res)
 		status_code = 200
@@ -234,7 +234,6 @@ class PostJobsView(View):
 class EditPostJobsView(View):
 	def post(self, request, *args, **kwargs):
 		jobPosting =JobPosting.objects.get(id= kwargs['user_id'])
-		print "jobPosting",jobPosting
 		post_data = request.POST
 		jobpost = ast.literal_eval(post_data['jobpost'])
 		jobPosting.job_title = jobpost['title']
@@ -310,6 +309,7 @@ class ListExistingJobDetails(View):
 				'nationality': job[0].nationality,
 				'min':job[0].exp_req_min,
 				'max':job[0].exp_req_max,
+				'profile':job[0].company_profile,
 
 			})
 			res = {

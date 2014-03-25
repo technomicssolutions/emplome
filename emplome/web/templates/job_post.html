@@ -68,11 +68,11 @@
 				<!-- <div class="inner3"> -->
 				<select style="width: 14%" name="min" ng-model="jobpost.min">
 					<option>-min-</option>
-					<option ng-repeat="min in Min" value="[[min]]">[[min]]</option>
+					<option ng-repeat="min in Min" value="[[min]]" ng-selected="min == jobpost.min">[[min]]</option>
 				</select>
 				<select style="width: 14%" name="max" ng-model="jobpost.max">
 					<option>-max-</option>
-					<option ng-repeat="max in Max" value="[[max]]">[[max]]</option>
+					<option ng-repeat="max in Max" value="[[max]]" ng-selected="max == jobpost.max">[[max]]</option>
 				</select>
 			</div>
 			
@@ -80,7 +80,7 @@
 				<label>Job Location<span class="red">*</span></label>
 				<select name="location" ng-model="jobpost.location">
 					<option>-select-</option>
-					<option ng-repeat="country in countries" value="[[country]]" ng-selected="jobpost.location == existing_job_detail.0.job_location">[[country]]</option>
+					<option ng-repeat="country in countries" value="[[country]]" ng-selected="country == jobpost.location">[[country]]</option>
 				</select>
 			</div>
 			
@@ -88,14 +88,14 @@
 				<label>Industry<span class="red">*</span></label>
 				<select name="industry" ng-model="jobpost.industry">
 					<option>-select-</option>
-					<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+					<option ng-repeat="industry in industries" value="[[industry]]" ng-selected="industry == jobpost.industry">[[industry]]</option>
 				</select>
 			</div>
 			<div class="formrow">
 				<label>Category/Function<span class="red">*</span></label>
 				<select name="function" ng-model="jobpost.function">
 					<option>-select-</option>
-					<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+					<option ng-repeat="function in functions" value="[[function]]" ng-selected="function == jobpost.function">[[function]]</option>
 				</select>
 			</div>
 			<div class="formrow">
@@ -108,7 +108,7 @@
 				<label>Education Requirement<span class="red">*</span></label>
 				<select name="requirement" ng-model="jobpost.requirement">
 					<option>-select-</option>
-					<option ng-repeat="education in education_required" value="[[education]]">[[education]]</option>
+					<option ng-repeat="education in education_required" value="[[education]]" ng-selected="education == jobpost.requirement">[[education]]</option>
 				</select>
 			</div>
 			<div class="formrow">
@@ -120,7 +120,7 @@
 				<label>Nationality<span class="red">*</span></label>
 				<select name="nationality" ng-model="jobpost.nationality">
 					<option>-select-</option>
-					<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
+					<option ng-repeat="country in countries" value="[[country]]" ng-selected="country == jobpost.nationality">[[country]]</option>
 				</select>
 			</div>
 		</div>
@@ -146,13 +146,14 @@
 		</div>
 				<!-- <div class="inner"> -->
 		<div class="separation">
-			<div class="formrow">
+			<div class="formrow" align="center">
 				<input type="checkbox">
 				Reveal contact details to seekers who applied job
 			</div>
-			<div class="formrow">
+			<div class="formrow" align="center">
 			<!-- <div align="Center"> -->
 				<input type="button" value="submit" ng-click="save_job()">
+				{{message}}
 			</div>
 		</div>
 	</form>

@@ -869,7 +869,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       	 	$scope.Min.push(i);
       	 	$scope.Max.push(i);
     	}	
-
+    	console.log($scope.jobpost);
 		
 	}
 	$scope.save_job = function(){
@@ -899,10 +899,11 @@ function  JobPostingController($scope,$element,$http,$timeout){
             }).success(function(data, status){
                 console.log("Successfully Saved");
                 $scope.id = data.id;
+                $scope.edit = $scope.edit +1;  
           }).error(function(data, status){
               console.log(status);
         });
-        $scope.edit = edit +1;  
+        
 	}
 	$scope.get_existing_jobs = function() {
 		$http.get('/jobs/list/').success(function(data)
