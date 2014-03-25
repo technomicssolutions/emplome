@@ -8,17 +8,17 @@
 {% block content %}
 
 <div class="div3">
-	<!-- <form> -->
 	<div class="separation">
 		<br>
 		<h2 class="hd1">Job Seeker's Registration</h2>
 		<p class="mandatory">* Required Fields</p>
 		<br>
+		<form name="registration1" method="post" action="">
 		<h3>Current Employment Details</h3>
 		<br>
 		<div class="formrow">
 			<label>Total Experience<span class="red">*</span></label>
-			<select name="years" style="width: 115px">
+			<select name="years" style="width: 115px" ng-model="seeker1.years">
 				<option>Years</option>
 				<!-- <option>1</option>
 				<option>2</option>
@@ -72,7 +72,7 @@
 				<option>50</option> -->
 				<option ng-repeat="expr in experience" value="[[expr]]">[[expr]]</option>
 			</select>
-			<select name="months" style="width: 115px">
+			<select name="months" style="width: 115px" ng-model="seeker1.months">
 				<option>Months</option>
 				<option>1</option>
 				<option>2</option>
@@ -89,15 +89,15 @@
 		</div>
 		<div class="formrow">
 			<label>Monthly Salary</label>
-			<input type="text" name="salary">
+			<input type="text" name="salary" ng-model="seeker1.salary">
 		</div>
 		<div class="formrow">
 			<label>Current Designation</label>
-			<input type="text" name="designation">
+			<input type="text" name="designation" ng-model="seeker1.designation">
 		</div>
 		<div class="formrow">
 			<label>Current Industry</label>
-			<select name="industry"> 
+			<select name="industry" ng-model="seeker1.industry"> 
 				<option>--------------Select------------</option>
 				<!-- <option>Automotive/ Ancillaries</option>
 				<option>Banking/ Financial Services</option>
@@ -170,7 +170,7 @@
 
 		<div class="formrow">
 			<label>Function</label>
-			<select name ="function" multiple>
+			<select name ="function" multiple ng-model="seeker1.function">
 				<option>---------------Select-------------</option>
 				<!-- <option>Construction</option>
 				<option>Banking/Financial Services/Broking</option>
@@ -224,25 +224,23 @@
 	
 		<div class="formrow">
 			<label>Key Skills<span class="red">*</span></label>
-			<textarea rows="4" cols="20" name="skills" ></textarea>
+			<textarea rows="4" cols="20" name="skills" ng-model="seeker1.skills"></textarea>
 		</div>		
 	</div>
 
 	<div class="separation">
 		<br>
-		<h3>Attach Your Resume</h3>
+		<h3>Attach Your Photo and Certificates</h3>
 		<br>
 		<div class="formrow">
-			<label>Resume Title<span class="red">*</span></label>
-			<input type="text" name="resume">
+			<label>Attach Photo</label>
+			<input type="file" fileread="photo_img.src"/>
+				<input type="hidden" ng-model="photo_img.src">
 		</div>
 		<div class="formrow">
-			<label>Attach CV</label>
-			<input type="file" name="browse" value="Browse">
-		</div>
-		<div class="formrow">
-			<label>Copy and Paste Resume Here</label>
-			<textarea rows="4" cols="20" name="skills" ></textarea>
+			<label>Attach Computer Education Certificates</label>
+			<input type="file" fileread="certificate_img.src"/>
+			<input type="hidden" ng-model="certificate_img.src">
 		</div>
 	</div>
 		
@@ -262,6 +260,6 @@
 		<br>
 
 	</div>
-	<!-- </form> -->
+	</form>
 </div>
 {% endblock content %}

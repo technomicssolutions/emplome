@@ -8,925 +8,951 @@
 {% block content %}
 
 <div class="div3">
-	<!-- <form> -->
 	<div class="separation">
 		<br>
 		<h2 class="hd1">Job Seeker's Registration</h2>
 		<p class="mandatory">* Required Fields</p>
 		<br>
-		<h3>Create your Account</h3>
-		<br>
-		<div class="formrow">
-			<label>Email Id<span class="red">*</span></label>
-			<input type="text" name="email">
-		</div>
-		<div class="formrow">
-			<label>Choose Password<span class="red">*</span></label> 
-			<input type="password" name="password">
-		</div>
-		<div class="formrow">
-			<label>Re-enter Password<span class="red">*</span></label> 
-			<input type="password" name="password">
-		</div>
-	</div>
-
-
-	<div class="separation">
-		<br>
-		<h3>Personnal Details</h3>
-		<br>
-		<div class="formrow">
-			<label>Fulll Name<span class="red">*</span></label>
-			<input type="text" name="first_name">
-		</div>
-		<div class="formrow">
-			<label>Gender<span class="red">*</span></label> 
-			<input type="radio" name="gender">Male
-			<input type="radio" name="gender">Female
-		</div>
-
-		<div class="formrow">
-			<label>Religion<span class="red">*</span></label>
-			<select name="marital_status">
-				<option>------------------Select------------------</option>
-				<option>Islam</option>
-				<option>Christian</option>
-				<option>Hindu</option>
-				<option>Buddhist</option>
-				<option>Sikh</option>
-				<option>Jain</option>
-				<option>Zoroaster</option>
-				<option>Other</option>
-				<option>Do not wish to Disclose</option>
-			</select>
-		</div>
-
-		<div class="formrow">
-			<label>Marital Status<span class="red">*</span></label>
-			<select name="marital_status">
-				<option>------------------Select------------------</option>
-				<option>Single</option>
-				<option>Married</option>
-				<option>Divorced</option>
-				<option>Widowed</option>
-			</select>
-		</div>
-
-		<div class="formrow">
-			<label>Nationality<span class="red">*</span></label>
-			<select name="nationality">
-				<option>------------------Select------------------</option>
-				<!-- <option>Afganistan</option>
-				<option>Albania</option>
-				<option>Algerian</option>
-				<option>American Samoa</option>
-				<option>Andorra</option>
-				<option>Angola</option>
-				<option>Anguilla</option>
-				<option>Antarctica</option>
-				<option>Antigua and Barbuda</option>
-				<option>Argentina</option>
-				<option>Armenia</option>
-				<option>Aruba</option>
-				<option>Australian</option>
-				<option>Austria</option>
-				<option>Azerbaijan</option>
-				<option>Bahamas</option>
-				<option>Bahraini</option>
-				<option>Bangladeshi</option>
-				<option>Barbados</option>
-				<option>Belarus</option>
-				<option>Belgium</option>
-				<option>Belize</option>
-				<option>Benin</option>
-				<option>Bermuda</option>
-				<option>Bhutan</option>
-				<option>Bolivia</option>
-				<option>Bosnia and Herzegovina</option>
-				<option>Botswana</option>
-				<option>Bouvet Island</option>
-				<option>Brazil</option>
-				<option>British Indian Ocean Territory</option>
-				<option>Brunei Darussalam</option>
-				<option>Bulgaria</option>
-				<option>Burkina Faso</option>
-				<option>Burundi</option>
-				<option>Cambodia</option>
-				<option>Cameroon</option>
-				<option>Canadian</option>
-				<option>Cape Verde</option>
-				<option>Cayman Islands</option>
-				<option>Central African Republic</option>
-				<option>Chad</option>
-				<option>Chile</option>
-				<option>Chinese</option>
-				<option>Christmas Island</option>
-				<option>Cocos (Keeling) Islands</option>
-				<option>Colombia</option>
-				<option>Comoros</option>
-				<option>Congo</option>
-				<option>Congo</option>
-				<option>Cook Islands</option>
-				<option>Costa Rica</option>
-				<option>Cote D'Ivoire</option>
-				<option>Croatia</option>
-				<option>Cuba</option>
-				<option>Cyprus</option>
-				<option>Czech Republic</option>
-				<option>Denmark</option>
-				<option>Djibouti</option>
-				<option>Dominica</option>
-				<option>Dominican Republic</option>
-				<option>Ecuador</option>
-				<option>Egyptian</option>
-				<option>El Salvador</option>
-				<option>Emirati</option>
-				<option>Equatorial Guinea</option>
-				<option>Eritrea</option>
-				<option>Estonia</option>
-				<option>Ethiopia</option>
-				<option>Falkland Islands (Malvinas)</option>
-				<option>Faroe Islands</option>
-				<option>Fiji</option>
-				<option>Filipino</option>
-				<option>Finland</option>
-				<option>French</option>
-				<option>French Guiana</option>
-				<option>French Polynesia</option>
-				<option>French Southern Territories</option>
-				<option>Gabon</option>
-				<option>Georgia</option>
-				<option>German</option>
-				<option>Ghana</option>
-				<option>Gibraltar</option>
-				<option>Greece</option>
-				<option>Greenland</option>
-				<option>Grenada</option>
-				<option>Guadeloupe</option>
-				<option>Guam</option>
-				<option>Guinea</option>
-				<option>Guinea-Bissau</option>
-				<option>Guyana</option>
-				<option>Haiti</option>
-				<option>Heard Island and Mcdonald Islands</option>
-				<option>Holy See (Vatican City State)</option>
-				<option>Honduras</option>
-				<option>Hong Kong</option>
-				<option>Hungary</option>
-				<option>Iceland</option>
-				<option>Indian</option>
-				<option>Indonesian</option>
-				<option>Iranian</option>
-				<option>Ireland</option>
-				<option>Israel</option>
-				<option>Japan</option>
-				<option>Jordanian</option>
-				<option>Kazakhstan</option>
-				<option>Kenyan</option>
-				<option>Kiribati</option>
-				<option>Korea, Democratic People's Republic of</option>
-				<option>Korea, Republic of</option>
-				<option>Kuwaiti</option>
-				<option>Kyrgyzstan</option>
-				<option>Lao People's Democratic Republic</option>
-				<option>Latvia</option>
-				<option>Lebanese</option>
-				<option>Lesotho</option>
-				<option>Liberia</option>
-				<option>Libyan Arab Jamahiriya</option>
-				<option>Liechtenstein</option>
-				<option>Lithuania</option>
-				<option>Luxembourg</option>
-				<option>Macao</option>
-				<option>Macedonia, the Former Yugoslav Republic of</option>
-				<option>Madagascar</option>
-				<option>Malawi</option>
-				<option>Malaysian</option>
-				<option>Maldives</option>
-				<option>Mali</option>
-				<option>Malta</option>
-				<option>Marshall Islands</option>
-				<option>Martinique</option>
-				<option>Mauritania</option>
-				<option>Mauritius</option>
-				<option>Mayotte</option>
-				<option>Mexico</option>
-				<option>Micronesia, Federated States of</option>
-				<option>Moldova, Republic of</option>
-				<option>Monaco</option>
-				<option>Mongolia</option>
-				<option>Montserrat</option>
-				<option>Moroccan</option>
-				<option>Mozambique</option>
-				<option>Myanmar</option>
-				<option>Namibia</option>
-				<option>Nauru</option>
-				<option>Nepalese</option>
-				<option>Netherlands</option>
-				<option>Netherlands Antilles</option>
-				<option>New Caledonia</option>
-				<option>New Zealand</option>
-				<option>Nicaragua</option>
-				<option>Niger</option>
-				<option>Nigerian</option>
-				<option>Niue</option>
-				<option>Norfolk Island</option>
-				<option>Northern Mariana Island<option>
-				<option>Norway</option>
-				<option>Omani</option>
-				<option>Pakistani</option>
-				<option>Palau</option>
-				<option>Palestinian Territory Occupied</option>
-				<option>Panama</option>
-				<option>Papua New Guinea</option>
-				<option>Paraguay</option>
-				<option>Peru</option>
-				<option>Pitcairn</option>
-				<option>Poland
-				<option>Portugal</option>
-				<option>Puerto Rico</option>
-				<option>Qatari</option>
-				<option>Reunion</option>
-				<option>Romania</option>
-				<option>Russian</option>
-				<option>Rwanda</option>
-				<option>Saint Helena</option>
-				<option>Saint Kitts and Nevis</option>
-				<option>Saint Lucia</option>
-				<option>Saint Pierre and Miquelon</option>
-				<option>Saint Vincent and the Grenadines</option>
-				<option>Samoa</option>
-				<option>San Marino</option>
-				<option>Sao Tome and Principe</option>
-				<option>Saudi</option>
-				<option>Senegal</option>
-				<option>Serbia and Montenegro</option>
-				<option>Seychelles</option>
-				<option>Sierra Leone</option>
-				<option>Singaporean</option>
-				<option>Slovakia</option>
-				<option>Slovenia</option>
-				<option>Solomon - Islands	</option>
-				<option>Somalia</option>
-				<option>South African</option>
-				<option>South Georgia and the South Sandwich Islands</option>
-				<option>Spanish</option>
-				<option>Sri Lankan</option>
-				<option>Sudanese</option>
-				<option>Suriname</option>
-				<option>Svalbard and Jan Mayen</option>
-				<option>Swaziland</option>
-				<option>Sweden</option>
-				<option>Switzerland</option>
-				<option>Syrian</option>
-				<option>Taiwanese</option>
-				<option>Tajikistan</option>
-				<option>Tanzania, United Republic of</option>
-				<option>Thai</option>
-				<option>Timor-Leste</option>
-				<option>Togo</option>
-				<option>Tokelau</option>
-				<option>Tonga</option>
-				<option>Trinidad and Tobago</option>
-				<option>Tunisia</option>
-				<option>Turkey</option>
-				<option>Turkmenistan</option>
-				<option>Turks and Caicos Islands</option>
-				<option>Tuvalu</option>
-				<option>Uganda</option>
-				<option>Ukraine</option>
-				<option>United Kingdom</option>
-				<option>United States</option>
-				<option>United States Minor Outlying Islands</option>
-				<option>Uruguay</option>
-				<option>Uzbekistan</option>
-				<option>Vanuatu</option>
-				<option>Venezuela</option>
-				<option>Vietnamese</option>
-				<option>Virgin Islands, British</option>
-				<option>Virgin Islands, U.s.</option>
-				<option>Wallis and Futuna</option>
-				<option>Western Sahara</option>
-				<option>Yemeni</option>
-				<option>Zambia</option>
-				<option>Zimbabwe</option> -->
-				<option ng-repeat="nationality in nationalities" value="[[nationality]]">[[nationality]]</option>
-				<option>Other</option>
-			</select>
+		<form name="registration" method="post" action="">
+			<h3>Create your Account</h3>
+			<br>
+			<div class="formrow">
+				<label>Email Id<span class="red">*</span></label>
+				<input type="text" name="email" ng-model="seeker.email">
+			</div>
+			<div class="formrow">
+				<label>Choose Password<span class="red">*</span></label> 
+				<input type="password" name="password" ng-model="seeker.password">
+			</div>
+			<div class="formrow">
+				<label>Re-enter Password<span class="red">*</span></label> 
+				<input type="password1" name="password" ng-model="seeker.password1">
+			</div>
 		</div>
 
 
-		<!-- <div class="formrow">
-			<label>Current Location<span class="red">*</span></label>
-			<select name="current_location">
-				<option>Select</option>
-				<option>United Arab Emirates</option>
-				<option>- Abu Dhabi</option>
-				<option>- Ajman</option>
-				<option>- Al Ain</option>
-				<option>- Dubai</option>
-				<option>- Fujairah</option>
-				<option>- Ras Al Khaimah</option>
-				<option>- Sharjah</option>
-				<option> Umm Al Qaiwain</option></option>
-				<option>- Other</option></option>
-				<option>Saudi Arabia</option></option>
-				<option> - Abha</option></option>
-				<option> - Abu Areesh</option></option>
-				<option> - Alahsa</option></option>
-				<option> - Albaha</option></option>
-				<option> - Alkharj</option></option>
-				<option> - Alqasim</option></option>
-				<option> - Alqunfithah</option>
-				<option> - Altaif</option>
-				<option> - Al Madina Al Munawarah</option>
-				<option> - Arar</option>
-				<option> - Aseer</option>
-				<option> - Buraidah</option>
-				<option> - Dammam</option>
-				<option> - Eastern Province</option>
-				<option> - Haeil</option>
-				<option> - Hafr Albaten</option>
-				<option> - Hofof</option>
-				<option> - Jazan</option>
-				<option> - Jeddah
-				<option> - Jizan</option>
-				<option> - Jouf</option>
-				<option> - Jubail</option>
-				<option> - Jubail/ Al Jubail</option>
-				<option> - Khamis Mushait</option>
-				<option> - Khobar</option>
-				<option> - Makkah Al Mukarramah</option>
-				<option> - Mecca</option>
-				<option> - Medina</option>
-				<option> - Najran</option>
-				<option> - Onaizah</option>
-				<option> - Qaseem</option>
-				<option> - Qatif</option>
-				<option> - Riyadh</option>
-				<option> - Sabia</option>
-				<option> - Sakaka</option>
-				<option> - Tabouk</option>
-				<option> - Yanbu</option>
-				<option> - Other</option>
-				<option>Qatar</option>
-				<option> - Doha</option>
-				<option> - Other</option>
-				<option>Bahrain</option>
-				<option> - Manama</option>
-				<option> - Other</option>
-				<option>Oman</option>
-				<option> - Ibri</option>
-				<option> - Khasab</option>
-				<option> - Muscat</option>
-				<option> - Nizwa</option>
-				<option> - Salalah</option>
-				<option> - Sohar</option>
-				<option> - Sur</option>
-				<option> - Zufar</option>
-				<option> - Other</option>
-				<option>Kuwait</option>
-				<option> - Al Ahmadi</option>
-				<option> - Al Farawaniyah</option>
-				<option> - Al Jahra</option>
-				<option> - Al Kuwait</option>
-				<option> - Al Zour Mina Saud</option>
-				<option> - Hawali</option>
-				<option> - Joint Operations Wafra</option>
-				<option> - Other</option>
-				<option>Lebanon</option>
-				<option> - Beirut</option>
-				<option> - Bekaa</option>
-				<option> - Saidon</option>
-				<option> - Tripoli</option>
-				<option> - Other</option>
-				<option>Jordan</option>
-				<option> - Ajloun</option>
-				<option> - Amman</option>
-				<option> - Aqaba</option>
-				<option> - Irbid</option>
-				<option> - Jerash</option>
-				<option> - Karak</option>
-				<option> - Maan</option>
-				<option> - Madaba</option>
-				<option> - Mafraq</option>
-				<option> - Salt</option>
-				<option> - Tafila</option>
-				<option> - Zarqa</option>
-				<option> - Other</option>
-				<option>Egypt</option>
-				<option> - Alexandria</option>
-				<option> - Asyut</option>
-				<option> - Cairo</option>
-				<option> - Damietta</option>
-				<option> - Hurghada</option>
-				<option> - Ismailia</option>
-				<option> - Luxor</option>
-				<option> - Port Said</option>
-				<option> - Sharm el Sheikh</option>
-				<option> - Suez</option>
-				<option> - Other</option>
-				<option>Iraq</option>
-				<option> - Al Nagaf</option>
-				<option> - Baghdad</option>
-				<option> - Basra</option>
-				<option> - Erbil</option>
-				<option> - Hillah</option>
-				<option> - Karbala</option>
-				<option> - Kirkuk</option>
-				<option> - Mosul</option>
-				<option> - Sulaymaniyah</option>
-				<option> - Other</option>
-				<option>Afghanistan</option>
-				<option>Africa</option>
-				<option>Algeria</option>
-				<option>Angola</option>
-				<option>Australia</option>
-				<option>Bangladesh</option>
-				<option>Belgium</option>
-				<option>Benin</option>
-				<option>Botswana</option>
-				<option>Burkina Faso</option>
-				<option>Burundi</option>
-				<option>Cameroon</option>
-				<option>Canada</option>
-				<option>Cape Verde</option>
-				<option>Central African Republic</option>
-				<option>Chad</option>
-				<option>China</option>
-				<option>Cote d Ivoire</option>
-				<option>Democratic Republic of Congo</option>
-				<option>Djibouti</option>
-				<option>Equatorial Guinea</option>
-				<option>Eritrea</option>
-				<option>Ethiopia</option>
-				<option>France</option>
-				<option>Gabon</option>
-				<option>Gambia</option>
-				<option>Germany</option>
-				<option>Ghana</option>
-				<option>Guinea</option>
-				<option>Guinea Bissau</option>
-				<option>Hongkong</option>
-				<option>India</option>
-				<option>Indonesia</option>
-				<option>Ireland</option>
-				<option>Japan</option>
-				<option>Kenya</option>
-				<option>Lesotho</option>
-				<option>Liberia</option>
-				<option>Libya</option>
-				<option>Macau</option>
-				<option>Madagascar</option>
-				<option>Malawi</option>
-				<option>Malaysia</option>
-				<option>Maldives</option>
-				<option>Mali</option>
-				<option>Mauritania</option>
-				<option>Mauritius</option>
-				<option>Mexico</option>
-				<option>Morocco</option>
-				<option>Mozambique</option>
-				<option>Namibia</option>
-				<option>Nepal</option>
-				<option>Netherlands</option>
-				<option>New Zealand</option>
-				<option>Niger</option>
-				<option>Nigeria</option>
-				<option>Pakistan</option>
-				<option>Philippines</option>
-				<option>Republic of Congo</option>
-				<option>Russia</option>
-				<option>Rwanda</option>
-				<option>Senegal</option>
-				<option>Seychelles</option>
-				<option>Sierra Leone</option>
-				<option>Singapore</option>
-				<option>Somalia</option>
-				<option>South Africa</option>
-				<option>South Korea</option>
-				<option>Spain</option>
-				<option>SriLanka</option>
-				<option>Sudan</option>
-				<option>Swaziland</option>
-				<option>Sweden</option>
-				<option>Switzerland</option>
-				<option>Taiwan</option>
-				<option>Tanzania</option>
-				<option>Thailand</option>
-				<option>Togo</option>
-				<option>Tunisia</option>
-				<option>UK</option>
-				<option>US</option>
-				<option>Uganda</option>
-				<option>Vietnam</option>
-				<option>Yemen</option>
-				<option>Zambia</option>
-				<option>Zimbabwe</option>
-				<option>Other International</option>	
-			</select>
-		</div> -->
-		<div class="formrow">
-			<label>Country<span class="red">*</span></label> 
-			<select>
-				<option>------------------Select------------------</option>
-				<!-- <option>Afganistan</option>
-				<option>Albania</option>
-				<option>Algerian</option>
-				<option>American Samoa</option>
-				<option>Andorra</option>
-				<option>Angola</option>
-				<option>Anguilla</option>
-				<option>Antarctica</option>
-				<option>Antigua and Barbuda</option>
-				<option>Argentina</option>
-				<option>Armenia</option>
-				<option>Aruba</option>
-				<option>Australian</option>
-				<option>Austria</option>
-				<option>Azerbaijan</option>
-				<option>Bahamas</option>
-				<option>Bahraini</option>
-				<option>Bangladeshi</option>
-				<option>Barbados</option>
-				<option>Belarus</option>
-				<option>Belgium</option>
-				<option>Belize</option>
-				<option>Benin</option>
-				<option>Bermuda</option>
-				<option>Bhutan</option>
-				<option>Bolivia</option>
-				<option>Bosnia and Herzegovina</option>
-				<option>Botswana</option>
-				<option>Bouvet Island</option>
-				<option>Brazil</option>
-				<option>British Indian Ocean Territory</option>
-				<option>Brunei Darussalam</option>
-				<option>Bulgaria</option>
-				<option>Burkina Faso</option>
-				<option>Burundi</option>
-				<option>Cambodia</option>
-				<option>Cameroon</option>
-				<option>Canadian</option>
-				<option>Cape Verde</option>
-				<option>Cayman Islands</option>
-				<option>Central African Republic</option>
-				<option>Chad</option>
-				<option>Chile</option>
-				<option>Chinese</option>
-				<option>Christmas Island</option>
-				<option>Cocos (Keeling) Islands</option>
-				<option>Colombia</option>
-				<option>Comoros</option>
-				<option>Congo</option>
-				<option>Congo</option>
-				<option>Cook Islands</option>
-				<option>Costa Rica</option>
-				<option>Cote D'Ivoire</option>
-				<option>Croatia</option>
-				<option>Cuba</option>
-				<option>Cyprus</option>
-				<option>Czech Republic</option>
-				<option>Denmark</option>
-				<option>Djibouti</option>
-				<option>Dominica</option>
-				<option>Dominican Republic</option>
-				<option>Ecuador</option>
-				<option>Egyptian</option>
-				<option>El Salvador</option>
-				<option>Emirati</option>
-				<option>Equatorial Guinea</option>
-				<option>Eritrea</option>
-				<option>Estonia</option>
-				<option>Ethiopia</option>
-				<option>Falkland Islands (Malvinas)</option>
-				<option>Faroe Islands</option>
-				<option>Fiji</option>
-				<option>Filipino</option>
-				<option>Finland</option>
-				<option>French</option>
-				<option>French Guiana</option>
-				<option>French Polynesia</option>
-				<option>French Southern Territories</option>
-				<option>Gabon</option>
-				<option>Georgia</option>
-				<option>German</option>
-				<option>Ghana</option>
-				<option>Gibraltar</option>
-				<option>Greece</option>
-				<option>Greenland</option>
-				<option>Grenada</option>
-				<option>Guadeloupe</option>
-				<option>Guam</option>
-				<option>Guinea</option>
-				<option>Guinea-Bissau</option>
-				<option>Guyana</option>
-				<option>Haiti</option>
-				<option>Heard Island and Mcdonald Islands</option>
-				<option>Holy See (Vatican City State)</option>
-				<option>Honduras</option>
-				<option>Hong Kong</option>
-				<option>Hungary</option>
-				<option>Iceland</option>
-				<option>Indian</option>
-				<option>Indonesian</option>
-				<option>Iranian</option>
-				<option>Ireland</option>
-				<option>Israel</option>
-				<option>Japan</option>
-				<option>Jordanian</option>
-				<option>Kazakhstan</option>
-				<option>Kenyan</option>
-				<option>Kiribati</option>
-				<option>Korea, Democratic People's Republic of</option>
-				<option>Korea, Republic of</option>
-				<option>Kuwaiti</option>
-				<option>Kyrgyzstan</option>
-				<option>Lao People's Democratic Republic</option>
-				<option>Latvia</option>
-				<option>Lebanese</option>
-				<option>Lesotho</option>
-				<option>Liberia</option>
-				<option>Libyan Arab Jamahiriya</option>
-				<option>Liechtenstein</option>
-				<option>Lithuania</option>
-				<option>Luxembourg</option>
-				<option>Macao</option>
-				<option>Macedonia, the Former Yugoslav Republic of</option>
-				<option>Madagascar</option>
-				<option>Malawi</option>
-				<option>Malaysian</option>
-				<option>Maldives</option>
-				<option>Mali</option>
-				<option>Malta</option>
-				<option>Marshall Islands</option>
-				<option>Martinique</option>
-				<option>Mauritania</option>
-				<option>Mauritius</option>
-				<option>Mayotte</option>
-				<option>Mexico</option>
-				<option>Micronesia, Federated States of</option>
-				<option>Moldova, Republic of</option>
-				<option>Monaco</option>
-				<option>Mongolia</option>
-				<option>Montserrat</option>
-				<option>Moroccan</option>
-				<option>Mozambique</option>
-				<option>Myanmar</option>
-				<option>Namibia</option>
-				<option>Nauru</option>
-				<option>Nepalese</option>
-				<option>Netherlands</option>
-				<option>Netherlands Antilles</option>
-				<option>New Caledonia</option>
-				<option>New Zealand</option>
-				<option>Nicaragua</option>
-				<option>Niger</option>
-				<option>Nigerian</option>
-				<option>Niue</option>
-				<option>Norfolk Island</option>
-				<option>Northern Mariana Island<option>
-				<option>Norway</option>
-				<option>Omani</option>
-				<option>Pakistani</option>
-				<option>Palau</option>
-				<option>Palestinian Territory Occupied</option>
-				<option>Panama</option>
-				<option>Papua New Guinea</option>
-				<option>Paraguay</option>
-				<option>Peru</option>
-				<option>Pitcairn</option>
-				<option>Poland
-				<option>Portugal</option>
-				<option>Puerto Rico</option>
-				<option>Qatari</option>
-				<option>Reunion</option>
-				<option>Romania</option>
-				<option>Russian</option>
-				<option>Rwanda</option>
-				<option>Saint Helena</option>
-				<option>Saint Kitts and Nevis</option>
-				<option>Saint Lucia</option>
-				<option>Saint Pierre and Miquelon</option>
-				<option>Saint Vincent and the Grenadines</option>
-				<option>Samoa</option>
-				<option>San Marino</option>
-				<option>Sao Tome and Principe</option>
-				<option>Saudi</option>
-				<option>Senegal</option>
-				<option>Serbia and Montenegro</option>
-				<option>Seychelles</option>
-				<option>Sierra Leone</option>
-				<option>Singaporean</option>
-				<option>Slovakia</option>
-				<option>Slovenia</option>
-				<option>Solomon - Islands	</option>
-				<option>Somalia</option>
-				<option>South African</option>
-				<option>South Georgia and the South Sandwich Islands</option>
-				<option>Spanish</option>
-				<option>Sri Lankan</option>
-				<option>Sudanese</option>
-				<option>Suriname</option>
-				<option>Svalbard and Jan Mayen</option>
-				<option>Swaziland</option>
-				<option>Sweden</option>
-				<option>Switzerland</option>
-				<option>Syrian</option>
-				<option>Taiwanese</option>
-				<option>Tajikistan</option>
-				<option>Tanzania, United Republic of</option>
-				<option>Thai</option>
-				<option>Timor-Leste</option>
-				<option>Togo</option>
-				<option>Tokelau</option>
-				<option>Tonga</option>
-				<option>Trinidad and Tobago</option>
-				<option>Tunisia</option>
-				<option>Turkey</option>
-				<option>Turkmenistan</option>
-				<option>Turks and Caicos Islands</option>
-				<option>Tuvalu</option>
-				<option>Uganda</option>
-				<option>Ukraine</option>
-				<option>United Kingdom</option>
-				<option>United States</option>
-				<option>United States Minor Outlying Islands</option>
-				<option>Uruguay</option>
-				<option>Uzbekistan</option>
-				<option>Vanuatu</option>
-				<option>Venezuela</option>
-				<option>Vietnamese</option>
-				<option>Virgin Islands, British</option>
-				<option>Virgin Islands, U.s.</option>
-				<option>Wallis and Futuna</option>
-				<option>Western Sahara</option>
-				<option>Yemeni</option>
-				<option>Zambia</option>
-				<option>Zimbabwe</option> -->
-				<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
-				<option>Other</option>
-			</select>
-		</div>
+		<div class="separation">
+			<br>
+			<h3>Personnal Details</h3>
+			<br>
+			<div class="formrow">
+				<label>Fulll Name<span class="red">*</span></label>
+				<input type="text" name="first_name" ng-model="seeker.first_name">
+			</div>
+			<div class="formrow">
+				<label>Gender<span class="red">*</span></label> 
+				<input type="radio" name="gender" ng-model="seeker.gender">Male
+				<input type="radio" name="gender" ng-model="seeker.gender">Female
+			</div>
 
-		<div class="formrow">
-			<label>City<span class="red">*</span></label>
-			<input type="text" name="city">
-		</div>
+			<div class="formrow">
+				<label>Religion<span class="red">*</span></label>
+				<select name="religion" ng-model="seeker.religion ">
+					<option>------------------Select------------------</option>
+					<option>Islam</option>
+					<option>Christian</option>
+					<option>Hindu</option>
+					<option>Buddhist</option>
+					<option>Sikh</option>
+					<option>Jain</option>
+					<option>Zoroaster</option>
+					<option>Other</option>
+					<option>Do not wish to Disclose</option>
+				</select>
+			</div>
+
+			<div class="formrow">
+				<label>Marital Status<span class="red">*</span></label>
+				<select name="marital_status" ng-model="seeker.marital_status">
+					<option>------------------Select------------------</option>
+					<option>Single</option>
+					<option>Married</option>
+					<option>Divorced</option>
+					<option>Widowed</option>
+				</select>
+			</div>
+
+			<div class="formrow">
+				<label>Nationality<span class="red">*</span></label>
+				<select name="nationality" ng-model="seeker.nationality"> 
+					<option>------------------Select------------------</option>
+					<!-- <option>Afganistan</option>
+					<option>Albania</option>
+					<option>Algerian</option>
+					<option>American Samoa</option>
+					<option>Andorra</option>
+					<option>Angola</option>
+					<option>Anguilla</option>
+					<option>Antarctica</option>
+					<option>Antigua and Barbuda</option>
+					<option>Argentina</option>
+					<option>Armenia</option>
+					<option>Aruba</option>
+					<option>Australian</option>
+					<option>Austria</option>
+					<option>Azerbaijan</option>
+					<option>Bahamas</option>
+					<option>Bahraini</option>
+					<option>Bangladeshi</option>
+					<option>Barbados</option>
+					<option>Belarus</option>
+					<option>Belgium</option>
+					<option>Belize</option>
+					<option>Benin</option>
+					<option>Bermuda</option>
+					<option>Bhutan</option>
+					<option>Bolivia</option>
+					<option>Bosnia and Herzegovina</option>
+					<option>Botswana</option>
+					<option>Bouvet Island</option>
+					<option>Brazil</option>
+					<option>British Indian Ocean Territory</option>
+					<option>Brunei Darussalam</option>
+					<option>Bulgaria</option>
+					<option>Burkina Faso</option>
+					<option>Burundi</option>
+					<option>Cambodia</option>
+					<option>Cameroon</option>
+					<option>Canadian</option>
+					<option>Cape Verde</option>
+					<option>Cayman Islands</option>
+					<option>Central African Republic</option>
+					<option>Chad</option>
+					<option>Chile</option>
+					<option>Chinese</option>
+					<option>Christmas Island</option>
+					<option>Cocos (Keeling) Islands</option>
+					<option>Colombia</option>
+					<option>Comoros</option>
+					<option>Congo</option>
+					<option>Congo</option>
+					<option>Cook Islands</option>
+					<option>Costa Rica</option>
+					<option>Cote D'Ivoire</option>
+					<option>Croatia</option>
+					<option>Cuba</option>
+					<option>Cyprus</option>
+					<option>Czech Republic</option>
+					<option>Denmark</option>
+					<option>Djibouti</option>
+					<option>Dominica</option>
+					<option>Dominican Republic</option>
+					<option>Ecuador</option>
+					<option>Egyptian</option>
+					<option>El Salvador</option>
+					<option>Emirati</option>
+					<option>Equatorial Guinea</option>
+					<option>Eritrea</option>
+					<option>Estonia</option>
+					<option>Ethiopia</option>
+					<option>Falkland Islands (Malvinas)</option>
+					<option>Faroe Islands</option>
+					<option>Fiji</option>
+					<option>Filipino</option>
+					<option>Finland</option>
+					<option>French</option>
+					<option>French Guiana</option>
+					<option>French Polynesia</option>
+					<option>French Southern Territories</option>
+					<option>Gabon</option>
+					<option>Georgia</option>
+					<option>German</option>
+					<option>Ghana</option>
+					<option>Gibraltar</option>
+					<option>Greece</option>
+					<option>Greenland</option>
+					<option>Grenada</option>
+					<option>Guadeloupe</option>
+					<option>Guam</option>
+					<option>Guinea</option>
+					<option>Guinea-Bissau</option>
+					<option>Guyana</option>
+					<option>Haiti</option>
+					<option>Heard Island and Mcdonald Islands</option>
+					<option>Holy See (Vatican City State)</option>
+					<option>Honduras</option>
+					<option>Hong Kong</option>
+					<option>Hungary</option>
+					<option>Iceland</option>
+					<option>Indian</option>
+					<option>Indonesian</option>
+					<option>Iranian</option>
+					<option>Ireland</option>
+					<option>Israel</option>
+					<option>Japan</option>
+					<option>Jordanian</option>
+					<option>Kazakhstan</option>
+					<option>Kenyan</option>
+					<option>Kiribati</option>
+					<option>Korea, Democratic People's Republic of</option>
+					<option>Korea, Republic of</option>
+					<option>Kuwaiti</option>
+					<option>Kyrgyzstan</option>
+					<option>Lao People's Democratic Republic</option>
+					<option>Latvia</option>
+					<option>Lebanese</option>
+					<option>Lesotho</option>
+					<option>Liberia</option>
+					<option>Libyan Arab Jamahiriya</option>
+					<option>Liechtenstein</option>
+					<option>Lithuania</option>
+					<option>Luxembourg</option>
+					<option>Macao</option>
+					<option>Macedonia, the Former Yugoslav Republic of</option>
+					<option>Madagascar</option>
+					<option>Malawi</option>
+					<option>Malaysian</option>
+					<option>Maldives</option>
+					<option>Mali</option>
+					<option>Malta</option>
+					<option>Marshall Islands</option>
+					<option>Martinique</option>
+					<option>Mauritania</option>
+					<option>Mauritius</option>
+					<option>Mayotte</option>
+					<option>Mexico</option>
+					<option>Micronesia, Federated States of</option>
+					<option>Moldova, Republic of</option>
+					<option>Monaco</option>
+					<option>Mongolia</option>
+					<option>Montserrat</option>
+					<option>Moroccan</option>
+					<option>Mozambique</option>
+					<option>Myanmar</option>
+					<option>Namibia</option>
+					<option>Nauru</option>
+					<option>Nepalese</option>
+					<option>Netherlands</option>
+					<option>Netherlands Antilles</option>
+					<option>New Caledonia</option>
+					<option>New Zealand</option>
+					<option>Nicaragua</option>
+					<option>Niger</option>
+					<option>Nigerian</option>
+					<option>Niue</option>
+					<option>Norfolk Island</option>
+					<option>Northern Mariana Island<option>
+					<option>Norway</option>
+					<option>Omani</option>
+					<option>Pakistani</option>
+					<option>Palau</option>
+					<option>Palestinian Territory Occupied</option>
+					<option>Panama</option>
+					<option>Papua New Guinea</option>
+					<option>Paraguay</option>
+					<option>Peru</option>
+					<option>Pitcairn</option>
+					<option>Poland
+					<option>Portugal</option>
+					<option>Puerto Rico</option>
+					<option>Qatari</option>
+					<option>Reunion</option>
+					<option>Romania</option>
+					<option>Russian</option>
+					<option>Rwanda</option>
+					<option>Saint Helena</option>
+					<option>Saint Kitts and Nevis</option>
+					<option>Saint Lucia</option>
+					<option>Saint Pierre and Miquelon</option>
+					<option>Saint Vincent and the Grenadines</option>
+					<option>Samoa</option>
+					<option>San Marino</option>
+					<option>Sao Tome and Principe</option>
+					<option>Saudi</option>
+					<option>Senegal</option>
+					<option>Serbia and Montenegro</option>
+					<option>Seychelles</option>
+					<option>Sierra Leone</option>
+					<option>Singaporean</option>
+					<option>Slovakia</option>
+					<option>Slovenia</option>
+					<option>Solomon - Islands	</option>
+					<option>Somalia</option>
+					<option>South African</option>
+					<option>South Georgia and the South Sandwich Islands</option>
+					<option>Spanish</option>
+					<option>Sri Lankan</option>
+					<option>Sudanese</option>
+					<option>Suriname</option>
+					<option>Svalbard and Jan Mayen</option>
+					<option>Swaziland</option>
+					<option>Sweden</option>
+					<option>Switzerland</option>
+					<option>Syrian</option>
+					<option>Taiwanese</option>
+					<option>Tajikistan</option>
+					<option>Tanzania, United Republic of</option>
+					<option>Thai</option>
+					<option>Timor-Leste</option>
+					<option>Togo</option>
+					<option>Tokelau</option>
+					<option>Tonga</option>
+					<option>Trinidad and Tobago</option>
+					<option>Tunisia</option>
+					<option>Turkey</option>
+					<option>Turkmenistan</option>
+					<option>Turks and Caicos Islands</option>
+					<option>Tuvalu</option>
+					<option>Uganda</option>
+					<option>Ukraine</option>
+					<option>United Kingdom</option>
+					<option>United States</option>
+					<option>United States Minor Outlying Islands</option>
+					<option>Uruguay</option>
+					<option>Uzbekistan</option>
+					<option>Vanuatu</option>
+					<option>Venezuela</option>
+					<option>Vietnamese</option>
+					<option>Virgin Islands, British</option>
+					<option>Virgin Islands, U.s.</option>
+					<option>Wallis and Futuna</option>
+					<option>Western Sahara</option>
+					<option>Yemeni</option>
+					<option>Zambia</option>
+					<option>Zimbabwe</option> -->
+					<option ng-repeat="nationality in nationalities" value="[[nationality]]">[[nationality]]</option>
+					<option>Other</option>
+				</select>
+			</div>
 
 
-		<div class="formrow">
-			<label>Mobile Number<span class="red">*</span></label>
-			<input type="text" name="mobile">
+			<!-- <div class="formrow">
+				<label>Current Location<span class="red">*</span></label>
+				<select name="current_location">
+					<option>Select</option>
+					<option>United Arab Emirates</option>
+					<option>- Abu Dhabi</option>
+					<option>- Ajman</option>
+					<option>- Al Ain</option>
+					<option>- Dubai</option>
+					<option>- Fujairah</option>
+					<option>- Ras Al Khaimah</option>
+					<option>- Sharjah</option>
+					<option> Umm Al Qaiwain</option></option>
+					<option>- Other</option></option>
+					<option>Saudi Arabia</option></option>
+					<option> - Abha</option></option>
+					<option> - Abu Areesh</option></option>
+					<option> - Alahsa</option></option>
+					<option> - Albaha</option></option>
+					<option> - Alkharj</option></option>
+					<option> - Alqasim</option></option>
+					<option> - Alqunfithah</option>
+					<option> - Altaif</option>
+					<option> - Al Madina Al Munawarah</option>
+					<option> - Arar</option>
+					<option> - Aseer</option>
+					<option> - Buraidah</option>
+					<option> - Dammam</option>
+					<option> - Eastern Province</option>
+					<option> - Haeil</option>
+					<option> - Hafr Albaten</option>
+					<option> - Hofof</option>
+					<option> - Jazan</option>
+					<option> - Jeddah
+					<option> - Jizan</option>
+					<option> - Jouf</option>
+					<option> - Jubail</option>
+					<option> - Jubail/ Al Jubail</option>
+					<option> - Khamis Mushait</option>
+					<option> - Khobar</option>
+					<option> - Makkah Al Mukarramah</option>
+					<option> - Mecca</option>
+					<option> - Medina</option>
+					<option> - Najran</option>
+					<option> - Onaizah</option>
+					<option> - Qaseem</option>
+					<option> - Qatif</option>
+					<option> - Riyadh</option>
+					<option> - Sabia</option>
+					<option> - Sakaka</option>
+					<option> - Tabouk</option>
+					<option> - Yanbu</option>
+					<option> - Other</option>
+					<option>Qatar</option>
+					<option> - Doha</option>
+					<option> - Other</option>
+					<option>Bahrain</option>
+					<option> - Manama</option>
+					<option> - Other</option>
+					<option>Oman</option>
+					<option> - Ibri</option>
+					<option> - Khasab</option>
+					<option> - Muscat</option>
+					<option> - Nizwa</option>
+					<option> - Salalah</option>
+					<option> - Sohar</option>
+					<option> - Sur</option>
+					<option> - Zufar</option>
+					<option> - Other</option>
+					<option>Kuwait</option>
+					<option> - Al Ahmadi</option>
+					<option> - Al Farawaniyah</option>
+					<option> - Al Jahra</option>
+					<option> - Al Kuwait</option>
+					<option> - Al Zour Mina Saud</option>
+					<option> - Hawali</option>
+					<option> - Joint Operations Wafra</option>
+					<option> - Other</option>
+					<option>Lebanon</option>
+					<option> - Beirut</option>
+					<option> - Bekaa</option>
+					<option> - Saidon</option>
+					<option> - Tripoli</option>
+					<option> - Other</option>
+					<option>Jordan</option>
+					<option> - Ajloun</option>
+					<option> - Amman</option>
+					<option> - Aqaba</option>
+					<option> - Irbid</option>
+					<option> - Jerash</option>
+					<option> - Karak</option>
+					<option> - Maan</option>
+					<option> - Madaba</option>
+					<option> - Mafraq</option>
+					<option> - Salt</option>
+					<option> - Tafila</option>
+					<option> - Zarqa</option>
+					<option> - Other</option>
+					<option>Egypt</option>
+					<option> - Alexandria</option>
+					<option> - Asyut</option>
+					<option> - Cairo</option>
+					<option> - Damietta</option>
+					<option> - Hurghada</option>
+					<option> - Ismailia</option>
+					<option> - Luxor</option>
+					<option> - Port Said</option>
+					<option> - Sharm el Sheikh</option>
+					<option> - Suez</option>
+					<option> - Other</option>
+					<option>Iraq</option>
+					<option> - Al Nagaf</option>
+					<option> - Baghdad</option>
+					<option> - Basra</option>
+					<option> - Erbil</option>
+					<option> - Hillah</option>
+					<option> - Karbala</option>
+					<option> - Kirkuk</option>
+					<option> - Mosul</option>
+					<option> - Sulaymaniyah</option>
+					<option> - Other</option>
+					<option>Afghanistan</option>
+					<option>Africa</option>
+					<option>Algeria</option>
+					<option>Angola</option>
+					<option>Australia</option>
+					<option>Bangladesh</option>
+					<option>Belgium</option>
+					<option>Benin</option>
+					<option>Botswana</option>
+					<option>Burkina Faso</option>
+					<option>Burundi</option>
+					<option>Cameroon</option>
+					<option>Canada</option>
+					<option>Cape Verde</option>
+					<option>Central African Republic</option>
+					<option>Chad</option>
+					<option>China</option>
+					<option>Cote d Ivoire</option>
+					<option>Democratic Republic of Congo</option>
+					<option>Djibouti</option>
+					<option>Equatorial Guinea</option>
+					<option>Eritrea</option>
+					<option>Ethiopia</option>
+					<option>France</option>
+					<option>Gabon</option>
+					<option>Gambia</option>
+					<option>Germany</option>
+					<option>Ghana</option>
+					<option>Guinea</option>
+					<option>Guinea Bissau</option>
+					<option>Hongkong</option>
+					<option>India</option>
+					<option>Indonesia</option>
+					<option>Ireland</option>
+					<option>Japan</option>
+					<option>Kenya</option>
+					<option>Lesotho</option>
+					<option>Liberia</option>
+					<option>Libya</option>
+					<option>Macau</option>
+					<option>Madagascar</option>
+					<option>Malawi</option>
+					<option>Malaysia</option>
+					<option>Maldives</option>
+					<option>Mali</option>
+					<option>Mauritania</option>
+					<option>Mauritius</option>
+					<option>Mexico</option>
+					<option>Morocco</option>
+					<option>Mozambique</option>
+					<option>Namibia</option>
+					<option>Nepal</option>
+					<option>Netherlands</option>
+					<option>New Zealand</option>
+					<option>Niger</option>
+					<option>Nigeria</option>
+					<option>Pakistan</option>
+					<option>Philippines</option>
+					<option>Republic of Congo</option>
+					<option>Russia</option>
+					<option>Rwanda</option>
+					<option>Senegal</option>
+					<option>Seychelles</option>
+					<option>Sierra Leone</option>
+					<option>Singapore</option>
+					<option>Somalia</option>
+					<option>South Africa</option>
+					<option>South Korea</option>
+					<option>Spain</option>
+					<option>SriLanka</option>
+					<option>Sudan</option>
+					<option>Swaziland</option>
+					<option>Sweden</option>
+					<option>Switzerland</option>
+					<option>Taiwan</option>
+					<option>Tanzania</option>
+					<option>Thailand</option>
+					<option>Togo</option>
+					<option>Tunisia</option>
+					<option>UK</option>
+					<option>US</option>
+					<option>Uganda</option>
+					<option>Vietnam</option>
+					<option>Yemen</option>
+					<option>Zambia</option>
+					<option>Zimbabwe</option>
+					<option>Other International</option>	
+				</select>
+			</div> -->
+			<div class="formrow">
+				<label>Country<span class="red">*</span></label> 
+				<select name="country" ng-model="seeker.country">
+					<option>------------------Select------------------</option>
+					<!-- <option>Afganistan</option>
+					<option>Albania</option>
+					<option>Algerian</option>
+					<option>American Samoa</option>
+					<option>Andorra</option>
+					<option>Angola</option>
+					<option>Anguilla</option>
+					<option>Antarctica</option>
+					<option>Antigua and Barbuda</option>
+					<option>Argentina</option>
+					<option>Armenia</option>
+					<option>Aruba</option>
+					<option>Australian</option>
+					<option>Austria</option>
+					<option>Azerbaijan</option>
+					<option>Bahamas</option>
+					<option>Bahraini</option>
+					<option>Bangladeshi</option>
+					<option>Barbados</option>
+					<option>Belarus</option>
+					<option>Belgium</option>
+					<option>Belize</option>
+					<option>Benin</option>
+					<option>Bermuda</option>
+					<option>Bhutan</option>
+					<option>Bolivia</option>
+					<option>Bosnia and Herzegovina</option>
+					<option>Botswana</option>
+					<option>Bouvet Island</option>
+					<option>Brazil</option>
+					<option>British Indian Ocean Territory</option>
+					<option>Brunei Darussalam</option>
+					<option>Bulgaria</option>
+					<option>Burkina Faso</option>
+					<option>Burundi</option>
+					<option>Cambodia</option>
+					<option>Cameroon</option>
+					<option>Canadian</option>
+					<option>Cape Verde</option>
+					<option>Cayman Islands</option>
+					<option>Central African Republic</option>
+					<option>Chad</option>
+					<option>Chile</option>
+					<option>Chinese</option>
+					<option>Christmas Island</option>
+					<option>Cocos (Keeling) Islands</option>
+					<option>Colombia</option>
+					<option>Comoros</option>
+					<option>Congo</option>
+					<option>Congo</option>
+					<option>Cook Islands</option>
+					<option>Costa Rica</option>
+					<option>Cote D'Ivoire</option>
+					<option>Croatia</option>
+					<option>Cuba</option>
+					<option>Cyprus</option>
+					<option>Czech Republic</option>
+					<option>Denmark</option>
+					<option>Djibouti</option>
+					<option>Dominica</option>
+					<option>Dominican Republic</option>
+					<option>Ecuador</option>
+					<option>Egyptian</option>
+					<option>El Salvador</option>
+					<option>Emirati</option>
+					<option>Equatorial Guinea</option>
+					<option>Eritrea</option>
+					<option>Estonia</option>
+					<option>Ethiopia</option>
+					<option>Falkland Islands (Malvinas)</option>
+					<option>Faroe Islands</option>
+					<option>Fiji</option>
+					<option>Filipino</option>
+					<option>Finland</option>
+					<option>French</option>
+					<option>French Guiana</option>
+					<option>French Polynesia</option>
+					<option>French Southern Territories</option>
+					<option>Gabon</option>
+					<option>Georgia</option>
+					<option>German</option>
+					<option>Ghana</option>
+					<option>Gibraltar</option>
+					<option>Greece</option>
+					<option>Greenland</option>
+					<option>Grenada</option>
+					<option>Guadeloupe</option>
+					<option>Guam</option>
+					<option>Guinea</option>
+					<option>Guinea-Bissau</option>
+					<option>Guyana</option>
+					<option>Haiti</option>
+					<option>Heard Island and Mcdonald Islands</option>
+					<option>Holy See (Vatican City State)</option>
+					<option>Honduras</option>
+					<option>Hong Kong</option>
+					<option>Hungary</option>
+					<option>Iceland</option>
+					<option>Indian</option>
+					<option>Indonesian</option>
+					<option>Iranian</option>
+					<option>Ireland</option>
+					<option>Israel</option>
+					<option>Japan</option>
+					<option>Jordanian</option>
+					<option>Kazakhstan</option>
+					<option>Kenyan</option>
+					<option>Kiribati</option>
+					<option>Korea, Democratic People's Republic of</option>
+					<option>Korea, Republic of</option>
+					<option>Kuwaiti</option>
+					<option>Kyrgyzstan</option>
+					<option>Lao People's Democratic Republic</option>
+					<option>Latvia</option>
+					<option>Lebanese</option>
+					<option>Lesotho</option>
+					<option>Liberia</option>
+					<option>Libyan Arab Jamahiriya</option>
+					<option>Liechtenstein</option>
+					<option>Lithuania</option>
+					<option>Luxembourg</option>
+					<option>Macao</option>
+					<option>Macedonia, the Former Yugoslav Republic of</option>
+					<option>Madagascar</option>
+					<option>Malawi</option>
+					<option>Malaysian</option>
+					<option>Maldives</option>
+					<option>Mali</option>
+					<option>Malta</option>
+					<option>Marshall Islands</option>
+					<option>Martinique</option>
+					<option>Mauritania</option>
+					<option>Mauritius</option>
+					<option>Mayotte</option>
+					<option>Mexico</option>
+					<option>Micronesia, Federated States of</option>
+					<option>Moldova, Republic of</option>
+					<option>Monaco</option>
+					<option>Mongolia</option>
+					<option>Montserrat</option>
+					<option>Moroccan</option>
+					<option>Mozambique</option>
+					<option>Myanmar</option>
+					<option>Namibia</option>
+					<option>Nauru</option>
+					<option>Nepalese</option>
+					<option>Netherlands</option>
+					<option>Netherlands Antilles</option>
+					<option>New Caledonia</option>
+					<option>New Zealand</option>
+					<option>Nicaragua</option>
+					<option>Niger</option>
+					<option>Nigerian</option>
+					<option>Niue</option>
+					<option>Norfolk Island</option>
+					<option>Northern Mariana Island<option>
+					<option>Norway</option>
+					<option>Omani</option>
+					<option>Pakistani</option>
+					<option>Palau</option>
+					<option>Palestinian Territory Occupied</option>
+					<option>Panama</option>
+					<option>Papua New Guinea</option>
+					<option>Paraguay</option>
+					<option>Peru</option>
+					<option>Pitcairn</option>
+					<option>Poland
+					<option>Portugal</option>
+					<option>Puerto Rico</option>
+					<option>Qatari</option>
+					<option>Reunion</option>
+					<option>Romania</option>
+					<option>Russian</option>
+					<option>Rwanda</option>
+					<option>Saint Helena</option>
+					<option>Saint Kitts and Nevis</option>
+					<option>Saint Lucia</option>
+					<option>Saint Pierre and Miquelon</option>
+					<option>Saint Vincent and the Grenadines</option>
+					<option>Samoa</option>
+					<option>San Marino</option>
+					<option>Sao Tome and Principe</option>
+					<option>Saudi</option>
+					<option>Senegal</option>
+					<option>Serbia and Montenegro</option>
+					<option>Seychelles</option>
+					<option>Sierra Leone</option>
+					<option>Singaporean</option>
+					<option>Slovakia</option>
+					<option>Slovenia</option>
+					<option>Solomon - Islands	</option>
+					<option>Somalia</option>
+					<option>South African</option>
+					<option>South Georgia and the South Sandwich Islands</option>
+					<option>Spanish</option>
+					<option>Sri Lankan</option>
+					<option>Sudanese</option>
+					<option>Suriname</option>
+					<option>Svalbard and Jan Mayen</option>
+					<option>Swaziland</option>
+					<option>Sweden</option>
+					<option>Switzerland</option>
+					<option>Syrian</option>
+					<option>Taiwanese</option>
+					<option>Tajikistan</option>
+					<option>Tanzania, United Republic of</option>
+					<option>Thai</option>
+					<option>Timor-Leste</option>
+					<option>Togo</option>
+					<option>Tokelau</option>
+					<option>Tonga</option>
+					<option>Trinidad and Tobago</option>
+					<option>Tunisia</option>
+					<option>Turkey</option>
+					<option>Turkmenistan</option>
+					<option>Turks and Caicos Islands</option>
+					<option>Tuvalu</option>
+					<option>Uganda</option>
+					<option>Ukraine</option>
+					<option>United Kingdom</option>
+					<option>United States</option>
+					<option>United States Minor Outlying Islands</option>
+					<option>Uruguay</option>
+					<option>Uzbekistan</option>
+					<option>Vanuatu</option>
+					<option>Venezuela</option>
+					<option>Vietnamese</option>
+					<option>Virgin Islands, British</option>
+					<option>Virgin Islands, U.s.</option>
+					<option>Wallis and Futuna</option>
+					<option>Western Sahara</option>
+					<option>Yemeni</option>
+					<option>Zambia</option>
+					<option>Zimbabwe</option> -->
+					<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
+					<option>Other</option>
+				</select>
+			</div>
+
+			<div class="formrow">
+				<label>City<span class="red">*</span></label>
+				<input type="text" name="city" ng-model="seeker.city">
+			</div>
+
+
+			<div class="formrow">
+				<label>Mobile Number<span class="red">*</span></label>
+				<input type="text" name="mobile" ng-model="seeker.mobile">
+			</div>
+
+			<div class="formrow">
+				<label>Alternate E-mail Id</label>
+				<input type="text" name="alt_email" ng-model="seeker.alt_email">
+			</div>
+			
+			<br>
 		</div>
 
-		<div class="formrow">
-			<label>Alternate E-mail Id</label>
-			<input type="text" name="alt_email">
-		</div>
 		
-		<br>
-	</div>
 
-	
+		<div class="separation">
+			<br>
+			<h3>Education Details</h3>
+			<br>
+			<div class="formrow">
+				<label>Basic Education<span class="red">*</span></label>
+				<select name="basic_edu" ng-model="seeker.basic_edu">
+					<option>Select Bachelor's/Diploma/School</option>
+					<option>----Bachelor's Course----</option>
+					<!-- <option>Bachelor of Architecture</option>
+					<option>Bachelor of Arts </option>
+					<option>Bachelor of Business Administration</option>
+					<option>Bachelor of Commerce</option>
+					<option>Bachelor of Dental Sugery</option>
+					<option>Bachelor of Education</option>
+					<option>Bachelor of Hotel Management</option>
+					<option>Bachelor of Laws (LLB)</option>
+					<option>Bachelor of Pharmacy </option>
+					<option>Bachelor of Science</option>
+					<option>Bachelor of Technology/Engineering</option>
+					<option>Bachelor of Vetirenary Science</option>
+					<option>Bachelor of Computer Application</option>
+					<option>MBBS</option> -->
+					<option ng-repeat="education in basic_education" value="[[education]]">[[education]]</option>
+					<option>----Diploma Course----</option>
+					<option>Diploma</option>
+					<option>----Schooling----</option>
+					<option>Intermediate</option>
+					<option>Secondary</option>
+				</select>
+			</div>
+			<div class="formrow">
+				<label>Year of Passing<span class="red">*</span></label>
+				<select name="pass_year_basic" style="width: 115px" ng-model="seeker.pass_year_basic">
+					<option>Select</option>
+					<!-- <option>1990</option>
+					<option>1991</option>
+					<option>1992</option>
+					<option>1993</option>
+					<option>1994</option>
+					<option>1995</option>
+					<option>1996</option>
+					<option>1997</option>
+					<option>1998</option>
+					<option>2000</option>
+					<option>2001</option>
+					<option>2002</option>
+					<option>2003</option>
+					<option>2004</option>
+					<option>2005</option>
+					<option>2006</option>
+					<option>2007</option>
+					<option>2008</option>
+					<option>2009</option>
+					<option>2010</option>
+					<option>2011</option>
+					<option>2012</option>
+					<option>2013</option>
+					<option>2014</option>
+					<option>Other</option> -->
+					<option ng-repeat="yr in year" value="[[yr]]">[[yr]]</option>
 
-	<div class="separation">
-		<br>
-		<h3>Education Details</h3>
-		<br>
-		<div class="formrow">
-			<label>Basic Education<span class="red">*</span></label>
-			<select>
-				<option>Select Bachelor's/Diploma/School</option>
-				<option>----Bachelor's Course----</option>
-				<option>Bachelor of Architecture</option>
-				<option>Bachelor of Arts </option>
-				<option>Bachelor of Business Administration</option>
-				<option>Bachelor of Commerce</option>
-				<option>Bachelor of Dental Sugery</option>
-				<option>Bachelor of Education</option>
-				<option>Bachelor of Hotel Management</option>
-				<option>Bachelor of Laws (LLB)</option>
-				<option>Bachelor of Pharmacy </option>
-				<option>Bachelor of Science</option>
-				<option>Bachelor of Technology/Engineering</option>
-				<option>Bachelor of Vetirenary Science</option>
-				<option>Bachelor of Computer Application</option>
-				<option>MBBS</option>
-				<option>----Diploma Course----</option>
-				<option>Diploma</option>
-				<option>----Schooling----</option>
-				<option>Intermediate</option>
-				<option>Secondary</option>
-			</select>
-		</div>
-		<div class="formrow">
-			<label>Year of Passing<span class="red">*</span></label>
-			<select name="pass" style="width: 115px">
-				<option>Select</option>
-				<!-- <option>1990</option>
-				<option>1991</option>
-				<option>1992</option>
-				<option>1993</option>
-				<option>1994</option>
-				<option>1995</option>
-				<option>1996</option>
-				<option>1997</option>
-				<option>1998</option>
-				<option>2000</option>
-				<option>2001</option>
-				<option>2002</option>
-				<option>2003</option>
-				<option>2004</option>
-				<option>2005</option>
-				<option>2006</option>
-				<option>2007</option>
-				<option>2008</option>
-				<option>2009</option>
-				<option>2010</option>
-				<option>2011</option>
-				<option>2012</option>
-				<option>2013</option>
-				<option>2014</option>
-				<option>Other</option> -->
-				<option ng-repeat="yr in year" value="[[yr]]">[[yr]]</option>
+				</select>
+			</div>
 
-			</select>
+			<div class="formrow">
+				<label>Masters Education<span class="red">*</span></label>
+				<select name="masters_edu" ng-model="seeker.masters_edu">
+					<option>-------------Select-------------</option>
+					<!-- <option>Chartered Accountant</option>
+					<option>CA Inter</option>
+					<option>Chartered Financial Analyst</option>
+					<option>Company Secretary</option>
+					<option>Doctor of Medicine (MD)</option>
+					<option>Doctor of Surgery (MS)</option>
+					<option>Inst. of Cost & Works Accountants</option>
+					<option>ICWA Inter</option>
+					<option>Master of Architecture</option>
+					<option>Master of Arts</option>
+					<option>Master of Commerce</option>
+					<option>Master of Education</option>
+					<option>Master of Laws (LLM)</option>
+					<option>Master of Pharmacy</option>
+					<option>Master of Technology/Engineering</option>
+					<option>Master of Vetirenary Science</option>
+					<option>Master of Computer Application</option>
+					<option>MBA/PG Diploma in Business Mgmt </option> -->
+					<option ng-repeat="edu in masters_education" value="[[edu]]">[[edu]]</option>
+				</select>
+			</div>
+			<div class="formrow">
+				<label>Year of Passing<span class="red">*</span></label>
+				<select name="pass_year_masters" style="width: 115px" ng-model="seeker.pass_year_masters">
+					<option>Select</option>
+					<!-- <option>1990</option>
+					<option>1991</option>
+					<option>1992</option>
+					<option>1993</option>
+					<option>1994</option>
+					<option>1995</option>
+					<option>1996</option>
+					<option>1997</option>
+					<option>1998</option>
+					<option>1999</option>
+					<option>2000</option>
+					<option>2001</option>
+					<option>2002</option>
+					<option>2003</option>
+					<option>2004</option>
+					<option>2005</option>
+					<option>2006</option>
+					<option>2007</option>
+					<option>2008</option>
+					<option>2009</option>
+					<option>2010</option>
+					<option>2011</option>
+					<option>2012</option>
+					<option>2013</option>
+					<option>2014</option>
+					<option>Other</option> -->
+					<option ng-repeat="yr in year" value="[[yr]]">[[yr]]</option>
+				</select>
+			</div>
+			<div class="formrow">
+				<label>.</label>
+				<input type="button" name="add_doctrate" value="Add Doctrate" ng-model="seeker.add_doctrate">
+				<select name="doctrate" ng-model="seeker.doctrate">
+					<option>select</option>
+				</select>
+			</div>
+			<br>
 		</div>
 
-		<div class="formrow">
-			<label>Masters Education<span class="red">*</span></label>
-			<select>
-				<option>-------------Select-------------</option>
-				<option>Chartered Accountant</option>
-				<option>CA Inter</option>
-				<option>Chartered Financial Analyst</option>
-				<option>Company Secretary</option>
-				<option>Doctor of Medicine (MD)</option>
-				<option>Doctor of Surgery (MS)</option>
-				<option>Inst. of Cost & Works Accountants</option>
-				<option>ICWA Inter</option>
-				<option>Master of Architecture</option>
-				<option>Master of Arts</option>
-				<option>Master of Commerce</option>
-				<option>Master of Education</option>
-				<option>Master of Laws (LLM)</option>
-				<option>Master of Pharmacy</option>
-				<option>Master of Technology/Engineering</option>
-				<option>Master of Vetirenary Science</option>
-				<option>Master of Computer Application</option>
-				<option>MBA/PG Diploma in Business Mgmt </option>
-			</select>
+		<div class="separation">
+			<br>
+			<h3>Attach Your Resume</h3>
+			<br>
+			<div class="formrow">
+				<label>Resume Title<span class="red">*</span></label>
+				<input type="text" name="resume_title" ng-model="seeker.resume_title">
+			</div>
+			<div class="formrow">
+				<label>Attach CV</label>
+				<input type="file" fileread="resume_doc.src"/>
+				<input type="hidden" ng-model="resume_doc.src">
+			</div>
+			<div class="formrow">
+				<label>Copy and Paste Resume Here</label>
+				<textarea rows="4" cols="20" name="resume_text" ng-model="seeker.resume_text" ></textarea>
+			</div>
+			<br>
 		</div>
-		<div class="formrow">
-			<label>Year of Passing<span class="red">*</span></label>
-			<select name="pass" style="width: 115px">
-				<option>Select</option>
-				<!-- <option>1990</option>
-				<option>1991</option>
-				<option>1992</option>
-				<option>1993</option>
-				<option>1994</option>
-				<option>1995</option>
-				<option>1996</option>
-				<option>1997</option>
-				<option>1998</option>
-				<option>1999</option>
-				<option>2000</option>
-				<option>2001</option>
-				<option>2002</option>
-				<option>2003</option>
-				<option>2004</option>
-				<option>2005</option>
-				<option>2006</option>
-				<option>2007</option>
-				<option>2008</option>
-				<option>2009</option>
-				<option>2010</option>
-				<option>2011</option>
-				<option>2012</option>
-				<option>2013</option>
-				<option>2014</option>
-				<option>Other</option> -->
-				<option ng-repeat="yr in year" value="[[yr]]">[[yr]]</option>
-			</select>
-		</div>
-		<div class="formrow">
-			<label>.</label>
-			<input type="button" name="add_doctrate" value="Add Doctrate">
-		</div>
-		<br>
-	
+			<div class="separation">
+				<br>
 		<!-- <div class="formrow"> -->
 			<div class="btn">
 				<label></label>
 				<input class="button" type="submit" name="submit" value="Save & Edit">
 			</div>
-		<!-- </div> -->
-		<br>
-
-	</div>
-	<!-- </form> -->
+			
+			<br>
+		</div>
+	</form>
 </div>
 
 {% endblock content %}

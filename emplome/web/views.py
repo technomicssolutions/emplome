@@ -107,10 +107,65 @@ class JobSeekerRegistration(View):
 		context = {}
 		return render(request, 'job_seeker_registration.html', context)
 
+	def post(self, request, *args, **kwargs):
+		post_data = request.POST
+		seeker = ast.literal_eval(post_data['seeker]'])
+		userprofile = UserProfile()
+		userprofile.user = user
+		userprofile.user_type = job_seeker
+		userProfile.user.email = seeker['email']
+		user.set_password(post_dict['password'])
+		userprofile.gender = seeker['gender']
+		userprofile.religion = seeker['religion']
+		userprofile.marital_status = seeker['marital_status']
+		userprofile.nationality = seeker['nationality']
+		userprofile.country = seeker['country']
+		userprofile.city = seeker['city']
+		userprofile.mobile = seeker['mobile']
+		userprofile.alt_mail = seeker['alt_email']
+		userprofile.save()
+		education = Education()
+		education.basic_edu = seeker['basic_edu']
+		education.pass_year_basic = seeker['pass_year_basic']
+		education.masters = seeker['masters_edu']
+		education.pass_year_masters = seeker['pass_year_masters']
+		education.doctrate = seeker['doctrate']
+		education.resume_title = seeker['resume_title']
+		education.resume = request.FILES['resume_doc']
+		education.resume_text = seeker['resume_doc']
+		education.save()
+
+		return render(request, 'job_seeker_registration.html', {})
+
+
+
+		
 class JobSeekerRegistration2(View):
 	def get(self, request,*args, **kwargs):
 		context = {}
 		return render(request, 'job_seeker_registration_2.html', context)
+
+	def post(self, request, *args, **kwargs):
+		post_data = request.POST
+		seeker1 = ast.literal_eval(post_data['seeker1]'])
+		employment = Employment()
+		employment.exp_yrs = seeker1['years']
+		employment.exp_mnths = seeker1['months']
+		employment.salary = seeker1['salary']
+		employment.designation = seeker1['designation']
+		employment.curr_industry = seeker1['industry']
+		employment.function = seeker1['function']
+		employment.skills = seeker1['skills']
+		employment.save()
+		userprofile = UserProfile()
+		userprofile.photo = request.FILES['photo_img']
+		userprofile.save()
+		education = Education()
+		education.certificate = request.FILES['certificate_img']
+		education.save()
+
+		return render(request, 'job_seeker_registration_2.html', {})
+
 
 class EmployerProfileView(View):
 	def get(self, request, *args, **kwargs):

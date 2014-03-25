@@ -1,4 +1,4 @@
-/************** Nav styles *********************/
+/*/************** Nav styles *********************/
 
 
 body {
@@ -255,13 +255,13 @@ form {
 .button{
   width: 100px;
 }*/
-/*.formtext {
+.formtext {
   float: left;
     width: 95px;
 }
 .forminput {
   float: left;
-}*/
+}
 
 
 
@@ -611,3 +611,4 @@ form {
 }
 
 /************* end base styles *****************/
+*/
