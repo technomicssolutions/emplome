@@ -589,7 +589,7 @@ EDUCATION_REQUIRED = (
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
-    gender = models.CharField('Gender', max_length=1, choices=GENDER)
+    gender = models.CharField('Gender', max_length=7, choices=GENDER)
     nationality = models.CharField('Nationality', max_length=50, choices=COUNTRY_CHOICES)
     current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
     country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
@@ -633,7 +633,7 @@ class CompanyProfile(models.Model):
 
     user = models.ForeignKey(UserProfile)
     company_name = models.CharField('Company Name', max_length=20)
-    industry_type = models.CharField('Industry Type', max_length=20)
+    industry_type = models.CharField('Industry Type', max_length=50)
 
     def __unicode__(self):
         return self.company_name
@@ -649,7 +649,7 @@ class JobPosting(models.Model):
 
     company_name = models.ForeignKey(CompanyProfile)
     job_title = models.CharField('Job Title', max_length=50)
-    ref_code = models.CharField('Ref Code', max_length=10, null=True, blank=True)
+    ref_code = models.CharField('Ref Code', max_length=15, null=True, blank=True)
     summary = models.CharField('Summary', max_length=250)
     job_details = models.CharField('Job Details', max_length=250)
     document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
@@ -682,19 +682,19 @@ class JobPosting(models.Model):
 
 
 class Education(models.Model):
-    user = models. ForeignKey(UserProfile)
-    basic_edu = models.CharField('Basic Education', max_length=15, choices=BASIC_EDU)
+    userprofile = models.ForeignKey(UserProfile)
+    basic_edu = models.CharField('Basic Education', max_length=50, choices=BASIC_EDU)
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
-    masters = models.CharField('Masters', null=True, blank=True, max_length=15, choices=MASTERS_EDU)
+    masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
-    doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=20)
+    doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
     resume_text = models.CharField('Resume', null=True, blank=True, max_length=20000)
     certificate = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
 
     def __unicode__(self):
-        return self.user.username
+        return self.userprofile.user.username
 
     class Meta:
 

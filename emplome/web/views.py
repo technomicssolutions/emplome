@@ -113,13 +113,14 @@ class JobSeekerRegistration(View):
 		print post_data
 		seeker = ast.literal_eval(post_data['seeker'])
 		user = User.objects.create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
+		print user
 		user.set_password(seeker['password'])
 		user.save()
 
 		userprofile = UserProfile()
 		userprofile.user = user
 		userprofile.user_type = 'job_seeker'
-		
+		print userprofile
 		# userprofile.gender = seeker['gender']
 		userprofile.religion = seeker['religion']
 		userprofile.marital_status = seeker['marital_status']
@@ -138,9 +139,15 @@ class JobSeekerRegistration(View):
 		education.resume_title = seeker['resume_title']
 		education.resume = request.FILES['resume_doc']
 		education.resume_text = seeker['resume_text']
+		education.userprofile = userprofile
 		education.save()
-
-		return render(request, 'job_seeker_registration.html', {})
+		res = {
+			'result': 'ok',
+			'user_id': user.id,
+		}
+		response = simplejson.dumps(res)
+		status_code = 200
+		return HttpResponse(response, status=status_code, mimetype='application/json')
 
 
 
@@ -152,6 +159,7 @@ class JobSeekerRegistration2(View):
 
 	def post(self, request, *args, **kwargs):
 		post_data = request.POST
+		print post_data
 		seeker1 = ast.literal_eval(post_data['seeker1'])
 		employment = Employment()
 		employment.exp_yrs = seeker1['years']
@@ -162,14 +170,21 @@ class JobSeekerRegistration2(View):
 		employment.function = seeker1['function']
 		employment.skills = seeker1['skills']
 		employment.save()
-		userprofile = UserProfile()
+		userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
 		userprofile.photo = request.FILES['photo_img']
 		userprofile.save()
-		education = Education()
+		education = Education.objects.get(user=userprofile)
 		education.certificate = request.FILES['certificate_img']
 		education.save()
 
-		return render(request, 'job_seeker_registration_2.html', {})
+		res = {
+			'result': 'ok',
+			'user_id': user.id,
+		}
+		response = simplejson.dumps(res)
+		status_code = 200
+		return HttpResponse(response, status=status_code, mimetype='application/json')
+
 
 
 class EmployerProfileView(View):

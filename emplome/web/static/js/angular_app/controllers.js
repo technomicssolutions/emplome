@@ -236,9 +236,6 @@ function get_basic_education($scope){
 		'Bachelor of Vetirenary Science'	,
 		'Bachelor of Computer Application'	,
 		'MBBS',
-		// 'Diploma',
-		// 'Intermediate',
-		// 'Secondary',
 	]
 }
 
@@ -698,8 +695,14 @@ function Registration($scope)
 
 function JobSeekerController($scope, $element, $http, $timeout) {
 
+	$scope.user_id ='';
+
 	$scope.year = [];
 	$scope.experience =[];
+
+	$scope.is_valid = false;
+	$scope.error_flag = false;
+	$scope.error_message = '';
 
 	$scope.certificate_img = {};
 	$scope.certificate_img.src = "";
@@ -753,40 +756,156 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 	$scope.seeker1 = {
 		'years': '',
-		'months': '-select-',
+		'months': '0',
 		'salary': '',
 		'designation': '',
 		'industry': '-select-',
-		'function': '-select-',
+		'functions': '-select-',
 		'skills': '',
 
 	}
 
+	$scope.form_validation = function(){
+		if ($scope.seeker.email == ''|| $scope.seeker.email == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please provide your email id';
+			return false;
+		} else if ($scope.seeker.password == '' || $scope.seeker.password == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please provide a password';
+			return false;
+		} else if ($scope.seeker.password1 == '' || $scope.seeker.password1 == undefined){	
+			$scope.error_flag = true;
+			$scope.error_message = 'Please re-enter the password';
+			return false;
+		} else if ($scope.seeker.password != $scope.seeker.password1){	
+			$scope.error_flag = true;
+			$scope.error_message = 'Please enter the password correctly';
+			return false;
+		} else if ($scope.seeker.first_name == '' || $scope.seeker.first_name == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please give your name';
+			return false;
+		} else if ($scope.seeker.gender == '' || $scope.seeker.gender == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please enter your gender';
+			return false;
+		} else if ($scope.seeker.religion == '' || $scope.seeker.religion == undefined || $scope.seeker.religion == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select your religion';
+			return false;
+		} else if ($scope.seeker.marital_status == '' || $scope.seeker.marital_status == undefined || $scope.seeker.marital_status == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select your marital_status';
+			return false;
+		} else if ($scope.seeker.nationality == '' || $scope.seeker.nationality == undefined || $scope.seeker.nationality == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select your nationality';
+			return false;
+		} else if ($scope.seeker.country == '' || $scope.seeker.country == undefined || $scope.seeker.country == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select country';
+			return false;
+		} else if ($scope.seeker.city == '' || $scope.seeker.city == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please enter your city';
+			return false;
+		} else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please enter your mobile number';
+			return false;
+		} else if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select Basic Education';
+			return false;
+		} else if ($scope.seeker.pass_year_basic == '' || $scope.seeker.pass_year_basic == undefined || $scope.seeker.pass_year_basic == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select the year of passing';
+			return false;
+		} else if ($scope.seeker.masters_edu == '' || $scope.seeker.masters_edu == undefined || $scope.seeker.masters_edu == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select Masters Education';
+			return false;
+		} else if ($scope.seeker.pass_year_masters == '' || $scope.seeker.pass_year_masters == undefined || $scope.seeker.pass_year_masters == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select the year of passing';
+			return false;
+		} else if ($scope.seeker.resume_title == '' || $scope.seeker.resume_title == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please give a title for your Resume';
+			return false;
+		}
+	return true;
+	}
+
+	$scope.form_validation_2 = function(){
+		if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please provide your Experience';
+			return false;
+		// } else if ($scope.seeker1.months == '' || $scope.seeker1.months == undefined || $scope.seeker1.months == 'select'){
+		// 	$scope.error_flag = true;
+		// 	$scope.error_message = 'Please select country';
+		// 	return false;
+		// } else if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary == 'select'){
+		// 	$scope.error_flag = true;
+		// 	$scope.error_message = 'Please select country';
+		// 	return false;
+		// } else if ($scope.seeker1.designation == '' || $scope.seeker1.designation == undefined || $scope.seeker1.designation == 'select'){
+		// 	$scope.error_flag = true;
+		// 	$scope.error_message = 'Please select country';
+		// 	return false;
+		// } else if ($scope.seeker1.industry == '' || $scope.seeker1.industry == undefined || $scope.seeker1.industry == 'select'){
+		// 	$scope.error_flag = true;
+		// 	$scope.error_message = 'Please select country';
+		// 	return false;
+		// } else if ($scope.seeker1.functions == '' || $scope.seeker1.functions == undefined || $scope.seeker1.functions == 'select'){
+		// 	$scope.error_flag = true;
+		// 	$scope.error_message = 'Please select country';
+		// 	return false;
+		} else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined || $scope.seeker1.skills == 'select'){
+			$scope.error_flag = true;
+			$scope.error_message = 'Please select country';
+			return false;
+		} 
+	}
+
+
+
 	$scope.save_reg = function(){
-		var file = $scope.resume_doc.src;
-		params = {
-			'seeker':angular.toJson($scope.seeker),
-			"csrfmiddlewaretoken" : $scope.csrf_token,				
-		}
-		console.log($scope.seeker);
-		var fd = new FormData();
-		fd.append('resume_doc', $scope.resume_doc.src);
-		alert(fd);
-		for(var key in params){
-			fd.append(key, params[key]);			
-		}
-		var url = "/job_seeker_registration/";
-		$http.post(url, fd, {
-			transformRequest: angular.identity,
-			headers: {'Content-Type': undefined
+		alert('hii');
+		$scope.is_valid = $scope.form_validation();
+		console.log('is_valid == ', $scope.is_valid);
+		if ($scope.is_valid) {
+			$scope.error_flag = false;
+			$scope.error_message = '';
+
+			var file = $scope.resume_doc.src;
+			params = {
+				'seeker':angular.toJson($scope.seeker),
+				"csrfmiddlewaretoken" : $scope.csrf_token,				
 			}
-		}).success(function(data, status){
-		console.log("Successfully Saved");
+			console.log($scope.seeker);
+			var fd = new FormData();
+			fd.append('resume_doc', $scope.resume_doc.src);
+			for(var key in params){
+				fd.append(key, params[key]);			
+			}
+			console.log('fd == ', fd);
+			var url = "/job_seeker_registration/";
+			$http.post(url, fd, {
+				transformRequest: angular.identity,
+				headers: {'Content-Type': undefined
+				}
+			}).success(function(data, status){
+				console.log("Successfully Saved");
+				console.log(data);
+				$scope.user_id = data.user_id;
+			}).error(function(data, status){
+			alert(status);
 
-		}).error(function(data, status){
-		alert(status);
-
-		});
+			});
+		}
 	}
 	
 
@@ -795,6 +914,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		var file = $scope.certificate_img.src;
 		params = {
 			'seeker1':angular.toJson($scope.seeker1),
+			'user_id': $scope.user_id,
 			"csrfmiddlewaretoken" : $scope.csrf_token,				
 		}
 		console.log($scope.seeker1);
@@ -804,7 +924,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		for(var key in params){
 			fd.append(key, params[key]);			
 		}
-		var url = "/job_seeker_registration_2/";
+		var url = "/job_seeker_registration_2/"+$scope.user_id+'/';
 		$http.post(url, fd, {
 			transformRequest: angular.identity,
 			headers: {'Content-Type': undefined
@@ -816,6 +936,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		alert(status);
 
 		});
+	}
+
+	$scope.reg_next =function(){
+		document.location.href = '/job_seeker_registration_2/'+$scope.user_id+'/';
 	}
 }
 

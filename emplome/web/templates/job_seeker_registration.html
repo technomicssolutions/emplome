@@ -9,12 +9,14 @@
 
 <div class="div3">
 	<form name="registration" method="post" action="">
-	<div class="separation">
-		<br>
-		<h2 class="hd1">Job Seeker's Registration</h2>
-		<p class="mandatory">* Required Fields</p>
-		<br>
-		<!-- <form name="registration" method="post" action=""> -->
+		{% csrf_token %}
+
+		<div class="separation">
+			<br>
+			<h2 class="hd1">Job Seeker's Registration</h2>
+			<p class="mandatory">* Required Fields</p>
+			<br>
+			<!-- <form name="registration" method="post" action=""> -->
 			<h3>Create your Account</h3>
 			<br>
 			<div class="formrow">
@@ -42,8 +44,8 @@
 			</div>
 			<div class="formrow">
 				<label>Gender<span class="red">*</span></label> 
-				<input type="radio" name="gender" ng-model="seeker.gender">Male
-				<input type="radio" name="gender" ng-model="seeker.gender">Female
+				<input type="radio" name="gender" ng-model="seeker.gender" value="male">Male
+				<input type="radio" name="gender" ng-model="seeker.gender" value="female">Female
 			</div>
 
 			<div class="formrow">
@@ -824,7 +826,7 @@
 			</div>
 			<div class="formrow">
 				<label>Year of Passing<span class="red">*</span></label>
-				<select name="pass_year_basic" style="width: 115px" ng-model="seeker.pass_year_basic">
+				<select name="pass_year_basic" style="width: 14%" ng-model="seeker.pass_year_basic">
 					<option>Select</option>
 					<!-- <option>1990</option>
 					<option>1991</option>
@@ -917,9 +919,10 @@
 			<div class="formrow">
 				<label>Doctrate</label>
 				<!-- <input type="button" name="add_doctrate" value="Add Doctrate" ng-model="seeker.add_doctrate"> -->
-				<select name="doctrate" ng-model="seeker.doctrate">
+				<!-- <select name="doctrate" ng-model="seeker.doctrate">
 					<option>select</option>
-				</select>
+				</select> -->
+				<input type="text"> 
 			</div>
 			<br>
 		</div>
@@ -943,14 +946,19 @@
 			</div>
 			<br>
 		</div>
-			<div class="separation">
-				<br>
+		<div class="separation">
+			<br>
 		<!-- <div class="formrow"> -->
 			<div class="btn">
 				<label></label>
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg()">
+				<input class="button" type="submit" name="next" value="Next" ng-click="reg_next()">
 			</div>
-			
+			<div class="message">
+				<!-- <p>{{message}}</p> -->
+				<p ng-show="error_flag">[[error_message]]</p>
+			</div>
+
 			<br>
 		</div>
 	</form>
