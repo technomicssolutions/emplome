@@ -238,9 +238,9 @@ class PostJobsView(View):
 		jobPosting.exp_req_min = jobpost['min']
 		jobPosting.exp_req_max = jobpost['max']
 		jobPosting.save()
-		print "jobPosting",jobPosting.id
 		res = {
 			'id' : jobPosting.id,
+			'message':'data posted on our server'
 		} 
 		response = simplejson.dumps(res)
 		status_code = 200
@@ -249,7 +249,6 @@ class PostJobsView(View):
 class EditPostJobsView(View):
 	def post(self, request, *args, **kwargs):
 		jobPosting =JobPosting.objects.get(id= kwargs['user_id'])
-		print "jobPosting",jobPosting
 		post_data = request.POST
 		jobpost = ast.literal_eval(post_data['jobpost'])
 		jobPosting.job_title = jobpost['title']
@@ -312,21 +311,21 @@ class ListExistingJobDetails(View):
 		print "jobs",job
 		if request.is_ajax():
 			ctx_jobs.append({
-				'job_title': job[0].job_title,
-				'summarys': job[0].summary,
-				'job_details': job[0].job_details,
+				'title':job[0].job_title,
+				'summary': job[0].summary,
+				'details': job[0].job_details,
 				'skills': job[0].skills,
-				'order': job[0].order,
-				'industry': job[0].industry,
-				'job_location': job[0].job_location,
-				'functions': job[0].function,
-				'role': job[0].role,
-				'education_req': job[0].education_req,
-				'specialization': job[0].specialization,
+				'location':job[0].job_location,
+				'industry':job[0].industry,
+				'function': job[0].function,
+				'role':job[0].role,
+				'requirement': job[0].education_req,
+				'specialisation':job[0].specialization,
 				'nationality': job[0].nationality,
-				'company_profile': job[0].company_profile,
-				'exp_req_min': job[0].exp_req_min,
-				'exp_req_max': job[0].exp_req_max,
+				'min':job[0].exp_req_min,
+				'max':job[0].exp_req_max,
+				'profile':job[0].company_profile,
+
 			})
 			res = {
 				'existing_job_details': ctx_jobs,
