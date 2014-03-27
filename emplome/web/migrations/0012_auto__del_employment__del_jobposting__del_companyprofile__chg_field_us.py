@@ -8,12 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Deleting model 'Employment'
+        db.delete_table(u'web_employment')
 
-        # Changing field 'JobPosting.ref_code'
-        db.alter_column(u'web_jobposting', 'ref_code', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
+        # Deleting model 'JobPosting'
+        db.delete_table(u'web_jobposting')
 
-        # Changing field 'CompanyProfile.industry_type'
-        db.alter_column(u'web_companyprofile', 'industry_type', self.gf('django.db.models.fields.CharField')(max_length=50))
+        # Deleting model 'CompanyProfile'
+        db.delete_table(u'web_companyprofile')
+
 
         # Changing field 'UserProfile.gender'
         db.alter_column(u'web_userprofile', 'gender', self.gf('django.db.models.fields.CharField')(max_length=7))
@@ -24,12 +27,56 @@ class Migration(SchemaMigration):
         # Changing field 'Education.doctorate'
         db.alter_column(u'web_education', 'doctorate', self.gf('django.db.models.fields.CharField')(max_length=50, null=True))
     def backwards(self, orm):
+        # Adding model 'Employment'
+        db.create_table(u'web_employment', (
+            ('curr_industry', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('function', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('salary', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+            ('exp_mnths', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+            ('designation', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('skills', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.UserProfile'])),
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('exp_yrs', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+        ))
+        db.send_create_signal(u'web', ['Employment'])
 
-        # Changing field 'JobPosting.ref_code'
-        db.alter_column(u'web_jobposting', 'ref_code', self.gf('django.db.models.fields.CharField')(max_length=10, null=True))
+        # Adding model 'JobPosting'
+        db.create_table(u'web_jobposting', (
+            ('education_req', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('mail_id', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('specialization', self.gf('django.db.models.fields.CharField')(max_length=70, null=True, blank=True)),
+            ('job_location', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('role', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('company_name', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.CompanyProfile'])),
+            ('document', self.gf('django.db.models.fields.files.FileField')(max_length=20000, null=True, blank=True)),
+            ('job_title', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('function', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('exp_req_min', self.gf('django.db.models.fields.IntegerField')()),
+            ('exp_req_max', self.gf('django.db.models.fields.IntegerField')()),
+            ('job_details', self.gf('django.db.models.fields.CharField')(max_length=250)),
+            ('phone', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('nationality', self.gf('django.db.models.fields.CharField')(max_length=70, null=True, blank=True)),
+            ('ref_code', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('skills', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('industry', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('company_profile', self.gf('django.db.models.fields.CharField')(max_length=250)),
+            ('summary', self.gf('django.db.models.fields.CharField')(max_length=250)),
+            ('order', self.gf('django.db.models.fields.IntegerField')()),
+        ))
+        db.send_create_signal(u'web', ['JobPosting'])
 
-        # Changing field 'CompanyProfile.industry_type'
-        db.alter_column(u'web_companyprofile', 'industry_type', self.gf('django.db.models.fields.CharField')(max_length=20))
+        # Adding model 'CompanyProfile'
+        db.create_table(u'web_companyprofile', (
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.UserProfile'])),
+            ('industry_type', self.gf('django.db.models.fields.CharField')(max_length=20)),
+            ('company_name', self.gf('django.db.models.fields.CharField')(max_length=20)),
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal(u'web', ['CompanyProfile'])
+
 
         # Changing field 'UserProfile.gender'
         db.alter_column(u'web_userprofile', 'gender', self.gf('django.db.models.fields.CharField')(max_length=1))
@@ -76,13 +123,6 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'web.companyprofile': {
-            'Meta': {'object_name': 'CompanyProfile'},
-            'company_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'industry_type': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.UserProfile']"})
-        },
         u'web.education': {
             'Meta': {'object_name': 'Education'},
             'basic_edu': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
@@ -96,43 +136,6 @@ class Migration(SchemaMigration):
             'resume_text': ('django.db.models.fields.CharField', [], {'max_length': '20000', 'null': 'True', 'blank': 'True'}),
             'resume_title': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'userprofile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.UserProfile']"})
-        },
-        u'web.employment': {
-            'Meta': {'object_name': 'Employment'},
-            'curr_industry': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'designation': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'exp_mnths': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'exp_yrs': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'function': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'salary': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'skills': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.UserProfile']"})
-        },
-        u'web.jobposting': {
-            'Meta': {'object_name': 'JobPosting'},
-            'company_name': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.CompanyProfile']"}),
-            'company_profile': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
-            'document': ('django.db.models.fields.files.FileField', [], {'max_length': '20000', 'null': 'True', 'blank': 'True'}),
-            'education_req': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            'exp_req_max': ('django.db.models.fields.IntegerField', [], {}),
-            'exp_req_min': ('django.db.models.fields.IntegerField', [], {}),
-            'function': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'industry': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            'job_details': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
-            'job_location': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'job_title': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'mail_id': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'nationality': ('django.db.models.fields.CharField', [], {'max_length': '70', 'null': 'True', 'blank': 'True'}),
-            'order': ('django.db.models.fields.IntegerField', [], {}),
-            'phone': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'ref_code': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True', 'blank': 'True'}),
-            'role': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            'skills': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'specialization': ('django.db.models.fields.CharField', [], {'max_length': '70', 'null': 'True', 'blank': 'True'}),
-            'summary': ('django.db.models.fields.CharField', [], {'max_length': '250'})
         },
         u'web.userprofile': {
             'Meta': {'object_name': 'UserProfile'},

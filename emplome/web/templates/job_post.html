@@ -5,7 +5,7 @@
 {% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
 
 {% block content %}
-<div class= "left-box">
+<div class= "div3">
 
 	<form class="" name="add_item" method="post" action="">
 				{% csrf_token %}
@@ -23,7 +23,7 @@
 
 			<br><br>
 
-			<p class="mandatory">* Required Fields</p>
+			<p class="mandatory">* Mandatory Fields</p>
 			<br>
 			<!-- <form class="" name="add_item" method="post" action="">
 				{% csrf_token %} -->
@@ -37,7 +37,7 @@
 				<input type ="text" name="code" ng-model="jobpost.code">
 			</div>			
 		</div>
-		<div class"separation">
+		<div class="separation">
 			<h3>Jo Description</h3>
 			<br />
 			<div class="formrow">
@@ -148,9 +148,9 @@
 		<div class="separation">
 			<div class="formrow" align="center">
 				<input type="checkbox">
-				Reveal contact details to seekers who applied job
+				Reveal contact details to seekers who applied for the job
 			</div>
-			<div class="formrow" align="center">
+			<div class="btn" align="center">
 			<!-- <div align="Center"> -->
 				<input type="button" value="submit" ng-click="save_job()">
 				{{message}}

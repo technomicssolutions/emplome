@@ -20,7 +20,7 @@ COUNTRY_CHOICES = (
     ('American Samoa','American Samoa'),
     ('Andorra','Andorra'),
     ('Anguilla','Anguilla'),
-    ('Antarctica','Antarctica'),
+    ('Antartica','Antartica'),
     ('Antigua and Barbuda','Antigua and Barbuda'),
     ('Argentina','Argentina'),
     ('Armenia','Armenia'),
@@ -269,7 +269,248 @@ COUNTRY_CHOICES = (
     ('Yemen','Yemen'),
     ('Zambia','Zambia'),
     ('Zimbabwe','Zimbabwe'),
+    ('Other', 'Other'),
 )
+
+NATIONALITY = (
+    ('Afganistani', 'Afganistani'),
+    ('Albanian', 'Albanian'),
+    ('Algerian', 'Algerian'),
+    ('American Samoa', 'American Samoa'),
+    ('Andorra', 'Andorra'),
+    ('Angola', 'Angola'),
+    ('Anguilla', 'Anguilla'),
+    ('Antarctican', 'Antarctican'),
+    ('Antigua and Barbuda', 'Antigua and Barbuda'),
+    ('Argentina', 'Argentina'),
+    ('Armenian', 'Armenian'),
+    ('Aruba', 'Aruba'),
+    ('Australian', 'Australian'),
+    ('Austrian', 'Austrian'),
+    ('Azerbaijan', 'Azerbaijan'),
+    ('Bahamas', 'Bahamas'),
+    ('Bahraini', 'Bahraini'),
+    ('Bangladeshi', 'Bangladeshi'),
+    ('Barbados', 'Barbados'),
+    ('Belarus', 'Belarus'),
+    ('Belgium', 'Belgium'),
+    ('Belize', 'Belize'),
+    ('Benin', 'Benin'),
+    ('Bermuda', 'Bermuda'),
+    ('Bhutani', 'Bhutani'),
+    ('Bolivian', 'Bolivian'),
+    ('Bosnia and Herzegovinan', 'Bosnia and Herzegovinan'),
+    ('Botswana', 'Botswana'),
+    ('Bouvet Island', 'Bouvet Island'),
+    ('Brazilian', 'Brazilian'),
+    ('British Indian Ocean Territory', 'British Indian Ocean Territory'),
+    ('Brunei Darussalam', 'Brunei Darussalam'),
+    ('Bulgarian', 'Bulgarian'),
+    ('Burkina Faso', 'Burkina Faso'),
+    ('Burundi', 'Burundi'),
+    ('Cambodian', 'Cambodian'),
+    ('Cameroon', 'Cameroon'),
+    ('Canadian', 'Canadian'),
+    ('Cape Verde', 'Cape Verde'),
+    ('Cayman Islands', 'Cayman Islands'),
+    ('Central African Republic', 'Central African Republic'),
+    ('Chad', 'Chad'),
+    ('Chile', 'Chile'),
+    ('Chinese', 'Chinese'),
+    ('Christmas Island', 'Christmas Island'),
+    ('Cocos (Keeling) Islands', 'Cocos (Keeling) Islands'),
+    ('Colombian', 'Colombian'),
+    ('Comoros', 'Comoros'),
+    ('Congo', 'Congo'),
+    # ('Congo', 'Congo'),
+    ('Cook Islands', 'Cook Islands'),
+    ('Costa Rica', 'Costa Rica'),
+    ("Cote D'Ivoire", "Cote D'Ivoire"),
+    ('Croatia', 'Croatia'),
+    ('Cuban', 'Cuban'),
+    ('Cyprus', 'Cyprus'),
+    ('Czech Republic', 'Czech Republic'),
+    ('Denmark', 'Denmark'),
+    ('Djibouti', 'Djibouti'),
+    ('Dominica', 'Dominica'),
+    ('Dominican Republic', 'Dominican Republic'),
+    ('Ecuador', 'Ecuador'),
+    ('Egyptian', 'Egyptian'),
+    ('El Salvador', 'El Salvador'),
+    ('Emirati', 'Emirati'),
+    ('Equatorial Guinea', 'Equatorial Guinea'),
+    ('Eritrea', 'Eritrea'),
+    ('Estonia', 'Estonia'),
+    ('Ethiopian', 'Ethiopian'),
+    ('Falkland Islands (Malvinas)', 'Falkland Islands (Malvinas)'),
+    ('Faroe Islands', 'Faroe Islands'),
+    ('Fiji', 'Fiji'),
+    ('Filipino', 'Filipino'),
+    ('Finland', 'Finland'),
+    ('French', 'French'),
+    ('French Guiana', 'French Guiana'),
+    ('French Polynesia', 'French Polynesia'),
+    ('French Southern Territories', 'French Southern Territories'),
+    ('Gabon', 'Gabon'),
+    ('Georgian', 'Georgian'),
+    ('German', 'German'),
+    ('Ghana', 'Ghana'),
+    ('Gibraltar', 'Gibraltar'),
+    ('Greece', 'Greece'),
+    ('Greenland', 'Greenland'),
+    ('Grenada', 'Grenada'),
+    ('Guadeloupe', 'Guadeloupe'),
+    ('Guam', 'Guam'),
+    ('Guinean', 'Guinean'),
+    ('Guinea-Bissau', 'Guinea-Bissau'),
+    ('Guyana', 'Guyana'),
+    ('Haiti', 'Haiti'),
+    ('Heard Island and Mcdonald Islands', 'Heard Island and Mcdonald Islands'),
+    ('Holy See (Vatican City State)', 'Holy See (Vatican City State)'),
+    ('Honduras', 'Honduras'),
+    ('Hong Kong', 'Hong Kong'),
+    ('Hungarian', 'Hungarian'),
+    ('Iceland', 'Iceland'),
+    ('Indian', 'Indian'),
+    ('Indonesian', 'Indonesian'),
+    ('Iranian', 'Iranian'),
+    ('Ireland', 'Ireland'),
+    ('Israeli', 'Israeli'),
+    ('Japanese', 'Japanese'),
+    ('Jordanian', 'Jordanian'),
+    ('Kazakhstani', 'Kazakhstani'),
+    ('Kenyan', 'Kenyan'),
+    ('Kiribati', 'Kiribati'),
+    ("Korea, Democratic People's Republic of", "Korea, Democratic People's Republic of"),
+    ('Korea, Republic of', 'Korea, Republic of'),
+    ('Kuwaiti', 'Kuwaiti'),
+    ('Kyrgyzstani', 'Kyrgyzstani'),
+    ("Lao People's Democratic Republic", "Lao People's Democratic Republic"),
+    ('Latvian', 'Latvian'),
+    ('Lebanese', 'Lebanese'),
+    ('Lesotho', 'Lesotho'),
+    ('Liberian', 'Liberian'),
+    ('Libyan Arab Jamahiriya', 'Libyan Arab Jamahiriya'),
+    ('Liechtenstein', 'Liechtenstein'),
+    ('Lithuania', 'Lithuania'),
+    ('Luxembourg', 'Luxembourg'),
+    ('Macao', 'Macao'),
+    ('Macedonia, the Former Yugoslav Republic of', 'Macedonia, the Former Yugoslav Republic of'),
+    ('Madagascar', 'Madagascar'),
+    ('Malawi', 'Malawi'),
+    ('Malaysian', 'Malaysian'),
+    ('Maldives', 'Maldives'),
+    ('Mali', 'Mali'),
+    ('Malta', 'Malta'),
+    ('Marshall Islands', 'Marshall Islands'),
+    ('Martinique', 'Martinique'),
+    ('Mauritanian', 'Mauritanian'),
+    ('Mauritius', 'Mauritius'),
+    ('Mayotte', 'Mayotte'),
+    ('Mexican', 'Mexican'),
+    ('Micronesia, Federated States of', 'Micronesia, Federated States of'),
+    ('Moldova, Republic of', 'Moldova, Republic of'),
+    ('Monaco', 'Monaco'),
+    ('Mongolian', 'Mongolian'),
+    ('Montserrat', 'Montserrat'),
+    ('Moroccan', 'Moroccan'),
+    ('Mozambique', 'Mozambique'),
+    ('Myanmar', 'Myanmar'),
+    ('Namibia', 'Namibia'),
+    ('Nauru', 'Nauru'),
+    ('Nepalese', 'Nepalese'),
+    ('Netherlands', 'Netherlands'),
+    ('Netherlands Antilles', 'Netherlands Antilles'),
+    ('New Caledonia', 'New Caledonia'),
+    ('New Zealand', 'New Zealand'),
+    ('Nicaragua', 'Nicaragua'),
+    ('Niger', 'Niger'),
+    ('Nigerian', 'Nigerian'),
+    ('Niue', 'Niue'),
+    ('Norfolk Island', 'Norfolk Island'),
+    ('Northern Mariana Islan', 'Northern Mariana Islan'),
+    ('Norway', 'Norway'),
+    ('Omani', 'Omani'),
+    ('Pakistani', 'Pakistani'),
+    ('Palau', 'Palau'),
+    ('Palestinian', 'Palestinian'),
+    ('Panama', 'Panama'),
+    ('Papua New Guinea', 'Papua New Guinea'),
+    ('Paraguay', 'Paraguay'),
+    ('Peru', 'Peru'),
+    ('Pitcairn', 'Pitcairn'),
+    ('Poland', 'Poland'),
+    ('Portugal', 'Portugal'),
+    ('Puerto Rico', 'Puerto Rico'),
+    ('Qatari', 'Qatari'),
+    ('Reunion', 'Reunion'),
+    ('Romanian', 'Romanian'),
+    ('Russian', 'Russian'),
+    ('Rwanda', 'Rwanda'),
+    ('Saint Helena', 'Saint Helena'),
+    ('Saint Kitts and Nevis', 'Saint Kitts and Nevis'),
+    ('Saint Lucia', 'Saint Lucia'),
+    ('Saint Pierre and Miquelon', 'Saint Pierre and Miquelon'),
+    ('Saint Vincent and the Grenadines', 'Saint Vincent and the Grenadines'),
+    ('Samoa', 'Samoa'),
+    ('San Marino', 'San Marino'),
+    ('Sao Tome and Principe', 'Sao Tome and Principe'),
+    ('Saudi', 'Saudi'),
+    ('Senegal', 'Senegal'),
+    ('Serbia and Montenegro', 'Serbia and Montenegro'),
+    ('Seychelles', 'Seychelles'),
+    ('Sierra Leone', 'Sierra Leone'),
+    ('Singaporean', 'Singaporean'),
+    ('Slovakian', 'Slovakian'),
+    ('Slovenian', 'Slovenian'),
+    ('Solomon - Islands   ', 'Solomon - Islands   '),
+    ('Somalian', 'Somalian'),
+    ('South African', 'South African'),
+    ('South Georgia and the South Sandwich Islands', 'South Georgia and the South Sandwich Islands'),
+    ('Spanish', 'Spanish'),
+    ('Sri Lankan', 'Sri Lankan'),
+    ('Sudanese', 'Sudanese'),
+    ('Suriname', 'Suriname'),
+    ('Svalbard and Jan Mayen', 'Svalbard and Jan Mayen'),
+    ('Swaziland', 'Swaziland'),
+    ('Sweden', 'Sweden'),
+    ('Switzerland', 'Switzerland'),
+    ('Syrian', 'Syrian'),
+    ('Taiwanese', 'Taiwanese'),
+    ('Tajikistan', 'Tajikistan'),
+    ('Tanzania, United Republic of', 'Tanzania, United Republic of'),
+    ('Thai', 'Thai'),
+    ('Timor-Leste', 'Timor-Leste'),
+    ('Togo', 'Togo'),
+    ('Tokelau', 'Tokelau'),
+    ('Tonga', 'Tonga'),
+    ('Trinidad and Tobago', 'Trinidad and Tobago'),
+    ('Tunisia', 'Tunisia'),
+    ('Turkish', 'Turkish'),
+    ('Turkmenistan', 'Turkmenistan'),
+    ('Turks and Caicos Islands', 'Turks and Caicos Islands'),
+    ('Tuvalu', 'Tuvalu'),
+    ('Uganda', 'Uganda'),
+    ('Ukraine', 'Ukraine'),
+    ('United Kingdom', 'United Kingdom'),
+    ('United States', 'United States'),
+    ('United States Minor Outlying Islands', 'United States Minor Outlying Islands'),
+    ('Uruguay', 'Uruguay'),
+    ('Uzbekistani', 'Uzbekistani'),
+    ('Vanuatu', 'Vanuatu'),
+    ('Venezuela', 'Venezuela'),
+    ('Vietnamese', 'Vietnamese'),
+    ('Virgin Islands, British', 'Virgin Islands, British'),
+    ('Virgin Islands, U.s.', 'Virgin Islands, U.s.'),
+    ('Wallis and Futuna', 'Wallis and Futuna'),
+    ('Western Sahara', 'Western Sahara'),
+    ('Yemeni', 'Yemeni'),
+    ('Zambian', 'Zambian'),
+    ('Zimbabwe', 'Zimbabwe'),
+    ('Other', 'Other'),
+
+)
+
 
 INDUSTRY = (
     ('Automotive/ Ancillaries', 'Automotive/ Ancillaries'),
@@ -386,6 +627,7 @@ FUNCTIONS = (
         ('Telecom/ISP', 'Telecom/ISP'),
         ('Textiles/Garments/Accesories/Fashion', 'Textiles/Garments/Accesories/Fashion'),
         ('Tyres', 'Tyres'),
+        ('Other', 'Other'),
 )
 
 MARITAL_STATUS = (
@@ -395,6 +637,19 @@ MARITAL_STATUS = (
     ('Widow(er)', 'Widow(er)'),
 
 )
+
+RELIGION = (
+    ('Islam', 'Islam'),
+    ('Christian', 'Christian'),
+    ('Hindu', 'Hindu'),
+    ('Buddhist', 'Buddhist'),
+    ('Sikh', 'Sikh'),
+    ('Jain', 'Jain'),
+    ('Zoroaster', 'Zoroaster'),
+    ('Other', 'Other'),
+    ('Do not wish to Disclose', 'Do not wish to Disclose'),
+)
+
 
 YEARS = (
     ('1', '1'),
@@ -521,6 +776,7 @@ BASIC_EDU = (
     ('Diploma', 'Diploma'),
     ('Intermediate', 'Intermediate'),
     ('Secondary', 'Secondary'),
+    ('Other', 'Other'),
 )
 
 
@@ -543,6 +799,7 @@ MASTERS_EDU = (
     ('Master of Vetirenary Science', 'Master of Vetirenary Science'),
     ('Master of Computer Application', 'Master of Computer Application'),
     ('MBA/PG Diploma in Business Mgmt ', 'MBA/PG Diploma in Business Mgmt '),
+    ('Other', 'Other'),
 
 )
 
@@ -582,6 +839,7 @@ EDUCATION_REQUIRED = (
     ('Master of Vetirenary Science', 'Master of Vetirenary Science'),
     ('Master of Computer Application', 'Master of Computer Application'),
     ('MBA/PG Diploma in Business Mgmt ', 'MBA/PG Diploma in Business Mgmt '),
+    ('Other', 'Other'),
 
 )
 
@@ -590,7 +848,7 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User)
     user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
     gender = models.CharField('Gender', max_length=7, choices=GENDER)
-    nationality = models.CharField('Nationality', max_length=50, choices=COUNTRY_CHOICES)
+    nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
     current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
     country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
     city = models.CharField('City', null=True, blank=True, max_length=50)
@@ -600,6 +858,7 @@ class UserProfile(models.Model):
     photo = models.FileField( upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
+    applied_jobs  = models.ManyToManyField(JobPosting)
     
     def __unicode__(self):
         return self.user.username
@@ -609,9 +868,8 @@ class UserProfile(models.Model):
         verbose_name_plural = 'UserProfile'
 
 
-
 class Employment(models.Model):
-    user = models.ForeignKey(UserProfile)
+    userprofile = models.ForeignKey(UserProfile)
     exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
     exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
     salary = models.IntegerField('Salary', null=True, blank=True)
@@ -622,16 +880,17 @@ class Employment(models.Model):
 
 
     def __unicode__(self):
-        return self.user.username
+        return self.userprofile.user.username
 
     class Meta:
 
         verbose_name = 'Employment'
         verbose_name_plural = 'Employment'
 
+
 class CompanyProfile(models.Model):
 
-    user = models.ForeignKey(UserProfile)
+    userprofile = models.ForeignKey(UserProfile)
     company_name = models.CharField('Company Name', max_length=20)
     industry_type = models.CharField('Industry Type', max_length=50)
 
@@ -644,7 +903,6 @@ class CompanyProfile(models.Model):
         verbose_name_plural = 'CompanyProfile'
 
 
-
 class JobPosting(models.Model):
 
     company_name = models.ForeignKey(CompanyProfile)
@@ -654,20 +912,21 @@ class JobPosting(models.Model):
     job_details = models.CharField('Job Details', max_length=250)
     document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
     skills = models.CharField('Skills Required', null=True, blank=True, max_length=50)
-    order = models.IntegerField('Order')
+    order = models.IntegerField('Order', default=0)
     industry = models.CharField('Industry', max_length=70, choices=INDUSTRY)
     job_location = models.CharField('Job Location', max_length=50, choices=COUNTRY_CHOICES)
     function = models.CharField('Function', max_length=70, choices=FUNCTIONS)
     role = models.CharField('Role', max_length=70)
     education_req = models.CharField('Education Required', max_length=70, choices=EDUCATION_REQUIRED)
+    other_education = models.CharField('Other Education', max_length=70, null=True, blank=True)
     specialization = models.CharField('Specialization', max_length=70, null=True, blank=True)
-    nationality = models.CharField('Nationality', max_length=70, null=True, blank=True, choices=COUNTRY_CHOICES)
+    nationality = models.CharField('Nationality', max_length=70, null=True, blank=True, choices=NATIONALITY)
     name = models.CharField('Name', max_length=50)
     phone = models.CharField('Phone', max_length=50,null=True, blank=True)
     mail_id = models.CharField('Email Id', max_length=70)
     company_profile = models.CharField('Job Location', max_length=250)
-    #posting_date = models.DateTimeField('Posting Date', null=True, blank=True)
-    #last_date = models.DateTimeField('Last Date', null=True, blank=True)
+    posting_date = models.DateTimeField('Posting Date', null=True, blank=True)
+    last_date = models.DateTimeField('Last Date', null=True, blank=True)
     exp_req_min = models.IntegerField('Experience Required Min', choices=YEARS)
     exp_req_max = models.IntegerField('Experience Required Max', choices=YEARS)
     

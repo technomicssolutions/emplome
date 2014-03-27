@@ -154,32 +154,38 @@ class JobSeekerRegistration(View):
 		
 class JobSeekerRegistration2(View):
 	def get(self, request,*args, **kwargs):
-		context = {}
+		context = {
+
+			'user_id' : kwargs['user_id'],
+		}
+
 		return render(request, 'job_seeker_registration_2.html', context)
 
 	def post(self, request, *args, **kwargs):
 		post_data = request.POST
 		print post_data
+		userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
 		seeker1 = ast.literal_eval(post_data['seeker1'])
 		employment = Employment()
+		employment.userprofile = userprofile
 		employment.exp_yrs = seeker1['years']
 		employment.exp_mnths = seeker1['months']
 		employment.salary = seeker1['salary']
 		employment.designation = seeker1['designation']
 		employment.curr_industry = seeker1['industry']
-		employment.function = seeker1['function']
+		employment.function = seeker1['functions']
 		employment.skills = seeker1['skills']
 		employment.save()
-		userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
+		
 		userprofile.photo = request.FILES['photo_img']
 		userprofile.save()
-		education = Education.objects.get(user=userprofile)
+		education = Education.objects.get(userprofile=userprofile)
 		education.certificate = request.FILES['certificate_img']
 		education.save()
 
 		res = {
 			'result': 'ok',
-			'user_id': user.id,
+			'user_id': kwargs['user_id'],
 		}
 		response = simplejson.dumps(res)
 		status_code = 200
