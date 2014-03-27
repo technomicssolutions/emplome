@@ -238,6 +238,10 @@ function get_basic_education($scope){
 		'Bachelor of Computer Application'	,
 		'MBBS',
 		'Other',
+		'Diploma',
+		'Intermediate Schooling',
+		'Secondary Schooling',
+		'Other',
 	]
 }
 
@@ -283,8 +287,8 @@ function get_education_required($scope){
 		'Bachelor of Computer Application'	,
 		'MBBS',
 		'Diploma',
-		'Intermediate',
-		'Secondary',
+		'Intermediate Schooling',
+		'Secondary Schooling',
 		'Chartered Accountant',
 		'CA Inter',
 		'Chartered Financial Analyst',
@@ -1082,7 +1086,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	return true;
 	}
 
-	$scope.form_validation_2 = function(){
+	$scope.form_validation_more_info = function(){
 		if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
 			$scope.error_flag = true;
 			$scope.error_message = 'Please provide your Experience';
@@ -1133,7 +1137,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	}
 	
 
-	$scope.save_reg1 = function(){
+	$scope.save_reg_more = function(){
 
 		var file = $scope.photo_img.src;
 		var file = $scope.certificate_img.src;
@@ -1165,7 +1169,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	}
 
 	$scope.reg_next =function(){
-		document.location.href = '/job_seeker_registration_2/'+$scope.user_id+'/';
+		document.location.href = '/job_seeker_registration_more_info/'+$scope.user_id+'/';
 	}
 }
 

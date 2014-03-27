@@ -387,15 +387,18 @@ body {
 }
 .left-box{
     /*width:62%;*/
-    background-color: #ECE7F8;
     /*padding:2%;*/
     /*line-height: 2;*/
+    background-color: #ECE7F8;
     border-top:1px solid #663399;
-
     margin: auto;
     width:85%;
-  height:auto;
-  border:1px solid blue;
+    height:auto;
+    border:1px solid blue;
+}
+
+.white{
+    color:white;
 }
 
 

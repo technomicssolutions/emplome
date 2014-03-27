@@ -105,7 +105,7 @@ class RecruiterRegistrationView(View):
 class JobSeekerRegistration(View):
 	def get(self, request,*args, **kwargs):
 		context = {}
-		return render(request, 'job_seeker_registration.html', context)
+		return render(request, 'job_seeker_registration_primary.html', context)
 
 	def post(self, request, *args, **kwargs):
 		post_data = request.POST
@@ -152,14 +152,14 @@ class JobSeekerRegistration(View):
 
 
 		
-class JobSeekerRegistration2(View):
+class JobSeekerRegistrationMoreInfo(View):
 	def get(self, request,*args, **kwargs):
 		context = {
 
 			'user_id' : kwargs['user_id'],
 		}
 
-		return render(request, 'job_seeker_registration_2.html', context)
+		return render(request, 'job_seeker_registration_more_info.html', context)
 
 	def post(self, request, *args, **kwargs):
 		post_data = request.POST

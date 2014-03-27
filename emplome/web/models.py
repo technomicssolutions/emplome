@@ -774,8 +774,8 @@ BASIC_EDU = (
     ('Bachelor of Computer Application', 'Bachelor of Computer Application'),
     ('MBBS', 'MBBS'),
     ('Diploma', 'Diploma'),
-    ('Intermediate', 'Intermediate'),
-    ('Secondary', 'Secondary'),
+    ('Intermediate Schooling', 'Intermediate Schooling'),
+    ('Secondary Schooling', 'Secondary Schooling'),
     ('Other', 'Other'),
 )
 
@@ -819,8 +819,8 @@ EDUCATION_REQUIRED = (
     ('Bachelor of Computer Application', 'Bachelor of Computer Application'),
     ('MBBS', 'MBBS'),
     ('Diploma', 'Diploma'),
-    ('Intermediate', 'Intermediate'),
-    ('Secondary', 'Secondary'),
+    ('Intermediate Schooling', 'Intermediate Schooling'),
+    ('Secondary Schooling', 'Secondary Schooling'),
     ('Chartered Accountant', 'Chartered Accountant'),
     ('CA Inter', 'CA Inter'),
     ('Chartered Financial Analyst', 'Chartered Financial Analyst'),
@@ -844,24 +844,8 @@ EDUCATION_REQUIRED = (
 )
 
 
-class CompanyProfile(models.Model):
+class Job(models.Model):
 
-    
-    company_name = models.CharField('Company Name', max_length=20)
-    industry_type = models.CharField('Industry Type', max_length=50)
-
-    def __unicode__(self):
-        return self.company_name
-
-    class Meta:
-
-        verbose_name = 'CompanyProfile'
-        verbose_name_plural = 'CompanyProfile'
-
-
-class JobPosting(models.Model):
-
-    company_name = models.ForeignKey(CompanyProfile)
     job_title = models.CharField('Job Title', max_length=50)
     ref_code = models.CharField('Ref Code', max_length=15, null=True, blank=True)
     summary = models.CharField('Summary', max_length=250)
@@ -895,8 +879,19 @@ class JobPosting(models.Model):
         verbose_name = 'JobPosting'
         verbose_name_plural = 'JobPosting'
 
+class CompanyProfile(models.Model):
 
+    job = models.ForeignKey(Job)
+    company_name = models.CharField('Company Name', max_length=50)
+    industry_type = models.CharField('Industry Type', max_length=50)
 
+    def __unicode__(self):
+        return self.company_name
+
+    class Meta:
+
+        verbose_name = 'CompanyProfile'
+        verbose_name_plural = 'CompanyProfile'
 
 
 class UserProfile(models.Model):
@@ -913,7 +908,7 @@ class UserProfile(models.Model):
     photo = models.FileField( upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
-    applied_jobs  = models.ManyToManyField(JobPosting)
+    applied_jobs  = models.ManyToManyField(Job)
     
     def __unicode__(self):
         return self.user.username
