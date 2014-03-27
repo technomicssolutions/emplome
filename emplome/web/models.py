@@ -844,53 +844,9 @@ EDUCATION_REQUIRED = (
 )
 
 
-class UserProfile(models.Model):
-    user = models.ForeignKey(User)
-    user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
-    gender = models.CharField('Gender', max_length=7, choices=GENDER)
-    nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
-    current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
-    country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
-    city = models.CharField('City', null=True, blank=True, max_length=50)
-    mobile = models.CharField ('Mobile', max_length=20)
-    land_num = models.CharField('Land Phone', blank=True, max_length=20)
-    alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
-    photo = models.FileField( upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
-    marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
-    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
-    applied_jobs  = models.ManyToManyField(JobPosting)
-    
-    def __unicode__(self):
-        return self.user.username
-
-    class Meta:
-        verbose_name = 'UserProfile'
-        verbose_name_plural = 'UserProfile'
-
-
-class Employment(models.Model):
-    userprofile = models.ForeignKey(UserProfile)
-    exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
-    exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
-    salary = models.IntegerField('Salary', null=True, blank=True)
-    designation = models.CharField('Designation', null=True, blank=True, max_length=50)
-    skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
-    curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
-    function = models.CharField('Function', null=True, blank=True, max_length=50)
-
-
-    def __unicode__(self):
-        return self.userprofile.user.username
-
-    class Meta:
-
-        verbose_name = 'Employment'
-        verbose_name_plural = 'Employment'
-
-
 class CompanyProfile(models.Model):
 
-    userprofile = models.ForeignKey(UserProfile)
+    
     company_name = models.CharField('Company Name', max_length=20)
     industry_type = models.CharField('Industry Type', max_length=50)
 
@@ -938,6 +894,53 @@ class JobPosting(models.Model):
 
         verbose_name = 'JobPosting'
         verbose_name_plural = 'JobPosting'
+
+
+
+
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User)
+    user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
+    gender = models.CharField('Gender', max_length=7, choices=GENDER)
+    nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
+    current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
+    country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
+    city = models.CharField('City', null=True, blank=True, max_length=50)
+    mobile = models.CharField ('Mobile', max_length=20)
+    land_num = models.CharField('Land Phone', blank=True, max_length=20)
+    alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
+    photo = models.FileField( upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
+    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
+    applied_jobs  = models.ManyToManyField(JobPosting)
+    
+    def __unicode__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name = 'UserProfile'
+        verbose_name_plural = 'UserProfile'
+
+
+class Employment(models.Model):
+    userprofile = models.ForeignKey(UserProfile)
+    exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
+    exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
+    salary = models.IntegerField('Salary', null=True, blank=True)
+    designation = models.CharField('Designation', null=True, blank=True, max_length=50)
+    skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
+    curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
+    function = models.CharField('Function', null=True, blank=True, max_length=50)
+
+
+    def __unicode__(self):
+        return self.userprofile.user.username
+
+    class Meta:
+
+        verbose_name = 'Employment'
+        verbose_name_plural = 'Employment'
 
 
 class Education(models.Model):
