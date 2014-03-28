@@ -18,11 +18,11 @@
 		<br>
 		<div class="formrow">
 			<label>Total Experience<span class="red">*</span></label>
-			<select name="years" style="width: 115px" ng-model="seeker1.years">
+			<select name="years" style="width: 14%" ng-model="seeker1.years">
 				<option value="">Years</option>
 				<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == seeker1.years">[[expr]]</option>
 			</select>
-			<select name="months" style="width: 115px" ng-model="seeker1.months">
+			<select name="months" style="width: 14%" ng-model="seeker1.months">
 				<option value="">Months</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -205,6 +205,7 @@
 			<div class="btn">
 				<!-- <label></label> -->
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg_more()">
+				<!-- <input class="button" type="submit" name="previous" value="Previous" ng-click="reg_previous()"> -->
 			</div>
 		<!-- </div> -->
 		<br>
