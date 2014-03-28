@@ -216,7 +216,7 @@ class PostJobsView(View):
 
 	def post(self, request, *args, **kwargs):
 
-		jobPosting =JobPosting()
+		jobPosting =Job()
 		post_data = request.POST
 		jobpost = ast.literal_eval(post_data['jobpost'])
 		current_user = request.user
@@ -229,7 +229,6 @@ class PostJobsView(View):
 		jobPosting.job_details = jobpost['details']
 		jobPosting.document = request.FILES['product_pdf']
 		jobPosting.skills =jobpost['skills']
-		jobPosting.order = 1
 		jobPosting.industry = jobpost['industry']
 		jobPosting.job_location = jobpost['location']
 		jobPosting.function = jobpost['function']
