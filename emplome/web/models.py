@@ -846,6 +846,7 @@ EDUCATION_REQUIRED = (
 
 class Job(models.Model):
 
+    user = models.ForeignKey(User)
     job_title = models.CharField('Job Title', max_length=50)
     ref_code = models.CharField('Ref Code', max_length=15, null=True, blank=True)
     summary = models.CharField('Summary', max_length=250)
