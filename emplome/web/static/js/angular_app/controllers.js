@@ -990,6 +990,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		'industry': '',
 		'functions': '',
 		'skills': '',
+    'checkbox': false,
 
 	}
 
@@ -1077,12 +1078,15 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	return true;
 	}
 
+  $scope.agree_conditions = function() {
+    $scope.seeker1.skills = true;
+  }
 	$scope.form_validation_more_info = function(){
 		if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
 			$scope.error_flag = true;
 			$scope.error_message = 'Please provide your Experience';
 			return false;
-		} else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined || $scope.seeker1.skills == 'select'){
+		} else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
 			$scope.error_flag = true;
 			$scope.error_message = 'Please enter Skills';
 			return false;
@@ -1091,6 +1095,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
       $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
       return false;
     }
+  return true;
 	}
 
 
@@ -1133,6 +1138,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 	$scope.save_reg_more = function(){
 
+    saved = 0;
+
 		alert('Hello');
 		$scope.is_valid = $scope.form_validation_more_info();
 		console.log('is_valid == ', $scope.is_valid);
@@ -1151,11 +1158,22 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 			}
 			console.log($scope.seeker1);
 			var fd = new FormData();
-			fd.append('photo_img', $scope.photo_img.src);
+      // console.log( $scope.photo_img.src);
+			
+      // if($scope.photo_img.src == ''){
+      //   alert("nthng");
+      //   fd.append('photo_img', '');
+      // }
+      fd.append('photo_img', $scope.photo_img.src)
 			fd.append('certificate_img', $scope.certificate_img.src)
 			for(var key in params){
-				fd.append(key, params[key]);			
+				fd.append(key, params[key]);	
+        // if($scope.photo_img.src == ''){
+        //   alert("nthng");
+        //   fd.append('photo_img', '');
+        // }		
 			}
+      // console.log('hiii'+fd);
 			var url = "/job_seeker_registration_more_info/"+$scope.user_id+'/';
 			$http.post(url, fd, {
 				transformRequest: angular.identity,
@@ -1163,8 +1181,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 				}
 			}).success(function(data, status){
 				console.log("Successfully Saved");
-				
-
+        saved = 1;
+        
 			}).error(function(data, status){
 			alert(status);
 

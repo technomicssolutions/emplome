@@ -116,7 +116,7 @@ class JobSeekerRegistration(View):
 		print user
 		user.set_password(seeker['password'])
 		user.save()
-
+		
 		userprofile = UserProfile()
 		userprofile.user = user
 		userprofile.user_type = 'job_seeker'
@@ -127,18 +127,29 @@ class JobSeekerRegistration(View):
 		userprofile.nationality = seeker['nationality']
 		userprofile.country = seeker['country']
 		userprofile.city = seeker['city']
-		userprofile.mobile = seeker['mobile']
-		userprofile.alt_mail = seeker['alt_email']
+		userprofile.mobile = int(seeker['mobile'])
+		if seeker['alt_email'] != "null":
+			userprofile.alt_mail = seeker['alt_email']
 		userprofile.save()
+		
 		education = Education()
 		education.basic_edu = seeker['basic_edu']
-		education.pass_year_basic = seeker['pass_year_basic']
-		education.masters = seeker['masters_edu']
-		education.pass_year_masters = seeker['pass_year_masters']
-		education.doctrate = seeker['doctrate']
+		education.pass_year_basic = int(seeker['pass_year_basic'])
+		if seeker['masters_edu'] != "null":
+			education.masters = seeker['masters_edu']
+		if seeker['pass_year_masters'] != "null":
+			education.pass_year_masters = seeker['pass_year_masters']
+		if seeker['doctrate'] != "null":
+			education.doctrate = seeker['doctrate']
 		education.resume_title = seeker['resume_title']
-		education.resume = request.FILES['resume_doc']
-		education.resume_text = seeker['resume_text']
+
+		resume = request.FILES.get('resume_doc', '')
+		if resume:
+			education.resume = resume
+		# if seeker['resume_doc'] != "null":
+		# 	education.resume = request.FILES['resume_doc']
+		if seeker['resume_text'] != "null":
+			education.resume_text = seeker['resume_text']
 		education.userprofile = userprofile
 		education.save()
 		res = {
@@ -166,21 +177,29 @@ class JobSeekerRegistrationMoreInfo(View):
 		print post_data
 		userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
 		seeker1 = ast.literal_eval(post_data['seeker1'])
-		employment = Employment()
-		employment.userprofile = userprofile
-		employment.exp_yrs = seeker1['years']
-		employment.exp_mnths = seeker1['months']
-		employment.salary = seeker1['salary']
-		employment.designation = seeker1['designation']
-		employment.curr_industry = seeker1['industry']
-		employment.function = seeker1['functions']
+		# seeker1 = ast.literal_eval(post_data['seeker1'])
+		employment, created = Employment.objects.get_or_create(userprofile=userprofile)
+		employment.exp_yrs = int(seeker1['years'])
+		if seeker1['months'] != "null":
+			employment.exp_mnths = int(seeker1['months'])
+		if seeker1['salary'] != "null":
+			employment.salary = int(seeker1['salary'])
+		if seeker1['designation'] != "null":
+			employment.designation = seeker1['designation']
+		if seeker1['industry'] != "null":
+			employment.curr_industry = seeker1['industry']
+		if seeker1['functions'] != "null":
+			employment.function = seeker1['functions']
 		employment.skills = seeker1['skills']
 		employment.save()
-		
-		userprofile.photo = request.FILES['photo_img']
+		photo = request.FILES.get('photo_img', '')
+		if photo:
+			userprofile.photo = photo_img
 		userprofile.save()
-		education = Education.objects.get(userprofile=userprofile)
-		education.certificate = request.FILES['certificate_img']
+		education, created = Education.objects.get_or_create(userprofile=userprofile)
+		certificate = request.FILES.get('certificate_img', '')
+		if certificate:
+			education.certificate = certificate_img
 		education.save()
 
 		res = {
