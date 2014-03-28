@@ -198,7 +198,7 @@
 		<br>
 		<div class="formrow">
 			<label></label>
-			<input type="checkbox" name="checkbox">I have read and agree to the privacy statement and terms of use
+			<input type="checkbox" name="checkbox" ng-model="seeker1.checkbox">I have read and agree to the privacy statement and terms of use
 		</div>
 
 		<!-- <div class="formrow"> -->
@@ -206,6 +206,9 @@
 				<!-- <label></label> -->
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg_more()">
 				<!-- <input class="button" type="submit" name="previous" value="Previous" ng-click="reg_previous()"> -->
+			</div>
+			<div class="message">
+				<p ng-show="error_flag">[[error_message]]</p>
 			</div>
 		<!-- </div> -->
 		<br>

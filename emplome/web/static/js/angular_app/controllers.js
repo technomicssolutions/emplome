@@ -1086,7 +1086,11 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 			$scope.error_flag = true;
 			$scope.error_message = 'Please enter Skills';
 			return false;
-		} 
+		} else if ($scope.seeker1.checkbox == false){
+      $scope.error_flag = true;
+      $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
+      return false;
+    }
 	}
 
 
