@@ -177,18 +177,17 @@ class JobSeekerRegistrationMoreInfo(View):
 		print post_data
 		userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
 		seeker1 = ast.literal_eval(post_data['seeker1'])
-		# seeker1 = ast.literal_eval(post_data['seeker1'])
 		employment, created = Employment.objects.get_or_create(userprofile=userprofile)
 		employment.exp_yrs = int(seeker1['years'])
-		if seeker1['months'] != "null":
+		if seeker1['months'] != "":
 			employment.exp_mnths = int(seeker1['months'])
-		if seeker1['salary'] != "null":
+		if seeker1['salary'] != "":
 			employment.salary = int(seeker1['salary'])
-		if seeker1['designation'] != "null":
+		if seeker1['designation'] != "":
 			employment.designation = seeker1['designation']
-		if seeker1['industry'] != "null":
+		if seeker1['industry'] != "":
 			employment.curr_industry = seeker1['industry']
-		if seeker1['functions'] != "null":
+		if seeker1['functions'] != "":
 			employment.function = seeker1['functions']
 		employment.skills = seeker1['skills']
 		employment.save()

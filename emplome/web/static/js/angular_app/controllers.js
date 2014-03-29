@@ -959,6 +959,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 	$scope.resume_doc = {};
 	$scope.resume_doc.src = "";
+
+  $scope.checkbox = false;
+
 	$scope.seeker = {
 		'email': '',
 		'password': '', 
@@ -979,7 +982,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		'doctrate': '',
 		'resume_title': '',
 		'resume_text': '',
-
 	}
 
 	$scope.seeker1 = {
@@ -990,8 +992,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		'industry': '',
 		'functions': '',
 		'skills': '',
-    'checkbox': false,
-
 	}
 
 	$scope.init = function(csrf_token, user_id) {
@@ -1078,9 +1078,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	return true;
 	}
 
-  $scope.agree_conditions = function() {
-    $scope.seeker1.skills = true;
-  }
+  
 	$scope.form_validation_more_info = function(){
 		if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
 			$scope.error_flag = true;
@@ -1090,7 +1088,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 			$scope.error_flag = true;
 			$scope.error_message = 'Please enter Skills';
 			return false;
-		} else if ($scope.seeker1.checkbox == false){
+		} else if ($scope.checkbox == false){
       $scope.error_flag = true;
       $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
       return false;
