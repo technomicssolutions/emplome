@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{% block title %}{% endblock title%} | EmployeeMe </title>
+        <title>{% block title %}{% endblock title%} | Emplome </title>
         <link rel="shortcut icon" href="/static/images/f_icon.png" type="image/x-icon" />
         <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
         <link rel="stylesheet" href="/static/css/index.css">
@@ -21,7 +21,13 @@
     <body id="{% block body_id %}base{% endblock %}" {% block controller %}{% endblock controller %}>
         <div class="container">
             {% block header %}
-                {% include 'header.html' %}
+
+                {% if user.userprofile_set.all.0.user_type == 'employer' %}
+                {{user.userprofile_set.all.0.user_type}}
+                    {% include 'recruiter_header.html' %}
+                {% else%}
+                    {% include 'header.html' %}
+                {% endif%}
             {% endblock header %}
             <div class="content">
                 {% block content %}
@@ -34,6 +40,7 @@
         </div>
     </body>
 </html>
+
 
 
 

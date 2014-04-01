@@ -19,7 +19,14 @@ from web.models import *
 
 class Home(View):
     def get(self, request, *args, **kwargs):
-        context = {}
+    	jobs = Job.objects.all()
+    	category = [];
+    	location = [];
+    	for job in jobs:
+    		location.append(job.job_location)
+    	# for category in categories:
+    	# 	category.append(job.function)
+    	context = {}
         return render(request, 'home.html', context)
 
 class Logout(View):
@@ -39,7 +46,7 @@ class LoginView(View):
 			login(request, user)
 		else:
 			context = {
-				'message' : 'Username or password is incorrect',
+				'message' : 'Username or Password is incorrect',
 			}
 			return render(request, 'login_job_seeker.html',context)
 
@@ -61,7 +68,7 @@ class JobSeekerProfileView(View):
 		    context = {
 		        'error':'You have no profile'
 		}
-		return render(request, 'job_seeker_profile.html', context)	
+		return render(request, 'profile.html', context)	
 
 class RecruiterHomeView(View):
 	def get(self, request, *args, **kwargs):
@@ -76,6 +83,7 @@ class RecruiterRegistrationView(View):
 
 	def get(self, request, *args, **kwargs):
 		context = {}
+		
 		return render(request, 'recruiter_registration.html', context)
 
 	def post(self, request, *args, **kwargs):
@@ -99,7 +107,7 @@ class RecruiterRegistrationView(View):
 		companyprofile.save()
 
 		context = {}
-		return render(request, 'recruiter_profile.html', context)
+		return render(request, 'profile.html', context)
 
 	
 class JobSeekerRegistration(View):
@@ -112,12 +120,13 @@ class JobSeekerRegistration(View):
 		print request.FILES
 		print post_data
 		seeker = ast.literal_eval(post_data['seeker'])
-		user = User.objects.create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
+		user, created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
 		print user
 		user.set_password(seeker['password'])
 		user.save()
 		
 		userprofile = UserProfile()
+		# userprofile, created = UserProfile.objects.get_or_create(userprofile=userprofile)
 		userprofile.user = user
 		userprofile.user_type = 'job_seeker'
 		print userprofile
@@ -128,18 +137,19 @@ class JobSeekerRegistration(View):
 		userprofile.country = seeker['country']
 		userprofile.city = seeker['city']
 		userprofile.mobile = int(seeker['mobile'])
-		if seeker['alt_email'] != "null":
+		if seeker['alt_email'] != "":
 			userprofile.alt_mail = seeker['alt_email']
 		userprofile.save()
 		
-		education = Education()
+		# education = Education()
+		education, created = Education.objects.get_or_create(userprofile=userprofile)
 		education.basic_edu = seeker['basic_edu']
 		education.pass_year_basic = int(seeker['pass_year_basic'])
-		if seeker['masters_edu'] != "null":
+		if seeker['masters_edu'] != "":
 			education.masters = seeker['masters_edu']
-		if seeker['pass_year_masters'] != "null":
-			education.pass_year_masters = seeker['pass_year_masters']
-		if seeker['doctrate'] != "null":
+		if seeker['pass_year_masters'] != "":
+			education.pass_year_masters = int(seeker['pass_year_masters'])
+		if seeker['doctrate'] != "":
 			education.doctrate = seeker['doctrate']
 		education.resume_title = seeker['resume_title']
 
@@ -148,7 +158,7 @@ class JobSeekerRegistration(View):
 			education.resume = resume
 		# if seeker['resume_doc'] != "null":
 		# 	education.resume = request.FILES['resume_doc']
-		if seeker['resume_text'] != "null":
+		if seeker['resume_text'] != "":
 			education.resume_text = seeker['resume_text']
 		education.userprofile = userprofile
 		education.save()
@@ -224,7 +234,7 @@ class EmployerProfileView(View):
 		    context = {
 		        'error':'You have no profile'
 		}
-		return render(request, 'recruiter_profile.html', context)
+		return render(request, 'profile.html', context)
 
 class PostJobsView(View):
 	def get(self, request,*args, **kwargs):
@@ -234,13 +244,17 @@ class PostJobsView(View):
 
 	def post(self, request, *args, **kwargs):
 
-		jobPosting =Job()
+		jobPosting = Job()
 		post_data = request.POST
 		jobpost = ast.literal_eval(post_data['jobpost'])
 		current_user = request.user
-		profile = UserProfile.objects.get(user = current_user)
-		company = CompanyProfile.objects.get(user = profile)
-		jobPosting.company_name = company
+		print "user ==", current_user
+		profile = current_user.userprofile_set.all()[0]
+		# company = CompanyProfile.objects.get(user = profile)
+		jobs = profile.applied_jobs.all()
+		# jobPosting.company_name = company
+
+		jobPosting.user = current_user
 		jobPosting.job_title = jobpost['title']
 		jobPosting.ref_code = jobpost['code']
 		jobPosting.summary = jobpost['summary']
@@ -250,7 +264,7 @@ class PostJobsView(View):
 		jobPosting.industry = jobpost['industry']
 		jobPosting.job_location = jobpost['location']
 		jobPosting.function = jobpost['function']
-		jobPosting.role = jobpost['role']
+		# jobPosting.role = jobpost['role']
 		jobPosting.education_req = jobpost['requirement']
 		jobPosting.specialization = jobpost['specialisation']
 		jobPosting.nationality = jobpost['nationality']
@@ -261,6 +275,7 @@ class PostJobsView(View):
 		jobPosting.exp_req_min = jobpost['min']
 		jobPosting.exp_req_max = jobpost['max']
 		jobPosting.save()
+
 		res = {
 			'id' : jobPosting.id,
 			'message':'data posted on our server'
@@ -271,8 +286,9 @@ class PostJobsView(View):
 
 class EditPostJobsView(View):
 	def post(self, request, *args, **kwargs):
-		jobPosting =JobPosting.objects.get(id= kwargs['user_id'])
+		jobPosting =Job.objects.get(id= kwargs['user_id'])
 		post_data = request.POST
+
 		jobpost = ast.literal_eval(post_data['jobpost'])
 		jobPosting.job_title = jobpost['title']
 		jobPosting.ref_code = jobpost['code']
@@ -309,8 +325,8 @@ class ListExistingJobs(View):
 		ctx_jobs = []
 		current_user = request.user
 		profile = UserProfile.objects.get(user = current_user)
-		company = CompanyProfile.objects.get(user = profile)
-		jobs = JobPosting.objects.filter(company_name = company)
+		# company = CompanyProfile.objects.get(user = profile)
+		jobs = profile.applied_jobs.all()
 		if request.is_ajax():
 			if len(jobs) > 0:
 				for job in jobs:

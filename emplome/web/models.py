@@ -881,8 +881,8 @@ class Job(models.Model):
 
 class CompanyProfile(models.Model):
 
-    job = models.ForeignKey(Job)
-    company_name = models.CharField('Company Name', max_length=50)
+    job = models.ForeignKey(Job, null=True, blank=True)
+    company_name = models.CharField('Company Name', max_length=50, null=True, blank=True)
     industry_type = models.CharField('Industry Type', max_length=50)
 
     def __unicode__(self):
@@ -944,7 +944,7 @@ class Education(models.Model):
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
     masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
-    doctorate = models.CharField('Doctorate', null=True, blank=True, max_length=50)
+    doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
     resume_text = models.CharField('Resume', null=True, blank=True, max_length=20000)

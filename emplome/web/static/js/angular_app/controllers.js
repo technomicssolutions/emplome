@@ -531,7 +531,7 @@ function get_nationalities($scope){
     	'Turkmenistan',
     	'Turks and Caicos Islands',
     	'Tuvalu',
-		'Uganda',
+		  'Uganda',
     	'Ukraine',
     	'United Kingdom',
     	'United States',
@@ -552,247 +552,10 @@ function get_nationalities($scope){
     ]
 }
 
-   //      	'Afghanistan',
-   //      	'Albania',
-   //      	'Algerian',
-			// 'American Samoa',
-			// 'Andorra',
-			// 'Angola',
-			// 'Anguilla',
-			// 'Antarctica',
-			// 'Antigua and Barbuda',
-			// 'Argentina',
-			// 'Armenia',
-			// 'Aruba',
-			// 'Australian',
-			// 'Austria',
-			// 'Azerbaijan',
-			// 'Bahamas',
-			// 'Bahraini',
-			// 'Bangladeshi',
-			// 'Barbados',
-			// 'Belarus',
-			// 'Belgium',
-			// 'Belize',
-			// 'Benin',
-			// 'Bermuda',
-			// 'Bhutan',
-			// 'Bolivia',
-			// 'Bosnia and Herzegovina',
-			// 'Botswana',
-			// 'Bouvet Island',
-			// 'Brazil',
-			// 'British Indian Ocean Territory',
-			// 'Brunei Darussalam',
-			// 'Bulgaria',
-			// 'Burkina Faso',
-			// 'Burundi',
-			// 'Cambodia',
-			// 'Cameroon',
-			// 'Canadian',
-			// 'Cape Verde',
-			// 'Cayman Islands',
-			// 'Central African Republic',
-			// 'Chad',
-			// 'Chile',
-			// 'Chinese',
-			// 'Christmas Island',
-			// 'Cocos (Keeling) Islands',
-			// 'Colombia',
-			// 'Comoros',
-			// 'Congo',
-			// 'Congo',
-			// 'Cook Islands',
-			// 'Costa Rica',
-			// "Cote D'Ivoire",
-			// 'Croatia',
-			// 'Cuba',
-			// 'Cyprus',
-			// 'Czech Republic',
-			// 'Denmark',
-			// 'Djibouti',
-			// 'Dominica',
-			// 'Dominican Republic',
-			// 'Ecuador',
-			// 'Egyptian',
-			// 'El Salvador',
-			// 'Emirati',
-			// 'Equatorial Guinea',
-			// 'Eritrea',
-			// 'Estonia',
-			// 'Ethiopia',
-			// 'Falkland Islands (Malvinas)',
-			// 'Faroe Islands',
-			// 'Fiji',
-			// 'Filipino',
-			// 'Finland',
-			// 'French',
-			// 'French Guiana',
-			// 'French Polynesia',
-			// 'French Southern Territories',
-			// 'Gabon',
-			// 'Georgia',
-			// 'German',
-			// 'Ghana',
-			// 'Gibraltar',
-			// 'Greece',
-			// 'Greenland',
-			// 'Grenada',
-			// 'Guadeloupe',
-			// 'Guam',
-			// 'Guinea',
-			// 'Guinea-Bissau',
-			// 'Guyana',
-			// 'Haiti',
-			// 'Heard Island and Mcdonald Islands',
-			// 'Holy See (Vatican City State)',
-			// 'Honduras',
-			// 'Hong Kong',
-			// 'Hungary',
-			// 'Iceland',
-			// 'Indian',
-			// 'Indonesian',
-			// 'Iranian',
-			// 'Ireland',
-			// 'Israel',
-			// 'Japan',
-			// 'Jordanian',
-			// 'Kazakhstan',
-			// 'Kenyan',
-			// 'Kiribati',
-			// "Korea, Democratic People's Republic of",
-			// 'Korea, Republic of',
-			// 'Kuwaiti',
-			// 'Kyrgyzstan',
-			// "Lao People's Democratic",
-			// 'Latvia',
-			// 'Lebanese',
-			// 'Lesotho',
-			// 'Liberia',
-			// 'Libyan Arab Jamahiriya',
-			// 'Liechtenstein',
-			// 'Lithuania',
-			// 'Luxembourg',
-			// 'Macao',
-			// 'Macedonia, the Former Yugoslav Republic of',
-			// 'Madagascar',
-			// 'Malawi',
-			// 'Malaysian',
-			// 'Maldives',
-			// 'Mali',
-			// 'Malta',
-			// 'Marshall Islands',
-			// 'Martinique',
-			// 'Mauritania',
-			// 'Mauritius',
-			// 'Mayotte',
-			// 'Mexico',
-			// 'Micronesia, Federated States of',
-			// 'Moldova, Republic of',
-			// 'Monaco',
-			// 'Mongolia',
-			// 'Montserrat',
-			// 'Moroccan',
-			// 'Mozambique',
-			// 'Myanmar',
-			// 'Namibia',
-			// 'Nauru',
-			// 'Nepalese',
-			// 'Netherlands',
-			// 'Netherlands Antilles',
-			// 'New Caledonia',
-			// 'New Zealand',
-			// 'Nicaragua',
-			// 'Niger',
-			// 'Nigerian',
-			// 'Niue',
-			// 'Norfolk Island',
-			// 'Northern Mariana Islan',
-			// 'Norway',
-			// 'Omani',
-			// 'Pakistani',
-			// 'Palau',
-			// 'Palestinian Territory Occupied',
-			// 'Panama',
-			// 'Papua New Guinea',
-			// 'Paraguay',
-			// 'Peru',
-			// 'Pitcairn',
-			// 'Poland',
-			// 'Portugal',
-			// 'Puerto Rico',
-			// 'Qatari',
-			// 'Reunion',
-			// 'Romania',
-			// 'Russian',
-			// 'Rwanda',
-			// 'Saint Helena',
-			// 'Saint Kitts and Nevis',
-			// 'Saint Lucia',
-			// 'Saint Pierre and Miquelon',
-			// 'Saint Vincent and the Grenadines',
-			// 'Samoa',
-			// 'San Marino',
-			// 'Sao Tome and Principe',
-			// 'Saudi',
-			// 'Senegal',
-			// 'Serbia and Montenegro',
-			// 'Seychelles',
-			// 'Sierra Leone',
-			// 'Singaporean',
-			// 'Slovakia',
-			// 'Slovenia',
-			// 'Solomon - Islands	',
-			// 'Somalia',
-			// 'South African',
-			// 'South Georgia and the South Sandwich Islands',
-			// 'Spanish',
-			// 'Sri Lankan',
-			// 'Sudanese',
-			// 'Suriname',
-			// 'Svalbard and Jan Mayen',
-			// 'Swaziland',
-			// 'Sweden',
-			// 'Switzerland',
-			// 'Syrian',
-			// 'Taiwanese',
-			// 'Tajikistan',
-			// 'Tanzania, United Republic of',
-			// 'Thai',
-			// 'Timor-Leste',
-			// 'Togo',
-			// 'Tokelau',
-			// 'Tonga',
-			// 'Trinidad and Tobago',
-			// 'Tunisia',
-			// 'Turkey',
-			// 'Turkmenistan',
-			// 'Turks and Caicos Islands',
-			// 'Tuvalu',
-			// 'Uganda',
-			// 'Ukraine',
-			// 'United Kingdom',
-			// 'United States',
-			// 'United States Minor Outlying Islands',
-			// 'Uruguay',
-			// 'Uzbekistan',
-			// 'Vanuatu',
-			// 'Venezuela',
-			// 'Vietnamese',
-			// 'Virgin Islands, British',
-			// 'Virgin Islands, U.s.',
-			// 'Wallis and Futuna',
-			// 'Western Sahara',
-			// 'Yemeni',
-			// 'Zambia',
-			// 'Zimbabwe',
-			// 'Other',
-// 	]
-// }
 
 function get_industries($scope){
 	$scope.industries = [
-    	'Automotive/ Ancillaries',
+    'Automotive/ Ancillaries',
 		'Banking/ Financial Services',
 		'Bio Technology & Life Sciences',
 		'Chemicals/Petrochemicals',
@@ -1011,7 +774,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     	}
 
 	}
-
 	
 	$scope.form_validation = function(){
 		if ($scope.seeker.email == ''|| $scope.seeker.email == undefined){
@@ -1098,7 +860,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 
 	$scope.save_reg = function(){
-		alert('hii');
+		// alert('hii');
 		$scope.is_valid = $scope.form_validation();
 		console.log('is_valid == ', $scope.is_valid);
 		if ($scope.is_valid) {
@@ -1131,15 +893,13 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 			});
 		}
+     alert('Successfully Registered');
 	}
 	
 
 	$scope.save_reg_more = function(){
 
-    saved = 0;
-
-		alert('Hello');
-		$scope.is_valid = $scope.form_validation_more_info();
+  	$scope.is_valid = $scope.form_validation_more_info();
 		console.log('is_valid == ', $scope.is_valid);
 		if ($scope.is_valid) {
 			$scope.error_flag = false;
@@ -1172,6 +932,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         // }		
 			}
       // console.log('hiii'+fd);
+
 			var url = "/job_seeker_registration_more_info/"+$scope.user_id+'/';
 			$http.post(url, fd, {
 				transformRequest: angular.identity,
@@ -1179,13 +940,13 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 				}
 			}).success(function(data, status){
 				console.log("Successfully Saved");
-        saved = 1;
-        
+              
 			}).error(function(data, status){
 			alert(status);
 
 			});
 		}
+    alert('Successfully Registered');
 	}
 
 	$scope.reg_next =function(){
@@ -1224,7 +985,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'function': '-select-',
         'role': '-select-',
         'requirement': '-select-',
-        'specialisation': '-select-',
+        'specialisation': '',
         'nationality': '-select-',
         'name': '',
         'phone': '',
@@ -1248,9 +1009,87 @@ function  JobPostingController($scope,$element,$http,$timeout){
       	 	$scope.Max.push(i);
     	}	
     	console.log($scope.jobpost);
-		
+
 	}
+
+  $scope.form_validation_postjob = function(){
+    if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide Job Title';
+      return false;
+    } else if ($scope.jobpost.code == '' || $scope.jobpost.code == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide Reference Code';
+      return false;
+    } else if ($scope.jobpost.summary == '' || $scope.jobpost.summary == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide Job summary';
+      return false;
+    } else if ($scope.jobpost.skills == '' || $scope.jobpost.skills == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide your Skills';
+      return false;
+    } else if ($scope.jobpost.min == '' || $scope.jobpost.min == undefined || $scope.jobpost.min == '-min-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the minimum Experience Required';
+      return false;
+    } else if ($scope.jobpost.max == '' || $scope.jobpost.max == undefined || $scope.jobpost.max == '-max-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the maximum Experience Required';
+      return false;
+    } else if ($scope.jobpost.location == '' || $scope.jobpost.location == undefined || $scope.jobpost.location == '-select-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Job location';
+      return false;
+    } else if ($scope.jobpost.industry == '' || $scope.jobpost.industry == undefined || $scope.jobpost.industry == '-select-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Industry';
+      return false;
+    } else if ($scope.jobpost.function == '' || $scope.jobpost.function == undefined || $scope.jobpost.function == '-select-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Function';
+      return false;
+    // } else if ($scope.jobpost.role == '' || $scope.jobpost.role == undefined) {
+    //   $scope.error_flag = true;
+    //   $scope.error_message = 'Please provide the Role';
+    //   return false;
+    } else if ($scope.jobpost.requirement == '' || $scope.jobpost.requirement == undefined || $scope.jobpost.requirement == '-select-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Education Required';
+      return false;
+    } else if ($scope.jobpost.nationality == '' || $scope.jobpost.nationality == undefined || $scope.jobpost.nationality == '-select-') {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please select your Nationality';
+      return false;
+    } else if ($scope.jobpost.name == '' || $scope.jobpost.name == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Name of the Job Owner';
+      return false;
+    } else if ($scope.jobpost.phone == '' || $scope.jobpost.phone == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please enter your Phone Number';
+      return false;
+    } else if ($scope.jobpost.email == '' || $scope.jobpost.email == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide your Email';
+      return false;
+    } else if ($scope.jobpost.profile == '' || $scope.jobpost.profile == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Company Name';
+      return false;
+    } 
+    return true;
+  }
+
+
 	$scope.save_job = function(){
+
+    $scope.is_valid = $scope.form_validation_postjob();
+    console.log('is_valid == ', $scope.is_valid);
+    if ($scope.is_valid) {
+      $scope.error_flag = false;
+      $scope.error_message = '';
+
 		var file = $scope.product_pdf.src;
 		var edit =$scope.edit;
 		params = {
@@ -1277,10 +1116,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
             }).success(function(data, status){
                 console.log("Successfully Saved");
                 $scope.id = data.id;
-                $scope.edit = $scope.edit +1;  
+                $scope.edit = $scope.edit + 1;  
           }).error(function(data, status){
               console.log(status);
         });
+        alert('Job Successfully Posted');
+    }
         
 	}
 	$scope.get_existing_jobs = function() {
@@ -1296,7 +1137,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
 		$http.get('/jobs/details/'+$scope.existing_job+'/').success(function(data)
 	    {
 	    	$scope.existing_job_detail = data.existing_job_details;
-	    	$scope.jobpost = data.existing_job_details[0];
+	    	$scope.
+        jobpost = data.existing_job_details[0];
 	    	console.log($scope.jobpost);
 	    }).error(function(data, status)
 	    {
@@ -1305,3 +1147,4 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
 	}
 }
+

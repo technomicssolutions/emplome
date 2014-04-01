@@ -24,7 +24,7 @@
 				<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == seeker1.years">[[expr]]</option>
 			</select>
 			<select name="months" style="width: 14%" ng-model="seeker1.months">
-				<option value="">Months</option>
+				<option value="">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -50,69 +50,6 @@
 			<label>Current Industry</label>
 			<select name="industry" ng-model="seeker1.industry"> 
 				<option value="">--------------Select------------</option>
-				<!-- <option>Automotive/ Ancillaries</option>
-				<option>Banking/ Financial Services</option>
-				<option>Bio Technology & Life Sciences</option>
-				<option>Chemicals/Petrochemicals</option>
-				<option>Construction</option>
-				<option>FMCG</option>
-				<option>Education</option>
-				<option>Entertainment/ Media/ Publishing</option>
-				<option>Insurance</option>
-				<option>ITES/BPO</option>
-				<option>IT/ Computers - Hardware</option>
-				<option>IT/ Computers - Software</option>
-				<option>KPO/Analytics</option>
-				<option>Machinery/ Equipment Mfg.</option>
-				<option>Oil/ Gas/ Petroleum</option>
-				<option>Pharmaceuticals</option>
-				<option>Plastic/ Rubber</option>
-				<option>Power/Energy</option>
-				<option>Real Estate</option>
-				<option>Retailing</option>
-				<option>Telecom</option>
-				<option>Advertising/PR/Events</option>
-				<option>Agriculture/ Dairy Based</option>
-				<option>Aviation/Aerospace</option>
-				<option>Beauty/Fitness/PersonalCare/SPA</option>
-				<option>Beverages/ Liquor</option>
-				<option>Cement</option>
-				<option>Ceramics & Sanitary Ware</option>
-				<option>Consultancy</option>
-				<option>Courier/ Freight/ Transportation</option>
-				<option>Dotcom</option>
-				<option>Electrical/Switchgear</option>
-				<option>Engineering, Procurement, Construction</option>
-				<option>Environmental Service</option>
-				<option>Facility management</option>
-				<option>Fertilizer/ Pesticides</option>
-				<option>Food & Packaged Food</option>
-				<option>Textiles / Yarn / Fabrics / Garments</option>
-				<option>Gems & Jewellery</option>
-				<option>Government/ PSU/ Defence</option>
-				<option>Consumer Electronics/Appliances</option>
-				<option>Hospitals/ Health Care</option>
-				<option>Hotels/ Restaurant</option>
-				<option>Import / Export</option>
-				<option>Iron/ Steel</option>
-				<option>ISP</option>
-				<option>Law Enforcement/Security Services</option>
-				<option>Leather</option>
-				<option>Market Research</option>
-				<option>Medical Transcription</option>
-				<option>Mining</option>
-				<option>NGO</option>
-				<option>Non-Ferrous Metals</option>
-				<option>Office Equipment/Automation</option>
-				<option>Paints</option>
-				<option>Paper</option>
-				<option>Printing/ Packaging</option>
-				<option>Public Relations (PR)</option>
-				<option>Shipping/ Marine Services</option>
-				<option>Travel/ Tourism</option>
-				<option>Tyres</option>
-				<option>Wood</option>
-				<option>Travel/ Tourism</option> -->
 				<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
 				<!-- <option>Other</option>
 				<option>Any</option> -->
@@ -123,51 +60,6 @@
 			<label>Function</label>
 			<select name ="functions" multiple ng-model="seeker1.functions">
 				<option value="">---------------Select-------------</option>
-				<!-- <option>Construction</option>
-				<option>Banking/Financial Services/Broking</option>
-				<option>Oil & Gas/Petroleum</option>
-				<option>IT - Software Services</option>
-				<option>Medical/Healthcare/Diagnistics/Medical Devices</option>
-				<option>Hotels/Hospitality/Tourism/Recreative</option>
-				<option>Advertising/Pr/Events</option>
-				<option>Agriculture/Dairy/Poultry</option><option>Hotels/Hospitality/Tourism/Recreative</option>
-				<option>Air Conditioning/Refrigeration</option>
-				<option>Airline/Aviation</option>
-				<option>Architecture/Interior Designing</option>
-				<option>Automotive/Auto Ancillary</option>
-				<option>Chemicals/PetroChemical</option>
-				<option>Consumer Durables/Consumer Electronics</option>
-				<option>Courier/Logistics/Transportation/Warehousing</option>
-				<option>Defence/Militarnmenty/Government</option>
-				<option>Education/Training/Teaching</option>
-				<option>Export/Import/General Trading</option>
-				<option>Fertilizers/Pesticides</option>
-				<option>FMGG/Foods/Beverage</option>
-				<option>Fresher - No industry Experience/Not Employed/Intern</option>
-				<option>Gems & Jwellery</option>
-				<option>Industrial Products/Heavy Machinery</option>
-				<option>Insurance</option>
-				<option>Internet/E-Commerece/Dotcom</option>
-				<option>IT - Hardware & Networking</option>
-				<option>Media/Entertainment/Publishing</option>
-				<option>Metals/Steel/Iron/Aluminium/Foundry/Electroplating</option>
-				<option>Mining/Forestry/Fishing</option>
-				<option>NGO/Social Services</option>
-				<option>Office Automation/Equipment/Stationary</option>
-				<option>Paper</option>
-				<option>Pharma/Biotech/Clinical Research</option>
-				<option>Plastics/Rubber</option>
-				<option>Power/Energy</option>
-				<option>Printing/Packing</option>
-				<option>Real Estate</option>
-				<option>Recruitment/Placement Firm</option>
-				<option>Restaurants/Catering</option>
-				<option>Retail</option>
-				<option>Security/Law Enforcement</option>
-				<option>Shipping/Freight</option>
-				<option>Telecom/ISP</option>
-				<option>Textiles/Garments/Accesories/Fashion</option>
-				<option>Tyres</option> -->
 				<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
 				<!-- <option>Other</option> -->
 			</select>

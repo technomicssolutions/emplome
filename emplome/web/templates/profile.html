@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}RecruiterProfile{% endblock title %}
+{% block body_id %}recruiterprofile{% endblock body_id %}
+
+{% block content %}
+
+{% if user.userprofile_set.all.0.user_type == 'employer' %}
+	<div class="profile-box">
+		<strong>{{error}}</strong><br />
+		<label>Welcome to your Home Page</label><br />
+		<label>Post jobs and find the best</label><br />
+
+		<div class="profile-det">
+			<h4>My Profile</h4>
+			<h3>{{profile.company_name}}</h3>
+			Email id :{{profile.user.email}}
+			<br>
+			Mobile:{{ profile.mobile }}
+			<br>
+			<!-- Functional Area : -->
+	 		Industry Type :{{profile.applied_jobs.all.0.companyprofile_set.all.0.industry_type}}
+	 		<br>
+	 		Location : {{profile.country}}
+	 		<br>
+	 	</div>
+	 </div>
+
+{% else %}
+
+	<div class="profile-box">
+		<strong>{{error}}</strong><br />
+		<label>Welcome to your Home Page</label><br />
+		<label>Update CV, browse/search jobs... do lots more on your page!</label><br />
+		<label>Your profile picture is missing. Upload one to increase your visibility and searchability.</label><br />
+		<div class="profile-det">
+			<h4>My Profile</h4>
+			<h3>{{profile.user.first_name}}</h3>
+			Email id :{{profile.user.email}}
+			<br>
+			Mobile:{{ profile.mobile }}
+			<br>
+			
+	 		Location: {{profile.country}}
+	 		<br>
+	 		
+		</div>
+	</div>
+
+{% endif %}
+
+{% endblock content %}
