@@ -3,7 +3,7 @@
 {% block body_id %}recruiterprofile{% endblock body_id %}
 
 {% block content %}
-
+<div class="container">
 {% if user.userprofile_set.all.0.user_type == 'employer' %}
 	<div class="profile-box">
 		<strong>{{error}}</strong><br />
@@ -23,6 +23,7 @@
 	 		Location : {{profile.country}}
 	 		<br>
 	 	</div>
+	 	<br><br><br>
 	 </div>
 
 {% else %}
@@ -44,8 +45,9 @@
 	 		<br>
 	 		
 		</div>
+		<br><br><br>
 	</div>
 
 {% endif %}
-
+</div>
 {% endblock content %}

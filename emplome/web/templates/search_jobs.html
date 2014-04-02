@@ -6,10 +6,11 @@
 	{% for job in jobs %}
 		<div>
 			<a href="{% url 'job_details' job_id=job.id %}">{{job.job_title}} </a>
-			<p> Company: {{job.company_name}} </p>
+			<p> Company: {{job.company.company_name}} </p>
 			<p> Industry Type: {{job.industry}} </p>
 			<p> Functional Area: {{job.function}} </p>
 			<p> Experience: {{job.exp_req_min}} - {{job.exp_req_max}} Yrs</p>
+			<br>
 		</div>
 		<br>
 	{% endfor %}

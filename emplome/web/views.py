@@ -1,6 +1,6 @@
 # Create your views here.
-import datetime
-from datetime import timedelta
+import datetime as dt
+from datetime import datetime
 
 import simplejson
 import ast
@@ -32,8 +32,7 @@ class JobByLocationView(View):
         # print location
         jobs = []
         if location:
-            jobs = Job.objects.filter(job_location=location)
-        
+            jobs = Job.objects.filter(job_location=location)           
         if function:
             jobs = Job.objects.filter(function=function)
         context = {
@@ -121,8 +120,13 @@ class RecruiterRegistrationView(View):
         companyprofile.company_name = request.POST['name']
         companyprofile.industry_type = request.POST['type']
         companyprofile.save()
+        login_user = authenticate(username=request.POST['email'], password=request.POST['password'])
+        if login_user and login_user.is_active:
+            login(request, login_user)
 
-        context = {}
+        context = {
+            'profile': userprofile,
+        }
         return render(request, 'profile.html', context)
 
     
@@ -284,12 +288,16 @@ class PostJobsView(View):
         jobPosting.education_req = jobpost['requirement']
         jobPosting.specialization = jobpost['specialisation']
         jobPosting.nationality = jobpost['nationality']
-        jobPosting.last_date  = jobpost['last_date']
+        print jobpost['last_date']
+        if jobpost['last_date']:
+            jobPosting.last_date  = datetime.strptime(jobpost['last_date'], '%d-%m-%Y')
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
         jobPosting.company_profile = jobpost['profile']
-        jobPosting.posting_date = jobpost['post_date']
+        print jobpost['post_date']
+        if jobpost['post_date']:
+            jobPosting.posting_date = dt.strptime(jobpost['post_date'], '%d-%m-%Y')
         jobPosting.exp_req_min = jobpost['min']
         jobPosting.exp_req_max = jobpost['max']
         jobPosting.save()
@@ -393,9 +401,10 @@ class ListExistingJobDetails(View):
 
 class JobDetailsView(View):
     def get(self, request, *args, **kwargs):
-       
+        job = Job.objects.get(id=kwargs['job_id'])
+        print job
         context = {
-            
+           'job' : 'job', 
         }
 
         return render(request, 'job_details.html', context)

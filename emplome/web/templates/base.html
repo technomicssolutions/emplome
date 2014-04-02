@@ -15,15 +15,16 @@
         <script src="/static/js/angular_app/directives.js"></script>
         <script src="/static/js/angular_app/controllers.js"></script>
         {% block extrahead %}
+
         {% endblock extrahead %}
     </head>
 
     <body id="{% block body_id %}base{% endblock %}" {% block controller %}{% endblock controller %}>
+        <h1>EMPLOME</h1>
         <div class="container">
             {% block header %}
 
                 {% if user.userprofile_set.all.0.user_type == 'employer' %}
-                {{user.userprofile_set.all.0.user_type}}
                     {% include 'recruiter_header.html' %}
                 {% else%}
                     {% include 'header.html' %}

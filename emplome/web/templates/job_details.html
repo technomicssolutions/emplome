@@ -4,20 +4,18 @@
 
 {% block content %}
 
-<div class="div3">
-<h1> JOBS </h1>
-
-	{% for job in jobs %}
-
-	<!-- <div> -->
-		<h1>{{job.company_name}} </h1>
-		Experience : {{job.exp_req_min}} - {{job.exp_req_max}}
-		Education : {{job.education_req}}
-		Industry Type : {{job.industry}}
-		Functional Area : {{job.function}}
-	<!-- </div> -->
-
-	{% endfor %}
+<div class="container">
+<h1> TITLE: {{job.job_title}} </h1>
+	<h1>{{job.company.company_name}} </h1>
+	<br>
+	Experience : {{job.exp_req_min}} - {{job.exp_req_max}}
+	<br>
+	Education : {{job.education_req}}
+	<br>
+	Industry Type : {{job.industry}}
+	<br>
+	Functional Area : {{job.function}}
+	<br><br>
 </div>
 
 {% endblock content %}

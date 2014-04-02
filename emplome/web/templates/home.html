@@ -2,19 +2,22 @@
 {% block title %}Home{% endblock title %}
 {% block body_id %}home{% endblock body_id %}
 
+{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}', '')"{% endblock controller %}
+
+
 {% block content %}
 <div>
 	<div class="sub-container">
 		<div class="company">
 			<br>
 			<h3> SEARCH JOBS </h3>
-			<select>
-				<option>Jobs</option>
-			</select>
+			<!-- <select>
+				<label>Jobs</label>
+			</select> -->
 			<input type="text" name="fname">
-			<select>
+			<!-- <select>
 				<option>All</option>
-			</select>
+			</select> -->
 			<input type="submit" value="Submit">
 			<br>
 			<br>

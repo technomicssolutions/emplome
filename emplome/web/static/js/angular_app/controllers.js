@@ -698,7 +698,9 @@ function get_functions($scope){
 
 function HomeController($scope, $element, $http, $timeout, share, $location)
 {
-  
+  $scope.post_cv = function(){
+    document.location.href = '/job_seeker_registration/';
+  }
 }
 function Registration($scope)
 {
@@ -952,10 +954,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 	$scope.reg_next =function(){
 		document.location.href = '/job_seeker_registration_more_info/'+$scope.user_id+'/';
 	}
-
-	$scope.post_cv = function(){
-		document.location.href = '/job_seeker_registration/';
-	}
+	
 }
 
 
@@ -987,8 +986,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'requirement': '-select-',
         'specialisation': '',
         'nationality': '-select-',
-        'last_date': ''
-        'post_date': ''
+        'last_date': '',
+        'post_date': '',
         'name': '',
         'phone': '',
         'email': '',
