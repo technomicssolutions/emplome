@@ -953,7 +953,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 		document.location.href = '/job_seeker_registration_more_info/'+$scope.user_id+'/';
 	}
 
-	$scope.reg_previous = function(){
+	$scope.post_cv = function(){
 		document.location.href = '/job_seeker_registration/';
 	}
 }
@@ -987,6 +987,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'requirement': '-select-',
         'specialisation': '',
         'nationality': '-select-',
+        'last_date': ''
+        'post_date': ''
         'name': '',
         'phone': '',
         'email': '',

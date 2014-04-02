@@ -123,6 +123,11 @@
 					<option ng-repeat="nationality in nationalities" value="[[nationality]]" ng-selected="nationality == jobpost.nationality">[[nationality]]</option>
 				</select>
 			</div>
+			<div class="formrow">
+				<label>Last Date to Apply</label>
+				<input type="text" name="last_date" ng-model="jobpost.last_date">
+						
+			</div>
 		</div>
 		<div class="separation">
 			<h3>Job Owner Details</h3>
@@ -142,6 +147,11 @@
 			<div class="formrow">
 				<label>Company profile<span class="red">*</span></label>
 					<textarea ng-model="jobpost.profile"> </textarea>
+			</div>
+			<div class="formrow">
+				<label>Last Date to Apply</label>
+				<input type="text" name="post_date" ng-model="jobpost.post_date">
+						
 			</div>
 		</div>
 				<!-- <div class="inner"> -->

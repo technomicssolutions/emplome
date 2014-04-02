@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Search Jobs{% endblock title %}
+{% block body_id %}search_jobs{% endblock body_id %}
+
+{% block content %}
+	{% for job in jobs %}
+		<div>
+			<a href="{% url 'job_details' job_id=job.id %}">{{job.job_title}} </a>
+			<p> Company: {{job.company_name}} </p>
+			<p> Industry Type: {{job.industry}} </p>
+			<p> Functional Area: {{job.function}} </p>
+			<p> Experience: {{job.exp_req_min}} - {{job.exp_req_max}} Yrs</p>
+		</div>
+		<br>
+	{% endfor %}
+	<!-- {% for job in jobs %}
+		<div>
+			<h3>{{job.job_title}}</h3>
+			{{job.company_name}}
+		</div>
+	{% endfor %}
+ -->
+		
+{% endblock %}

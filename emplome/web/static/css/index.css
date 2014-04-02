@@ -11,6 +11,41 @@
 }
 /************* end base styles *****************/
 
+/********** Footer Styles ***********/
+
+.sub-box4{
+    margin-left:1%;
+    width:24.3%;
+    height: auto;
+   
+    display: -moz-stack;
+    display: inline-block;
+}
+
+.sub-box5{
+    margin-left:1%;
+    width:19.3%;
+    height: auto;
+   
+    display: -moz-stack;
+    display: inline-block;
+}
+
+.footer{
+  margin: auto;
+
+  width:80%;
+  height:auto;
+  border:1px solid #cccccc;
+}
+
+.footer_center{
+    text-align: center;
+    border:1px solid #cccccc;
+}
+
+/********** End Footer Styles ***********/
+
 /****************Start Job Seeker Styles**************/
 .year{
   width: 115px;
@@ -28,10 +63,11 @@ width: auto;
   width: 100px;
 }
 
+
 .div3
 {
   margin: auto;
-  margin-top:50px;
+  /*margin-top:50px;*/
   width:80%;
   height:auto;
   border:1px solid blue;
@@ -258,10 +294,14 @@ body {
 
 /*HEADER STYLE END*/
 
+/* Home Page */
+
 .sub-container{
     width:100%;
     border:1px solid #cccccc;
-    height: 288px;
+    height: auto;
+    /*border-top:1px solid #cccccc;*/
+    text-align: top;
 }
 
 .box{
@@ -289,17 +329,22 @@ body {
 .sub-box3{
     margin-left:1%;
     width:30.3%;
-    line-height: 1.5;
+    height: auto;
+    /*line-height: 1.5;*/
     display: -moz-stack;
     display: inline-block;
+    /*border-top:1px solid #cccccc;*/
+
 }
+
+
 .company{
     text-align: center;
     padding: 0.1em;
     width:45%;
     float:left;
     border-right:1px solid #cccccc;
-    height:19em;
+    height: auto;
 }
 .job{
     text-align: center;
@@ -365,6 +410,11 @@ body {
 #email{
     margin-left: 8%;
 }
+
+
+/* End of Home page */
+
+
 /*PROFILE PAGE*/
 .profile-box{
     width:50%;

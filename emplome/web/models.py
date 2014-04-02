@@ -843,10 +843,24 @@ EDUCATION_REQUIRED = (
 
 )
 
+class CompanyProfile(models.Model):
+
+    company_name = models.CharField('Company Name', max_length=50, null=True, blank=True)
+    industry_type = models.CharField('Industry Type', max_length=50)
+
+    def __unicode__(self):
+        return self.company_name
+
+    class Meta:
+
+        verbose_name = 'CompanyProfile'
+        verbose_name_plural = 'CompanyProfile'
+
 
 class Job(models.Model):
 
     user = models.ForeignKey(User)
+    company = models.ForeignKey(CompanyProfile, null=True, blank=True)
     job_title = models.CharField('Job Title', max_length=50)
     ref_code = models.CharField('Ref Code', max_length=15, null=True, blank=True)
     summary = models.CharField('Summary', max_length=250)
@@ -857,9 +871,7 @@ class Job(models.Model):
     industry = models.CharField('Industry', max_length=70, choices=INDUSTRY)
     job_location = models.CharField('Job Location', max_length=50, choices=COUNTRY_CHOICES)
     function = models.CharField('Function', max_length=70, choices=FUNCTIONS)
-    role = models.CharField('Role', max_length=70)
     education_req = models.CharField('Education Required', max_length=70, choices=EDUCATION_REQUIRED)
-    other_education = models.CharField('Other Education', max_length=70, null=True, blank=True)
     specialization = models.CharField('Specialization', max_length=70, null=True, blank=True)
     nationality = models.CharField('Nationality', max_length=70, null=True, blank=True, choices=NATIONALITY)
     name = models.CharField('Name', max_length=50)
@@ -879,20 +891,6 @@ class Job(models.Model):
         verbose_name = 'JobPosting'
         verbose_name_plural = 'JobPosting'
 
-class CompanyProfile(models.Model):
-
-    job = models.ForeignKey(Job, null=True, blank=True)
-    company_name = models.CharField('Company Name', max_length=50, null=True, blank=True)
-    industry_type = models.CharField('Industry Type', max_length=50)
-
-    def __unicode__(self):
-        return self.company_name
-
-    class Meta:
-
-        verbose_name = 'CompanyProfile'
-        verbose_name_plural = 'CompanyProfile'
-
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
@@ -905,7 +903,7 @@ class UserProfile(models.Model):
     mobile = models.CharField ('Mobile', max_length=20)
     land_num = models.CharField('Land Phone', blank=True, max_length=20)
     alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
-    photo = models.FileField( upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    photo = models.FileField( upload_to = "uploads/photos/", max_length=20000, null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
     applied_jobs  = models.ManyToManyField(Job)
@@ -946,9 +944,9 @@ class Education(models.Model):
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
     doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
-    resume = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    resume = models.FileField(upload_to = "uploads/resumes/", max_length=30000, null=True, blank=True)
     resume_text = models.CharField('Resume', null=True, blank=True, max_length=20000)
-    certificate = models.FileField(upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    certificate = models.FileField(upload_to = "uploads/certificates/", max_length=20000, null=True, blank=True)
 
     def __unicode__(self):
         return self.userprofile.user.username
@@ -957,6 +955,11 @@ class Education(models.Model):
 
         verbose_name = 'Education'
         verbose_name_plural = 'Education'
+
+class Home(models.Model):
+    success_stories = models.FileField(upload_to = "uploads/files/", max_length=30000, null=True, blank=True)
+    recomendations = models.FileField(upload_to = "uploads/recommendations/", max_length=20000, null=True, blank=True)
+
 
 
 
