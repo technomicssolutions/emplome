@@ -29,7 +29,6 @@ class SearchJobsView(View):
 
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
-        # print location
         jobs = []
         if location:
             jobs = Job.objects.filter(job_location=location)           
@@ -142,11 +141,8 @@ class JobSeekerRegistration(View):
 
     def post(self, request, *args, **kwargs):
         post_data = request.POST
-        print request.FILES
-        print post_data
         seeker = ast.literal_eval(post_data['seeker'])
         user, created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
-        print user
         user.set_password(seeker['password'])
         user.save()
         
@@ -154,7 +150,6 @@ class JobSeekerRegistration(View):
         # userprofile, created = UserProfile.objects.get_or_create(userprofile=userprofile)
         userprofile.user = user
         userprofile.user_type = 'job_seeker'
-        print seeker['gender']
         userprofile.gender = seeker['gender']
         userprofile.religion = seeker['religion']
         userprofile.marital_status = seeker['marital_status']
@@ -209,7 +204,6 @@ class JobSeekerRegistrationMoreInfo(View):
 
     def post(self, request, *args, **kwargs):
         post_data = request.POST
-        print post_data
         userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
         seeker1 = ast.literal_eval(post_data['seeker1'])
         employment, created = Employment.objects.get_or_create(userprofile=userprofile)
@@ -273,7 +267,6 @@ class PostJobsView(View):
         post_data = request.POST
         jobpost = ast.literal_eval(post_data['jobpost'])
         current_user = request.user
-        print "user ==", current_user
         profile = current_user.userprofile_set.all()[0]
         # company = CompanyProfile.objects.get(user = profile)
         jobs = profile.applied_jobs.all()
@@ -377,7 +370,6 @@ class ListExistingJobDetails(View):
         profile = UserProfile.objects.get(user = current_user)
         company = CompanyProfile.objects.get(user = profile)
         job = JobPosting.objects.filter(ref_code = kwargs['ref_code'],company_name = company)
-        print "jobs",job
         if request.is_ajax():
             ctx_jobs.append({
                 'title':job[0].job_title,
@@ -406,8 +398,7 @@ class ListExistingJobDetails(View):
 class JobDetailsView(View):
     def get(self, request, *args, **kwargs):
         job = Job.objects.get(id=kwargs['job_id'])
-        print job
-
+        
         context = {
            'job' : 'job', 
         }

@@ -49,7 +49,6 @@ body {
     height: auto;
     text-align: center;
     margin-top: 15px;
-    padding: 10px;
 }
 
 .footer_block {
@@ -60,6 +59,61 @@ body {
 }
 
 /********** End Footer Styles ***********/
+
+/********** Home Page ***********/
+.content_top {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.search_box {
+    width: 67%; 
+    float: left;   
+    height: auto;
+    background: none repeat scroll 0 0 #F6F6F6;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    /*height: 50px;*/
+    padding: 5px 5px 18px;
+    margin-right: 7px;
+}
+
+.find_jobs {
+    width: 28%;
+    float: left; 
+    height: auto;
+    background: none repeat scroll 0 0 #F6F6F6;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: justify;
+}
+
+.find_jobs h3{
+    text-align: center;
+    margin-top: 2px;
+}
+
+.search_box_content {
+    float: left;
+    width: 19%;
+    margin-right: 5px;
+}
+.search_box_content input[type='text'] {
+    width: 93%;
+    margin-top: 5px;
+}
+
+.search_box_content select {
+    width: 65%;
+    margin-top: 5px;
+}
+
+
+/********** End Footer Styles ***********/
+
 
 /****************Start Job Seeker Styles**************/
 .year{
