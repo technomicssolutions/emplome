@@ -6,58 +6,69 @@
 
 
 {% block content %}
-<div>
-	<div class="sub-container">
-		<div class="company">
-			<br>
-			<h3> SEARCH JOBS </h3>
-			<!-- <select>
-				<label>Jobs</label>
-			</select> -->
-			<input type="text" name="fname">
-			<!-- <select>
-				<option>All</option>
-			</select> -->
-			<input type="submit" value="Submit">
-			<br>
-			<br>
-			<!-- <a href="">Jobs by Role</a>
-			<a href="">Jobs by Company</a>
-			<a href="">Advanced Job Search</a> -->
+<div class="content_top">
+	<div class="search_box">
+		<h3> SEARCH JOBS </h3>
+		<div class="search_box_content">
+			<label>Keywords</label>
+			<input type="text" name="search" placeholder="your skills,designation">
+		</div>
+		<div class="search_box_content">
+			<label>Location</label>
+			<input type="text" name="search" placeholder="your city name">
+		</div>
+		<div class="search_box_content">
+			<label>Exp</label><br>
+			<select>
+				<option value="select">Exp</option>
+				<option value="1">1</option>
+			</select>
+		</div>
+		<div class="search_box_content">
+			<label>Functional Area</label><br>
+			<select>
+				<option value="select">Select</option>
+				<option value="1">1</option>
+			</select>
 		</div>
 
-		<div class="job">
-			<h2>Find Your Perfect Job</h2>
-			<p>
-			Choose from 9523 jobs.
-			Let employers find you online.
-			Receive matching jobs by Email.
-			Easy and 100% free.
-			</p>
-			<input class="button" type="submit" name="post_cv" value="Post your CV" ng-click="post_cv()">
-			<!-- <button href="{% url 'job_seeker_registration' %}">Post your CV</button> -->
+		<div class="search_box_content">
+			<label>&nbsp;</label><br>
+			<input type="submit" value="Search">
 		</div>
+		
 	</div>
-	<div class="sub-container">
-		<div class="sub-box3">
-			<h4>Success Stories</h4>
-		</div>
-		<div class="sub-box3">
-			<h4>Jobs By Location</h4>
-				{% if locations %}
-					{% for location in locations %}
-						<a href="{% url 'search_jobs' %}?location={{location}}">{{location}}</a>
-						<br>
-					{% endfor %}
-				{% endif %}		
 
-		</div>
-		<div class="sub-box3">
-			
-				<h4>RECOMMENDATIONS FROM EMPLOME</h4>
-				<img src="#">
-			
-		</div>
+	<div class="find_jobs">
+		<h3>Find Your Perfect Job</h3>
+		<ul>
+			<li>Choose from 9523 jobs.</li>
+			<li>Let employers find you online.</li>
+			<li>Receive matching jobs by Email.</li>
+			<li>Easy and 100% free.</li>
+		</ul>
+		<input class="button" type="submit" name="post_cv" value="Post your CV" ng-click="post_cv()">
+	</div>
+</div>
+<div class="content_bottom">
+	<div class="sub-box3">
+		<h4>Success Stories</h4>
+	</div>
+	<div class="sub-box3">
+		<h4>Jobs By Location</h4>
+			{% if locations %}
+				{% for location in locations %}
+					<a href="{% url 'search_jobs' %}?location={{location}}">{{location}}</a>
+					<br>
+				{% endfor %}
+			{% endif %}		
+
+	</div>
+	<div class="sub-box3">
+		
+			<h4>RECOMMENDATIONS FROM EMPLOME</h4>
+			<img src="#">
+		
 	</div>
 </div>
 
