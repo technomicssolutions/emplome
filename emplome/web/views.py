@@ -14,6 +14,8 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import IntegrityError
 
+from django.http import Http404 
+
 from web.models import *
 
 
@@ -29,14 +31,32 @@ class SearchJobsView(View):
 
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
+        skills = request.GET.get('skills', '')
+        exp = request.GET.get('experience', '')
+
         jobs = []
-        if location:
-            jobs = Job.objects.filter(job_location=location)           
+        if location and function and skills and exp:
+            jobs = Job.objects.filter(job_location=location, function=function, skills=skills, exp_req_min__gte=exp, exp_req_max__lte=exp)
+            if not jobs.exists():
+                searched_for = str('"'+location+ '-'+skills+'-'+function+'-'+exp+'"')
+        if location: 
+            jobs = Job.objects.filter(job_location=location)    
+            if not jobs.exists():
+                searched_for = str('"'+location+'"')       
         if function:
             jobs = Job.objects.filter(function=function)
+            if not jobs.exists():
+                searched_for = str('"'+function+'"')  
+        
         context = {
             'jobs': jobs,
         }
+
+        if len(jobs) == 0:
+            context.update({
+                'searched_for': searched_for,
+            })
+        print context
 
         return render(request, 'search_jobs.html', context) 
 
