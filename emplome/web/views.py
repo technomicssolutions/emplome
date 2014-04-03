@@ -120,7 +120,7 @@ class RecruiterRegistrationView(View):
         userprofile.save()
         companyprofile = CompanyProfile() 
         companyprofile.company_name = request.POST['name']
-        companyprofile.industry_type = request.POST['type']
+        companyprofile.industry_type = request.POST['industry']
         companyprofile.save()
         userprofile.company = companyprofile
         userprofile.save()

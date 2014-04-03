@@ -16,30 +16,37 @@
 		{% csrf_token %}
 		<div class="formrow">
 			<label > Company Name<span class="red">*</span></label>  
-			<input type="text"  name="name" value="">
+			<input type="text"  name="name" ng-model="recruiter.name">
+
+			
 		</div>
 		<div class="formrow">
 			<label> Industry Type<span class="red">*</span></label>
-			<input type="text" name="type" value="">
+			
+			<select name="industry">
+				<option>-----Select----<option>					
+				<option ng-repeat="industry in industries" value="[[industry]]" ng-selected="industry == recruiter.industry">[[industry]]</option>
+				</select>
 		</div>
 		<div class="formrow">
 			<label > Email<span class="red">*</span></label>  
-			<input type="text"  name="email" value="">
+			<input type="text"  name="email" ng-model="recruiter.email">
 		</div>
 		<div class="formrow">
 			<label> Password<span class="red">*</span></label>
-			<input type="password" name="password" value="">
+			<input type="password" name="password" ng-model="recruiter.password">
 		</div>
 		<div class="formrow">
 			<label> Mobile</label>
-			<input type="text" name="mobile" value="">
+			<input type="text" name="mobile" ng-model="recruiter.mobile">
 		</div>
 		<div class="formrow">
 			<label> Land Number</label>
-			<input type="text" name="phone" value="">
+			<input type="text" name="phone" ng-model="recruiter.phone">
 		</div>
 		<div class="formrow">
 			<label> Country</label>
+			
 			<select name="country">
 				<option>-----Select----<option>
 				<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
@@ -47,7 +54,7 @@
 		</div>
 		<div class="formrow">
 			<label> City</label>
-			<input type="text" name="city" value="">
+			<input type="text" name="city" ng-model="recruiter.city">
 		</div>
 		<div  align="Center">
 			<div class="buttons">

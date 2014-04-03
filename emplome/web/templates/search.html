@@ -33,24 +33,24 @@
 			<div class="formrow">
 				<label>Experience</label>
 
-			<select name="experience" style="width: 14%" ng-model="search.experience">
-				<option value="">Years</option>
+			<select name="experience" style="width: 14%">
+				<option>Years</option>
 				<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == search.experience">[[expr]]</option>
 			</select>
 				<!-- <input type="text" name="experience" ng-model="search.experience"> -->
 			</div>
 			<div class="formrow">
 				<label>Functional Area</label>
-				<select name ="function" ng-model="search.function">
-					<option value="">---------------Select-------------</option>
+				<select name ="function">
+					<option value="">------Select-----</option>
 					<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
 				</select>
 			</div>
 
 			<div class="formrow">
 				<label>Industry Type</label>
-				<select name="industry" ng-model="search.industry"> 
-					<option value="">--------------Select------------</option>
+				<select name="industry"> 
+					<option value="">------Select------</option>
 					<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
 				</select>
 			</div>
