@@ -977,12 +977,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'title':'',
         'code': '',
         'summary': '',
-        'details': '',
+        // 'details': '',
         'skills': '',
         'location': '-select-',
         'industry': '-select-',
         'function': '-select-',
-        'role': '-select-',
+        // 'role': '-select-',
         'requirement': '-select-',
         'specialisation': '',
         'nationality': '-select-',
@@ -995,6 +995,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'min':'-min-',
         'max':'-max-',
     }
+    
 	$scope.init = function(csrf_token,id) {
 		$scope.csrf_token = csrf_token;
 		$scope.product_pdf = {};

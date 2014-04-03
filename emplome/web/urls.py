@@ -20,5 +20,6 @@ urlpatterns = patterns('',
 	# url(r'^jobs/details/(?P<ref_code>[\w-]+)/$',ListExistingJobDetails.as_view(), name='JobDetails'),
 	url(r'^search/jobs/$',SearchJobsView.as_view(), name='search_jobs'),
 	url(r'^job/details/(?P<job_id>\d+)/$',JobDetailsView.as_view(), name='job_details'),
+	url(r'^search/$', SearchView.as_view(), name='search'),
 	
-	)
+)
