@@ -1020,11 +1020,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 function RecruiterController($scope, $element, $http, $timeout) {
 
 
-    $scope.init = function(csrf_token) {
-        $scope.csrf_token = csrf_token;
-        get_countries($scope);
-        
-    }
+	$scope.init = function(csrf_token) {
+		$scope.csrf_token = csrf_token;
+    get_industries($scope);
+		get_countries($scope);
+		
+	}
 }
 
 function  JobPostingController($scope,$element,$http,$timeout){
@@ -1036,12 +1037,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'title':'',
         'code': '',
         'summary': '',
-        'details': '',
+        // 'details': '',
         'skills': '',
         'location': '-select-',
         'industry': '-select-',
         'function': '-select-',
-        'role': '-select-',
+        // 'role': '-select-',
         'requirement': '-select-',
         'specialisation': '',
         'nationality': '-select-',
@@ -1054,21 +1055,21 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'min':'-min-',
         'max':'-max-',
     }
-    $scope.init = function(csrf_token,id) {
-        $scope.csrf_token = csrf_token;
-        $scope.product_pdf = {};
-        $scope.product_pdf.src = "";
-        $scope.get_existing_jobs();
-        get_countries($scope);
-        get_nationalities($scope);
-        get_industries($scope);
-        get_functions($scope);
-        get_education_required($scope);
-        for(var i=0; i<=50; i++){
-            $scope.Min.push(i);
-            $scope.Max.push(i);
-        }   
-        console.log($scope.jobpost);
+
+	$scope.init = function(csrf_token,id) {
+		$scope.csrf_token = csrf_token;
+		$scope.product_pdf = {};
+    	$scope.product_pdf.src = "";
+    	$scope.get_existing_jobs();
+		get_countries($scope);
+		get_nationalities($scope);
+		get_industries($scope);
+		get_functions($scope);
+		get_education_required($scope);
+		for(var i=0; i<=50; i++){
+      	 	$scope.Min.push(i);
+      	 	$scope.Max.push(i);
+    	}	
 
     }
 
@@ -1208,3 +1209,23 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }
 }
 
+
+function  SearchController($scope,$element,$http,$timeout){
+  $scope.search = {
+    'search_by' = '',
+    'keyword' = '',
+    'location' = '',
+    'experience' = '',
+    'function' = '',
+    'industry' = '',
+  }
+
+  $scope.init = function(csrf_token) {
+    $scope.csrf_token = csrf_token;
+    get_countries($scope);
+    get_functions($scope);
+    get_industries($scope);
+    for(var i=0; i<=50; i++){
+          $scope.experience.push(i);
+    
+}

@@ -425,7 +425,9 @@ class JobDetailsView(View):
 
         return render(request, 'job_details.html', context)
 
+class SearchView(View):
+    def get(self, request, *args, **kwargs):
+         context = {}
 
-
-
-        
+         return render(request, 'search.html', context)
+       

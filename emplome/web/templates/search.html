@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Search
+{% endblock title %}
+{% block body_id %}search{% endblock body_id %}
+
+{% block controller %}ng-controller="SearchController" ng-init="init('{{csrf_token}}', '')"{% endblock controller %}
+
+{% block content %}
+
+<div>
+		{% csrf_token %}
+
+		<h2> Search Jobs </h2>
+		<br>
+		<div class="separation">
+			<br>
+			<label> Search by </label>
+			<input type="text" name="search_by" ng-model="search.search_by">
+			<br><br>
+		</div>
+		<br><br>
+
+		<div class="container">
+			<br>
+			<div class="formrow">
+				<label>Keyword</label>
+				<input type="text" name="keyword" ng-model="search.keyword">
+			</div>
+			<div class="formrow">
+				<label>Location</label>
+				<input type="text" name="location" ng-model="search.location">
+			</div>
+			<div class="formrow">
+				<label>Experience</label>
+
+			<select name="experience" style="width: 14%" ng-model="search.experience">
+				<option value="">Years</option>
+				<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == search.experience">[[expr]]</option>
+			</select>
+				<!-- <input type="text" name="experience" ng-model="search.experience"> -->
+			</div>
+			<div class="formrow">
+				<label>Functional Area</label>
+				<select name ="function" ng-model="search.function">
+					<option value="">---------------Select-------------</option>
+					<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+				</select>
+			</div>
+
+			<div class="formrow">
+				<label>Industry Type</label>
+				<select name="industry" ng-model="search.industry"> 
+					<option value="">--------------Select------------</option>
+					<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+				</select>
+			</div>
+			<br><br><br>
+			<div class="btn">
+				<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="">
+				<br>
+			</div>
+			<br>
+		</div>
+</div>
+
+{% endblock content %}
