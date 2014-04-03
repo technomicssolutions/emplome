@@ -24,7 +24,7 @@ class Home(View):
         
         return render(request, 'home.html', context)
 
-class JobByLocationView(View):
+class SearchJobsView(View):
     def get(self, request, *args, **kwargs):
 
         location = request.GET.get('location', '')
@@ -87,6 +87,10 @@ class JobSeekerProfileView(View):
 
 class RecruiterHomeView(View):
     def get(self, request, *args, **kwargs):
+        employer = True
+        context = {
+            'employer': employer,
+        }
         return render(request, 'recruiter_home.html', {})
 
 class FullTime(View):
@@ -116,10 +120,11 @@ class RecruiterRegistrationView(View):
         userprofile.country=request.POST['country']
         userprofile.save()
         companyprofile = CompanyProfile() 
-        companyprofile.user = userprofile
         companyprofile.company_name = request.POST['name']
         companyprofile.industry_type = request.POST['type']
         companyprofile.save()
+        userprofile.company = companyprofile
+        userprofile.save()
         login_user = authenticate(username=request.POST['email'], password=request.POST['password'])
         if login_user and login_user.is_active:
             login(request, login_user)
@@ -149,8 +154,8 @@ class JobSeekerRegistration(View):
         # userprofile, created = UserProfile.objects.get_or_create(userprofile=userprofile)
         userprofile.user = user
         userprofile.user_type = 'job_seeker'
-        print userprofile
-        # userprofile.gender = seeker['gender']
+        print seeker['gender']
+        userprofile.gender = seeker['gender']
         userprofile.religion = seeker['religion']
         userprofile.marital_status = seeker['marital_status']
         userprofile.nationality = seeker['nationality']
@@ -223,12 +228,12 @@ class JobSeekerRegistrationMoreInfo(View):
         employment.save()
         photo = request.FILES.get('photo_img', '')
         if photo:
-            userprofile.photo = photo_img
+            userprofile.photo = photo
         userprofile.save()
         education, created = Education.objects.get_or_create(userprofile=userprofile)
         certificate = request.FILES.get('certificate_img', '')
         if certificate:
-            education.certificate = certificate_img
+            education.certificate = certificate
         education.save()
 
         res = {
@@ -275,10 +280,10 @@ class PostJobsView(View):
         # jobPosting.company_name = company
 
         jobPosting.user = current_user
+        jobPosting.company = profile.company
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
         jobPosting.summary = jobpost['summary']
-        jobPosting.job_details = jobpost['details']
         jobPosting.document = request.FILES['product_pdf']
         jobPosting.skills =jobpost['skills']
         jobPosting.industry = jobpost['industry']
@@ -288,19 +293,18 @@ class PostJobsView(View):
         jobPosting.education_req = jobpost['requirement']
         jobPosting.specialization = jobpost['specialisation']
         jobPosting.nationality = jobpost['nationality']
-        print jobpost['last_date']
         if jobpost['last_date']:
             jobPosting.last_date  = datetime.strptime(jobpost['last_date'], '%d-%m-%Y')
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
-        jobPosting.company_profile = jobpost['profile']
-        print jobpost['post_date']
         if jobpost['post_date']:
-            jobPosting.posting_date = dt.strptime(jobpost['post_date'], '%d-%m-%Y')
+            jobPosting.posting_date = datetime.strptime(jobpost['post_date'], '%d-%m-%Y')
         jobPosting.exp_req_min = jobpost['min']
         jobPosting.exp_req_max = jobpost['max']
         jobPosting.save()
+
+
 
         res = {
             'id' : jobPosting.id,
@@ -403,6 +407,7 @@ class JobDetailsView(View):
     def get(self, request, *args, **kwargs):
         job = Job.objects.get(id=kwargs['job_id'])
         print job
+
         context = {
            'job' : 'job', 
         }
@@ -412,7 +417,4 @@ class JobDetailsView(View):
 
 
 
-
-
-
-
+        

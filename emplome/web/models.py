@@ -864,8 +864,7 @@ class Job(models.Model):
     job_title = models.CharField('Job Title', max_length=50)
     ref_code = models.CharField('Ref Code', max_length=15, null=True, blank=True)
     summary = models.CharField('Summary', max_length=250)
-    job_details = models.CharField('Job Details', max_length=250)
-    document = models.FileField (upload_to = "uploads/files/", max_length=20000, null=True, blank=True)
+    document = models.FileField (upload_to = "uploads/doc/", max_length=20000, null=True, blank=True)
     skills = models.CharField('Skills Required', null=True, blank=True, max_length=50)
     order = models.IntegerField('Order', default=0)
     industry = models.CharField('Industry', max_length=70, choices=INDUSTRY)
@@ -881,6 +880,8 @@ class Job(models.Model):
     last_date = models.DateField('Last Date', null=True, blank=True)
     exp_req_min = models.IntegerField('Experience Required Min', choices=YEARS)
     exp_req_max = models.IntegerField('Experience Required Max', choices=YEARS)
+    is_featured = models.BooleanField('Is Featured', default=False)
+    is_post = models.BooleanField('Is Post', default=False)
     
 
     def __unicode__(self):
@@ -907,6 +908,7 @@ class UserProfile(models.Model):
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
     applied_jobs  = models.ManyToManyField(Job)
+    company = models.ForeignKey(CompanyProfile, null=True, blank=True)
     
     def __unicode__(self):
         return self.user.username
@@ -945,7 +947,7 @@ class Education(models.Model):
     doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/resumes/", max_length=30000, null=True, blank=True)
-    resume_text = models.CharField('Resume', null=True, blank=True, max_length=20000)
+    resume_text = models.CharField('Resume Text', null=True, blank=True, max_length=20000)
     certificate = models.FileField(upload_to = "uploads/certificates/", max_length=20000, null=True, blank=True)
 
     def __unicode__(self):
@@ -956,12 +958,30 @@ class Education(models.Model):
         verbose_name = 'Education'
         verbose_name_plural = 'Education'
 
-class Home(models.Model):
-    success_stories = models.FileField(upload_to = "uploads/files/", max_length=30000, null=True, blank=True)
-    recomendations = models.FileField(upload_to = "uploads/recommendations/", max_length=20000, null=True, blank=True)
+class SuccessStory(models.Model):
 
+    title = models.CharField('Title', max_length=50, null=True, blank=True)
+    story = models.TextField('Story', null=True, blank=True)
 
+    def __unicode__(self):
+        return self.title
 
-
-
+    class Meta:
         
+        verbose_name = 'SuccessStory'
+        verbose_name_plural = 'SuccessStory'
+
+
+class Recommendation(models.Model):
+
+    recommendation_data = models.TextField('Recommendation', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.recommendation_data
+
+    class Meta:
+
+        verbose_name = 'Recommendation'
+        verbose_name_plural = 'Recommendation' 
+
+       
