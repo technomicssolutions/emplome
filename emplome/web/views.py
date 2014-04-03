@@ -56,8 +56,7 @@ class SearchJobsView(View):
             context.update({
                 'searched_for': searched_for,
             })
-        print context
-
+        
         return render(request, 'search_jobs.html', context) 
 
         
@@ -288,21 +287,20 @@ class PostJobsView(View):
         jobpost = ast.literal_eval(post_data['jobpost'])
         current_user = request.user
         profile = current_user.userprofile_set.all()[0]
-        # company = CompanyProfile.objects.get(user = profile)
         jobs = profile.applied_jobs.all()
-        # jobPosting.company_name = company
-
+        
         jobPosting.user = current_user
         jobPosting.company = profile.company
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
         jobPosting.summary = jobpost['summary']
-        jobPosting.document = request.FILES['product_pdf']
+        document = request.FILES.get('product_pdf', '')
+        if document:
+            jobPosting.document = document
         jobPosting.skills =jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
         jobPosting.function = jobpost['function']
-        # jobPosting.role = jobpost['role']
         jobPosting.education_req = jobpost['requirement']
         jobPosting.specialization = jobpost['specialisation']
         jobPosting.nationality = jobpost['nationality']
@@ -329,6 +327,7 @@ class PostJobsView(View):
 
 class EditPostJobsView(View):
     def post(self, request, *args, **kwargs):
+
         jobPosting =Job.objects.get(id= kwargs['user_id'])
         post_data = request.POST
 
@@ -336,23 +335,28 @@ class EditPostJobsView(View):
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
         jobPosting.summary = jobpost['summary']
-        jobPosting.job_details = jobpost['details']
-        jobPosting.document = request.FILES['product_pdf']
+
+        document = request.FILES.get('product_pdf', '')
+        if document:
+            jobPosting.document = document
         jobPosting.skills =jobpost['skills']
-        jobPosting.order = 1
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
         jobPosting.function = jobpost['function']
-        jobPosting.role = jobpost['role']
         jobPosting.education_req = jobpost['requirement']
         jobPosting.specialization = jobpost['specialisation']
         jobPosting.nationality = jobpost['nationality']
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
-        jobPosting.company_profile = jobpost['profile']
+        
         jobPosting.exp_req_min = jobpost['min']
         jobPosting.exp_req_max = jobpost['max']
+
+        if jobpost['last_date']:
+            jobPosting.last_date  = datetime.strptime(jobpost['last_date'], '%d-%m-%Y')
+        if jobpost['post_date']:
+            jobPosting.posting_date = datetime.strptime(jobpost['post_date'], '%d-%m-%Y')
         jobPosting.save()
         context = {}
         res = {

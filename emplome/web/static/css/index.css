@@ -592,4 +592,5 @@ label textarea{
 }
 .error_message {
     color: #FF0000;
+    margin: 0px;
 }
