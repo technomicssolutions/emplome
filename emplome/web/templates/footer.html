@@ -1,9 +1,5 @@
-
-
-
-<div class="sub-container">
-	<!-- <div class="div3"> -->
-	<div class="sub-box4">
+<div class="footer_top">
+	<div class="footer_block">
 		<h4>Jobs By Location</h4>
 		{% if locations %}
 			{% for location in locations %}
@@ -14,7 +10,7 @@
 		<br><br>	
 	</div>
 
-	<div class="sub-box3">
+	<div class="footer_block">
 		<h4>Jobs By Functional Area</h4>
 		{% if functions %}
 			{% for function in functions %}
@@ -24,7 +20,7 @@
 		{% endif %}	
 		<br><br>	
 	</div>
-	<div class="sub-box5">
+	<div class="footer_block">
 		<h4>Job Seekers</h4>
 			<!-- <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}"> -->
 			<a title="login" href="{% url 'login' %}">Log in</a><br>
@@ -36,7 +32,7 @@
 			<br><br>
 	</div>
 
-	<div class="sub-box5">
+	<div class="footer_block">
 		<h4>Company</h4>
 			<a href="#">About Us</a><br>
 			<a href="#">Contact Us</a><br>
@@ -45,11 +41,10 @@
 			<br><br>
 		
 	</div>
-	<div class="footer_center">
-		<br>
-		<p>copy right 2013 Emplome. All Rights Reserved<br>
-			info@emplome.com</p>
-	</div>
+</div>
+<div class="footer_bottom">
+	<p>copy right 2013 Emplome. All Rights Reserved<br>
+		info@emplome.com</p>
 </div>
 
 

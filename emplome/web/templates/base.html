@@ -22,22 +22,25 @@
     <body id="{% block body_id %}base{% endblock %}" {% block controller %}{% endblock controller %}>
         <h1>EMPLOME</h1>
         <div class="container">
-            {% block header %}
+            <div class="header">
+                {% block header %}
 
-                {% if user.userprofile_set.all.0.user_type == 'employer' %}
-                    {% include 'recruiter_header.html' %}
-                {% else%}
-                    {% include 'header.html' %}
-                {% endif%}
-            {% endblock header %}
+                    {% if user.userprofile_set.all.0.user_type == 'employer' %}
+                        {% include 'recruiter_header.html' %}
+                    {% else%}
+                        {% include 'header.html' %}
+                    {% endif%}
+                {% endblock header %}
+            </div>
             <div class="content">
                 {% block content %}
                 {% endblock content %}
             </div>
-
-            {% block footer %}
-                {% include 'footer.html'%}
-            {% endblock footer %}
+            <div class="footer">
+                {% block footer %}
+                    {% include 'footer.html'%}
+                {% endblock footer %}
+            </div>
         </div>
     </body>
 </html>
