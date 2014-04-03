@@ -21,7 +21,7 @@ body {
 
 .left_content {
     float: left;
-    width: 30%;
+    width: 40%;
 }
 .middle_content {
     float: left;
@@ -589,4 +589,7 @@ body {
 }
 label textarea{
     vertical-align: middle;
+}
+.error_message {
+    color: #FF0000;
 }

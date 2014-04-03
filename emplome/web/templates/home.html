@@ -9,29 +9,33 @@
         <!-- <h3> SEARCH JOBS </h3> -->
         <div class="search_box_content">
             <label>Keywords</label>
-            <input type="text" name="search" placeholder="skills, designation">
+            <input type="text" name="search" placeholder="skills" ng-model="skill">
+            <p ng-show="is_keyword" class="error_message">Please enter the skills</p>
         </div>
         <div class="search_box_content">
             <label>Location</label>
-            <input type="text" name="search" placeholder="city, country">
+            <input type="text" name="search" placeholder="country" ng-model="job_location">
+            <p ng-show="is_location" class="error_message">Please enter the Location</p>
         </div>
         <div class="search_box_content">
             <label>Exp</label><br>
-            <select>
-                <option value="select">Exp</option>
+            <select ng-model="experience">
+                <option value="select" >Exp</option>
                 <option value="[[exp]]" ng-repeat="exp in experiences">[[exp]]</option>
             </select>
+            <p ng-show="is_exp" class="error_message">Please Choose the Exp</p>
         </div>
         <div class="search_box_content">
             <label>Functional Area</label><br>
-            <select>
+            <select ng-model="functional_area">
                 <option value="select">Select</option>
-                <option value="[[function]]]" ng-repeat="function in functions">[[function]]]</option>
+                <option value="[[function]]" ng-repeat="function in functions">[[function]]</option>
             </select>
+            <p ng-show="is_function" class="error_message">Please choose the Functional area</p>
         </div>
 
         <div class="search_box_content">
-            <a href="" class="search_button">Search</a>
+            <a href="" class="search_button" ng-click="job_search()">Search</a>
             <!-- <input type="submit" value="Search"> -->
         </div>
         

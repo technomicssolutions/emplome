@@ -1,3 +1,46 @@
+function validation($scope) {
+
+    if ($scope.skill == '' || $scope.skill == undefined) {
+        $scope.is_keyword = true;
+        $scope.is_location = false;
+        $scope.is_exp = false;
+        $scope.is_function = false;
+        return false;
+    } else if ($scope.job_location == '' || $scope.job_location ==undefined) {
+        $scope.is_location = true;
+        $scope.is_keyword = false;
+        $scope.is_exp = false;
+        $scope.is_function = false;
+        return false;
+    } else if ($scope.experience == 'select') {
+        $scope.is_exp = true;
+        $scope.is_location = false;
+        $scope.is_keyword = false;
+        $scope.is_function = false;
+        return false;
+    } else if ($scope.functional_area == 'select') {
+        $scope.is_function = true;
+        $scope.is_keyword = false;
+        $scope.is_location = false;
+        $scope.is_exp = false;
+        return false;
+    }
+    return true;
+}
+
+
+function search_job($scope) {
+    $scope.is_valid = validation($scope);
+    if ($scope.is_valid) {
+        $scope.is_keyword = false;
+        $scope.is_location = false;
+        $scope.is_exp = false;
+        $scope.is_function = false;
+        var url = '/search/jobs/?location='+$scope.job_location+'&skills='+$scope.skill+'&experience='+$scope.experience+'&function='+$scope.functional_area;
+        document.location.href = url;
+    }
+}
+
 function get_countries($scope){
     $scope.countries = [
           'Afghanistan',
@@ -696,7 +739,13 @@ function get_functions($scope){
 
 function HomeController($scope, $element, $http, $timeout, share, $location)
 {
+    $scope.is_keyword = false;
+    $scope.is_location = false;
+    $scope.is_exp = false;
+    $scope.is_function = false;
     $scope.experiences = [];
+    $scope.experience = 'select';
+    $scope.functional_area = 'select';
 
     $scope.init = function(csrf_token) {
         $scope.csrf_token = csrf_token;
@@ -705,12 +754,11 @@ function HomeController($scope, $element, $http, $timeout, share, $location)
         }
         get_functions($scope);
     }
-    console.log($scope.experiences);
     $scope.post_cv = function(){
         document.location.href = '/job_seeker_registration/';
     }
     $scope.job_search  = function() {
-        
+        search_job($scope);
     }
 }
 function Registration($scope)
