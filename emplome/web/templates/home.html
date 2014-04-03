@@ -2,74 +2,70 @@
 {% block title %}Home{% endblock title %}
 {% block body_id %}home{% endblock body_id %}
 
-{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}', '')"{% endblock controller %}
+{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
 
+{% block search %}
+	<div class="search_box">
+        <!-- <h3> SEARCH JOBS </h3> -->
+        <div class="search_box_content">
+            <label>Keywords</label>
+            <input type="text" name="search" placeholder="skills, designation">
+        </div>
+        <div class="search_box_content">
+            <label>Location</label>
+            <input type="text" name="search" placeholder="city, country">
+        </div>
+        <div class="search_box_content">
+            <label>Exp</label><br>
+            <select>
+                <option value="select">Exp</option>
+                <option value="[[exp]]" ng-repeat="exp in experiences">[[exp]]</option>
+            </select>
+        </div>
+        <div class="search_box_content">
+            <label>Functional Area</label><br>
+            <select>
+                <option value="select">Select</option>
+                <option value="[[function]]]" ng-repeat="function in functions">[[function]]]</option>
+            </select>
+        </div>
+
+        <div class="search_box_content">
+            <a href="" class="search_button">Search</a>
+            <!-- <input type="submit" value="Search"> -->
+        </div>
+        
+    </div>
+{% endblock search %}
 
 {% block content %}
 <div class="content_top">
-	<div class="search_box">
-		<h3> SEARCH JOBS </h3>
-		<div class="search_box_content">
-			<label>Keywords</label>
-			<input type="text" name="search" placeholder="your skills,designation">
-		</div>
-		<div class="search_box_content">
-			<label>Location</label>
-			<input type="text" name="search" placeholder="your city name">
-		</div>
-		<div class="search_box_content">
-			<label>Exp</label><br>
-			<select>
-				<option value="select">Exp</option>
-				<option value="1">1</option>
-			</select>
-		</div>
-		<div class="search_box_content">
-			<label>Functional Area</label><br>
-			<select>
-				<option value="select">Select</option>
-				<option value="1">1</option>
-			</select>
-		</div>
-
-		<div class="search_box_content">
-			<label>&nbsp;</label><br>
-			<input type="submit" value="Search">
-		</div>
-		
-	</div>
-
-	<div class="find_jobs">
-		<h3>Find Your Perfect Job</h3>
-		<ul>
-			<li>Choose from 9523 jobs.</li>
-			<li>Let employers find you online.</li>
-			<li>Receive matching jobs by Email.</li>
-			<li>Easy and 100% free.</li>
-		</ul>
-		<input class="button" type="submit" name="post_cv" value="Post your CV" ng-click="post_cv()">
-	</div>
-</div>
-<div class="content_bottom">
-	<div class="sub-box3">
+	<div class="left_content">
 		<h4>Success Stories</h4>
 	</div>
-	<div class="sub-box3">
+	<div class="middle_content">
 		<h4>Jobs By Location</h4>
-			{% if locations %}
-				{% for location in locations %}
-					<a href="{% url 'search_jobs' %}?location={{location}}">{{location}}</a>
-					<br>
-				{% endfor %}
-			{% endif %}		
+		{% if locations %}
+			{% for location in locations %}
+				<a href="{% url 'search_jobs' %}?location={{location}}">{{location}}</a>
+				<br>
+			{% endfor %}
+		{% endif %}		
 
 	</div>
-	<div class="sub-box3">
-		
-			<h4>RECOMMENDATIONS FROM EMPLOME</h4>
-			<img src="#">
-		
+	<div class="right_content">
+		<div class="find_jobs">
+			<h3>Find Your Perfect Job</h3>
+			<ul>
+				<li>Choose from 9523 jobs.</li>
+				<li>Let employers find you online.</li>
+				<li>Receive matching jobs by Email.</li>
+				<li>Easy and 100% free.</li>
+			</ul>
+			<input class="button" type="submit" name="post_cv" value="Post your CV" ng-click="post_cv()">
+		</div>
+		<h4>RECOMMENDATIONS FROM EMPLOME</h4>
+		<img src="#">
 	</div>
 </div>
-
 {% endblock content %}

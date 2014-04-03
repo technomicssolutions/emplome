@@ -11,15 +11,29 @@ body {
 
 .content {
     width: 100%;
-    margin: auto;
-    min-height: 700px;
+    margin: 30px 0 10px 0; 
+    min-height: 300px;
     background: none repeat scroll 0 0 #FAF9F9;
     border-color: #EBEBEB;
     border-style: solid;
     border-width: 2px 1px 1px;
 }
 
+.left_content {
+    float: left;
+    width: 30%;
+}
+.middle_content {
+    float: left;
+    width: 30%;
+}
+.right_content {
+    float: left;
+    width: 30%;
+}
+
 .header {
+    min-height: 180px;
     width: 100%;
 }
 
@@ -29,6 +43,24 @@ body {
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     /*border:1px solid #cccccc;*/
+}
+
+.search_button {
+    border: medium none;
+    font-size: 14px;
+    line-height: 22px;
+    padding-bottom: 5px;
+    width: 70px;
+    background-color: #FEC41F;
+    display: block;
+    color: #4F663B;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 2px;
+    text-decoration: none;
+    height: 20px;
+    margin-top: 10px;
 }
 
 
@@ -69,19 +101,18 @@ body {
 }
 
 .search_box {
-    width: 67%; 
+    width: 99%; 
     float: left;   
     height: auto;
-    background: none repeat scroll 0 0 #F6F6F6;
-    border: 1px solid #CCCCCC;
     border-radius: 5px;
-    /*height: 50px;*/
     padding: 5px 5px 18px;
     margin-right: 7px;
+    border-bottom: 2px solid #3493D9;
+    font-size: 12px;
+    margin: auto;
 }
 
 .find_jobs {
-    width: 28%;
     float: left; 
     height: auto;
     background: none repeat scroll 0 0 #F6F6F6;
@@ -89,6 +120,7 @@ body {
     border-radius: 5px;
     padding: 5px;
     text-align: justify;
+    margin-bottom: 10px;
 }
 
 .find_jobs h3{
@@ -101,7 +133,7 @@ body {
     width: 19%;
     margin-right: 5px;
 }
-.search_box_content input[type='text'] {
+.search_box_content input[type='text']{
     width: 93%;
     margin-top: 5px;
 }
@@ -110,6 +142,8 @@ body {
     width: 65%;
     margin-top: 5px;
 }
+
+
 
 
 /********** End Footer Styles ***********/
