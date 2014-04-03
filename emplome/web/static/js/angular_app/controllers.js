@@ -29,16 +29,22 @@ function validation($scope) {
 }
 
 
-function search_job($scope) {
-    $scope.is_valid = validation($scope);
-    if ($scope.is_valid) {
-        $scope.is_keyword = false;
-        $scope.is_location = false;
-        $scope.is_exp = false;
-        $scope.is_function = false;
-        var url = '/search/jobs/?location='+$scope.job_location+'&skills='+$scope.skill+'&experience='+$scope.experience+'&function='+$scope.functional_area;
-        document.location.href = url;
+function search_job($scope, search_option) {
+    if (search_option) {
+      var url = '/search/jobs/?location='+$scope.job_location+'&skills='+$scope.skill+'&experience='+$scope.experience+'&function='+$scope.functional_area;
+      document.location.href = url;
+    } else {
+      $scope.is_valid = validation($scope);
+      if ($scope.is_valid) {
+          $scope.is_keyword = false;
+          $scope.is_location = false;
+          $scope.is_exp = false;
+          $scope.is_function = false;
+          var url = '/search/jobs/?location='+$scope.job_location+'&skills='+$scope.skill+'&experience='+$scope.experience+'&function='+$scope.functional_area;
+          document.location.href = url;
+      }
     }
+    
 }
 
 function get_countries($scope){
@@ -758,7 +764,7 @@ function HomeController($scope, $element, $http, $timeout, share, $location)
         document.location.href = '/job_seeker_registration/';
     }
     $scope.job_search  = function() {
-        search_job($scope);
+        search_job($scope, '');
     }
 }
 function Registration($scope)
@@ -1222,6 +1228,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
 
 function  SearchController($scope,$element,$http,$timeout){
+
+  $scope.experiences = [];
+  $scope.experience = 'select';
+  $scope.function = 'select';
+  $scope.industry = 'select';
+
   $scope.search = {
     'search_by' : '',
     'keyword' : '',
@@ -1233,7 +1245,7 @@ function  SearchController($scope,$element,$http,$timeout){
 
   $scope.init = function(csrf_token) {
     $scope.csrf_token = csrf_token;
-    get_countries($scope);
+    // get_countries($scope);
     get_functions($scope);
     get_industries($scope);
     
@@ -1241,5 +1253,7 @@ function  SearchController($scope,$element,$http,$timeout){
           $scope.experience.push(i);
     }
   }
-    
-}
+
+  $scope.search = function(){
+    search_jobs($scope, 'search_option');
+} 
