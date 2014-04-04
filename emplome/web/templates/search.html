@@ -8,21 +8,15 @@
 {% endblock search %}
 {% block content %}
 
-<div>
-		{% csrf_token %}
-
+	<div class="search_block">
 		<h2> Search Jobs </h2>
-		<br>
-		<div >
-			<br>
-			<label> Search by : </label>
-			<span> [[search.keyword]] - [[search.location]] - [[search.experience]] - [[search.function_name]] - [[search.industry]]</span>
-			<br><br>
-		</div>
-		<br><br>
+		
 
-		<div class="container">
-			<br>
+		<div class="search_container">
+			<div class="formrow">
+				<label id="search_by"> Search by : <span id="search_text"> [[search.keyword]] - [[search.location]] - [[search.experience]] - [[search.function_name]] - [[search.industry]]</span></label>
+				
+			</div>
 			<div class="formrow">
 				<label>Keyword</label>
 				<input type="text" ng-style="alert_style" name="keyword" ng-model="search.keyword" id="keyword">
@@ -63,6 +57,6 @@
 			</div>
 			<br>
 		</div>
-</div>
+	</div>
 
 {% endblock content %}

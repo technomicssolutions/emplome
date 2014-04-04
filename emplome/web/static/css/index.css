@@ -597,3 +597,33 @@ label textarea{
 .alert {
     border: 1px solid #FF0000;
 }
+
+.search_result_warning {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+.search_result_warning p {
+    font-size: 15px;
+}
+.search_block {
+    width: 100%;
+    padding: 20px;
+}
+.search_block h2 {
+    margin: auto;
+    width: 30%;
+}
+.search_container {
+    width:80%;
+    margin: auto;
+    margin-top: 20px;
+}
+#search_by {
+    width: 100%;
+}
+#search_text {
+    color: #006600;
+}

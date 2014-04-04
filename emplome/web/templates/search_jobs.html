@@ -54,12 +54,17 @@
 			<br>
 		{% endfor %}
 	{% else %}
-		<p>No Jobs found for this criteria. <br>
-			Your search -{{searched_for}} did not match any documents.<br>
-			Suggestions:
-				Please check your spelling and try some different Keywords.
-				Try relaxing search criteria. 
-		</p>
+		<div class="search_result_warning">
+            <p class="error_message">No Jobs found for this criteria. </p>
+			<p>Your search {{searched_for}} did not match any documents.</p>
+			<p>Suggestions:</p>
+            <ul>
+                <li>Please check your spelling and try some different Keywords.</li>
+                <li>Try relaxing search criteria. </li>
+            </ul>
+				
+				
+		</div>
 	{% endif %}
 		
 {% endblock %}
