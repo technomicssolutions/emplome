@@ -8,9 +8,11 @@ def site_variables(request):
     ctx_function = []
     jobs = Job.objects.all()
     for job in jobs:
-        ctx_location.append(job.job_location)
+        if job.job_location not in ctx_location:
+            ctx_location.append(job.job_location)
     for job in jobs:
-        ctx_function.append(job.function)
+        if job.function not in ctx_function:
+            ctx_function.append(job.function)
 
     return {
         'SITE_ROOT_URL_S': 'http://%s/'%(current_site.domain),
