@@ -1240,6 +1240,11 @@ function  JobPostingController($scope,$element,$http,$timeout){
         });
 
     }
+
+    $scope.view_posted_jobs = function() {
+        var url = '/posted_jobs/';
+        document.location.href = url;
+    }
 }
 
 
