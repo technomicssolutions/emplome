@@ -889,7 +889,7 @@ class Employment(models.Model):
     designation = models.CharField('Designation', null=True, blank=True, max_length=50)
     skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
     curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
-    function = models.CharField('Function', null=True, blank=True, max_length=50)
+    function = models.CharField('Function', null=True, blank=True, max_length=50, choices=FUNCTIONS)
 
 
     def __unicode__(self):
