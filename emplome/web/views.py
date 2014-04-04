@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import IntegrityError
+from django.db.models import Q
 
 from django.http import Http404 
 
@@ -27,26 +28,42 @@ class Home(View):
         return render(request, 'home.html', context)
 
 class SearchJobsView(View):
+
     def get(self, request, *args, **kwargs):
 
+        search = False
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
         skills = request.GET.get('skills', '')
         exp = request.GET.get('experience', '')
-
+        industry = request.GET.get('industry', '')
+        search_flag = request.GET.get('search', '')
+        if search_flag == 'true':
+            search = True
         jobs = []
-        if location and function and skills and exp:
-            jobs = Job.objects.filter(job_location=location, function=function, skills=skills, exp_req_min__gte=exp, exp_req_max__lte=exp)
+        if location and function and skills and exp and not search:
+            experience = int(exp)
+            jobs = Job.objects.filter(Q(job_location=location) , Q(function=function), Q(skills=skills), Q(exp_req_min__lte=experience, exp_req_max__gte=experience))
             if not jobs.exists():
                 searched_for = str('"'+location+ '-'+skills+'-'+function+'-'+exp+'"')
-        if location: 
+        
+        elif location and not function and not skills and not exp and not industry and not search: 
             jobs = Job.objects.filter(job_location=location)    
             if not jobs.exists():
                 searched_for = str('"'+location+'"')       
-        if function:
+        elif function and not location and not skills and not exp and not industry and not search:
             jobs = Job.objects.filter(function=function)
             if not jobs.exists():
                 searched_for = str('"'+function+'"')  
+        else:
+            if exp:
+                jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry))
+            else:
+                jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)))
+            if not jobs.exists():
+                searched_for = ''
+                # exp_req_min__gte=exp, exp_req_max__lte=exp,
+
         
         context = {
             'jobs': jobs,
@@ -430,6 +447,7 @@ class JobDetailsView(View):
         return render(request, 'job_details.html', context)
 
 class SearchView(View):
+
     def get(self, request, *args, **kwargs):
          context = {}
 

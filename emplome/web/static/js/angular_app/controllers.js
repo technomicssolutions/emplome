@@ -31,8 +31,20 @@ function validation($scope) {
 
 function search_job($scope, search_option) {
     if (search_option) {
-      var url = '/search/jobs/?location='+$scope.job_location+'&skills='+$scope.skill+'&experience='+$scope.experience+'&function='+$scope.functional_area;
-      document.location.href = url;
+        if (($scope.search.keyword == '' || $scope.search.keyword == undefined) && ($scope.search.location == '' || $scope.search.location == undefined) && ($scope.search.experience == '' || $scope.search.experience == undefined) && ($scope.search.function_name == '' || $scope.search.function_name == undefined)) {
+            console.log('in if');
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter value for the any of the criteria';
+            $scope.alert_style = {border: '1px solid #FF0000'};
+            
+        }  else {
+            $scope.alert_style = {};
+            $scope.error_flag = false;
+            $scope.error_message = '';
+            var url = '/search/jobs/?location='+$scope.search.location+'&skills='+$scope.search.keyword+'&experience='+$scope.search.experience+'&function='+$scope.search.function_name+'&industry='+$scope.search.industry+'&search=true';
+            document.location.href = url;
+            console.log('in else');
+        }
     } else {
       $scope.is_valid = validation($scope);
       if ($scope.is_valid) {
@@ -1230,16 +1242,14 @@ function  JobPostingController($scope,$element,$http,$timeout){
 function  SearchController($scope,$element,$http,$timeout){
 
     $scope.experiences = [];
-    $scope.experience = 'select';
-    $scope.function = 'select';
-    $scope.industry = 'select';
 
+    $scope.alert_style = {};
+    
     $scope.search = {
-        'search_by' : '',
         'keyword' : '',
         'location' : '',
         'experience' : '',
-        'function' : '',
+        'function_name' : '',
         'industry' : '',
     }
 
@@ -1250,11 +1260,11 @@ function  SearchController($scope,$element,$http,$timeout){
         get_industries($scope);
 
         for(var i=0; i<=50; i++){
-            $scope.experience.push(i);
+            $scope.experiences.push(i);
         }
     }
 
     $scope.search = function(){
-        search_jobs($scope, 'search_option');
+        search_job($scope, 'search_jobs');
     } 
 }
