@@ -86,14 +86,15 @@
 			<br><br>
 			Functional Area : {{profile.employment_set.all.0.function}}
 			<br><br>
-			Industry Type : {{profile.userprofile.employment.curr_industry}}
+			Industry Type : {{profile.employment_set.all.0.curr_industry}}
 			<br><br>
-			Work Experience : {{profile.userprofile.employment.exp_yrs}} Year(s), {{profile.userprofile.employment.exp_mnths}} Month(s)
+			Work Experience : {{profile.employment_set.all.0.exp_yrs}} Year(s), {{profile.employment_set.all.0.exp_mnths}} Month(s)
 			<br><br>
 			<!-- Highest Education : if  -->
 			Location : {{profile.country}}
 	 		<br><br>	 		
 		</div>
+		<input type="submit" name="edit" value="Edit Profile">
 		<br><br><br>
 	</div>
 
