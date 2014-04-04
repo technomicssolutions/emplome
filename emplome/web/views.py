@@ -84,16 +84,17 @@ class LoginView(View):
             return render(request, 'login_job_seeker.html',context)
 
         if userdata.user_type == 'employer':
-            return HttpResponseRedirect(reverse('empprofile',args=[user.id]))
+            return HttpResponseRedirect(reverse('profile',args=[user.id]))
         else:
             return HttpResponseRedirect(reverse('profile',args=[user.id]))
 
-class JobSeekerProfileView(View):
+class ProfileView(View):
     def get(self, request, *args, **kwargs):
         context = {}
         try:
             user = User.objects.get(id = kwargs['user_id'])
             profile = UserProfile.objects.get(user = user)
+            print profile
             context = {
                 'profile': profile,
             }
@@ -119,9 +120,10 @@ class FullTime(View):
 class RecruiterRegistrationView(View):
 
     def get(self, request, *args, **kwargs):
-        context = {}
+
+        logout(request)
         
-        return render(request, 'recruiter_registration.html', context)
+        return render(request, 'recruiter_registration.html', {})
 
     def post(self, request, *args, **kwargs):
         post_dict = request.POST
@@ -154,11 +156,14 @@ class RecruiterRegistrationView(View):
 
     
 class JobSeekerRegistration(View):
+
     def get(self, request,*args, **kwargs):
-        context = {}
-        return render(request, 'job_seeker_registration.html', context)
+        
+        logout(request)
+        return render(request, 'job_seeker_registration.html', {})
 
     def post(self, request, *args, **kwargs):
+
         post_data = request.POST
         seeker = ast.literal_eval(post_data['seeker'])
         user, created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
@@ -201,6 +206,9 @@ class JobSeekerRegistration(View):
             education.resume_text = seeker['resume_text']
         education.userprofile = userprofile
         education.save()
+        login_user = authenticate(username=seeker['email'], password=seeker['password'])
+        if login_user and login_user.is_active:
+            login(request, login_user)
         res = {
             'result': 'ok',
             'user_id': user.id,
@@ -236,6 +244,7 @@ class JobSeekerRegistrationMoreInfo(View):
         if seeker1['industry'] != "":
             employment.curr_industry = seeker1['industry']
         if seeker1['functions'] != "":
+            
             employment.function = seeker1['functions']
         employment.skills = seeker1['skills']
         employment.save()
@@ -249,6 +258,8 @@ class JobSeekerRegistrationMoreInfo(View):
             education.certificate = certificate
         education.save()
 
+        print request.POST
+
         res = {
             'result': 'ok',
             'user_id': kwargs['user_id'],
@@ -256,23 +267,6 @@ class JobSeekerRegistrationMoreInfo(View):
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype='application/json')
-
-
-
-class EmployerProfileView(View):
-    def get(self, request, *args, **kwargs):
-        context = {}
-        try:
-            user = User.objects.get(id = kwargs['user_id'])
-            profile = UserProfile.objects.get(user = user)
-            context = {
-                'profile': profile,
-            }
-        except:
-            context = {
-                'error':'You have no profile'
-        }
-        return render(request, 'profile.html', context)
 
 class PostJobsView(View):
     def get(self, request,*args, **kwargs):
@@ -315,8 +309,6 @@ class PostJobsView(View):
         jobPosting.exp_req_max = jobpost['max']
         jobPosting.save()
 
-
-
         res = {
             'id' : jobPosting.id,
             'message':'data posted on our server'
@@ -324,6 +316,19 @@ class PostJobsView(View):
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
+
+
+
+class PostedJobsView(View):
+     def get(self, request,*args, **kwargs):
+        jobs = []
+        jobs = Job.objects.filter(user=request.user)
+        context = {
+          'jobs': jobs,
+        }
+        return render(request, 'posted_jobs.html', context)
+
+
 
 class EditPostJobsView(View):
     def post(self, request, *args, **kwargs):

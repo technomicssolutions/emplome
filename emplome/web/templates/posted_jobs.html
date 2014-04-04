@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Posted Jobs
+{% endblock title %}
+{% block body_id %}posted jobs{% endblock body_id %}
+
+{% block controller %}ng-controller="" ng-init="init('{{csrf_token}}', {{user_id}})"{% endblock controller %}
+
+{% block content %}
+
+<div class="container">
+	<div class="separation">
+		{% for job in jobs %}
+			<h3>{{job.job_title}}</h3>
+			Company : {{job.company.company_name}}
+			<br>
+			Ref. Code : {{job.ref_code}}
+			<br>
+			Job Summary : {{job.summary}}
+			<br>
+			Job Details : {{job.document}}
+			<br>job.
+			Key Words/Skills : {{job.skills}}
+			<br>
+			Industry Type : {{job.industry}}
+			<br>
+			Job Location : {{job.job_location}}
+			<br>
+			Functional Area : {{job.function}}
+			<br>
+			Education Required : {{job.education_req}}
+			<br>
+			Specialization : {{job.specialization}}
+			<br>
+			Minium Experience Required : {{job.exp_req_min}}
+			<br>
+			Maximum Experience Required : {{job.exp_req_max}}
+			<br>
+			Nationality : {{job.nationality}}
+			<br>
+			Last Date to Apply : {{job.last_date}}
+			<br>
+			Name of the Job Owner : {{job.name}}
+			<br>
+			Phone : {{job.phone}}
+			<br>
+			Mail Id : {{job.mail_id}}
+			<br>
+			Date Posted : {{job.posting_date}}
+			<br>
+			<br>
+			<input type="submit" name="edit" value="Edit">
+		{% endfor %}
+
+	</div>
+</div>
+
+{% endblock %}

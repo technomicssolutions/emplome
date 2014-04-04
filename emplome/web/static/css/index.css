@@ -525,6 +525,13 @@ body {
 .profile-box label{
     font-size: 11px;
     line-height: 1.5;
+    
+}
+
+.profile-left-box{
+    width: 50%;
+    display: inline;
+    
 }
 
 

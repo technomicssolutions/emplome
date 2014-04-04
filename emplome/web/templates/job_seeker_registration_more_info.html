@@ -58,7 +58,7 @@
 
 		<div class="formrow">
 			<label>Functional Area</label>
-			<select name ="functions" multiple ng-model="seeker1.functions">
+			<select name ="functions" ng-model="seeker1.functions">
 				<option value="">---------------Select-------------</option>
 				<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
 				<!-- <option>Other</option> -->
@@ -98,6 +98,7 @@
 			<div class="btn">
 				<!-- <label></label> -->
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg_more()">
+				<a href="" target="_blank" ng-click="view_profile()">View Profile</a>
 				
 			</div>
 			<div class="message">
