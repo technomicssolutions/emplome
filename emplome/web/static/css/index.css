@@ -458,7 +458,7 @@ body {
     font-size: 12px;
     height: auto;
     line-height: 20px;
-    padding: 1.1em;
+    /*padding: 1.1em;*/
     text-align: justify;
     width: 97%;
 }

@@ -43,8 +43,8 @@
 {% block content %}
 	{% if jobs|length%}
 		{% for job in jobs %}
-			<div>
-				<a href="{% url 'job_details' job_id=job.id %}">{{job.job_title}} </a>
+			<div class="search_result_warning">
+				<h2><a href="{% url 'job_details' job_id=job.id %}">{{job.job_title}} </a></h2>
 				<p> Company: {{job.company.company_name}} </p>
 				<p> Industry Type: {{job.industry}} </p>
 				<p> Functional Area: {{job.function}} </p>
