@@ -939,7 +939,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 
     $scope.save_reg = function(){
-        // alert('hii');
+        
         $scope.is_valid = $scope.form_validation();
         console.log('is_valid == ', $scope.is_valid);
         if ($scope.is_valid) {
@@ -968,11 +968,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 console.log(data);
                 $scope.user_id = data.user_id;
             }).error(function(data, status){
-            alert(status);
-
+            
             });
         }
-     alert('Successfully Registered');
+     
     }
     
 
@@ -1021,15 +1020,20 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 console.log("Successfully Saved");
               
             }).error(function(data, status){
-            alert(status);
+           
 
             });
         }
-    alert('Successfully Registered');
+    
     }
 
     $scope.reg_next =function(){
         document.location.href = '/job_seeker_registration_more_info/'+$scope.user_id+'/';
+    }
+
+    $scope.view_profile = function() {
+        var url = '/profile/'+$scope.user_id+'/';
+        document.location.href = url;
     }
     
 }
@@ -1174,44 +1178,44 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
     $scope.save_job = function(){
 
-    $scope.is_valid = $scope.form_validation_postjob();
-    console.log('is_valid == ', $scope.is_valid);
-    if ($scope.is_valid) {
-      $scope.error_flag = false;
-      $scope.error_message = '';
+        $scope.is_valid = $scope.form_validation_postjob();
+        console.log('is_valid == ', $scope.is_valid);
+        if ($scope.is_valid) {
+          $scope.error_flag = false;
+          $scope.error_message = '';
 
-        var file = $scope.product_pdf.src;
-        var edit =$scope.edit;
-        params = {
-                'jobpost':angular.toJson($scope.jobpost),
-                "csrfmiddlewaretoken" : $scope.csrf_token,
-            }
-        console.log($scope.jobpost);
-        var fd = new FormData();
-        fd.append('product_pdf', $scope.product_pdf.src);
-        for(var key in params){
-          fd.append(key, params[key]);
-        }
-        if(edit == 1){
-            var url = "/recruiter/post-jobs/";
-        }
-        else{
-            var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
-        }
-        $http.post(url, fd, {
-                transformRequest: angular.identity,
-                headers: {'Content-Type': undefined
+            var file = $scope.product_pdf.src;
+            var edit =$scope.edit;
+            params = {
+                    'jobpost':angular.toJson($scope.jobpost),
+                    "csrfmiddlewaretoken" : $scope.csrf_token,
                 }
-                
-            }).success(function(data, status){
-                console.log("Successfully Saved");
-                $scope.id = data.id;
-                $scope.edit = $scope.edit + 1;  
-          }).error(function(data, status){
-              console.log(status);
-        });
-        alert('Job Successfully Posted');
-    }
+            console.log($scope.jobpost);
+            var fd = new FormData();
+            fd.append('product_pdf', $scope.product_pdf.src);
+            for(var key in params){
+              fd.append(key, params[key]);
+            }
+            if(edit == 1){
+                var url = "/recruiter/post-jobs/";
+            }
+            else{
+                var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
+            }
+            $http.post(url, fd, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined
+                    }
+                    
+                }).success(function(data, status){
+                    console.log("Successfully Saved");
+                    $scope.id = data.id;
+                    $scope.edit = $scope.edit + 1;  
+              }).error(function(data, status){
+                  console.log(status);
+            });
+          
+        }
         
     }
     $scope.get_existing_jobs = function() {
