@@ -1229,31 +1229,32 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
 function  SearchController($scope,$element,$http,$timeout){
 
-  $scope.experiences = [];
-  $scope.experience = 'select';
-  $scope.function = 'select';
-  $scope.industry = 'select';
+    $scope.experiences = [];
+    $scope.experience = 'select';
+    $scope.function = 'select';
+    $scope.industry = 'select';
 
-  $scope.search = {
-    'search_by' : '',
-    'keyword' : '',
-    'location' : '',
-    'experience' : '',
-    'function' : '',
-    'industry' : '',
-  }
-
-  $scope.init = function(csrf_token) {
-    $scope.csrf_token = csrf_token;
-    // get_countries($scope);
-    get_functions($scope);
-    get_industries($scope);
-    
-    for(var i=0; i<=50; i++){
-          $scope.experience.push(i);
+    $scope.search = {
+        'search_by' : '',
+        'keyword' : '',
+        'location' : '',
+        'experience' : '',
+        'function' : '',
+        'industry' : '',
     }
-  }
 
-  $scope.search = function(){
-    search_jobs($scope, 'search_option');
-} 
+    $scope.init = function(csrf_token) {
+        $scope.csrf_token = csrf_token;
+        // get_countries($scope);
+        get_functions($scope);
+        get_industries($scope);
+
+        for(var i=0; i<=50; i++){
+            $scope.experience.push(i);
+        }
+    }
+
+    $scope.search = function(){
+        search_jobs($scope, 'search_option');
+    } 
+}
