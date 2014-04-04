@@ -446,7 +446,6 @@ body {
     padding: 0.1em;
     width:45%;
     float:left;
-    border-right:1px solid #cccccc;
     height: auto;
 }
 .job{
@@ -455,65 +454,93 @@ body {
     float:left;
     height:20em;
 }
-.full-box{
-    border:1px solid #cccccc;
-    padding:1.1em;
-    height:auto;
+.full-box {
+    padding: 1.1em;
+    height: auto;
     width: 97%;
 }
 .left{
     text-align: left;
 }
-.large-box{
-    width:55%;
-    float:left;
+.large-box {
+    width: 55%;
+    float: left;
     background-color: #F3FAFF;
     padding-top: 0px;
-    padding-left: 1%;
     margin-right: 5%;
+    border: 1px solid #BFDEF2;
+
 }
-.large-box p{
-    line-height: 1.5;
+.large-box p {
+    float: left;
     font-size: 12px;
+    line-height: 1.5;
+    width: 42%;
+    margin-left: 30px;
 }
-.small-box h4,.large-box h4{
+.large-box h4 {
     background-color: #BFDEF2;
     margin-top: 0px;
+    padding: 10px 0 10px 10px;
 }
-.blue-button{
-    color:#FFFFFF; 
-    font-weight:bold; 
-    line-height:23px;
+.small-box h4 {
+    background-color: #BFDEF2;
+    margin-top: 0px;
+    padding: 10px 0 10px 10px;
+    margin-bottom: 13px;
+}
+.blue-button {
     background-color: #0E5BA8;
+    border: 1px solid #000000;
+    color: #FFFFFF;
     display: block;
-    border:1px solid #000000;
-    text-decoration: none;
-    width:25%;
-    margin-left: 25%;
+    float: left;
+    font-weight: bold;
+    line-height: 23px;
     margin-bottom: 2%;
+    margin-left: 12%;
+    margin-top: 4%;
     padding-left: 3%;
+    text-decoration: none;
+    width: 25%;
 }
-.small-box{
-    border:1px solid #D6EBF9;
+.small-box {
+    border: 1px solid #D6EBF9;
     float: left;
     width: 35%;
-    padding:1%;
-    padding-top: 0px;
     margin-bottom: 4%;
 }
 .small-box input{
    width: 50%;
 }
-.buttons{
+.buttons {
     width: 50%;
 }
-.select1{
-    margin-left:16%;
+.select1 {
+    margin-left: 16%;
 }
-#email{
+#email {
     margin-left: 8%;
 }
 
+.small-box form {
+    width: 90%;
+    margin: auto auto 13px;
+}
+.control {
+    width: 90%;
+}
+.control label {
+    font-size: 12px;
+    width: 40%;
+}
+#login_button {
+    width: 28%;
+}
+
+#job_seeker_login .content{
+    padding: 20px;
+}
 
 /* End of Home page */
 

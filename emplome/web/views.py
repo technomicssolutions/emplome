@@ -90,20 +90,38 @@ class LoginView(View):
         return render(request, 'login_job_seeker.html', context)    
 
     def post(self, request, *args, **kwargs):
-        user = authenticate(username=request.POST['email'], password=request.POST['password'])
-        userdata = UserProfile.objects.get(user = user)
-        if user and user.is_active:
-            login(request, user)
+        context = {}
+        if len(request.POST['email']) > 0 and not request.POST['email'].isspace() and len(request.POST['password']) > 0 \
+        and not request.POST['password'].isspace():
+            
+            user = authenticate(username=request.POST['email'], password=request.POST['password'])
+            
+            if user and user.is_active:
+                userdata = UserProfile.objects.get(user = user)
+                login(request, user)
+            else:
+                context = {
+                    'message' : 'Username or Password is incorrect',
+                }
+                context.update(request.POST)
+                if request.POST['user_type'] == 'recruiter':
+                    return render(request, 'recruiter_home.html', context)
+                else:
+                    return render(request, 'login_job_seeker.html', context)
+            if userdata.user_type == 'employer':
+                return HttpResponseRedirect(reverse('profile',args=[user.id]))
+            else:
+                return HttpResponseRedirect(reverse('profile',args=[user.id]))
         else:
             context = {
-                'message' : 'Username or Password is incorrect',
+                'message' : 'Username and Password cannot be null',
             }
-            return render(request, 'login_job_seeker.html',context)
-
-        if userdata.user_type == 'employer':
-            return HttpResponseRedirect(reverse('profile',args=[user.id]))
-        else:
-            return HttpResponseRedirect(reverse('profile',args=[user.id]))
+            context.update(request.POST)
+            print context
+            if request.POST['user_type'] == 'recruiter':
+                return render(request, 'recruiter_home.html', context)
+            else:
+                return render(request, 'login_job_seeker.html', context)
 
 class ProfileView(View):
     def get(self, request, *args, **kwargs):
