@@ -51,18 +51,24 @@
 		<label>Post jobs and find the best</label><br />
 
 		<div class="profile-det">
+			
 			<h4>My Profile</h4>
+			<img src="#" alt="Profile Picture">
 			<h3>{{profile.company_name}}</h3>
 			Email id : {{profile.user.email}}
 			<br>
 			Mobile : {{ profile.mobile }}
 			<br>
-			Industry Type : {{profile.applied_jobs.all.0.companyprofile_set.all.0.industry_type}}
+			Industry Type : {{profile.company_set.all.0.industry_type}}
 	 		<br>
 	 		Location : {{profile.country}}
 	 		<br>
+	 		<div>
+	 			<input type="submit" name="edit" value="Edit Profile">
+	 		</div>
+
 	 	</div>
-	 	<br><br><br>
+	 	
 	 </div>
 
 {% else %}
@@ -79,6 +85,7 @@
 		
 		<div class="profile-left-box">
 			<h4>My Profile</h4>
+			<img src="#" alt="Profile Picture">
 			<h3>{{profile.user.first_name}}</h3>
 			Email id : {{profile.user.email}}
 			<br><br>

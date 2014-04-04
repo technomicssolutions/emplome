@@ -446,7 +446,7 @@ class JobDetailsView(View):
         job = Job.objects.get(id=kwargs['job_id'])
         
         context = {
-           'job' : 'job', 
+           'job' : job, 
         }
 
         return render(request, 'job_details.html', context)
