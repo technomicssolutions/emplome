@@ -117,7 +117,6 @@ class LoginView(View):
                 'message' : 'Username and Password cannot be null',
             }
             context.update(request.POST)
-            print context
             if request.POST['user_type'] == 'recruiter':
                 return render(request, 'recruiter_home.html', context)
             else:
@@ -129,7 +128,6 @@ class ProfileView(View):
         try:
             user = User.objects.get(id = kwargs['user_id'])
             profile = UserProfile.objects.get(user = user)
-            print profile
             context = {
                 'profile': profile,
             }
@@ -292,8 +290,6 @@ class JobSeekerRegistrationMoreInfo(View):
         if certificate:
             education.certificate = certificate
         education.save()
-
-        print request.POST
 
         res = {
             'result': 'ok',

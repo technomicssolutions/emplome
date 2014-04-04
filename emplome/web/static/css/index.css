@@ -455,8 +455,11 @@ body {
     height:20em;
 }
 .full-box {
-    padding: 1.1em;
+    font-size: 12px;
     height: auto;
+    line-height: 20px;
+    padding: 1.1em;
+    text-align: justify;
     width: 97%;
 }
 .left{
@@ -538,8 +541,12 @@ body {
     width: 28%;
 }
 
-#job_seeker_login .content{
+#job_seeker_login .content, #recruiter .content {
     padding: 20px;
+    width: 96%;
+}
+#login_error {
+    font-size: 12px;
 }
 
 /* End of Home page */
