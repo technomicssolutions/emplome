@@ -1,4 +1,6 @@
 # Django settings for emplome project.
+import os
+fillpath = lambda x: os.path.join(os.path.dirname(__file__), x)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -50,7 +52,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = fillpath('media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
