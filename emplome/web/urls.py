@@ -15,11 +15,11 @@ urlpatterns = patterns('',
 	url(r'^profile/(?P<user_id>\d+)/$',login_required(ProfileView.as_view()), name='profile'),
 	url(r'^recruiter/post-jobs/$',login_required(PostJobsView.as_view()), name='postjobs'),
 	url(r'^recruiter/post-jobs/edit/(?P<user_id>\d+)/$',login_required(EditPostJobsView.as_view()), name='postjobsedit'),
-	url(r'^jobs/list/$',ListExistingJobs.as_view(), name='ListJobs'),
+	url(r'^jobs/list/$',ListExistingJobs.as_view(), name='list_jobs'),
 	# url(r'^jobs/details/(?P<ref_code>[\w-]+)/$',ListExistingJobDetails.as_view(), name='JobDetails'),
 	url(r'^search/jobs/$',SearchJobsView.as_view(), name='search_jobs'),
 	url(r'^job/details/(?P<job_id>\d+)/$',JobDetailsView.as_view(), name='job_details'),
 	url(r'^search/$', SearchView.as_view(), name='search'),
 	url(r'^posted_jobs/$', login_required(PostedJobsView.as_view()), name='posted_jobs'),
-	
+		
 )

@@ -362,6 +362,12 @@ class PostedJobsView(View):
 
 
 class EditPostJobsView(View):
+
+    def get(self, request, *args, **kwargs):
+
+        context = {}
+        return render(request, 'post_jobs.html', context)
+
     def post(self, request, *args, **kwargs):
 
         jobPosting =Job.objects.get(id= kwargs['user_id'])
@@ -471,4 +477,13 @@ class SearchView(View):
          context = {}
 
          return render(request, 'search.html', context)
+
+# class EditJobsView(View):
+
+#     def get(self, request, *args, **kwargs):
+#         context = {}
+
+#         return render(request, 'job_post.html', context)
+
+ 
        
