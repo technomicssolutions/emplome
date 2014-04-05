@@ -1129,8 +1129,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
 	$scope.init = function(csrf_token,id) {
 		$scope.csrf_token = csrf_token;
 		$scope.product_pdf = {};
-    	$scope.product_pdf.src = "";
-    	$scope.get_existing_jobs();
+    $scope.product_pdf.src = "";
 		get_countries($scope);
 		get_nationalities($scope);
 		get_industries($scope);
@@ -1276,15 +1275,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         }
         
     }
-    $scope.get_existing_jobs = function() {
-        $http.get('/jobs/list/').success(function(data)
-        {
-            $scope.existing_jobs = data.existing_jobs;      
-        }).error(function(data, status)
-        {
-            console.log(data || "Request failed");
-        });
-    }
+    
     $scope.get_job_details = function(){
         $http.get('/jobs/details/'+$scope.existing_job+'/').success(function(data)
         {

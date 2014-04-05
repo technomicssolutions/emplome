@@ -22,20 +22,27 @@
                 <a title="" href="#">Jobs By Skills</a>
             </div>
         </li>
-        <li>
-            <a class="tabUnsel" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
-            Post Resume
-                <!-- <sup>Free</sup> -->
-            </a>
-        </li>
+        
         <li>
             <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
         </li>
        {% if user.is_authenticated %}
-            <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a>
-            <a class="tabUnsel" title="Logout" href="{% url 'logout' %}">Logout</a>
+            <li>
+                <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a>
+            </li>
+            <li>
+                <a class="tabUnsel" title="Logout" href="{% url 'logout' %}">Logout</a>
+            </li>
         {% else %}
-            <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>          
+            <li>
+                <a class="tabUnsel" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
+                Post Resume
+                    <!-- <sup>Free</sup> -->
+                </a>
+            </li>
+            <li>
+                <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a> 
+            </li>         
         {% endif %}
     </ul>
 </div>
