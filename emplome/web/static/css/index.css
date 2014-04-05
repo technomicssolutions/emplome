@@ -668,3 +668,15 @@ label textarea{
 #search_text {
     color: #006600;
 }
+.review_clientphoto img {
+  height :50px;
+  width :50px;
+  border-radius: 500px 500px 500px 500px;
+}
+#profile_image {
+    float: left;
+}
+
+#photos {
+    min-height: 55px;
+}

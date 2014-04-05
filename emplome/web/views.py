@@ -203,13 +203,13 @@ class JobSeekerRegistration(View):
 
         post_data = request.POST
         seeker = ast.literal_eval(post_data['seeker'])
-        user, created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
-        user.set_password(seeker['password'])
+        user, user_created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
+        if user_created:
+            user.set_password(seeker['password'])
         user.save()
         
-        userprofile = UserProfile()
-        # userprofile, created = UserProfile.objects.get_or_create(userprofile=userprofile)
-        userprofile.user = user
+        userprofile, created = UserProfile.objects.get_or_create(user = user)
+        
         userprofile.user_type = 'job_seeker'
         userprofile.gender = seeker['gender']
         userprofile.religion = seeker['religion']
@@ -222,7 +222,6 @@ class JobSeekerRegistration(View):
             userprofile.alt_mail = seeker['alt_email']
         userprofile.save()
         
-        # education = Education()
         education, created = Education.objects.get_or_create(userprofile=userprofile)
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
@@ -237,15 +236,15 @@ class JobSeekerRegistration(View):
         resume = request.FILES.get('resume_doc', '')
         if resume:
             education.resume = resume
-        # if seeker['resume_doc'] != "null":
-        #   education.resume = request.FILES['resume_doc']
+       
         if seeker['resume_text'] != "":
             education.resume_text = seeker['resume_text']
         education.userprofile = userprofile
         education.save()
-        login_user = authenticate(username=seeker['email'], password=seeker['password'])
-        if login_user and login_user.is_active:
-            login(request, login_user)
+        if user_created:
+            login_user = authenticate(username=seeker['email'], password=seeker['password'])
+            if login_user and login_user.is_active:
+                login(request, login_user)
         res = {
             'result': 'ok',
             'user_id': user.id,
@@ -260,7 +259,7 @@ class JobSeekerRegistration(View):
 class JobSeekerRegistrationMoreInfo(View):
     def get(self, request,*args, **kwargs):
         context = {
-
+            'is_profile_edit': True,
             'user_id' : kwargs['user_id'],
         }
 
@@ -540,21 +539,31 @@ class GetProfileDetails(View):
         user_id = kwargs['user_id']
         user = User.objects.get(id= user_id)
         ctx_seeker = []
-        userprofile = user.userprofile_set.all()[0]
+        ctx_seeker1 = []
         education = []
-        if userprofile.education_set.all().count > 0:
-            education = userprofile.education_set.all()[0]
+        employment = []
+        print user_id
+        print user
+
+        if user.userprofile_set.all().count() > 0:
+            userprofile = user.userprofile_set.all()[0]
+            if userprofile.education_set.all().count() > 0:
+                education = userprofile.education_set.all()[0]
+            
+            if userprofile.employment_set.all().count() > 0:
+                employment = userprofile.employment_set.all()[0]
+                print employment
         ctx_seeker.append({
             'email': user.email,
             'first_name': user.first_name,
-            'gender': userprofile.gender,
-            'religion': userprofile.religion,
-            'marital_status': userprofile.marital_status,
-            'nationality': userprofile.nationality,
-            'country': userprofile.country,
-            'city': userprofile.city,
-            'mobile': userprofile.mobile,
-            'alt_email': userprofile.alt_mail,
+            'gender': userprofile.gender if userprofile else '',
+            'religion': userprofile.religion if userprofile else '',
+            'marital_status': userprofile.marital_status if userprofile else '',
+            'nationality': userprofile.nationality if userprofile else '',
+            'country': userprofile.country if userprofile else '',
+            'city': userprofile.city if userprofile else '',
+            'mobile': userprofile.mobile if userprofile else '',
+            'alt_email': userprofile.alt_mail if userprofile else '',
             'basic_edu': education.basic_edu if education else '' ,
             'pass_year_basic': education.pass_year_basic if education else '' ,
             'masters_edu': education.masters if education else '' ,
@@ -564,9 +573,21 @@ class GetProfileDetails(View):
             'resume_text': education.resume_text if education else '' ,
             'resume': education.resume.name if education else '' ,
         })
+        ctx_seeker1.append({
+            'years': employment.exp_yrs if employment else '' ,
+            'months': employment.exp_mnths if employment else '' ,
+            'salary': employment.salary if employment else '' ,
+            'designation': employment.designation if employment else '' ,
+            'skills': employment.skills if employment else '' ,
+            'industry': employment.curr_industry if employment else '' ,
+            'functions': employment.function if employment else '' , 
+            'certificate_img': education.certificate.name if education else '',
+            'profile_photo': userprofile.photo.name if userprofile else '',
+        })
         if request.is_ajax():
             res = {
                 'seeker': ctx_seeker,
+                'seeker1': ctx_seeker1,
                 'result': 'ok',
             }
             status_code = 200
