@@ -2,8 +2,7 @@
 {% block title %}Job Host{% endblock title %}
 {% block body_id %}jobpost{% endblock body_id %}
 
-{% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
-
+{% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}','{{job_id}}')"{% endblock controller %}
 {% block content %}
 <div class= "div3">
 
@@ -13,20 +12,12 @@
 		<div class="separation">
 			<br>
 			<h2 class="hd1">Job Posting</h2>
-			<!-- <div class="right">
-				<select name="existing_job" ng-model="existing_job" ng-change="get_job_details()">
-					<option>------Copy From existing job----</option>
-					<option ng-repeat="job in existing_jobs" value="[[job.ref_code]]">[[job.ref_code]]</option>
-				</select>
-			</div>
- -->
 
 			<br><br>
 
 			<p class="mandatory">* Mandatory Fields</p>
 			<br>
-			<!-- <form class="" name="add_item" method="post" action="">
-				{% csrf_token %} -->
+			
 			<br><br>
 			<div class="formrow">
 				<label>Job Title<span class="red">*</span></label>
@@ -49,6 +40,7 @@
 				<!-- <label>Provide job details below or Pick from the doccument</label> -->
 				<input type="file" fileread="product_pdf.src"/>
 			    <input type="hidden" ng-model="product_pdf.src"/>
+			    <a href="/site_media/[[jobpost.details]]" ng-show="jobpost.details" target="_blank">Details</a>
 			    <!-- <label class="white">.</label>
 				<textarea ng-model="jobpost.details"></textarea> -->
 			</div>

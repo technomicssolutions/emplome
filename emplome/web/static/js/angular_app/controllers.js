@@ -1086,12 +1086,11 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'title':'',
         'code': '',
         'summary': '',
-        // 'details': '',
+        'details': '',
         'skills': '',
         'location': '-select-',
         'industry': '-select-',
         'function': '-select-',
-        // 'role': '-select-',
         'requirement': '-select-',
         'specialisation': '',
         'nationality': '-select-',
@@ -1108,13 +1107,24 @@ function  JobPostingController($scope,$element,$http,$timeout){
 	$scope.init = function(csrf_token,id) {
 		$scope.csrf_token = csrf_token;
 		$scope.product_pdf = {};
-    	$scope.product_pdf.src = "";
-    	$scope.get_existing_jobs();
+    $scope.product_pdf.src = "";
 		get_countries($scope);
 		get_nationalities($scope);
 		get_industries($scope);
 		get_functions($scope);
 		get_education_required($scope);
+    $scope.job_id = id;
+    
+    if ($scope.job_id){
+      $http.get('/job/details/'+$scope.job_id+'/').success(function(data)
+            {
+                $scope.jobpost = data.jobpost[0]; 
+            }).error(function(data, status)
+            {
+                console.log(data || "Request failed");
+            });
+    }
+
 		for(var i=0; i<=50; i++){
       	 	$scope.Min.push(i);
       	 	$scope.Max.push(i);
@@ -1198,7 +1208,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
         if ($scope.is_valid) {
           $scope.error_flag = false;
           $scope.error_message = '';
-
+          if ($scope.jobpost.post_date == null) {
+            $scope.jobpost.post_date = '';
+          }
+          if ($scope.jobpost.last_date == null) {
+            $scope.jobpost.last_date = '';
+          }
             var file = $scope.product_pdf.src;
             var edit =$scope.edit;
             params = {
@@ -1210,12 +1225,18 @@ function  JobPostingController($scope,$element,$http,$timeout){
             for(var key in params){
               fd.append(key, params[key]);
             }
-            if(edit == 1){
-                var url = "/recruiter/post-jobs/";
+            if($scope.job_id) {
+              var url = "/recruiter/post-jobs/edit/"+$scope.job_id+"/";
+            } else {
+              if(edit == 1){
+                  var url = "/recruiter/post-jobs/";
+              }
+              else{
+                  var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
+              }
             }
-            else{
-                var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
-            }
+            
+
             $http.post(url, fd, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined
@@ -1232,15 +1253,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         }
         
     }
-    $scope.get_existing_jobs = function() {
-        $http.get('/jobs/list/').success(function(data)
-        {
-            $scope.existing_jobs = data.existing_jobs;      
-        }).error(function(data, status)
-        {
-            console.log(data || "Request failed");
-        });
-    }
+    
     $scope.get_job_details = function(){
         $http.get('/jobs/details/'+$scope.existing_job+'/').success(function(data)
         {
