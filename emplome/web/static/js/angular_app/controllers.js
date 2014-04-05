@@ -1,3 +1,11 @@
+function search_by_location(search_type){
+  if (search_type == 'location') {
+    var url = '/search/?location=location';
+    document.location.href = url;
+  }
+}
+
+
 function validation($scope) {
 
     if ($scope.skill == '' || $scope.skill == undefined) {
@@ -31,6 +39,18 @@ function validation($scope) {
 
 function search_job($scope, search_option) {
     if (search_option) {
+      if(search_option == 'location') {
+        if (($scope.search.location == '' || $scope.search.location == undefined)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter value for the location';
+            
+        }  else {
+            $scope.error_flag = false;
+            $scope.error_message = '';
+            var url = '/search/jobs/?location='+$scope.search.location;
+            document.location.href = url;
+        }
+      } else {
         if (($scope.search.keyword == '' || $scope.search.keyword == undefined) && ($scope.search.location == '' || $scope.search.location == undefined) && ($scope.search.experience == '' || $scope.search.experience == undefined) && ($scope.search.function_name == '' || $scope.search.function_name == undefined)) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter value for the any of the criteria';
@@ -43,6 +63,8 @@ function search_job($scope, search_option) {
             var url = '/search/jobs/?location='+$scope.search.location+'&skills='+$scope.search.keyword+'&experience='+$scope.search.experience+'&function='+$scope.search.function_name+'&industry='+$scope.search.industry+'&search=true';
             document.location.href = url;
         }
+      }
+        
     } else {
       $scope.is_valid = validation($scope);
       if ($scope.is_valid) {
@@ -1309,7 +1331,7 @@ function  SearchController($scope,$element,$http,$timeout){
         }
     }
 
-    $scope.search = function(){
+    $scope.search = function(search_type){
         search_job($scope, 'search_jobs');
     } 
 }

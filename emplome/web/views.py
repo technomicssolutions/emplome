@@ -54,7 +54,11 @@ class SearchJobsView(View):
         elif function and not location and not skills and not exp and not industry and not search:
             jobs = Job.objects.filter(function=function)
             if not jobs.exists():
-                searched_for = str('"'+function+'"')  
+                searched_for = str('"'+function+'"')
+        elif skills and not location and not function and not exp and not industry and not search:
+            jobs = Job.objects.filter(skills=skills)
+            if not jobs.exists():
+                searched_for = str('"'+skills+'"')   
         else:
             if exp:
                 jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry))
@@ -337,7 +341,7 @@ class PostJobsView(View):
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
-        jobPosting.profile = jobpost['description']
+        jobPosting.description = jobpost['profile']
         if jobpost['post_date']:
             jobPosting.posting_date = datetime.strptime(jobpost['post_date'], '%d-%m-%Y')
         jobPosting.exp_req_min = jobpost['min']
@@ -398,7 +402,7 @@ class EditPostJobsView(View):
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
-        jobPosting.profile = jobpost['description']        
+        jobPosting.description = jobpost['profile']        
         jobPosting.exp_req_min = jobpost['min']
         jobPosting.exp_req_max = jobpost['max']
 
@@ -441,7 +445,7 @@ class ListExistingJobDetails(View):
         current_user = request.user
         profile = UserProfile.objects.get(user = current_user)
         company = CompanyProfile.objects.get(user = profile)
-        job = JobPosting.objects.filter(ref_code = kwargs['ref_code'],company_name = company)
+        job = Job.objects.filter(ref_code = kwargs['ref_code'],company_name = company)
         if request.is_ajax():
             ctx_jobs.append({
                 'title': job[0].job_title,
@@ -461,7 +465,7 @@ class ListExistingJobDetails(View):
                 'name': job[0].name,
                 'phone': job[0].phone,
                 'email': job[0].mail_id,
-                'profile':job[0].company.description, 
+                'profile':job[0].description, 
                 'post_date': job[0].posting_date, 
             })
             res = {
@@ -499,7 +503,7 @@ class JobDetailsView(View):
                 'name': job.name,
                 'phone': job.phone,
                 'email': job.mail_id,
-                'profile':job.company.description, 
+                'profile':job.description, 
                 'post_date': job.posting_date, 
             })
             print ctx_jobpost
@@ -516,9 +520,15 @@ class JobDetailsView(View):
 class SearchView(View):
 
     def get(self, request, *args, **kwargs):
-         context = {}
+        context = {}
+        location = request.GET.get('location', '')
+        skills = request.GET.get('skills', '')
+        if location:
+            context = {
+                'location': True,
+            }
 
-         return render(request, 'search.html', context)
+        return render(request, 'search.html', context)
 
     
 class EditProfile(View):
