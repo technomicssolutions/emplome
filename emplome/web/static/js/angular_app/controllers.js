@@ -32,7 +32,6 @@ function validation($scope) {
 function search_job($scope, search_option) {
     if (search_option) {
         if (($scope.search.keyword == '' || $scope.search.keyword == undefined) && ($scope.search.location == '' || $scope.search.location == undefined) && ($scope.search.experience == '' || $scope.search.experience == undefined) && ($scope.search.function_name == '' || $scope.search.function_name == undefined)) {
-            console.log('in if');
             $scope.error_flag = true;
             $scope.error_message = 'Please enter value for the any of the criteria';
             $scope.alert_style = {border: '1px solid #FF0000'};
@@ -43,7 +42,6 @@ function search_job($scope, search_option) {
             $scope.error_message = '';
             var url = '/search/jobs/?location='+$scope.search.location+'&skills='+$scope.search.keyword+'&experience='+$scope.search.experience+'&function='+$scope.search.function_name+'&industry='+$scope.search.industry+'&search=true';
             document.location.href = url;
-            console.log('in else');
         }
     } else {
       $scope.is_valid = validation($scope);
@@ -805,6 +803,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
   $scope.checkbox = false;
 
     $scope.seeker = {
+        'id': 0,
         'email': '',
         'password': '', 
         'password1': '',
@@ -835,11 +834,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'industry': '',
         'functions': '',
         'skills': '',
+        'certificate_img': '',
+        'profile_photo': '',
     }
 
     $scope.init = function(csrf_token, user_id, profile_edit) {
         $scope.csrf_token = csrf_token;
         $scope.user_id = user_id;
+        $scope.profile_edit = profile_edit;
         get_countries($scope);
         get_nationalities($scope);
         get_industries($scope);
@@ -856,6 +858,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
             {
                 $scope.seeker = data.seeker[0]; 
+                $scope.seeker1 = data.seeker1[0];
+                $scope.seeker.id = $scope.user_id;
             }).error(function(data, status)
             {
                 console.log(data || "Request failed");
@@ -869,18 +873,20 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your email id';
             return false;
-        } else if ($scope.seeker.password == '' || $scope.seeker.password == undefined){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please provide a password';
-            return false;
-        } else if ($scope.seeker.password1 == '' || $scope.seeker.password1 == undefined){  
-            $scope.error_flag = true;
-            $scope.error_message = 'Please re-enter the password';
-            return false;
-        } else if ($scope.seeker.password != $scope.seeker.password1){  
-            $scope.error_flag = true;
-            $scope.error_message = 'Please enter the password correctly';
-            return false;
+        } else if (!$scope.profile_edit) {
+            if ($scope.seeker.password == '' || $scope.seeker.password == undefined){
+                $scope.error_flag = true;
+                $scope.error_message = 'Please provide a password';
+                return false;
+            } else if ($scope.seeker.password1 == '' || $scope.seeker.password1 == undefined){  
+                $scope.error_flag = true;
+                $scope.error_message = 'Please re-enter the password';
+                return false;
+            } else if ($scope.seeker.password != $scope.seeker.password1){  
+                $scope.error_flag = true;
+                $scope.error_message = 'Please enter the password correctly';
+                return false;
+            } 
         } else if ($scope.seeker.first_name == '' || $scope.seeker.first_name == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please give your name';
@@ -951,23 +957,29 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.save_reg = function(){
         
         $scope.is_valid = $scope.form_validation();
-        console.log('is_valid == ', $scope.is_valid);
         if ($scope.is_valid) {
             $scope.error_flag = false;
             $scope.error_message = '';
+            if ($scope.seeker.doctrate == null) {
+                $scope.seeker.doctrate = '';
+            }
+            if ($scope.seeker.resume_text == null) {
+                $scope.seeker.resume_text = '';
+            }
+            if ($scope.seeker.alt_email == null) {
+                $scope.seeker.alt_email = '';
+            }
 
             var file = $scope.resume_doc.src;
             params = {
                 'seeker':angular.toJson($scope.seeker),
                 "csrfmiddlewaretoken" : $scope.csrf_token,              
             }
-            console.log($scope.seeker);
             var fd = new FormData();
             fd.append('resume_doc', $scope.resume_doc.src);
             for(var key in params){
                 fd.append(key, params[key]);            
             }
-            console.log('fd == ', fd);
             var url = "/job_seeker_registration/";
             $http.post(url, fd, {
                 transformRequest: angular.identity,
@@ -977,6 +989,15 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 console.log("Successfully Saved");
                 console.log(data);
                 $scope.user_id = data.user_id;
+                $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
+                {
+                    $scope.seeker = data.seeker[0]; 
+                    $scope.seeker1 = data.seeker1[0];
+                    $scope.seeker.id = $scope.user_id;
+                }).error(function(data, status)
+                {
+                    console.log(data || "Request failed");
+                });
             }).error(function(data, status){
             
             });
@@ -988,7 +1009,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.save_reg_more = function(){
 
     $scope.is_valid = $scope.form_validation_more_info();
-        console.log('is_valid == ', $scope.is_valid);
         if ($scope.is_valid) {
             $scope.error_flag = false;
             $scope.error_message = '';
@@ -996,31 +1016,17 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
             var file = $scope.photo_img.src;
             var file = $scope.certificate_img.src;
-            console.log($scope.user_id);
             params = {
                 'seeker1':angular.toJson($scope.seeker1),
                 'user_id': $scope.user_id,
                 "csrfmiddlewaretoken" : $scope.csrf_token,              
             }
-            console.log($scope.seeker1);
             var fd = new FormData();
-      // console.log( $scope.photo_img.src);
-            
-      // if($scope.photo_img.src == ''){
-      //   alert("nthng");
-      //   fd.append('photo_img', '');
-      // }
-      fd.append('photo_img', $scope.photo_img.src)
+        fd.append('photo_img', $scope.photo_img.src)
             fd.append('certificate_img', $scope.certificate_img.src)
             for(var key in params){
-                fd.append(key, params[key]);    
-        // if($scope.photo_img.src == ''){
-        //   alert("nthng");
-        //   fd.append('photo_img', '');
-        // }        
+                fd.append(key, params[key]);          
             }
-      // console.log('hiii'+fd);
-
             var url = "/job_seeker_registration_more_info/"+$scope.user_id+'/';
             $http.post(url, fd, {
                 transformRequest: angular.identity,
@@ -1189,7 +1195,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
     $scope.save_job = function(){
 
         $scope.is_valid = $scope.form_validation_postjob();
-        console.log('is_valid == ', $scope.is_valid);
         if ($scope.is_valid) {
           $scope.error_flag = false;
           $scope.error_message = '';
@@ -1200,7 +1205,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
                     'jobpost':angular.toJson($scope.jobpost),
                     "csrfmiddlewaretoken" : $scope.csrf_token,
                 }
-            console.log($scope.jobpost);
             var fd = new FormData();
             fd.append('product_pdf', $scope.product_pdf.src);
             for(var key in params){
