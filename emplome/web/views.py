@@ -365,6 +365,13 @@ class PostedJobsView(View):
 
 
 class EditPostJobsView(View):
+
+    def get(self, request, *args, **kwargs):
+        job_id = kwargs['job_id']
+
+        context = {}
+        return render(request, 'post_jobs.html', context)
+
     def post(self, request, *args, **kwargs):
 
         jobPosting =Job.objects.get(id= kwargs['user_id'])
@@ -405,6 +412,46 @@ class EditPostJobsView(View):
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
 
+class GetJobDetails(View):
+    def get(self, request, *args, **kwargs):
+
+        job_id = kwargs['job_id']
+        job = Job.objects.get(id= job_id)
+        ctx_jobpost = []
+               
+        ctx_jobpost.append({
+            'title': job.job_title,
+            'code': job.ref_code,
+            'summary': job.summary,            
+            'details': job.document.name,            
+            'skills': job.skills,
+            'min':job.exp_req_min,
+            'max':job.exp_req_max,
+            'location':job.job_location,
+            'industry':job.industry,
+            'function': job.function,            
+            'requirement': job.education_req,
+            'specialisation': job.specialization,
+            'nationality': job.nationality,
+            'last_date': job.last_date,
+            'name': job.name,
+            'phone': job.phone,
+            'email': job.mail_id,
+            'profile':job.company.description, 
+            'post_date': job.posting_date, 
+        })
+
+        if request.is_ajax():
+            res = {
+                'jobpost': ctx_jobpost,
+                'result': 'ok',
+            }
+            status_code = 200
+
+            response = simplejson.dumps(res)
+            
+            return HttpResponse(response, status=status_code, mimetype='application/json')
+
 
 class ListExistingJobs(View):
     def get(self, request,*args, **kwargs):
@@ -435,21 +482,25 @@ class ListExistingJobDetails(View):
         job = JobPosting.objects.filter(ref_code = kwargs['ref_code'],company_name = company)
         if request.is_ajax():
             ctx_jobs.append({
-                'title':job[0].job_title,
-                'summary': job[0].summary,
-                'details': job[0].job_details,
+                'title': job[0].job_title,
+                'code': job[0].ref_code,
+                'summary': job[0].summary,            
+                'details': job[0].document.name,            
                 'skills': job[0].skills,
-                'location':job[0].job_location,
-                'industry':job[0].industry,
-                'function': job[0].function,
-                'role':job[0].role,
-                'requirement': job[0].education_req,
-                'specialisation':job[0].specialization,
-                'nationality': job[0].nationality,
                 'min':job[0].exp_req_min,
                 'max':job[0].exp_req_max,
-                'profile':job[0].company_profile,
-
+                'location':job[0].job_location,
+                'industry':job[0].industry,
+                'function': job[0].function,            
+                'requirement': job[0].education_req,
+                'specialisation': job[0].specialization,
+                'nationality': job[0].nationality,
+                'last_date': job[0].last_date,
+                'name': job[0].name,
+                'phone': job[0].phone,
+                'email': job[0].mail_id,
+                'profile':job[0].company.description, 
+                'post_date': job[0].posting_date, 
             })
             res = {
                 'existing_job_details': ctx_jobs,
@@ -474,6 +525,7 @@ class SearchView(View):
          context = {}
 
          return render(request, 'search.html', context)
+
     
 class EditProfile(View):
 
