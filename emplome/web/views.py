@@ -14,6 +14,9 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import IntegrityError
 from django.db.models import Q
+from django.core.mail import send_mail, BadHeaderError, EmailMessage, EmailMultiAlternatives, mail_admins
+from django.contrib.sites.models import Site
+from django.template.loader import render_to_string
 
 from django.http import Http404 
 
@@ -548,9 +551,6 @@ class GetProfileDetails(View):
         ctx_seeker1 = []
         education = []
         employment = []
-        print user_id
-        print user
-
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
             if userprofile.education_set.all().count() > 0:
@@ -558,7 +558,6 @@ class GetProfileDetails(View):
             
             if userprofile.employment_set.all().count() > 0:
                 employment = userprofile.employment_set.all()[0]
-                print employment
         ctx_seeker.append({
             'email': user.email,
             'first_name': user.first_name,
@@ -601,3 +600,83 @@ class GetProfileDetails(View):
             response = simplejson.dumps(res)
             
             return HttpResponse(response, status=status_code, mimetype='application/json')
+
+class ForgotPassword(View):
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, 'forgot_password.html', {})
+
+    def post(self, request, *args, **kwargs):
+
+        print request.POST
+        user = User.objects.filter(email = request.POST['email_id'])
+        if user.exists():
+            user = user[0]
+            subject = 'Reset Your Password'
+            text_content = 'This is Important'
+            from_email = settings.DEFAULT_FROM_EMAIL
+            url = 'http://%s%s'%(Site.objects.get_current().domain,'/reset_password/'+str(user.id)+'/') 
+            print url
+            ctx = {
+                'url': url,
+                'user': user,
+            }
+            html_content = render_to_string('email/forgot_password.html', ctx)
+            to = []
+            if subject and html_content and from_email:
+                
+                to.append(user.email)
+                for i in range(len(to)):
+                    print "*******************sending mail to ", to[i], "*******************"
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to[i]])
+                    msg.attach_alternative(html_content, "text/html")
+                    try:
+                        msg.send()
+                        context = {
+                            'message': 'Please check your mail for creating a new password',
+                        }
+                        return render(request, 'forgot_password.html', context)
+                    except Exception as ex:
+                        print str(ex)
+                        context = {
+                            'message': 'Please try after some time',
+                        }
+                        return render(request, 'forgot_password.html', context)
+
+        else:
+            context = {
+                'message': 'You have no matching profiles with this email id',
+            }
+            return render(request, 'forgot_password.html', context)
+
+class ResetPassword(View):
+
+    def get(self, request, *args, **kwargs):
+        
+        user_id = kwargs['user_id']
+        context = {
+            'user_id': user_id
+        }
+        return render(request, 'reset_password.html', context)
+
+    def post(self, request, *args, **kwargs):
+
+        user_id = kwargs['user_id']
+        user = User.objects.get(id=int(user_id))
+        if len(request.POST['new_password']) > 0 and not request.POST['new_password'].isspace():
+            user.set_password(request.POST['new_password'])
+            user.save()
+            context = {
+                'success_message': 'Password changed successfully',
+            }
+        else:
+            context = {
+                'message': 'Please try after some time',
+            }
+        return render(request, 'reset_password.html', context)
+
+
+
+
+
