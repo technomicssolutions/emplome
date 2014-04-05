@@ -810,6 +810,7 @@ class CompanyProfile(models.Model):
 
     company_name = models.CharField('Company Name', max_length=50, null=True, blank=True)
     industry_type = models.CharField('Industry Type', max_length=50)
+    description = models.CharField('Description', max_length=1000, null=True, blank=True)
 
     def __unicode__(self):
         return self.company_name
