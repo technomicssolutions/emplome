@@ -101,7 +101,7 @@
 			Location : {{profile.country}}
 	 		<br><br>	 		
 		</div>
-		<input type="submit" name="edit" value="Edit Profile">
+		<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
 		<br><br><br>
 	</div>
 
