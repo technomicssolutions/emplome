@@ -824,6 +824,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'doctrate': '',
         'resume_title': '',
         'resume_text': '',
+        'resume': '',
     }
 
     $scope.seeker1 = {
@@ -836,7 +837,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'skills': '',
     }
 
-    $scope.init = function(csrf_token, user_id) {
+    $scope.init = function(csrf_token, user_id, profile_edit) {
         $scope.csrf_token = csrf_token;
         $scope.user_id = user_id;
         get_countries($scope);
@@ -850,6 +851,15 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         }
         for(var i=0; i<=50; i++){
             $scope.experience.push(i);
+        }
+        if(profile_edit){
+            $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
+            {
+                $scope.seeker = data.seeker[0]; 
+            }).error(function(data, status)
+            {
+                console.log(data || "Request failed");
+            });
         }
 
     }

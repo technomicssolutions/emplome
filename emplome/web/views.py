@@ -97,6 +97,11 @@ class LoginView(View):
             user = authenticate(username=request.POST['email'], password=request.POST['password'])
             
             if user and user.is_active:
+                if user.is_superuser:
+                    context = {
+                        'message': 'You have no profile',
+                    }
+                    return render(request, 'recruiter_home.html', context)
                 userdata = UserProfile.objects.get(user = user)
                 login(request, user)
             else:
@@ -139,6 +144,8 @@ class ProfileView(View):
 
 class RecruiterHomeView(View):
     def get(self, request, *args, **kwargs):
+        
+        logout(request)
         employer = True
         context = {
             'employer': employer,
@@ -153,8 +160,6 @@ class FullTime(View):
 class RecruiterRegistrationView(View):
 
     def get(self, request, *args, **kwargs):
-
-        logout(request)
         
         return render(request, 'recruiter_registration.html', {})
 
@@ -192,7 +197,6 @@ class JobSeekerRegistration(View):
 
     def get(self, request,*args, **kwargs):
         
-        logout(request)
         return render(request, 'job_seeker_registration.html', {})
 
     def post(self, request, *args, **kwargs):
@@ -364,6 +368,7 @@ class PostedJobsView(View):
 class EditPostJobsView(View):
 
     def get(self, request, *args, **kwargs):
+        job_id = kwargs['job_id']
 
         context = {}
         return render(request, 'post_jobs.html', context)
@@ -407,6 +412,42 @@ class EditPostJobsView(View):
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
+
+class GetJobDetails(View):
+    def get(self, request, *args, **kwargs):
+
+        job_id = kwargs['job_id']
+        job = Job.objects.get(id= job_id)
+        ctx_jobpost = []
+        # job_details = job.job_details_set.all()[0]
+        
+        ctx_jobpost.append({
+            'title': job.job_title,
+            'summary': job.summary,
+            'details': job.job_details,
+            'skills': job.skills,
+            'location':job.job_location,
+            'industry':job.industry,
+            'function': job.function,
+            'role':job.role,
+            'requirement': job.education_req,
+            'specialisation': job.specialization,
+            'nationality': job.nationality,
+            'min':job.exp_req_min,
+            'max':job.exp_req_max,
+            'profile':job.company_profile,    
+        })
+
+        if request.is_ajax():
+            res = {
+                'jobpost': ctx_jobpost,
+                'result': 'ok',
+            }
+            status_code = 200
+
+            response = simplejson.dumps(res)
+            
+            return HttpResponse(response, status=status_code, mimetype='application/json')
 
 
 class ListExistingJobs(View):
@@ -478,12 +519,56 @@ class SearchView(View):
 
          return render(request, 'search.html', context)
 
-# class EditJobsView(View):
+    
+class EditProfile(View):
 
-#     def get(self, request, *args, **kwargs):
-#         context = {}
+    def get(self, request, *args, **kwargs):
 
-#         return render(request, 'job_post.html', context)
+        user_id = kwargs['user_id']
+        context = {
+            'is_profile_edit': True,
+            'user_id': user_id,
+        }
+        return render(request, 'job_seeker_registration.html', context)
 
- 
-       
+class GetProfileDetails(View):
+
+    def get(self, request, *args, **kwargs):
+
+        user_id = kwargs['user_id']
+        user = User.objects.get(id= user_id)
+        ctx_seeker = []
+        userprofile = user.userprofile_set.all()[0]
+        education = []
+        if userprofile.education_set.all().count > 0:
+            education = userprofile.education_set.all()[0]
+        ctx_seeker.append({
+            'email': user.email,
+            'first_name': user.first_name,
+            'gender': userprofile.gender,
+            'religion': userprofile.religion,
+            'marital_status': userprofile.marital_status,
+            'nationality': userprofile.nationality,
+            'country': userprofile.country,
+            'city': userprofile.city,
+            'mobile': userprofile.mobile,
+            'alt_email': userprofile.alt_mail,
+            'basic_edu': education.basic_edu if education else '' ,
+            'pass_year_basic': education.pass_year_basic if education else '' ,
+            'masters_edu': education.masters if education else '' ,
+            'pass_year_masters': education.pass_year_masters if education else '' ,
+            'doctrate': education.doctrate if education else '' ,
+            'resume_title': education.resume_title if education else '' ,
+            'resume_text': education.resume_text if education else '' ,
+            'resume': education.resume.name if education else '' ,
+        })
+        if request.is_ajax():
+            res = {
+                'seeker': ctx_seeker,
+                'result': 'ok',
+            }
+            status_code = 200
+
+            response = simplejson.dumps(res)
+            
+            return HttpResponse(response, status=status_code, mimetype='application/json')

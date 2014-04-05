@@ -21,5 +21,8 @@ urlpatterns = patterns('',
 	url(r'^job/details/(?P<job_id>\d+)/$',JobDetailsView.as_view(), name='job_details'),
 	url(r'^search/$', SearchView.as_view(), name='search'),
 	url(r'^posted_jobs/$', login_required(PostedJobsView.as_view()), name='posted_jobs'),
-		
+	url(r'^edit_profile/(?P<user_id>\d+)/$', login_required(EditProfile.as_view()), name='edit_profile'),
+	url(r'^profile/details/(?P<user_id>\d+)/$', GetProfileDetails.as_view(), name='profile_details'),
+	url(r'^get_job/details/(?P<user_id>\d+)/$', GetJobDetails.as_view(), name='get_job_details'),
+
 )

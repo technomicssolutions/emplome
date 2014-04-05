@@ -3,7 +3,7 @@
 {% endblock title %}
 {% block body_id %}job_seeker_registration{% endblock body_id %}
 
-{% block controller %}ng-controller="JobSeekerController" ng-init="init('{{csrf_token}}', '')"{% endblock controller %}
+{% block controller %}ng-controller="JobSeekerController" ng-init="init('{{csrf_token}}', '{{user_id}}', '{{is_profile_edit}}')"{% endblock controller %}
 
 {% block content %}
 
@@ -23,14 +23,16 @@
 				<label>Email Id<span class="red">*</span></label>
 				<input type="text" name="email" ng-model="seeker.email">
 			</div>
-			<div class="formrow">
-				<label>Choose Password<span class="red">*</span></label> 
-				<input type="password" name="password" ng-model="seeker.password">
-			</div>
-			<div class="formrow">
-				<label>Re-enter Password<span class="red">*</span></label> 
-				<input type="password" name="password1" ng-model="seeker.password1">
-			</div>
+			{% if not is_profile_edit %}
+				<div class="formrow">
+					<label>Choose Password<span class="red">*</span></label> 
+					<input type="password" name="password" ng-model="seeker.password">
+				</div>
+				<div class="formrow">
+					<label>Re-enter Password<span class="red">*</span></label> 
+					<input type="password" name="password1" ng-model="seeker.password1">
+				</div>
+			{% endif %}
 		</div>
 
 
@@ -79,7 +81,7 @@
 				<label>Nationality<span class="red">*</span></label>
 				<select name="nationality" ng-model="seeker.nationality"> 
 					<option value="">------------------Select------------------</option>
-					<option ng-repeat="nationality in nationalities" value="[[nationality]]">[[nationality]]</option>
+					<option ng-repeat="nationality in nationalities" value="[[nationality]]" ng-selected="nationality== seeker.nationality">[[nationality]]</option>
 				</select>
 			</div>
 			
@@ -87,7 +89,7 @@
 				<label>Country<span class="red">*</span></label> 
 				<select name="country" ng-model="seeker.country">
 					<option value="">------------------Select------------------</option>
-					<option ng-repeat="country in countries" value="[[country]]">[[country]]</option>
+					<option ng-repeat="country in countries" value="[[country]]" ng-selected="country== seeker.country">[[country]]</option>
 					<option>Other</option>
 				</select>
 			</div>
@@ -119,14 +121,14 @@
 				<label>Basic Education<span class="red">*</span></label>
 				<select name="basic_edu" ng-model="seeker.basic_edu">
 					<option value="">Select Bachelor's/Diploma/School</option>
-					<option ng-repeat="education in basic_education" value="[[education]]">[[education]]</option>
+					<option ng-repeat="education in basic_education" value="[[education]]" ng-selected="education == seeker.basic_edu">[[education]]</option>
 				</select>
 			</div>
 			<div class="formrow">
 				<label>Year of Passing<span class="red">*</span></label>
 				<select name="pass_year_basic" style="width: 14%" ng-model="seeker.pass_year_basic">
 					<option value="">--------Select-------</option>
-					<option ng-repeat="yr in year" value="[[yr]]">[[yr]]</option>
+					<option ng-repeat="yr in year" value="[[yr]]" ng-selecte="yr == seeker.pass_year_basic ">[[yr]]</option>
 
 				</select>
 			</div>
@@ -135,14 +137,14 @@
 				<label>Masters Education</label>
 				<select name="masters_edu" ng-model="seeker.masters_edu">
 					<option value="">-------------Select-------------</option>
-					<option ng-repeat="edu in masters_education" value="[[edu]]">[[edu]]</option>
+					<option ng-repeat="edu in masters_education" value="[[edu]]" ng-selected="edu == seeker.masters_edu">[[edu]]</option>
 				</select>
 			</div>
 			<div class="formrow">
 				<label>Year of Passing</label>
-				<select name="pass_year_masters" style="width: 14%" ng-model="seeker.pass_year_masters">
+				<select name="pass_year_masters" style="width: 14%" ng-model="seeker.pass_year_masters" >
 					<option value="">--------Select-------</option>
-					<option ng-repeat="yr in year" value="[[yr]]">[[yr]]</option>
+					<option ng-repeat="yr in year" value="[[yr]]" ng-selected="yr == seeker.pass_year_masters">[[yr]]</option>
 				</select>
 			</div>
 			<div class="formrow">
@@ -166,6 +168,7 @@
 				<label>Attach CV</label>
 				<input type="file" fileread="resume_doc.src"/>
 				<input type="hidden" ng-model="resume_doc.src">
+				<a href="/site_media/[[seeker.resume]]" ng-show="seeker.resume" target="_blank">Resume</a>
 			</div>
 			<div class="formrow">
 				<label>Copy and Paste Resume Here</label>
