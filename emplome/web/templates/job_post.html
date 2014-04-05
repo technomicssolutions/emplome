@@ -2,8 +2,7 @@
 {% block title %}Job Host{% endblock title %}
 {% block body_id %}jobpost{% endblock body_id %}
 
-{% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
-
+{% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}','{{job_id}}')"{% endblock controller %}
 {% block content %}
 <div class= "div3">
 
@@ -49,6 +48,7 @@
 				<!-- <label>Provide job details below or Pick from the doccument</label> -->
 				<input type="file" fileread="product_pdf.src"/>
 			    <input type="hidden" ng-model="product_pdf.src"/>
+			    <a href="/site_media/[[jobpost.details]]" ng-show="jobpost.details" target="_blank">Details</a>
 			    <!-- <label class="white">.</label>
 				<textarea ng-model="jobpost.details"></textarea> -->
 			</div>

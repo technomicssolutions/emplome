@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 	url(r'^logout/$', Logout.as_view(), name='logout'),
 	url(r'^profile/(?P<user_id>\d+)/$',login_required(ProfileView.as_view()), name='profile'),
 	url(r'^recruiter/post-jobs/$',login_required(PostJobsView.as_view()), name='postjobs'),
-	url(r'^recruiter/post-jobs/edit/(?P<user_id>\d+)/$',login_required(EditPostJobsView.as_view()), name='postjobsedit'),
+	url(r'^recruiter/post-jobs/edit/(?P<job_id>\d+)/$',login_required(EditPostJobsView.as_view()), name='post_jobs_edit'),
 	url(r'^jobs/list/$',ListExistingJobs.as_view(), name='list_jobs'),
 	# url(r'^jobs/details/(?P<ref_code>[\w-]+)/$',ListExistingJobDetails.as_view(), name='JobDetails'),
 	url(r'^search/jobs/$',SearchJobsView.as_view(), name='search_jobs'),
@@ -23,6 +23,5 @@ urlpatterns = patterns('',
 	url(r'^posted_jobs/$', login_required(PostedJobsView.as_view()), name='posted_jobs'),
 	url(r'^edit_profile/(?P<user_id>\d+)/$', login_required(EditProfile.as_view()), name='edit_profile'),
 	url(r'^profile/details/(?P<user_id>\d+)/$', GetProfileDetails.as_view(), name='profile_details'),
-	url(r'^get_job/details/(?P<user_id>\d+)/$', GetJobDetails.as_view(), name='get_job_details'),
-
+	
 )

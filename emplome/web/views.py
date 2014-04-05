@@ -311,14 +311,14 @@ class PostJobsView(View):
 
     def post(self, request, *args, **kwargs):
 
-        jobPosting = Job()
+        current_user = request.user
+
+        jobPosting, created = Job.objects.get_or_create(user = current_user)
         post_data = request.POST
         jobpost = ast.literal_eval(post_data['jobpost'])
-        current_user = request.user
-        profile = current_user.userprofile_set.all()[0]
-        jobs = profile.applied_jobs.all()
         
-        jobPosting.user = current_user
+        profile = current_user.userprofile_set.all()[0]
+        
         jobPosting.company = profile.company
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
@@ -338,6 +338,7 @@ class PostJobsView(View):
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
+        jobPosting.profile = jobpost['description']
         if jobpost['post_date']:
             jobPosting.posting_date = datetime.strptime(jobpost['post_date'], '%d-%m-%Y')
         jobPosting.exp_req_min = jobpost['min']
@@ -370,12 +371,14 @@ class EditPostJobsView(View):
     def get(self, request, *args, **kwargs):
         job_id = kwargs['job_id']
 
-        context = {}
-        return render(request, 'post_jobs.html', context)
+        context = {
+            'job_id':job_id,
+        }
+        return render(request, 'job_post.html', context)
 
     def post(self, request, *args, **kwargs):
 
-        jobPosting =Job.objects.get(id= kwargs['user_id'])
+        jobPosting =Job.objects.get(id= kwargs['job_id'])
         post_data = request.POST
 
         jobpost = ast.literal_eval(post_data['jobpost'])
@@ -396,7 +399,7 @@ class EditPostJobsView(View):
         jobPosting.name = jobpost['name']
         jobPosting.phone = jobpost['phone']
         jobPosting.mail_id = jobpost['email']
-        
+        jobPosting.profile = jobpost['description']        
         jobPosting.exp_req_min = jobpost['min']
         jobPosting.exp_req_max = jobpost['max']
 
@@ -412,47 +415,6 @@ class EditPostJobsView(View):
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
-
-class GetJobDetails(View):
-    def get(self, request, *args, **kwargs):
-
-        job_id = kwargs['job_id']
-        job = Job.objects.get(id= job_id)
-        ctx_jobpost = []
-               
-        ctx_jobpost.append({
-            'title': job.job_title,
-            'code': job.ref_code,
-            'summary': job.summary,            
-            'details': job.document.name,            
-            'skills': job.skills,
-            'min':job.exp_req_min,
-            'max':job.exp_req_max,
-            'location':job.job_location,
-            'industry':job.industry,
-            'function': job.function,            
-            'requirement': job.education_req,
-            'specialisation': job.specialization,
-            'nationality': job.nationality,
-            'last_date': job.last_date,
-            'name': job.name,
-            'phone': job.phone,
-            'email': job.mail_id,
-            'profile':job.company.description, 
-            'post_date': job.posting_date, 
-        })
-
-        if request.is_ajax():
-            res = {
-                'jobpost': ctx_jobpost,
-                'result': 'ok',
-            }
-            status_code = 200
-
-            response = simplejson.dumps(res)
-            
-            return HttpResponse(response, status=status_code, mimetype='application/json')
-
 
 class ListExistingJobs(View):
     def get(self, request,*args, **kwargs):
@@ -517,8 +479,40 @@ class JobDetailsView(View):
         context = {
            'job' : job, 
         }
-
-        return render(request, 'job_details.html', context)
+        if request.is_ajax():
+            ctx_jobpost = []
+                   
+            ctx_jobpost.append({
+                'title': job.job_title,
+                'code': job.ref_code,
+                'summary': job.summary,            
+                'details': job.document.name,            
+                'skills': job.skills,
+                'min':job.exp_req_min,
+                'max':job.exp_req_max,
+                'location':job.job_location,
+                'industry':job.industry,
+                'function': job.function,            
+                'requirement': job.education_req,
+                'specialisation': job.specialization,
+                'nationality': job.nationality,
+                'last_date': job.last_date,
+                'name': job.name,
+                'phone': job.phone,
+                'email': job.mail_id,
+                'profile':job.company.description, 
+                'post_date': job.posting_date, 
+            })
+            print ctx_jobpost
+            res = {
+                'jobpost': ctx_jobpost,
+            }
+            status_code = 200
+            response = simplejson.dumps(res)
+            
+            return HttpResponse(response, status=status_code, mimetype='application/json')
+        else:
+            return render(request, 'job_details.html', context)
 
 class SearchView(View):
 
