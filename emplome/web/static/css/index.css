@@ -31,7 +31,9 @@ a {
 }
 .middle_content {
     float: left;
-    width: 30%;
+    width: 26%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 .right_content {
     float: left;
@@ -171,6 +173,22 @@ a {
     line-height: 17px;
     padding: 5px;
     text-align: justify;
+}
+
+.recommendations {
+    color: #7D7D7D;
+    font-size: 11px;
+    text-align: justify;
+    width: 92%;
+}
+#read_more {
+    float: right;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #0079D0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px; 
 }
 
 /********** End Footer Styles ***********/
@@ -791,6 +809,14 @@ label textarea{
 .pagination {
     float: right;
     color: #7D7D7D;
+}
+.pagination a {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #0079D0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px; 
 }
 .stories {
     line-height: 19px;
