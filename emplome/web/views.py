@@ -516,12 +516,29 @@ class SearchView(View):
         context = {}
         location = request.GET.get('location', '')
         skills = request.GET.get('skills', '')
+        function = request.GET.get('function', '')
+        industry = request.GET.get('industry', '')
         if location:
             context = {
                 'location': True,
+            }          
+
+        elif skills:
+            context = {
+                'skills': True,
+            }        
+
+        elif function:
+            context = {
+                'function': True,
+            }        
+
+        elif industry:
+            context = {
+                'industry': True,
             }
 
-        return render(request, 'search.html', context)
+        return render(request, 'search.html', context) 
 
     
 class EditProfile(View):
