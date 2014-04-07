@@ -54,7 +54,7 @@
                 </div>
             {% endfor %}
         {% endif %}
-        <a href="{% url 'success_stories' %}">Read More</a>
+        <a href="{% url 'success_stories' %}" id="read_more">Read More >> </a>
 	</div>
 	<div class="middle_content">
 		<h4>Jobs By Location</h4>
@@ -78,7 +78,13 @@
 			<input class="button" type="submit" name="post_cv" value="Post your CV" ng-click="post_cv()">
 		</div>
 		<h4>RECOMMENDATIONS FROM EMPLOME</h4>
-		<img src="#">
+		<div class="recommendations">
+            {% if recommendations %}
+                {% for recommendation in recommendations%}
+                    <p>{{ recommendation.recommendation_data }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
 	</div>
 </div>
 {% endblock content %}
