@@ -512,30 +512,24 @@ class SearchView(View):
         if location:
             context = {
                 'location': True,
+            }          
+
+        elif skills:
+            context = {
+                'skills': True,
+            }        
+
+        elif function:
+            context = {
+                'function': True,
+            }        
+
+        elif industry:
+            context = {
+                'industry': True,
             }
 
-    #     return render(request, 'search.html', context)
-
-    #     else if skills:
-    #         context = {
-    #             'skills': True,
-    #         }
-
-    #     return render(request, 'search.html', context)
-
-    #     else if function:
-    #         context = {
-    #             'function': True,
-    #         }
-
-    #     return render(request, 'search.html', context) 
-
-    # else if industry:
-    #         context = {
-    #             'industry': True,
-    #         }
-
-    #     return render(request, 'search.html', context) 
+        return render(request, 'search.html', context) 
 
     
 class EditProfile(View):

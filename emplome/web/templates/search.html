@@ -18,13 +18,12 @@
 				</div>
 			</div>
 			<div class="btn">
-				<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('location
-				')">
+				<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('location')">
 				<br>
 				<p ng-show="error_flag" class="error_message">[[error_message]]</p>
 			</div>
 		
-		{% elseif skills %}
+		{% elif skills %}
 
 			<div class="search_container">
 				<div class="formrow">
@@ -33,38 +32,7 @@
 				</div>
 			
 				<div class="btn">
-					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('location')">
-					<br>
-					<p ng-show="error_flag" class="error_message">[[error_message]]</p>
-				</div>
-			</div>
-
-		{% elseif skills %}
-
-			<div class="search_container">
-				<div class="formrow">
-					<label>Functional Area</label>
-					<input type="text" ng-style="alert_style" name="function" ng-model="search.function_name" id="function">
-				</div>
-				<div class="btn">
-					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('function')">
-					<br>
-					<p ng-show="error_flag" class="error_message">[[error_message]]</p>
-				</div>
-			</div>
-
-		{% elseif skills %}
-
-			<div class="search_container">
-				<div class="formrow">
-					<label>Industry Type</label>
-					<select name="industry" ng-model="search.industry"> 
-						<option value="">------Select------</option>
-						<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
-					</select>
-				</div>
-				<div class="btn">
-					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('industry')">
+					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('skills')">
 					<br>
 					<p ng-show="error_flag" class="error_message">[[error_message]]</p>
 				</div>
