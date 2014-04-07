@@ -696,10 +696,12 @@ class ResetPassword(View):
             user.save()
             context = {
                 'success_message': 'Password changed successfully',
+                'user_id': user_id
             }
         else:
             context = {
-                'message': 'Please try after some time',
+                'message': 'Password should have a minimum length of 6',
+                'user_id': user_id,
             }
         return render(request, 'reset_password.html', context)
 
