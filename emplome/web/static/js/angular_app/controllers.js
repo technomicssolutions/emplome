@@ -39,31 +39,32 @@ function validation($scope) {
 
 function search_job($scope, search_option) {
     if (search_option) {
-      if(search_option == 'location') {
-        if (($scope.search.location == '' || $scope.search.location == undefined)) {
-            $scope.error_flag = true;
-            $scope.error_message = 'Please enter value for the location';
-            
-        }  else {
-            $scope.error_flag = false;
-            $scope.error_message = '';
-            var url = '/search/jobs/?location='+$scope.search.location;
-            document.location.href = url;
+        console.log(search_option);
+        if(search_option == 'location') {
+            if (($scope.search.location == '' || $scope.search.location == undefined)) {
+                $scope.error_flag = true;
+                $scope.error_message = 'Please enter value for the location';
+                
+            }  else {
+                $scope.error_flag = false;
+                $scope.error_message = '';
+                var url = '/search/jobs/?location='+$scope.search.location;
+                document.location.href = url;
+            }
+        } else {
+            if (($scope.search.keyword == '' || $scope.search.keyword == undefined) && ($scope.search.location == '' || $scope.search.location == undefined) && ($scope.search.experience == '' || $scope.search.experience == undefined) && ($scope.search.function_name == '' || $scope.search.function_name == undefined)) {
+                $scope.error_flag = true;
+                $scope.error_message = 'Please enter value for the any of the criteria';
+                $scope.alert_style = {border: '1px solid #FF0000'};
+                
+            }  else {
+                $scope.alert_style = {};
+                $scope.error_flag = false;
+                $scope.error_message = '';
+                var url = '/search/jobs/?location='+$scope.search.location+'&skills='+$scope.search.keyword+'&experience='+$scope.search.experience+'&function='+$scope.search.function_name+'&industry='+$scope.search.industry+'&search=true';
+                document.location.href = url;
+            }
         }
-      } else {
-        if (($scope.search.keyword == '' || $scope.search.keyword == undefined) && ($scope.search.location == '' || $scope.search.location == undefined) && ($scope.search.experience == '' || $scope.search.experience == undefined) && ($scope.search.function_name == '' || $scope.search.function_name == undefined)) {
-            $scope.error_flag = true;
-            $scope.error_message = 'Please enter value for the any of the criteria';
-            $scope.alert_style = {border: '1px solid #FF0000'};
-            
-        }  else {
-            $scope.alert_style = {};
-            $scope.error_flag = false;
-            $scope.error_message = '';
-            var url = '/search/jobs/?location='+$scope.search.location+'&skills='+$scope.search.keyword+'&experience='+$scope.search.experience+'&function='+$scope.search.function_name+'&industry='+$scope.search.industry+'&search=true';
-            document.location.href = url;
-        }
-      }
         
     } else {
       $scope.is_valid = validation($scope);
@@ -1323,6 +1324,6 @@ function  SearchController($scope,$element,$http,$timeout){
     }
 
     $scope.search = function(search_type){
-        search_job($scope, 'search_jobs');
+        search_job($scope, search_type);
     } 
 }
