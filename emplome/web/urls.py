@@ -30,4 +30,6 @@ urlpatterns = patterns('',
 	url(r'^forgot_password/$', ForgotPassword.as_view(), name='forgot_password'),
 	url(r'^reset_password/(?P<user_id>\d+)/$', ResetPassword.as_view(), name='reset_password'),
 
+	url(r'^success_stories/$', SuccessStoriesView.as_view(), name='success_stories'),
+
 )
