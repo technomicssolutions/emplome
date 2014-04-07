@@ -869,6 +869,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'password1': '',
         'first_name': '',
         'gender': '',
+        'dob':'',
         'religion': '',
         'marital_status': '',
         'nationality': '',
@@ -954,6 +955,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         } else if ($scope.seeker.gender == '' || $scope.seeker.gender == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please enter your gender';
+            return false;
+        } else if ($scope.seeker.dob == '' || $scope.seeker.dob == undefined){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter your Date of Birth';
             return false;
         } else if ($scope.seeker.religion == '' || $scope.seeker.religion == undefined || $scope.seeker.religion == 'select'){
             $scope.error_flag = true;

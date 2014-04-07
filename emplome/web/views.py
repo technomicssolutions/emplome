@@ -229,6 +229,11 @@ class JobSeekerRegistration(View):
         userprofile.user_type = 'job_seeker'
         userprofile.gender = seeker['gender']
         userprofile.religion = seeker['religion']
+        userprofile.dob = datetime.strptime(seeker['dob'], '%d-%m-%Y')
+        current_year = dt.datetime.now().year        
+        age = current_year - userprofile.dob.year
+
+        userprofile.age = age
         userprofile.marital_status = seeker['marital_status']
         userprofile.nationality = seeker['nationality']
         userprofile.country = seeker['country']
@@ -576,6 +581,7 @@ class GetProfileDetails(View):
                     'email': user.email,
                     'first_name': user.first_name,
                     'gender': userprofile.gender if userprofile else '',
+                    'dob': userprofile.dob if userprofile else '',
                     'religion': userprofile.religion if userprofile else '',
                     'marital_status': userprofile.marital_status if userprofile else '',
                     'nationality': userprofile.nationality if userprofile else '',

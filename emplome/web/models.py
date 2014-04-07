@@ -872,6 +872,8 @@ class UserProfile(models.Model):
     photo = models.FileField( upload_to = "uploads/photos/", max_length=20000, null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
+    dob = models.DateTimeField('DOB', null=True, blank=True)
+    age = models.IntegerField('Age', null=True, blank=True)
     applied_jobs  = models.ManyToManyField(Job)
     company = models.ForeignKey(CompanyProfile, null=True, blank=True)
     
