@@ -64,7 +64,6 @@ function search_job($scope, search_option) {
     if (search_option) {
         $scope.error_flag = false;
         $scope.error_message = '';
-        console.log(search_option);
         if(search_option == 'location') {
             console.log('in location')
             if (($scope.search.location == '' || $scope.search.location == undefined)) {
@@ -1047,8 +1046,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 headers: {'Content-Type': undefined
                 }
             }).success(function(data, status){
-                console.log("Successfully Saved");
-                console.log(data);
                 $scope.user_id = data.user_id;
                 $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
                 {
@@ -1083,7 +1080,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 "csrfmiddlewaretoken" : $scope.csrf_token,              
             }
             var fd = new FormData();
-        fd.append('photo_img', $scope.photo_img.src)
+            fd.append('photo_img', $scope.photo_img.src)
             fd.append('certificate_img', $scope.certificate_img.src)
             for(var key in params){
                 fd.append(key, params[key]);          
@@ -1117,25 +1114,95 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 
 function RecruiterController($scope, $element, $http, $timeout) {
-
-	$scope.init = function(csrf_token) {
+    $scope.error_flag = false;
+    $scope.error_message = '';
+    $scope.user_already_exists = false;
+	$scope.init = function(csrf_token, user_id) {
 		$scope.csrf_token = csrf_token;
-    
-    get_industries($scope);
-		get_countries($scope);
+        $scope.user_id = user_id;
+        get_industries($scope);
+    	get_countries($scope);
 
-    $scope.recruiter = {
-      'name' : '',
-      'industry' : '',
-      'email' : '',
-      'country' : '',
-      'password' : '',
-      'mobile' : '',
-      'phone' : '',
+        $scope.recruiter = {
+            'name' : '',
+            'industry' : '',
+            'email' : '',
+            'country' : '',
+            'password' : '',
+            'mobile' : '',
+            'phone' : '',
+            'city': '',
 
+        } 
+        if (user_id) {
+            $scope.user_already_exists = true;
+            $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
+            {
+                $scope.recruiter = data.recruiter[0]; 
+                
+            }).error(function(data, status)
+            {
+                console.log(data || "Request failed");
+            });
+        }
     }
-		
-	}
+    $scope.recruiter_validation = function(){
+        if ($scope.recruiter.name == '' || $scope.recruiter.name == undefined) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter the company name';
+            return false;
+        } else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please choose the industry type';
+            return false;
+        } else if ($scope.recruiter.email == '' || $scope.recruiter.email == undefined) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter the email';
+            return false;
+        } 
+        //  else if (!$scope.user_already_exists) {
+        else if (!$scope.user_id) {
+            if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
+                $scope.error_flag = true;
+                $scope.error_message = 'Please enter the password';
+                return false;
+            }
+        }
+        return true;
+    }
+    $scope.save_profile = function(){
+        $scope.is_valid = $scope.recruiter_validation();
+        if ($scope.is_valid) {
+            $scope.error_flag = false;
+            $scope.error_message = '';
+            if ($scope.user_id) {
+                var url = '/edit_profile/recruiter/'+$scope.user_id+'/';
+            } else {
+                var url = '/recruiter-registration/';
+            }
+                
+            params = {
+                'recruiter':angular.toJson($scope.recruiter),
+                "csrfmiddlewaretoken" : $scope.csrf_token,
+            }
+            var fd = new FormData();
+            for(var key in params){
+                fd.append(key, params[key]);          
+            }
+            $http.post(url, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined
+                }
+            }).success(function(data, status){
+                
+                document.location.href = '/profile/'+data.user_id+'/';
+              
+            }).error(function(data, status){
+           
+
+            });
+        }
+    }
 }
 
 function  JobPostingController($scope,$element,$http,$timeout){
@@ -1304,11 +1371,10 @@ function  JobPostingController($scope,$element,$http,$timeout){
                     }
                     
                 }).success(function(data, status){
-                    console.log("Successfully Saved");
                     $scope.id = data.id;
                     $scope.edit = $scope.edit + 1;  
               }).error(function(data, status){
-                  console.log(status);
+                  console.log(data);
             });
           
         }
@@ -1319,9 +1385,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
         $http.get('/jobs/details/'+$scope.existing_job+'/').success(function(data)
         {
             $scope.existing_job_detail = data.existing_job_details;
-            $scope.
-        jobpost = data.existing_job_details[0];
-            console.log($scope.jobpost);
+            $scope.jobpost = data.existing_job_details[0];
+            
         }).error(function(data, status)
         {
             console.log(data || "Request failed");

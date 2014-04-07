@@ -159,45 +159,54 @@ class RecruiterHomeView(View):
         }
         return render(request, 'recruiter_home.html', {})
 
-class FullTime(View):
-    def get(self, request, *args, **kwargs):
-        context = {}
-        return render(request, 'full_time.html', context)
-
 class RecruiterRegistrationView(View):
 
     def get(self, request, *args, **kwargs):
-        
-        return render(request, 'recruiter_registration.html', {})
-
-    def post(self, request, *args, **kwargs):
-        post_dict = request.POST
-        user, created = User.objects.get_or_create(username=request.POST['email'])
-        user.email = request.POST['email']
-        user.set_password(post_dict['password'])
-        user.save()
-        userprofile = UserProfile()
-        userprofile.user = user
-        userprofile.user_type = "employer"
-        userprofile.mobile=request.POST['mobile']
-        userprofile.land_num=request.POST['phone']
-        userprofile.city=request.POST['city']
-        userprofile.country=request.POST['country']
-        userprofile.save()
-        companyprofile = CompanyProfile() 
-        companyprofile.company_name = request.POST['name']
-        companyprofile.industry_type = request.POST['industry']
-        companyprofile.save()
-        userprofile.company = companyprofile
-        userprofile.save()
-        login_user = authenticate(username=request.POST['email'], password=request.POST['password'])
-        if login_user and login_user.is_active:
-            login(request, login_user)
 
         context = {
-            'profile': userprofile,
+            'user_loggedin': False,
+            'user_id': '',
         }
-        return render(request, 'profile.html', context)
+        return render(request, 'recruiter_registration.html', context)
+
+    def post(self, request, *args, **kwargs):
+
+        
+        post_dict = ast.literal_eval(request.POST['recruiter'])
+        
+        user, created = User.objects.get_or_create(username=post_dict['email'])
+        user.email = post_dict['email']
+        if created:
+            user.set_password(post_dict['password'])
+        user.save()
+        userprofile, created = UserProfile.objects.get_or_create(user = user)
+        userprofile.user_type = "employer"
+        userprofile.mobile = post_dict['mobile']
+        userprofile.land_num = post_dict['phone']
+        userprofile.city = post_dict['city']
+        userprofile.country = post_dict['country']
+        userprofile.save()
+        companyprofile, created = CompanyProfile.objects.get_or_create(company_name = post_dict['name'], industry_type = post_dict['industry']) 
+        
+        userprofile.company = companyprofile
+        userprofile.save()
+        if created:
+            login_user = authenticate(username=post_dict['email'], password=post_dict['password'])
+            if login_user and login_user.is_active:
+                login(request, login_user)
+        if request.is_ajax():
+            res = {
+                'user_id': user.id,
+                'result': 'ok',
+            }
+            response = simplejson.dumps(res)
+            status_code = 200
+            return HttpResponse(response, status = status_code, mimetype='application/json')
+        else:
+            context = {
+                'profile': userprofile,
+            }
+            return render(request, 'profile.html', context)
 
     
 class JobSeekerRegistration(View):
@@ -490,7 +499,7 @@ class JobDetailsView(View):
                 'profile':job.description, 
                 'post_date': job.posting_date, 
             })
-            print ctx_jobpost
+            
             res = {
                 'jobpost': ctx_jobpost,
             }
@@ -551,50 +560,70 @@ class GetProfileDetails(View):
         user = User.objects.get(id= user_id)
         ctx_seeker = []
         ctx_seeker1 = []
+        ctx_recruiter = []
         education = []
         employment = []
+        company = []
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
-            if userprofile.education_set.all().count() > 0:
-                education = userprofile.education_set.all()[0]
-            
-            if userprofile.employment_set.all().count() > 0:
-                employment = userprofile.employment_set.all()[0]
-        ctx_seeker.append({
-            'email': user.email,
-            'first_name': user.first_name,
-            'gender': userprofile.gender if userprofile else '',
-            'religion': userprofile.religion if userprofile else '',
-            'marital_status': userprofile.marital_status if userprofile else '',
-            'nationality': userprofile.nationality if userprofile else '',
-            'country': userprofile.country if userprofile else '',
-            'city': userprofile.city if userprofile else '',
-            'mobile': userprofile.mobile if userprofile else '',
-            'alt_email': userprofile.alt_mail if userprofile else '',
-            'basic_edu': education.basic_edu if education else '' ,
-            'pass_year_basic': education.pass_year_basic if education else '' ,
-            'masters_edu': education.masters if education else '' ,
-            'pass_year_masters': education.pass_year_masters if education else '' ,
-            'doctrate': education.doctrate if education else '' ,
-            'resume_title': education.resume_title if education else '' ,
-            'resume_text': education.resume_text if education else '' ,
-            'resume': education.resume.name if education else '' ,
-        })
-        ctx_seeker1.append({
-            'years': employment.exp_yrs if employment else '' ,
-            'months': employment.exp_mnths if employment else '' ,
-            'salary': employment.salary if employment else '' ,
-            'designation': employment.designation if employment else '' ,
-            'skills': employment.skills if employment else '' ,
-            'industry': employment.curr_industry if employment else '' ,
-            'functions': employment.function if employment else '' , 
-            'certificate_img': education.certificate.name if education else '',
-            'profile_photo': userprofile.photo.name if userprofile else '',
-        })
+            if userprofile.user_type == 'job_seeker':
+                if userprofile.education_set.all().count() > 0:
+                    education = userprofile.education_set.all()[0]
+                
+                if userprofile.employment_set.all().count() > 0:
+                    employment = userprofile.employment_set.all()[0]
+                ctx_seeker.append({
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'gender': userprofile.gender if userprofile else '',
+                    'religion': userprofile.religion if userprofile else '',
+                    'marital_status': userprofile.marital_status if userprofile else '',
+                    'nationality': userprofile.nationality if userprofile else '',
+                    'country': userprofile.country if userprofile else '',
+                    'city': userprofile.city if userprofile else '',
+                    'mobile': userprofile.mobile if userprofile else '',
+                    'alt_email': userprofile.alt_mail if userprofile else '',
+                    'basic_edu': education.basic_edu if education else '' ,
+                    'pass_year_basic': education.pass_year_basic if education else '' ,
+                    'masters_edu': education.masters if education else '' ,
+                    'pass_year_masters': education.pass_year_masters if education else '' ,
+                    'doctrate': education.doctrate if education else '' ,
+                    'resume_title': education.resume_title if education else '' ,
+                    'resume_text': education.resume_text if education else '' ,
+                    'resume': education.resume.name if education else '' ,
+                })
+                ctx_seeker1.append({
+                    'years': employment.exp_yrs if employment else '' ,
+                    'months': employment.exp_mnths if employment else '' ,
+                    'salary': employment.salary if employment else '' ,
+                    'designation': employment.designation if employment else '' ,
+                    'skills': employment.skills if employment else '' ,
+                    'industry': employment.curr_industry if employment else '' ,
+                    'functions': employment.function if employment else '' , 
+                    'certificate_img': education.certificate.name if education else '',
+                    'profile_photo': userprofile.photo.name if userprofile else '',
+                })
+            else:
+                
+                company = userprofile.company
+
+                if userprofile.employment_set.all().count() > 0:
+                    employment = userprofile.employment_set.all()[0]
+
+                ctx_recruiter.append({
+                    'name' : company.company_name if company else '' ,
+                    'industry' : company.industry_type if company else '' ,
+                    'email' : user.email,
+                    'country' : userprofile.country if userprofile else '',
+                    'mobile' : userprofile.mobile if userprofile else '',
+                    'phone' : userprofile.land_num if userprofile else '',
+                    'city': userprofile.city if userprofile else '',
+                })
         if request.is_ajax():
             res = {
                 'seeker': ctx_seeker,
                 'seeker1': ctx_seeker1,
+                'recruiter': ctx_recruiter,
                 'result': 'ok',
             }
             status_code = 200
@@ -611,7 +640,6 @@ class ForgotPassword(View):
 
     def post(self, request, *args, **kwargs):
 
-        print request.POST
         user = User.objects.filter(email = request.POST['email_id'])
         if user.exists():
             user = user[0]
@@ -619,7 +647,6 @@ class ForgotPassword(View):
             text_content = 'This is Important'
             from_email = settings.DEFAULT_FROM_EMAIL
             url = 'http://%s%s'%(Site.objects.get_current().domain,'/reset_password/'+str(user.id)+'/') 
-            print url
             ctx = {
                 'url': url,
                 'user': user,
@@ -630,17 +657,15 @@ class ForgotPassword(View):
                 
                 to.append(user.email)
                 for i in range(len(to)):
-                    print "*******************sending mail to ", to[i], "*******************"
                     msg = EmailMultiAlternatives(subject, text_content, from_email, [to[i]])
                     msg.attach_alternative(html_content, "text/html")
                     try:
                         msg.send()
                         context = {
-                            'message': 'Please check your mail for creating a new password',
+                            'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
                         }
                         return render(request, 'forgot_password.html', context)
                     except Exception as ex:
-                        print str(ex)
                         context = {
                             'message': 'Please try after some time',
                         }
@@ -671,14 +696,63 @@ class ResetPassword(View):
             user.save()
             context = {
                 'success_message': 'Password changed successfully',
+                'user_id': user_id
             }
         else:
             context = {
-                'message': 'Please try after some time',
+                'message': 'Password should have a minimum length of 6',
+                'user_id': user_id,
             }
         return render(request, 'reset_password.html', context)
 
+class RecruiterProfileEdit(View):
 
+    def get(self, request, *args, **kwargs):
 
+        user = User.objects.get(id=kwargs['user_id'])
+        context = {
+            'user_loggedin': True,
+            'user_id': user.id,
+        }
 
+        return render(request, 'recruiter_registration.html', context)
 
+    def post(self, request, *args, **kwargs):
+
+        try:
+            post_dict = ast.literal_eval(request.POST['recruiter'])
+            user = User.objects.get(id=kwargs['user_id'])
+            user.email = post_dict['email']
+            user.save()
+            userprofile, created = UserProfile.objects.get_or_create(user = user)
+            userprofile.mobile = post_dict['mobile']
+            userprofile.land_num = post_dict['phone']
+            userprofile.city = post_dict['city']
+            userprofile.country = post_dict['country']
+            userprofile.save()
+            company = userprofile.company
+            company.company_name = post_dict['name']
+            company.industry_type = post_dict['industry']
+            company.save()
+            userprofile.company = company
+            userprofile.save()
+            
+            res = {
+                'result':'ok',
+                'message': 'successfully edited',
+                'user_id': user.id,
+            }
+            
+            status_code = 200
+        except Exception as ex:
+            res = {
+                'result':'error',
+                'message': 'successfully edited',
+                'error_message': str(ex),
+            }
+            
+            status_code = 200
+
+        response = simplejson.dumps(res)
+
+        return HttpResponse(response, status = status_code, mimetype="application/json")
