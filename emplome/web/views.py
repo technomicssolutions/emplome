@@ -460,12 +460,12 @@ class ListExistingJobDetails(View):
                 'requirement': job[0].education_req,
                 'specialisation': job[0].specialization,
                 'nationality': job[0].nationality,
-                'last_date': job[0].last_date,
+                'last_date': job[0].last_date.strftime('%d-%m-%Y'),
                 'name': job[0].name,
                 'phone': job[0].phone,
                 'email': job[0].mail_id,
                 'profile':job[0].description, 
-                'post_date': job[0].posting_date, 
+                'post_date': job[0].posting_date.strftime('%d-%m-%Y'), 
             })
             res = {
                 'existing_job_details': ctx_jobs,
@@ -498,12 +498,12 @@ class JobDetailsView(View):
                 'requirement': job.education_req,
                 'specialisation': job.specialization,
                 'nationality': job.nationality,
-                'last_date': job.last_date,
+                'last_date': job.last_date.strftime('%d-%m-%Y'),
                 'name': job.name,
                 'phone': job.phone,
                 'email': job.mail_id,
                 'profile':job.description, 
-                'post_date': job.posting_date, 
+                'post_date': job.posting_date.strftime('%d-%m-%Y'), 
             })
             
             res = {
@@ -582,7 +582,7 @@ class GetProfileDetails(View):
                     'email': user.email,
                     'first_name': user.first_name,
                     'gender': userprofile.gender if userprofile else '',
-                    'dob': userprofile.dob if userprofile else '',
+                    'dob': userprofile.dob.strftime('%d-%m-%Y') if userprofile else '',
                     'religion': userprofile.religion if userprofile else '',
                     'marital_status': userprofile.marital_status if userprofile else '',
                     'nationality': userprofile.nationality if userprofile else '',
