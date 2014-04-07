@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Success Stories{% endblock title %}
+{% block body_id %}success_stories{% endblock body_id %}
+
+{% block content %}
+	<div class="">
+		{% if success_stories %}
+			{% for story in success_stories %}
+				<div>
+					<h4>{{ story.title }}</h4>
+                    <p>{{ story.story }}</p>
+				</div>
+			{% endfor %}
+		{% endif %}
+		<div class="pagination">
+            <span class="step-links">
+                {% if success_stories.has_previous %}
+                    <a href="?page={{ success_stories.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ success_stories.number }} of {{ success_stories.paginator.num_pages }}.
+                </span>
+
+                {% if success_stories.has_next %}
+                    <a href="?page={{ success_stories.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+	</div>
+{% endblock content %}

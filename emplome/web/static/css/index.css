@@ -21,11 +21,13 @@ a {
     border-color: #EBEBEB;
     border-style: solid;
     border-width: 2px 1px 1px;
+    display: inline-block;
 }
 
 .left_content {
     float: left;
-    width: 40%;
+    width: 39%;
+    margin-right: 1%;
 }
 .middle_content {
     float: left;
@@ -163,7 +165,13 @@ a {
     color: #7D7D7D;
 }
 
-
+.success_story p {
+    color: #7D7D7D;
+    font-size: 11px;
+    line-height: 17px;
+    padding: 5px;
+    text-align: justify;
+}
 
 /********** End Footer Styles ***********/
 

@@ -17,6 +17,7 @@ from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError, EmailMessage, EmailMultiAlternatives, mail_admins
 from django.contrib.sites.models import Site
 from django.template.loader import render_to_string
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.http import Http404 
 
@@ -756,3 +757,23 @@ class RecruiterProfileEdit(View):
         response = simplejson.dumps(res)
 
         return HttpResponse(response, status = status_code, mimetype="application/json")
+
+class SuccessStoriesView(View):
+
+    def get(self, request, *args, **kwargs):
+
+        success_stories = SuccessStory.objects.all()
+        paginator = Paginator(success_stories, 3)
+        page = request.GET.get('page')
+        try:
+            stories = paginator.page(page)
+        except PageNotAnInteger:
+            stories = paginator.page(1)
+        except EmptyPage:
+            stories = paginator.page(paginator.num_pages)
+        context = {
+            'success_stories': stories,
+        }
+        return render(request, 'success_stories.html', context)
+
+    
