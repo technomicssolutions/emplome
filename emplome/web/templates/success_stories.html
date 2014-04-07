@@ -3,10 +3,10 @@
 {% block body_id %}success_stories{% endblock body_id %}
 
 {% block content %}
-	<div class="">
+	<div class="contents">
 		{% if success_stories %}
 			{% for story in success_stories %}
-				<div>
+				<div class="stories">
 					<h4>{{ story.title }}</h4>
                     <p>{{ story.story }}</p>
 				</div>

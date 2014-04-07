@@ -18,8 +18,6 @@ def site_variables(request):
         success_stories = SuccessStory.objects.filter(publish=True).order_by('-id')
         if success_stories.count() > 3:
             stories = success_stories[:3]
-            print stories
-        
     except:
         stories = []
     

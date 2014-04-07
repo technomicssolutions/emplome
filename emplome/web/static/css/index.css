@@ -776,3 +776,22 @@ label textarea{
 }
 
 /**************************   Forgot Password module end******************************/
+
+/**************************  Success Stories Details page******************************/
+
+.contents {
+    margin: auto;
+    width: 95%;
+    margin-bottom: 7%;
+}
+.pagination {
+    float: right;
+    color: #7D7D7D;
+}
+.stories {
+    line-height: 19px;
+    color: #7D7D7D;
+    text-align: justify;
+}
+
+/**************************  Success Stories Details page end ******************************/
