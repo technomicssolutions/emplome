@@ -927,6 +927,7 @@ class SuccessStory(models.Model):
 
     title = models.CharField('Title', max_length=50, null=True, blank=True)
     story = models.TextField('Story', null=True, blank=True)
+    publish = models.BooleanField('Publish', default=False)
 
     def __unicode__(self):
         return self.title

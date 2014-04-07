@@ -46,6 +46,12 @@
 <div class="content_top">
 	<div class="left_content">
 		<h4>Success Stories</h4>
+        {% if success_stories %}
+            <div>
+                <h4>{{ success_stories.title }}</h4>
+                <p>{{ success_stories.story }}</p>
+            </div>
+        {% endif %}
 	</div>
 	<div class="middle_content">
 		<h4>Jobs By Location</h4>
