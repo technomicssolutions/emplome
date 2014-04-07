@@ -43,33 +43,36 @@
 
 
 {% block content %}
-<div class="container">
-{% if user.userprofile_set.all.0.user_type == 'employer' %}
-	<div class="profile-box">
-		<strong>{{error}}</strong><br />
-		<label>Welcome to your Home Page</label><br />
-		<label>Post jobs and find the best</label><br />
+	<div class="container">
+	{% if user.userprofile_set.all.0.user_type == 'employer' %}
+		<div class="profile-box">
+			<strong>{{error}}</strong><br />
+			<label>Welcome to your Home Page</label><br />
+			<label>Post jobs and find the best</label><br />
+		</div>
 
-		<div class="profile-det">
+		<div class="content-box">
 			
 			<h4>My Profile</h4>
 			<img src="#" alt="Profile Picture">
 			<h3>{{profile.company_name}}</h3>
-			Email id : {{profile.user.email}}
+			Email id : <label>{{profile.user.email}}</label>
 			<br>
-			Mobile : {{ profile.mobile }}
+			Mobile : <label>{{ profile.mobile }}</label>
 			<br>
-			Industry Type : {{profile.company_set.all.0.industry_type}}
+			Industry Type : <label>{{profile.company_set.all.0.industry_type}}</label>
 	 		<br>
-	 		Location : {{profile.country}}
+	 		Location : <label>{{profile.country}}</label>
 	 		<br>
+
 	 		<div>
 	 			<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
 	 		</div>
-
 	 	</div>
+
+	</div>
 	 	
-	 </div>
+	 <!-- </div> -->
 
 {% else %}
 
@@ -82,29 +85,50 @@
 			<label>Update CV, browse/search jobs... do lots more on your page!</label><br />
 			<label>Your profile picture is missing. Upload one to increase your visibility and searchability.</label><br />
 		</div>
-		
-		<div class="profile-left-box">
-			<h4>My Profile</h4>
-			<img src="#" alt="Profile Picture">
-			<h3>{{profile.user.first_name}}</h3>
-			Email id : {{profile.user.email}}
-			<br><br>
-			Mobile : {{ profile.mobile }}
-			<br><br>
-			Functional Area : {{profile.employment_set.all.0.function}}
-			<br><br>
-			Industry Type : {{profile.employment_set.all.0.curr_industry}}
-			<br><br>
-			Work Experience : {{profile.employment_set.all.0.exp_yrs}} Year(s), {{profile.employment_set.all.0.exp_mnths}} Month(s)
-			<br><br>
-			<!-- Highest Education : if  -->
-			Location : {{profile.country}}
-	 		<br><br>	 		
-		</div>
-		<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
-		<br><br><br>
-	</div>
+		<br><br>
 
-{% endif %}
-</div>
+		<div class="content-box">
+			<br><br>
+			<h4>My Profile</h4>
+
+			<div class="formrow" id="photos">
+				<div class="review_clientphoto" id="profile_image">
+		            <img src="/site_media/{{profile.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+		        </div>
+	    	</div>
+	    	<br><br>
+	    </div>
+	    <div class="content-box">
+
+	   		<h3>{{profile.user.first_name}}</h3>
+	   		<br>
+	   		<div class="label-box-left">
+				<label>Email id :</label> <br>					
+				<label>Mobile :</label> <br>
+				<label>Functional Area :</label> <br>					
+				<label>Industry Type :</label> 	<br>				
+				<label>Work Experience :</label> <br>				
+				<label>Location :</label> 
+		 			
+	 		</div>
+
+		 	<div class="label-box-right">
+		 		{{profile.user.email}}<br>
+		 		{{ profile.mobile }}<br>
+		 		{{profile.employment_set.all.0.function}}<br>
+		 		{{profile.employment_set.all.0.curr_industry}}<br>
+		 		{{profile.employment_set.all.0.exp_yrs}} Year(s), {{profile.employment_set.all.0.exp_mnths}} Month(s)<br>
+		 		{{profile.country}}
+		 	</div>
+		</div>
+			
+		<div class="edit-button">
+	 		<br><br>
+			<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
+		</div>
+
+	
+		<br><br><br>
+		{% endif %}
+	</div>
 {% endblock content %}

@@ -59,7 +59,7 @@ class SearchJobsView(View):
             if not jobs.exists():
                 searched_for = str('"'+function+'"')
         elif skills and not location and not function and not exp and not industry and not search:
-            jobs = Job.objects.filter(skills=skills)
+            jobs = Job.objects.filter(skills__contains=skills)
             if not jobs.exists():
                 searched_for = str('"'+skills+'"')   
         else:
