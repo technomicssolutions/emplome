@@ -64,7 +64,6 @@ function search_job($scope, search_option) {
     if (search_option) {
         $scope.error_flag = false;
         $scope.error_message = '';
-        console.log(search_option);
         if(search_option == 'location') {
             console.log('in location')
             if (($scope.search.location == '' || $scope.search.location == undefined)) {

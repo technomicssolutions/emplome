@@ -662,7 +662,7 @@ class ForgotPassword(View):
                     try:
                         msg.send()
                         context = {
-                            'message': 'Please check your mail for creating a new password',
+                            'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
                         }
                         return render(request, 'forgot_password.html', context)
                     except Exception as ex:

@@ -4,6 +4,10 @@ body {
     font-size: 12px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .container{
     width:80%;
     margin: auto;
@@ -90,9 +94,16 @@ body {
     width: 23%;
 }
 
+.footer a , .middle_content a{
+    
+    color: #7D7D7D;
+    line-height: 20px;
+}
+
 /********** End Footer Styles ***********/
 
 /********** Home Page ***********/
+
 .content_top {
     width: 100%;
     height: auto;
@@ -143,6 +154,9 @@ body {
     margin-top: 5px;
 }
 
+.find_jobs ul li {
+    color: #7D7D7D;
+}
 
 
 
@@ -156,10 +170,9 @@ body {
 
 .btn
 {
-/*background-color:#cce6ff; #FFE4C4;*/
-text-align:center;
-width: auto;
-/*border:1px solid black;*/
+
+    text-align: center;
+    width: auto;
 }
 
 .button{
@@ -170,7 +183,6 @@ width: auto;
 .div3
 {
   margin: auto;
-  /*margin-top:50px;*/
   width:80%;
   height:auto;
   border:1px solid blue;
@@ -205,15 +217,15 @@ width: auto;
     display: inline;
 }
 
- .hd1{
-    color:black; 
-    text-decoration:underline;
-    text-align:center;
+.hd1{
+    color: black; 
+    text-decoration: underline;
+    text-align: center;
 }
 
 .mandatory{
-  float:right;
-  color:red;
+  float: right;
+  color: red;
 }
 
 .red{
@@ -221,7 +233,7 @@ width: auto;
 }
 
 .separation{
-  border:1px solid blue;
+  border: 1px solid blue;
   /*background-color:white;*/
   padding-left: 6%;
 }
@@ -230,9 +242,9 @@ width: auto;
 {
   margin: auto;
   /*margin-top:50px;*/
-  width:90%;
-  height:auto;
-  border:1px solid blue;
+  width: 90%;
+  height: auto;
+  border: 1px solid blue;
 }
 
 .message p{
@@ -257,11 +269,6 @@ width: auto;
   height:54px;
   border-bottom:1px solid #ffffff;
 }
-
-body {
-    font: 400 15px/1 Arial,Helvetica,sans-serif;
-}
-
 
 .logodiv{
     height: 66px;
@@ -458,7 +465,6 @@ body {
     font-size: 12px;
     height: auto;
     line-height: 20px;
-    /*padding: 1.1em;*/
     text-align: justify;
     width: 97%;
 }
@@ -580,9 +586,7 @@ body {
     display: block;
 }
 .left-box{
-    /*width:62%;*/
-    /*padding:2%;*/
-    /*line-height: 2;*/
+
     background-color: #ECE7F8;
     border-top:1px solid #663399;
     margin: auto;
@@ -631,6 +635,8 @@ body {
 label textarea{
     vertical-align: middle;
 }
+
+/**************************   Search module ******************************/
 .error_message {
     color: #FF0000;
     margin: 0px;
@@ -668,7 +674,11 @@ label textarea{
 #search_text {
     color: #006600;
 }
-.review_clientphoto img {
+
+/**************************   Search module end ******************************/
+
+/**************************   Profile module ********************************/
+.rounded_photo img {
   height :50px;
   width :50px;
   border-radius: 500px 500px 500px 500px;
@@ -680,3 +690,5 @@ label textarea{
 #photos {
     min-height: 55px;
 }
+
+/**************************   Profile module end ******************************/
