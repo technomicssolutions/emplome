@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 	url(r'^profile/(?P<user_id>\d+)/$',login_required(ProfileView.as_view()), name='profile'),
 	url(r'^edit_profile/(?P<user_id>\d+)/$', login_required(EditProfile.as_view()), name='edit_profile'),
 	url(r'^profile/details/(?P<user_id>\d+)/$', GetProfileDetails.as_view(), name='profile_details'),
+	url(r'^edit_profile/recruiter/(?P<user_id>\d+)/$', login_required(RecruiterProfileEdit.as_view()), name='edit_profile_recruiter'),
 
 	url(r'^search/jobs/$',SearchJobsView.as_view(), name='search_jobs'),
 	url(r'^search/$', SearchView.as_view(), name='search'),

@@ -27,9 +27,14 @@
             <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
         </li>
        {% if user.is_authenticated %}
-            <li>
-                <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a>
-            </li>
+            {% if user.userprofile_set.all %}
+                {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
+                    <li>
+                        <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+            
             <li>
                 <a class="tabUnsel" title="Logout" href="{% url 'logout' %}">Logout</a>
             </li>

@@ -16,13 +16,18 @@
             Job Posting
             </a>
         </li>
-        <li>
-        	{% if user.is_authenticated %}
-
-				<a class="tabUnsel" title="Recruiter Login" href="{% url 'logout' %}">Logout</a>
-			{% else %}
-				<a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>			
-			{% endif %}
-        </li>
+        
+    	{% if user.is_authenticated %}
+             <li>
+                <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
+            </li>
+            <li>
+			    <a class="tabUnsel" title="Recruiter Login" href="{% url 'logout' %}">Logout</a>
+            </li>
+		{% else %}
+            <li>
+			    <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>	
+            </li>	
+		{% endif %}
     </ul>
 </div>
