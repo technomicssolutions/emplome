@@ -564,15 +564,19 @@ a {
 
 
 /*PROFILE PAGE*/
-.profile-box{
+.welcome-box{
     width: 100%;
     float: left;
     display: inline;
 }
 
-.profile-box label{
+.welcome-box label{
     font-size: 11px;
     line-height: 20px;  
+}
+
+.profile-box{
+    /*border: 1px solid blue;*/
 }
 
 .profile-left-box{
@@ -598,7 +602,7 @@ a {
 
 .label-box-left{
     float: left;
-    width: 30%;
+    width: 20%;
     line-height: 20px;  
 }
 
