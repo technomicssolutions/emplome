@@ -554,18 +554,57 @@ body {
 
 /*PROFILE PAGE*/
 .profile-box{
-    width:50%;
+    width: 100%;
+    float: left;
+    display: inline;
 }
+
 .profile-box label{
     font-size: 11px;
-    line-height: 1.5;
-    
+    line-height: 20px;  
 }
 
 .profile-left-box{
     width: 50%;
     display: inline;
     
+}
+
+.content-box{
+    /*border: 1px solid blue;*/
+    width: 100%;
+    margin-top: 3%;
+    font-size: 12px;
+    font-family: Arial;
+   /*padding-left: 2%;*/
+
+}
+
+.content-box label{
+   width: 100%;
+    /*padding-right: 10%;*/
+}
+
+.label-box-left{
+    float: left;
+    width: 30%;
+    line-height: 20px;  
+}
+
+.label-box-left label{
+    font-weight: bold;
+}
+
+.label-box-right{
+    float: left;
+    width: 70%;
+    line-height: 20px;
+}
+
+.edit-button {
+    padding-top: 13%;
+    margin-top: 5%;
+   
 }
 
 
@@ -679,4 +718,8 @@ label textarea{
 
 #photos {
     min-height: 55px;
+}
+
+.formrow input[type="radio"] {
+    width: 2%;
 }
