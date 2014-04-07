@@ -93,6 +93,11 @@ a {
     padding: 5px;
     width: 23%;
 }
+.footer_bottom p {
+    margin: auto;
+    text-align: center;
+    width: 25%;
+}
 
 .footer a , .middle_content a{
     
@@ -692,3 +697,31 @@ label textarea{
 }
 
 /**************************   Profile module end ******************************/
+
+/**************************   Forgot Password module ******************************/
+
+.content_div {
+    margin: auto;
+    width: 30%;
+    line-height: 25px;
+}
+
+/*.content_div h2{
+    text-align: center;
+}*/
+.content_div input[type='text']{
+    margin-bottom: 7px;
+}
+
+.content_div input[type='submit']{
+    margin-bottom: 7px;
+}
+.btn_align_center {
+    margin: auto;
+    width: 35%;
+}
+#error_msg {
+    text-align: center;
+}
+
+/**************************   Forgot Password module end******************************/
