@@ -13,10 +13,17 @@ def site_variables(request):
     for job in jobs:
         if job.function not in ctx_function:
             ctx_function.append(job.function)
+    try:
+        success_stories = SuccessStory.objects.all().exclude(publish=False)
+        print success_stories
+    except:
+        success_stories = []
+
 
     return {
         'SITE_ROOT_URL_S': 'http://%s/'%(current_site.domain),
         'SITE_ROOT_URL': 'http://%s'%(current_site.domain),
         'locations': ctx_location,
         'functions': ctx_function,
+        'success_stories': success_stories,
     }
