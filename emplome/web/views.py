@@ -782,4 +782,31 @@ class SuccessStoriesView(View):
         }
         return render(request, 'success_stories.html', context)
 
+class PublishJob(View):
+
+    def post(self, request, *args, **kwargs):
+
+        job = Job.objects.get(id = kwargs['job_id'])
+        job.is_publish = True
+        job.save()
+        jobs = Job.objects.filter(user=request.user)
+        context = {
+          'jobs': jobs,
+        }
+
+        return render(request, 'posted_jobs.html', context)
+
+class DeleteJob(View):
+
+    def post(self, request, *args, **kwargs):
+
+        job = Job.objects.get(id = kwargs['job_id'])
+        job.delete()
+        jobs = Job.objects.filter(user=request.user)
+        context = {
+          'jobs': jobs,
+        }
+
+        return render(request, 'posted_jobs.html', context)
+
     

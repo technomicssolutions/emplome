@@ -847,7 +847,7 @@ class Job(models.Model):
     is_featured = models.BooleanField('Is Featured', default=False)
     is_post = models.BooleanField('Is Post', default=False)
     description = models.CharField('Description', max_length=1500, null=True, blank=True)
-    
+    is_publish = models.BooleanField('Publish', default=False)
 
     def __unicode__(self):
         return self.job_title
