@@ -12,9 +12,7 @@
 		<div class="separation">
 			<br>
 			<h2 class="hd1">Job Posting</h2>
-
-			<br><br>
-
+			
 			<p class="mandatory">* Mandatory Fields</p>
 			<br>
 			
@@ -152,10 +150,9 @@
 				<input type="checkbox" name="checkbox" ng-model="checkbox">
 				Reveal contact details to seekers who applied for the job
 			</div>
-			<div class="btn" align="center">
+			<div class="btn" align="center" id="job_submit">
 				<input type="button" value="submit" ng-click="save_job()">
-				<a href="" target="_blank" ng-click="view_posted_jobs()">View Posted Jobs</a>
-				<!-- {{message}} -->
+				
 			</div>
 
 			<div class="message">
@@ -169,12 +166,3 @@
 			
 {% endblock content %}
 
-
-
-
-
-
-
-<!-- {% if user.userprofile_set.all.0.usertype == 'recruiter' %}
-
-{% endif %} -->

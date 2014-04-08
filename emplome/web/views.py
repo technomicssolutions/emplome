@@ -47,27 +47,27 @@ class SearchJobsView(View):
         jobs = []
         if location and function and skills and exp and not search:
             experience = int(exp)
-            jobs = Job.objects.filter(Q(job_location=location) , Q(function=function), Q(skills=skills), Q(exp_req_min__lte=experience, exp_req_max__gte=experience))
+            jobs = Job.objects.filter(Q(job_location=location) , Q(function=function), Q(skills=skills), Q(exp_req_min__lte=experience, exp_req_max__gte=experience), is_publish=True)
             if not jobs.exists():
                 searched_for = str('"'+location+ '-'+skills+'-'+function+'-'+exp+'"')
         
         elif location and not function and not skills and not exp and not industry and not search: 
-            jobs = Job.objects.filter(job_location=location)    
+            jobs = Job.objects.filter(job_location=location, is_publish=True)    
             if not jobs.exists():
                 searched_for = str('"'+location+'"')       
         elif function and not location and not skills and not exp and not industry and not search:
-            jobs = Job.objects.filter(function=function)
+            jobs = Job.objects.filter(function=function, is_publish=True)
             if not jobs.exists():
                 searched_for = str('"'+function+'"')
         elif skills and not location and not function and not exp and not industry and not search:
-            jobs = Job.objects.filter(skills__contains=skills)
+            jobs = Job.objects.filter(skills__contains=skills, is_publish=True)
             if not jobs.exists():
                 searched_for = str('"'+skills+'"')   
         else:
             if exp:
-                jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry))
+                jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry), is_publish=True)
             else:
-                jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)))
+                jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True)
             if not jobs.exists():
                 searched_for = ''
                 # exp_req_min__gte=exp, exp_req_max__lte=exp,
@@ -340,13 +340,13 @@ class PostJobsView(View):
 
         current_user = request.user
 
-        jobPosting, created = Job.objects.get_or_create(user = current_user)
+        jobPosting, created = Job.objects.get_or_create(recruiter = current_user)
         post_data = request.POST
         jobpost = ast.literal_eval(post_data['jobpost'])
         
         profile = current_user.userprofile_set.all()[0]
         
-        jobPosting.company = profile.company
+        # jobPosting.company = profile.company
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
         jobPosting.summary = jobpost['summary']
@@ -385,7 +385,7 @@ class PostJobsView(View):
 class PostedJobsView(View):
      def get(self, request,*args, **kwargs):
         jobs = []
-        jobs = Job.objects.filter(user=request.user)
+        jobs = Job.objects.filter(recruiter=request.user)
         context = {
           'jobs': jobs,
         }
@@ -439,43 +439,6 @@ class EditPostJobsView(View):
         res = {
             'id' : jobPosting.id,
         } 
-        response = simplejson.dumps(res)
-        status_code = 200
-        return HttpResponse(response, status = status_code, mimetype="application/json")
-
-
-class ListExistingJobDetails(View):
-    def get(self, request,*args, **kwargs):
-        ctx_jobs = []
-        current_user = request.user
-        profile = UserProfile.objects.get(user = current_user)
-        company = CompanyProfile.objects.get(user = profile)
-        job = Job.objects.filter(ref_code = kwargs['ref_code'],company_name = company)
-        if request.is_ajax():
-            ctx_jobs.append({
-                'title': job[0].job_title,
-                'code': job[0].ref_code,
-                'summary': job[0].summary,            
-                'details': job[0].document.name,            
-                'skills': job[0].skills,
-                'min':job[0].exp_req_min,
-                'max':job[0].exp_req_max,
-                'location':job[0].job_location,
-                'industry':job[0].industry,
-                'function': job[0].function,            
-                'requirement': job[0].education_req,
-                'specialisation': job[0].specialization,
-                'nationality': job[0].nationality,
-                'last_date': job[0].last_date.strftime('%d-%m-%Y'),
-                'name': job[0].name,
-                'phone': job[0].phone,
-                'email': job[0].mail_id,
-                'profile':job[0].description, 
-                'post_date': job[0].posting_date.strftime('%d-%m-%Y'), 
-            })
-            res = {
-                'existing_job_details': ctx_jobs,
-            }
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
@@ -802,7 +765,7 @@ class PublishJob(View):
             job = Job.objects.get(id = kwargs['job_id'])
             job.is_publish = True
             job.save()
-            jobs = Job.objects.filter(user=request.user)
+            jobs = Job.objects.filter(recruiter=request.user)
         except Exception as ex:
             print str(ex)
             jobs = []
@@ -821,7 +784,7 @@ class DeleteJob(View):
         try:
             job = Job.objects.get(id = kwargs['job_id'])
             job.delete()
-            jobs = Job.objects.filter(user=request.user)
+            jobs = Job.objects.filter(recruiter=request.user)
         except Exception as ex:
             print str(ex)
             jobs = []
