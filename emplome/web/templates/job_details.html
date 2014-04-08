@@ -5,19 +5,40 @@
 {% block content %}
 
 <div class="container">
-	<h1>{{job.company.company_name}} </h1>
+	<div class="content-box">
+		<h1>{{job.company.company_name}} </h1>
 	
-	<h3>{{job.job_title}} </h3>
-	Experience : {{job.exp_req_min}} - {{job.exp_req_max}}
-	<br>
-	Education : {{job.education_req}}
-	<br>
-	Industry Type : {{job.industry}}
-	<br>
-	Functional Area : {{job.function}}
-	<br>
-	Required Skills : {{job.skills}}
-	<br>
+		<h3>{{job.job_title}} </h3>
+
+		<div class="label-box-left">
+			<label>Reference Code</label><br>
+			<label>Experience</label> <br>
+			<label>Education</label> <br>
+			<label>Industry</label> Type <br>
+			<label>Functional Area</label> <br>
+			<label>Required Skills</label> <br>
+			<label>Job Summary</label> <br>
+			<label>Job Description</label>
+			<label>Job Location</label>
+		</div>
+		<div class="label-box-right">
+			: {{job.ref_code}}<br>
+			: {{job.exp_req_min}} - {{job.exp_req_max}}<br>
+			: {{job.education_req}}<br>
+			: {{job.industry}}<br>
+			: {{job.function}}<br>
+			: {{job.skills}}<br>
+			: {{job.summary}}<br>
+			: {{job.document}}<br>
+			: {{job.job_location}}<br>
+
+
+
+		</div>
+		<div class="edit-button">
+	 		<a href=""><input type="submit" name="apply" value="Apply Job"></a>
+	 	</div>
+	</div>
 	
 </div>
 

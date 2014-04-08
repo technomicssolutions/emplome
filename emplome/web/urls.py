@@ -32,7 +32,7 @@ urlpatterns = patterns('',
 
 	url(r'^success_stories/$', SuccessStoriesView.as_view(), name='success_stories'),
 
-	url(r'^recruiter/job_id/delete/$', DeleteJob.as_view(), name='delete-job'),
-	url(r'^recruiter/job_id/publish/$', PublishJob.as_view(), name='publish-job'),
+	# url(r'^recruiter/job_id/delete/$', DeleteJob.as_view(), name='delete-job'),
+	# url(r'^recruiter/job_id/publish/$', PublishJob.as_view(), name='publish-job'),
 
 )
