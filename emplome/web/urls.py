@@ -34,5 +34,6 @@ urlpatterns = patterns('',
 
 	url(r'^job/delete/(?P<job_id>\d+)/$', DeleteJob.as_view(), name='delete_job'),
 	url(r'^job/publish/(?P<job_id>\d+)/$', PublishJob.as_view(), name='publish_job'),
+	url(r'^search_cv/$',SearchCV.as_view(), name='search_cv'),
 
 )

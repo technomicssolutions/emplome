@@ -6,21 +6,18 @@
         <a href="{% url 'home' %}"><h2>Emplome</h2></a>
     </div>
     {% if user.is_authenticated %}
-        <div class="profile">
-            <ul>
-                <li>
-                    <a href="{% url 'profile' user_id=user.id %}">{{ user.username }}
-                        <em class="downArr"> </em>
-                    </a>
-                    <ul>
-                        <li><a href="">Change Password</a></li>
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                        <li><a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile</a></li>
-                    </ul>
 
-                </li>   
+        <div class="dropdown">
+            <a class="dropdwn" href="{% url 'profile' user_id=user.id %}">{{ user.username }}
+                <em class="downArr"> </em>
+            </a>
+            <ul class="dropdown_details">
+                <li><a href="{% url 'reset_password' user_id=user.id %}">Change Password</a></li>
+                <li><a href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </div>
+
     {% endif %}
 </div>
 <div class="navi">
@@ -40,7 +37,7 @@
     	{% if user.is_authenticated %}
             {% if user.is_superuser %}
                 <li>
-                    <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Search CV</a>
+                    <a class="tabUnsel" title="Edit Profile" href="{% url 'search' %}">Search CV</a>
                 </li>
             {% endif %}
             <li>

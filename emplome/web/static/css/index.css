@@ -290,28 +290,19 @@ a {
 }
 
 .logodiv{
-    min-height: 66px;
+    /*min-height: 66px;*/
     overflow: hidden;
 }
 .logo {
     float: left;
 }
-.profile {
-    float: right;
-}
+
 #job_submit {
     margin-bottom: 15px;
 }
 
 /*HEADER STYLE START*/
 
-
-
-
-.logodiv {
-    height: 66px;
-    overflow: hidden;
-}
 #bms {
     margin-left: 300px;
     max-width: 670px;
@@ -825,7 +816,7 @@ label textarea{
 /**************************  Success Stories Details page end ******************************/
 
 
-.profile li.dropdown {
+/*.profile li.dropdown {
     position: relative;
 }
 .dropdown:hover a {
@@ -902,3 +893,59 @@ label textarea{
 .dropdown a:focus {
     outline: 0 none;
 }
+*/
+
+.dropdown {
+    border: 1px solid #0079D0;
+    list-style: none;
+    padding: 5px;
+    float: right;
+    height: 15px;
+}
+
+.dropdown em.downArr {
+    border-color: #000000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 4px 4px 0;
+    display: inline-block;
+    height: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+    vertical-align: text-top;
+    width: 0;
+}
+.dropdown_details {
+    display: block;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    height: auto;
+    width: auto;
+    position: absolute;
+    z-index: 2;
+}
+.dropdown_details li {
+    display: block;
+}
+
+.dropdown_details li {
+    padding: 5px;
+}
+li:hover ul { display: block; }
+.dropdown:hover ul{ display: block;}
+.dropdown ul:hover li{
+    display: block;
+}
+.dropdown ul li:hover a {
+    display: block;
+}
+/*
+.dropdown a:hover ul.dropdown_details {
+    display: block; 
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    height: auto;
+    width: auto;
+    position: absolute;
+}*/

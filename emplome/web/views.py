@@ -4,6 +4,7 @@ from datetime import datetime
 
 import simplejson
 import ast
+import sets
 
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import View
@@ -105,7 +106,7 @@ class LoginView(View):
             user = authenticate(username=request.POST['email'], password=request.POST['password'])
             
             if user and user.is_active:
-                if user.is_superuser:
+                if user.is_superuser and user.userprofile_set.all().count() == 0:
                     context = {
                         'message': 'You have no profile',
                     }
@@ -782,5 +783,48 @@ class DeleteJob(View):
         }
 
         return HttpResponseRedirect(reverse('posted_jobs'))
+
+class SearchCV(View):
+
+    def get(self, request, *args, **kwargs):
+
+        search = False
+        cv_title = request.GET.get('cv_title', '')
+        age = request.GET.get('age', '')
+        keyword = request.GET.get('keyword', '')
+        # print cv_title, age, keyword
+        education_cv_title = []
+        seeker_profile_age = []
+        employment_keyword = []
+        ctx_userprofiles = []
+        jobs = []
+        if cv_title:
+            education_cv_title = Education.objects.filter(resume_title__contains = cv_title).distinct('userprofile')
+            print education_cv_title
+        if age != 'undefined' :
+            seeker_profile_age = JobSeekerProfile.objects.filter(age = age).distinct('profile')
+        if keyword:
+            employment_keyword = Employment.objects.filter(skills__contains = keyword).distinct('userprofile')
+        
+        set1 = sets.Set(education_cv_title)
+        set2 = sets.Set(seeker_profile_age)
+        set3 = sets.Set(employment_keyword)
+        set12 = set1 | set2
+        set13 = set2 | set3
+        userprofiles = set12 | set13
+        print userprofiles
+        
+        context = {
+            'jobs': jobs,
+        }
+
+        if len(jobs) == 0:
+            context.update({
+                'searched_for': 'searched_for',
+            })
+        
+        return render(request, 'search_jobs.html', context) 
+
+
 
     
