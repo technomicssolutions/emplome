@@ -823,7 +823,7 @@ class CompanyProfile(models.Model):
 
 class Job(models.Model):
 
-    user = models.ForeignKey(User)
+    recruiter = models.ForeignKey(User)
     company = models.ForeignKey(CompanyProfile, null=True, blank=True)
     job_title = models.CharField('Job Title', max_length=50)
     ref_code = models.CharField('Ref Code', max_length=15, null=True, blank=True)
@@ -845,9 +845,8 @@ class Job(models.Model):
     exp_req_min = models.IntegerField('Experience Required Min', null=True, blank=True, choices=YEARS)
     exp_req_max = models.IntegerField('Ex bperience Required Max', null=True, blank=True, choices=YEARS)
     is_featured = models.BooleanField('Is Featured', default=False)
-    is_post = models.BooleanField('Is Post', default=False)
     description = models.CharField('Description', max_length=1500, null=True, blank=True)
-    
+    is_publish = models.BooleanField('Publish', default=False)
 
     def __unicode__(self):
         return self.job_title
@@ -859,23 +858,13 @@ class Job(models.Model):
 
 
 class UserProfile(models.Model):
+    
     user = models.ForeignKey(User)
     user_type = models.CharField('User Type', max_length=50, choices=USER_TYPE)
-    gender = models.CharField('Gender', max_length=7, choices=GENDER)
-    nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
-    current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
     country = models.CharField('Country', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
     city = models.CharField('City', null=True, blank=True, max_length=50)
     mobile = models.CharField ('Mobile', max_length=20)
     land_num = models.CharField('Land Phone', blank=True, max_length=20)
-    alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
-    photo = models.FileField( upload_to = "uploads/photos/", max_length=20000, null=True, blank=True)
-    marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
-    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
-    dob = models.DateTimeField('DOB', null=True, blank=True)
-    age = models.IntegerField('Age', null=True, blank=True)
-    applied_jobs  = models.ManyToManyField(Job)
-    company = models.ForeignKey(CompanyProfile, null=True, blank=True)
     
     def __unicode__(self):
         return self.user.username
@@ -883,6 +872,41 @@ class UserProfile(models.Model):
     class Meta:
         verbose_name = 'UserProfile'
         verbose_name_plural = 'UserProfile'
+
+
+class JobSeekerProfile(models.Model):
+
+    profile = models.ForeignKey(UserProfile)
+    gender = models.CharField('Gender', max_length=7, choices=GENDER)
+    nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
+    current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
+    alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
+    photo = models.FileField( upload_to = "uploads/photos/", max_length=20000, null=True, blank=True)
+    marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
+    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
+    dob = models.DateTimeField('DOB', null=True, blank=True)
+    age = models.IntegerField('Age', null=True, blank=True)
+    applied_jobs  = models.ManyToManyField(Job)
+
+    def __unicode__(self):
+        return self.profile.user.username
+
+    class Meta:
+        verbose_name = 'JobSeekerProfile'
+        verbose_name_plural = 'JobSeekerProfile'
+
+class RecruiterProfile(models.Model):
+
+    profile = models.ForeignKey(UserProfile)
+    company = models.ForeignKey(CompanyProfile, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.profile.user.username
+
+    class Meta:
+        verbose_name = 'RecruiterProfile'
+        verbose_name_plural = 'RecruiterProfile'
+
 
 
 class Employment(models.Model):
