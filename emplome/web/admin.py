@@ -1,9 +1,9 @@
 from django.contrib import admin
 from web.models import *
 
-# class UserProfileAdmin(admin.ModelAdmin):
+class JobSeekerProfileAdmin(admin.ModelAdmin):
 
-#     list_filter = ('age',)
+    list_filter = ('age',)
 
 class EmploymentAdmin(admin.ModelAdmin):
 
@@ -16,10 +16,12 @@ class EducationAdmin(admin.ModelAdmin):
 
 
 
-# admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(UserProfile)
 admin.site.register(Employment, EmploymentAdmin)
 admin.site.register(Education, EducationAdmin)
 admin.site.register(CompanyProfile)
+admin.site.register(JobSeekerProfile, JobSeekerProfileAdmin)
+admin.site.register(RecruiterProfile)
 admin.site.register(Job)
 admin.site.register(SuccessStory)
 admin.site.register(Recommendation)

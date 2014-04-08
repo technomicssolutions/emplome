@@ -2,6 +2,26 @@
    <!--  <a title="NaukriGulf.com" href="http://www.naukrigulf.com/">
         <img class="fl" width="246" height="72" src="http://static.naukimg.com/ni/nistatic/nihome/images/naukrigulf_arabic.gif" alt="NaukriGulf.com">
     </a> -->
+    <div class="logo">
+        <a href="{% url 'home' %}"><h2>Emplome</h2></a>
+    </div>
+    {% if user.is_authenticated %}
+        <div class="profile">
+            <ul>
+                <li>
+                    <a href="{% url 'profile' user_id=user.id %}">{{ user.username }}
+                        <em class="downArr"> </em>
+                    </a>
+                    <ul>
+                        <li><a href="">Change Password</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile</a></li>
+                    </ul>
+
+                </li>   
+            </ul>
+        </div>
+    {% endif %}
 </div>
 <div class="navi">
     <ul class="middle">
@@ -13,12 +33,17 @@
         
         <li>
             <a class="tabUnsel" title="Post Jobs" href="{% url 'postjobs' %}">
-            Job Posting
+            Post Job
             </a>
         </li>
         
     	{% if user.is_authenticated %}
-             <li>
+            {% if user.is_superuser %}
+                <li>
+                    <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Search CV</a>
+                </li>
+            {% endif %}
+            <li>
                 <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
             </li>
             <li>
