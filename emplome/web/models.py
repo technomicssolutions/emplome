@@ -845,7 +845,6 @@ class Job(models.Model):
     exp_req_min = models.IntegerField('Experience Required Min', null=True, blank=True, choices=YEARS)
     exp_req_max = models.IntegerField('Ex bperience Required Max', null=True, blank=True, choices=YEARS)
     is_featured = models.BooleanField('Is Featured', default=False)
-    is_post = models.BooleanField('Is Post', default=False)
     description = models.CharField('Description', max_length=1500, null=True, blank=True)
     is_publish = models.BooleanField('Publish', default=False)
 
