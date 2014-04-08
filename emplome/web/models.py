@@ -868,7 +868,7 @@ class Employment(models.Model):
 
 
     def __unicode__(self):
-        return self.userprofile.user.username
+        return str(self.exp_yrs)
 
     class Meta:
 
@@ -889,7 +889,7 @@ class Education(models.Model):
     certificate = models.FileField(upload_to = "uploads/certificates/", max_length=20000, null=True, blank=True)
 
     def __unicode__(self):
-        return self.userprofile.user.username
+        return str(self.basic_edu)
 
     class Meta:
 
