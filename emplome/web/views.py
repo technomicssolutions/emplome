@@ -4,6 +4,7 @@ from datetime import datetime
 
 import simplejson
 import ast
+import sets
 
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import View
@@ -105,7 +106,7 @@ class LoginView(View):
             user = authenticate(username=request.POST['email'], password=request.POST['password'])
             
             if user and user.is_active:
-                if user.is_superuser:
+                if user.is_superuser and user.userprofile_set.all().count() == 0:
                     context = {
                         'message': 'You have no profile',
                     }
@@ -234,7 +235,7 @@ class JobSeekerRegistration(View):
         userprofile.mobile = int(seeker['mobile'])
         userprofile.save()
 
-        job_seeker, created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
+        job_seeker, job_seeker_created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
 
         job_seeker.gender = seeker['gender']
         job_seeker.religion = seeker['religion']
@@ -250,7 +251,11 @@ class JobSeekerRegistration(View):
             job_seeker.alt_mail = seeker['alt_email']
         job_seeker.save()
         
-        education, created = Education.objects.get_or_create(userprofile=userprofile)
+        if job_seeker_created:
+            education = Education()
+            employment = Employment()
+        else:
+            education = job_seeker.education
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":
@@ -267,8 +272,10 @@ class JobSeekerRegistration(View):
        
         if seeker['resume_text'] != "":
             education.resume_text = seeker['resume_text']
-        education.userprofile = userprofile
         education.save()
+        job_seeker.education = education
+        job_seeker.employment = employment
+        job_seeker.save()
         if user_created:
             login_user = authenticate(username=seeker['email'], password=seeker['password'])
             if login_user and login_user.is_active:
@@ -297,8 +304,12 @@ class JobSeekerRegistrationMoreInfo(View):
         post_data = request.POST
         userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
         jobseeker, created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
+        print created
         seeker1 = ast.literal_eval(post_data['seeker1'])
-        employment, created = Employment.objects.get_or_create(userprofile=userprofile)
+        if jobseeker.employment:
+            employment = jobseeker.employment
+        else:
+            employment = Employment()
         employment.exp_yrs = int(seeker1['years'])
         if seeker1['months'] != "":
             employment.exp_mnths = int(seeker1['months'])
@@ -313,16 +324,19 @@ class JobSeekerRegistrationMoreInfo(View):
             employment.function = seeker1['functions']
         employment.skills = seeker1['skills']
         employment.save()
+        jobseeker.employment = employment
+        jobseeker.save()
         photo = request.FILES.get('photo_img', '')
         if photo:
             jobseeker.photo = photo
         jobseeker.save()
-        education, created = Education.objects.get_or_create(userprofile=userprofile)
+        education = jobseeker.education
         certificate = request.FILES.get('certificate_img', '')
         if certificate:
             education.certificate = certificate
         education.save()
-
+        jobseeker.education = education
+        jobseeker.save()
         res = {
             'result': 'ok',
             'user_id': kwargs['user_id'],
@@ -541,11 +555,6 @@ class GetProfileDetails(View):
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
             if userprofile.user_type == 'job_seeker':
-                if userprofile.education_set.all().count() > 0:
-                    education = userprofile.education_set.all()[0]
-                
-                if userprofile.employment_set.all().count() > 0:
-                    employment = userprofile.employment_set.all()[0]
 
                 if userprofile.jobseekerprofile_set.all().count() >0:
                     jobseeker = userprofile.jobseekerprofile_set.all()[0]
@@ -562,25 +571,25 @@ class GetProfileDetails(View):
                     'city': userprofile.city if userprofile else '',
                     'mobile': userprofile.mobile if userprofile else '',
                     'alt_email': jobseeker.alt_mail if jobseeker else '',
-                    'basic_edu': education.basic_edu if education else '' ,
-                    'pass_year_basic': education.pass_year_basic if education else '' ,
-                    'masters_edu': education.masters if education else '' ,
-                    'pass_year_masters': education.pass_year_masters if education else '' ,
-                    'doctrate': education.doctrate if education else '' ,
-                    'resume_title': education.resume_title if education else '' ,
-                    'resume_text': education.resume_text if education else '' ,
-                    'resume': education.resume.name if education else '' ,
+                    'basic_edu': jobseeker.education.basic_edu if jobseeker.education else '' ,
+                    'pass_year_basic': jobseeker.education.pass_year_basic if jobseeker.education else '' ,
+                    'masters_edu': jobseeker.education.masters if jobseeker.education else '' ,
+                    'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
+                    'doctrate': jobseeker.education.doctrate if jobseeker.education else '' ,
+                    'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
+                    'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
+                    'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
                 })
 
                 ctx_seeker1.append({
-                    'years': employment.exp_yrs if employment else '' ,
-                    'months': employment.exp_mnths if employment else '' ,
-                    'salary': employment.salary if employment else '' ,
-                    'designation': employment.designation if employment else '' ,
-                    'skills': employment.skills if employment else '' ,
-                    'industry': employment.curr_industry if employment else '' ,
-                    'functions': employment.function if employment else '' , 
-                    'certificate_img': education.certificate.name if education else '',
+                    'years': jobseeker.employment.exp_yrs if jobseeker.employment else '' ,
+                    'months': jobseeker.employment.exp_mnths if jobseeker.employment else '' ,
+                    'salary': jobseeker.employment.salary if jobseeker.employment else '' ,
+                    'designation': jobseeker.employment.designation if jobseeker.employment else '' ,
+                    'skills': jobseeker.employment.skills if jobseeker.employment else '' ,
+                    'industry': jobseeker.employment.curr_industry if jobseeker.employment else '' ,
+                    'functions': jobseeker.employment.function if jobseeker.employment else '' , 
+                    'certificate_img': jobseeker.education.certificate.name if jobseeker.education else '',
                     'profile_photo': jobseeker.photo.name if jobseeker else '',
                 })
             else:
@@ -795,6 +804,48 @@ class DeleteJob(View):
         }
 
         return HttpResponseRedirect(reverse('posted_jobs'))
+
+class SearchCV(View):
+
+    def get(self, request, *args, **kwargs):
+
+        search = False
+        cv_title = request.GET.get('cv_title', '')
+        age = request.GET.get('age', '')
+        keyword = request.GET.get('keyword', '')
+        # print cv_title, age, keyword
+        education_cv_title = []
+        seeker_profile_age = []
+        employment_keyword = []
+        ctx_userprofiles = []
+        jobs = []
+        if cv_title:
+            education_cv_title = Education.objects.filter(resume_title__contains = cv_title).distinct('userprofile')
+            print education_cv_title
+        if age != 'undefined' :
+            seeker_profile_age = JobSeekerProfile.objects.filter(age = age).distinct('profile')
+        if keyword:
+            employment_keyword = Employment.objects.filter(skills__contains = keyword).distinct('userprofile')
+        
+        set1 = sets.Set(education_cv_title)
+        set2 = sets.Set(seeker_profile_age)
+        set3 = sets.Set(employment_keyword)
+        set12 = set1 | set2
+        set13 = set2 | set3
+        userprofiles = set12 | set13
+        print userprofiles
+        
+        context = {
+            'jobs': jobs,
+        }
+
+        if len(jobs) == 0:
+            context.update({
+                'searched_for': 'searched_for',
+            })
+        
+        return render(request, 'search_jobs.html', context) 
+
 
 class Companies(View):
 

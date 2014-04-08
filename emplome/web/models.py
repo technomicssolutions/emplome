@@ -856,6 +856,45 @@ class Job(models.Model):
         verbose_name = 'JobPosting'
         verbose_name_plural = 'JobPosting'
 
+class Employment(models.Model):
+
+    exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
+    exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
+    salary = models.IntegerField('Salary', null=True, blank=True)
+    designation = models.CharField('Designation', null=True, blank=True, max_length=50)
+    skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
+    curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
+    function = models.CharField('Function', null=True, blank=True, max_length=50, choices=FUNCTIONS)
+
+
+    def __unicode__(self):
+        return str(self.exp_yrs)
+
+    class Meta:
+
+        verbose_name = 'Employment'
+        verbose_name_plural = 'Employment'
+
+
+class Education(models.Model):
+    
+    basic_edu = models.CharField('Basic Education', max_length=50, choices=BASIC_EDU)
+    pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
+    masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
+    pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
+    doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
+    resume_title = models.CharField('Resume Title', max_length=50)
+    resume = models.FileField(upload_to = "uploads/resumes/", max_length=30000, null=True, blank=True)
+    resume_text = models.CharField('Resume Text', null=True, blank=True, max_length=20000)
+    certificate = models.FileField(upload_to = "uploads/certificates/", max_length=20000, null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.basic_edu)
+
+    class Meta:
+
+        verbose_name = 'Education'
+        verbose_name_plural = 'Education'
 
 class UserProfile(models.Model):
     
@@ -886,6 +925,8 @@ class JobSeekerProfile(models.Model):
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
     dob = models.DateTimeField('DOB', null=True, blank=True)
     age = models.IntegerField('Age', null=True, blank=True)
+    education = models.ForeignKey(Education, null=True, blank=True)
+    employment = models.ForeignKey(Employment, null=True, blank=True)
     applied_jobs  = models.ManyToManyField(Job)
 
     def __unicode__(self):
@@ -907,47 +948,6 @@ class RecruiterProfile(models.Model):
         verbose_name = 'RecruiterProfile'
         verbose_name_plural = 'RecruiterProfile'
 
-
-
-class Employment(models.Model):
-    userprofile = models.ForeignKey(UserProfile)
-    exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
-    exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
-    salary = models.IntegerField('Salary', null=True, blank=True)
-    designation = models.CharField('Designation', null=True, blank=True, max_length=50)
-    skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
-    curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
-    function = models.CharField('Function', null=True, blank=True, max_length=50, choices=FUNCTIONS)
-
-
-    def __unicode__(self):
-        return self.userprofile.user.username
-
-    class Meta:
-
-        verbose_name = 'Employment'
-        verbose_name_plural = 'Employment'
-
-
-class Education(models.Model):
-    userprofile = models.ForeignKey(UserProfile)
-    basic_edu = models.CharField('Basic Education', max_length=50, choices=BASIC_EDU)
-    pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
-    masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
-    pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
-    doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
-    resume_title = models.CharField('Resume Title', max_length=50)
-    resume = models.FileField(upload_to = "uploads/resumes/", max_length=30000, null=True, blank=True)
-    resume_text = models.CharField('Resume Text', null=True, blank=True, max_length=20000)
-    certificate = models.FileField(upload_to = "uploads/certificates/", max_length=20000, null=True, blank=True)
-
-    def __unicode__(self):
-        return self.userprofile.user.username
-
-    class Meta:
-
-        verbose_name = 'Education'
-        verbose_name_plural = 'Education'
 
 class SuccessStory(models.Model):
 

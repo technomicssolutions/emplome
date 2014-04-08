@@ -9,79 +9,106 @@
 {% block content %}
 
 	<div class="search_block">
-		<h2> Search Jobs </h2>
-		{% if location %}
+		{% if user.is_superuser %}
+			<h2> Search CV </h2>
 			<div class="search_container">
-				<div class="formrow">
-					<label>Location</label>
-					<input type="text" ng-style="alert_style" name="location" ng-model="search.location" id="location">
+					
+					<div class="formrow">
+						<label>CV Title</label>
+						<input type="text" ng-style="alert_style" name="cv_title" ng-model="resume_title" id="keyword">
+					</div>
+					<div class="formrow">
+						<label>Age of the Candidate</label>
+						<input type="text" ng-style="alert_style" name="age" ng-model="age" id="location">
+					</div>
+					<div class="formrow">
+						<label>Keyword</label>
+						<input type="text" ng-style="alert_style" name="keyword" ng-model="keyword">						
+					</div>
+					
+					<br><br><br>
+					<div class="btn">
+						<input class="button" type="submit" name="submit" value="Search CV" ng-click="search_cv()">
+						<br>
+						<p ng-show="error_flag" class="error_message">[[error_message]]</p>
+					</div>
+					<br>
 				</div>
-			</div>
-			<div class="btn">
-				<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('location')">
-				<br>
-				<p ng-show="error_flag" class="error_message">[[error_message]]</p>
-			</div>
-		
-		{% elif skills %}
-
-			<div class="search_container">
-				<div class="formrow">
-					<label>Keyword</label>
-					<input type="text" ng-style="alert_style" name="keyword" ng-model="search.keyword" id="keyword">
+		{% else %}
+			<h2> Search Jobs </h2>
+			{% if location %}
+				<div class="search_container">
+					<div class="formrow">
+						<label>Location</label>
+						<input type="text" ng-style="alert_style" name="location" ng-model="search.location" id="location">
+					</div>
+				</div>
+				<div class="btn">
+					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('location')">
+					<br>
+					<p ng-show="error_flag" class="error_message">[[error_message]]</p>
 				</div>
 			
-				<div class="btn">
-					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('skills')">
-					<br>
-					<p ng-show="error_flag" class="error_message">[[error_message]]</p>
-				</div>
-			</div>
+			{% elif skills %}
 
-		{% else %}
-	
-			<div class="search_container">
-				<div class="formrow">
-					<label id="search_by"> Search by : <span id="search_text"> [[search.keyword]] - [[search.location]] - [[search.experience]] - [[search.function_name]] - [[search.industry]]</span></label>					
-				</div>
-				<div class="formrow">
-					<label>Keyword</label>
-					<input type="text" ng-style="alert_style" name="keyword" ng-model="search.keyword" id="keyword">
-				</div>
-				<div class="formrow">
-					<label>Location</label>
-					<input type="text" ng-style="alert_style" name="location" ng-model="search.location" id="location">
-				</div>
-				<div class="formrow">
-					<label>Experience</label>
-					<select name="experience" ng-style="alert_style" style="width: 14%" ng-model="search.experience" id="experience">
-						<option value="">Years</option>
-						<option ng-repeat="expr in experiences" value="[[expr]]">[[expr]]</option>
-					</select>						
-				</div>
-				<div class="formrow">
-					<label>Functional Area</label>
-					<select name ="function" ng-style="alert_style" ng-model="search.function_name" id="function">
-						<option value="">------Select-----</option>
-						<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
-					</select>
+				<div class="search_container">
+					<div class="formrow">
+						<label>Keyword</label>
+						<input type="text" ng-style="alert_style" name="keyword" ng-model="search.keyword" id="keyword">
+					</div>
+				
+					<div class="btn">
+						<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('skills')">
+						<br>
+						<p ng-show="error_flag" class="error_message">[[error_message]]</p>
+					</div>
 				</div>
 
-				<div class="formrow">
-					<label>Industry Type</label>
-					<select name="industry" ng-model="search.industry"> 
-						<option value="">------Select------</option>
-						<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
-					</select>
-				</div>
-				<br><br><br>
-				<div class="btn">
-					<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('search_jobs')">
+			{% else %}
+		
+				<div class="search_container">
+					<div class="formrow">
+						<label id="search_by"> Search by : <span id="search_text"> [[search.keyword]] - [[search.location]] - [[search.experience]] - [[search.function_name]] - [[search.industry]]</span></label>					
+					</div>
+					<div class="formrow">
+						<label>Keyword</label>
+						<input type="text" ng-style="alert_style" name="keyword" ng-model="search.keyword" id="keyword">
+					</div>
+					<div class="formrow">
+						<label>Location</label>
+						<input type="text" ng-style="alert_style" name="location" ng-model="search.location" id="location">
+					</div>
+					<div class="formrow">
+						<label>Experience</label>
+						<select name="experience" ng-style="alert_style" style="width: 14%" ng-model="search.experience" id="experience">
+							<option value="">Years</option>
+							<option ng-repeat="expr in experiences" value="[[expr]]">[[expr]]</option>
+						</select>						
+					</div>
+					<div class="formrow">
+						<label>Functional Area</label>
+						<select name ="function" ng-style="alert_style" ng-model="search.function_name" id="function">
+							<option value="">------Select-----</option>
+							<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+						</select>
+					</div>
+
+					<div class="formrow">
+						<label>Industry Type</label>
+						<select name="industry" ng-model="search.industry"> 
+							<option value="">------Select------</option>
+							<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+						</select>
+					</div>
+					<br><br><br>
+					<div class="btn">
+						<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('search_jobs')">
+						<br>
+						<p ng-show="error_flag" class="error_message">[[error_message]]</p>
+					</div>
 					<br>
-					<p ng-show="error_flag" class="error_message">[[error_message]]</p>
 				</div>
-				<br>
-			</div>
+			{% endif %}
 		{% endif %}
 	</div>
 	
