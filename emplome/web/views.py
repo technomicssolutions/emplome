@@ -784,29 +784,40 @@ class SuccessStoriesView(View):
 
 class PublishJob(View):
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-        job = Job.objects.get(id = kwargs['job_id'])
-        job.is_publish = True
-        job.save()
-        jobs = Job.objects.filter(user=request.user)
+        try:
+            job = Job.objects.get(id = kwargs['job_id'])
+            job.is_publish = True
+            job.save()
+            jobs = Job.objects.filter(user=request.user)
+        except Exception as ex:
+            print str(ex)
+            jobs = []
+
         context = {
           'jobs': jobs,
+          'message': 'Published', 
         }
 
-        return render(request, 'posted_jobs.html', context)
+        return HttpResponseRedirect(reverse('posted_jobs'))
 
 class DeleteJob(View):
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-        job = Job.objects.get(id = kwargs['job_id'])
-        job.delete()
-        jobs = Job.objects.filter(user=request.user)
+        try:
+            job = Job.objects.get(id = kwargs['job_id'])
+            job.delete()
+            jobs = Job.objects.filter(user=request.user)
+        except Exception as ex:
+            print str(ex)
+            jobs = []
         context = {
           'jobs': jobs,
+          'message': 'Deleted',
         }
 
-        return render(request, 'posted_jobs.html', context)
+        return HttpResponseRedirect(reverse('posted_jobs'))
 
     

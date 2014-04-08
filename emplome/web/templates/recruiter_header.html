@@ -22,6 +22,9 @@
                 <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
             </li>
             <li>
+               <a class="tabUnsel" title="Edit Profile" href="{% url 'posted_jobs' %}">Posted Jobs</a>
+            </li>
+            <li>
 			    <a class="tabUnsel" title="Recruiter Login" href="{% url 'logout' %}">Logout</a>
             </li>
 		{% else %}
