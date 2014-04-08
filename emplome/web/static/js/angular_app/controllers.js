@@ -1214,10 +1214,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
     $scope.Min = [];
     $scope.Max = [];
     $scope.edit =1;
+    $scope.is_new_company = false;
     $scope.existing_job = '------Copy From existing job----';
     $scope.jobpost = {
         'title':'',
         'code': '',
+        'company': '',
         'summary': '',
         'details': '',
         'skills': '',
@@ -1247,7 +1249,15 @@ function  JobPostingController($scope,$element,$http,$timeout){
 		get_functions($scope);
 		get_education_required($scope);
     $scope.job_id = id;
-    
+
+    $http.get('/companies/').success(function(data)
+    {
+        $scope.companies = data.companies; 
+    }).error(function(data, status)
+    {
+        console.log(data || "Request failed");
+    });
+
     if ($scope.job_id){
       $http.get('/job/details/'+$scope.job_id+'/').success(function(data)
             {
@@ -1266,6 +1276,14 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }
 
   $scope.form_validation_postjob = function(){
+    if ($scope.jobpost.company == 'other'){
+      $scope.jobpost.company = $scope.new_company 
+    }
+    if ($scope.jobpost.company == 'select' || $scope.jobpost.company == 'other' || $scope.jobpost.company == ''){
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide Company Name';
+      return false;
+    }
     if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Job Title';
@@ -1402,6 +1420,13 @@ function  JobPostingController($scope,$element,$http,$timeout){
     $scope.view_posted_jobs = function() {
         var url = '/posted_jobs/';
         document.location.href = url;
+    }
+
+    $scope.get_company_name = function(){
+        if($scope.jobpost.company == 'other'){
+          $scope.is_new_company = true;
+        }
+        
     }
 }
 
