@@ -1,3 +1,8 @@
+ function validateEmail(email) { 
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
 function search_by_location(search_type){
   if (search_type == 'location') {
     var url = '/search/?location=location';
@@ -930,7 +935,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
     
     $scope.form_validation = function(){
-        if ($scope.seeker.email == ''|| $scope.seeker.email == undefined){
+        if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your email id';
             return false;
@@ -1298,7 +1303,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       return false;
     } else if ($scope.jobpost.skills == '' || $scope.jobpost.skills == undefined) {
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide your Skills';
+      $scope.error_message = 'Please provide the S Required kills';
       return false;
     } else if ($scope.jobpost.min == '' || $scope.jobpost.min == undefined || $scope.jobpost.min == '-min-') {
       $scope.error_flag = true;
@@ -1340,7 +1345,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please enter your Phone Number';
       return false;
-    } else if ($scope.jobpost.email == '' || $scope.jobpost.email == undefined) {
+
+    } else if (!(validateEmail($scope.jobpost.email))) {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide your Email';
       return false;

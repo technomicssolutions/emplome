@@ -37,5 +37,7 @@ urlpatterns = patterns('',
 
 	url(r'^companies/$', Companies.as_view(), name='companies'),
 
+	url(r'^apply/(?P<job_id>\d+)/$', ApplyJobs.as_view(), name='apply_jobs'),
+
 
 )
