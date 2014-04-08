@@ -228,21 +228,26 @@ class JobSeekerRegistration(View):
         userprofile, created = UserProfile.objects.get_or_create(user = user)
         
         userprofile.user_type = 'job_seeker'
-        userprofile.gender = seeker['gender']
-        userprofile.religion = seeker['religion']
-        userprofile.dob = datetime.strptime(seeker['dob'], '%d-%m-%Y')
-        current_year = dt.datetime.now().year        
-        age = current_year - userprofile.dob.year
-
-        userprofile.age = age
-        userprofile.marital_status = seeker['marital_status']
-        userprofile.nationality = seeker['nationality']
         userprofile.country = seeker['country']
         userprofile.city = seeker['city']
         userprofile.mobile = int(seeker['mobile'])
-        if seeker['alt_email'] != "":
-            userprofile.alt_mail = seeker['alt_email']
         userprofile.save()
+
+        job_seeker, created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
+
+        job_seeker.gender = seeker['gender']
+        job_seeker.religion = seeker['religion']
+        job_seeker.dob = datetime.strptime(seeker['dob'], '%d-%m-%Y')
+        current_year = dt.datetime.now().year        
+        age = current_year - job_seeker.dob.year
+
+        job_seeker.age = age
+        job_seeker.marital_status = seeker['marital_status']
+        job_seeker.nationality = seeker['nationality']
+        
+        if seeker['alt_email'] != "":
+            job_seeker.alt_mail = seeker['alt_email']
+        job_seeker.save()
         
         education, created = Education.objects.get_or_create(userprofile=userprofile)
         education.basic_edu = seeker['basic_edu']
@@ -290,6 +295,7 @@ class JobSeekerRegistrationMoreInfo(View):
     def post(self, request, *args, **kwargs):
         post_data = request.POST
         userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
+        jobseeker = JobSeekerProfile.objects.get_or_create(profile = userprofile)
         seeker1 = ast.literal_eval(post_data['seeker1'])
         employment, created = Employment.objects.get_or_create(userprofile=userprofile)
         employment.exp_yrs = int(seeker1['years'])
@@ -308,8 +314,8 @@ class JobSeekerRegistrationMoreInfo(View):
         employment.save()
         photo = request.FILES.get('photo_img', '')
         if photo:
-            userprofile.photo = photo
-        userprofile.save()
+            jobseeker.photo = photo
+        jobseeker.save()
         education, created = Education.objects.get_or_create(userprofile=userprofile)
         certificate = request.FILES.get('certificate_img', '')
         if certificate:
@@ -569,6 +575,7 @@ class GetProfileDetails(View):
         ctx_recruiter = []
         education = []
         employment = []
+        jobseeker = []
         company = []
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
@@ -578,18 +585,22 @@ class GetProfileDetails(View):
                 
                 if userprofile.employment_set.all().count() > 0:
                     employment = userprofile.employment_set.all()[0]
+
+                if userprofile.jobseeker_set.all().count() >0:
+                    jobseeker = userprofile.jobseeker_set.all()[0]
+
                 ctx_seeker.append({
                     'email': user.email,
                     'first_name': user.first_name,
-                    'gender': userprofile.gender if userprofile else '',
-                    'dob': userprofile.dob.strftime('%d-%m-%Y') if userprofile else '',
-                    'religion': userprofile.religion if userprofile else '',
-                    'marital_status': userprofile.marital_status if userprofile else '',
-                    'nationality': userprofile.nationality if userprofile else '',
+                    'gender': jobseeker.gender if jobseekerjobseeker else '',
+                    'dob': jobseeker.dob.strftime('%d-%m-%Y') if jobseekerjobseeker else '',
+                    'religion': jobseeker.religion if jobseekerjobseeker else '',
+                    'marital_status': jobseeker.marital_status if jobseekerjobseeker else '',
+                    'nationality': obseeker.nationality if jobseekerjobseeker else '',
                     'country': userprofile.country if userprofile else '',
                     'city': userprofile.city if userprofile else '',
                     'mobile': userprofile.mobile if userprofile else '',
-                    'alt_email': userprofile.alt_mail if userprofile else '',
+                    'alt_email': jobseekerjobseeker.alt_mail if jobseekerjobseeker else '',
                     'basic_edu': education.basic_edu if education else '' ,
                     'pass_year_basic': education.pass_year_basic if education else '' ,
                     'masters_edu': education.masters if education else '' ,
@@ -608,11 +619,11 @@ class GetProfileDetails(View):
                     'industry': employment.curr_industry if employment else '' ,
                     'functions': employment.function if employment else '' , 
                     'certificate_img': education.certificate.name if education else '',
-                    'profile_photo': userprofile.photo.name if userprofile else '',
+                    'profile_photo': jobseeker.photo.name if jobseeker else '',
                 })
             else:
                 
-                company = userprofile.company
+                company = recruiter.company
 
                 if userprofile.employment_set.all().count() > 0:
                     employment = userprofile.employment_set.all()[0]
@@ -737,12 +748,13 @@ class RecruiterProfileEdit(View):
             userprofile.city = post_dict['city']
             userprofile.country = post_dict['country']
             userprofile.save()
-            company = userprofile.company
-            company.company_name = post_dict['name']
+            recruiter, created = RecruiterProfile.objects.get_or_create(profile = userprofile)
+            company = recruiter.company
+            recruiter.company_name = post_dict['name']
             company.industry_type = post_dict['industry']
-            company.save()
-            userprofile.company = company
-            userprofile.save()
+            recruiter.save()
+            recruiter.company = company
+            recruiter.save()
             
             res = {
                 'result':'ok',

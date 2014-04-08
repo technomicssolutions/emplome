@@ -51,7 +51,11 @@
 				<p> Experience: {{job.exp_req_min}} - {{job.exp_req_max}} Yrs</p>
 				<br>
 			</div>
-			<br>
+		
+            <div class="edit-button">
+                <a href=""><input type="submit" name="apply" value="Apply Job"></a>
+            </div>
+            <br>
 		{% endfor %}
 	{% else %}
 		<div class="search_result_warning">
