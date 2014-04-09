@@ -55,7 +55,7 @@
 				<br><br>
 				
 				<!-- <h4>Company Profile</h4>		 -->
-				<h3>{{profile.company.company_name}}</h3>
+				<h3>{{profile.recruiterprofile_set.all.0.company.company_name}}</h3>
 				<div class="label-box-left">
 					<label>Email id </label><br>
 					<label>Mobile</label><br>
@@ -67,7 +67,7 @@
 		 	<div class="label-box-right">
 		 		: {{profile.user.email}}<br>
 		 		: {{profile.mobile }}<br>
-		 		: {{profile.company.industry_type}}<br>
+		 		: {{profile.recruiterprofile_set.all.0.company.industry_type}}<br>	 		
 		 		: {{profile.country}}<br>
 		 		: {{profile.city}}<br>
 		 	</div>

@@ -37,16 +37,20 @@ class SearchJobsView(View):
     def get(self, request, *args, **kwargs):
 
         search = False
+        print request.GET
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
         skills = request.GET.get('skills', '')
         exp = request.GET.get('experience', '')
         industry = request.GET.get('industry', '')
         search_flag = request.GET.get('search', '')
+        print "search_flag", search_flag
+        print "exp",exp
         if search_flag == 'true':
             search = True
         jobs = []
         if location and function and skills and exp and not search:
+            print "in restricted"
             experience = int(exp)
             jobs = Job.objects.filter(Q(job_location=location) , Q(function=function), Q(skills=skills), Q(exp_req_min__lte=experience, exp_req_max__gte=experience), is_publish=True)
             if not jobs.exists():
