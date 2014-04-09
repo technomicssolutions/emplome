@@ -20,6 +20,20 @@
 				Location : {{ job.location }} <br/>
 				Role : {{ job.job_title }} <br/>
 			</span>
+			<div id="job_description_text"><h2>Desired Candidate Profile</h2></div>
+			<div><br>
+				<span>
+				Skills : {{job.skills}} <br/>
+				Experience : {{job.exp_req_min}} - {{job.exp_req_max}}<br/>
+				Specialization : {{ job.specialization }} <br/>
+			</span>
+			</div>
+			<div id="job_description_text">
+				<h2>Company Profile</h2>
+			</div><br>
+			<div>
+				<p>{{ job.description}}</p>
+			</div>
 			{% if user.is_authenticated and user.userprofile_set.all.0.userprofile == 'job_seeker' %}
 				{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
 		 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
