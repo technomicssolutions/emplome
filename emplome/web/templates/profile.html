@@ -127,8 +127,6 @@
 			
 			<div class="edit-button">
 		 		<br><br>
-		 		{{user.id}}
-		 		{{profile.user.id}}
 		 		{% if user == profile.user %}
 		 			<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
 				{% endif %}
