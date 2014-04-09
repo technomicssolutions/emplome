@@ -1,58 +1,63 @@
-<div class="logodiv">
    <!--  <a title="NaukriGulf.com" href="http://www.naukrigulf.com/">
         <img class="fl" width="246" height="72" src="http://static.naukimg.com/ni/nistatic/nihome/images/naukrigulf_arabic.gif" alt="NaukriGulf.com">
     </a> -->
+    
+
+<div class="menu_header">
     <div class="logo">
         <a href="{% url 'home' %}"><h2>Emplome</h2></a>
     </div>
-    {% if user.is_authenticated %}
 
-        <div class="dropdown">
-            <a class="dropdwn" href="{% url 'profile' user_id=user.id %}">{{ user.username }}
-                <em class="downArr"> </em>
-            </a>
-            <ul class="dropdown_details">
-                <li><a href="{% url 'reset_password' user_id=user.id %}">Change Password</a></li>
-                <li><a href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-        </div>
 
-    {% endif %}
-</div>
-<div class="navi">
-    <ul class="middle">
-        <li>
-            <a class="active" title="Home" href="">
-                <!-- <em class="home"></em> -->Home
-            </a>
-        </li>
-        
-        <li>
-            <a class="tabUnsel" title="Post Jobs" href="{% url 'postjobs' %}">
-            Post Job
-            </a>
-        </li>
-        
-    	{% if user.is_authenticated %}
-            {% if user.is_superuser %}
-                <li>
-                    <a class="tabUnsel" title="Edit Profile" href="{% url 'search' %}">Search CV</a>
+    <div class="menu_div">
+        <ul>
+            {% if user.is_authenticated %}
+                <li class="menu"> <a href=""> {{ user.username }} <a href="{% url 'profile' user_id=user.id %}">
+                    <em class="downArr"> </em>
+                </a> </a>
+                    <ul>
+                        <li><a href="{% url 'reset_password' user_id=user.id %}">Change Password</a></li>
+                        <li><a href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
                 </li>
             {% endif %}
+        </ul>
+    </div>
+    <div class="navi">
+        <ul class="middle">
             <li>
-                <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
+                <a class="active" title="Home" href="">
+                    <!-- <em class="home"></em> -->Home
+                </a>
             </li>
+            
             <li>
-               <a class="tabUnsel" title="Edit Profile" href="{% url 'posted_jobs' %}">Posted Jobs</a>
+                <a class="tabUnsel" title="Post Jobs" href="{% url 'postjobs' %}">
+                Post Job
+                </a>
             </li>
-            <li>
-			    <a class="tabUnsel" title="Recruiter Login" href="{% url 'logout' %}">Logout</a>
-            </li>
-		{% else %}
-            <li>
-			    <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>	
-            </li>	
-		{% endif %}
-    </ul>
+            
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <li>
+                        <a class="tabUnsel" title="Edit Profile" href="{% url 'search' %}">Search CV</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
+                </li>
+                <li>
+                   <a class="tabUnsel" title="Edit Profile" href="{% url 'posted_jobs' %}">Posted Jobs</a>
+                </li>
+                <li>
+                    <a class="tabUnsel" title="Recruiter Login" href="{% url 'logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li>
+                    <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>  
+                </li>   
+            {% endif %}
+        </ul>
+    </div>
 </div>

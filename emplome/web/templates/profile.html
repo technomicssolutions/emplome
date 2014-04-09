@@ -43,7 +43,7 @@
 
 
 {% block content %}
-	<div class="container">
+	<div class="profile_container">
 
 		{% if user.userprofile_set.all.0.user_type == 'employer' %}
 			<div class="welcome-box">
@@ -54,7 +54,7 @@
 			<div class="content-box">
 				<br><br>
 				
-				<!-- <h4>Company Profile</h4>		 -->
+				
 				<h3>{{profile.recruiterprofile_set.all.0.company.company_name}}</h3>
 				<div class="label-box-left">
 					<label>Email id </label><br>
@@ -92,7 +92,7 @@
 		<div class="profile-box">
 			<div class="content-box">
 				<br><br>
-				<h4>My Profile</h4>
+				<h2>My Profile</h2>
 
 				<div class="formrow" id="photos">
 					<div class="rounded_photo" id="profile_image">
