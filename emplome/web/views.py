@@ -95,10 +95,16 @@ class Logout(View):
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         context = {}
+        print request.GET
+        next_url = request.GET.get('next', '')
+        context = {
+            'next': next_url,
+        }
         return render(request, 'login_job_seeker.html', context)    
 
     def post(self, request, *args, **kwargs):
         context = {}
+        
         if len(request.POST['email']) > 0 and not request.POST['email'].isspace() and len(request.POST['password']) > 0 \
         and not request.POST['password'].isspace():
             
@@ -122,6 +128,8 @@ class LoginView(View):
                 else:
                     return render(request, 'login_job_seeker.html', context)
             if userdata.user_type == 'employer':
+                # if request.POST['next']:
+                    
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
             else:
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
