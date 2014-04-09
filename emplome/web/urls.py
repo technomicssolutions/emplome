@@ -14,11 +14,12 @@ urlpatterns = patterns('',
 	url(r'^recruiter/post-jobs/$',login_required(PostJobsView.as_view()), name='postjobs'),
 	url(r'^recruiter/post-jobs/edit/(?P<job_id>\d+)/$',login_required(EditPostJobsView.as_view()), name='post_jobs_edit'),
 	url(r'^job/details/(?P<job_id>\d+)/$',JobDetailsView.as_view(), name='job_details'),
-	url(r'^posted_jobs/$', login_required(PostedJobsView.as_view()), name='posted_jobs'),
+	url(r'^applied_jobs/(?P<user_id>\d+)$', login_required(AppliedJobsView.as_view()), name='applied_jobs'),
 
 	url(r'^job_seeker_registration/$', JobSeekerRegistration.as_view(), name='job_seeker_registration'),
 	url(r'^job_seeker_registration_more_info/(?P<user_id>\d+)/$', JobSeekerRegistrationMoreInfo.as_view(), name='job_seeker_registration_more_info'),
-	
+	url(r'^applied_jobs/$', login_required(PostedJobsView.as_view()), name='posted_jobs'),
+
 	url(r'^profile/(?P<user_id>\d+)/$',login_required(ProfileView.as_view()), name='profile'),
 	url(r'^edit_profile/(?P<user_id>\d+)/$', login_required(EditProfile.as_view()), name='edit_profile'),
 	url(r'^profile/details/(?P<user_id>\d+)/$', GetProfileDetails.as_view(), name='profile_details'),

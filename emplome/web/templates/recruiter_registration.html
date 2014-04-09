@@ -61,7 +61,11 @@
 		</div>
 		<div  align="Center">
 			<div class="buttons">
-				<input type="submit" value="Register" ng-click="save_profile()">	
+				{% if user.is_authenticated %}
+					<input type="submit" value="Edit & Save" ng-click="save_profile()">	
+				{% else %}
+					<input type="submit" value="Register" ng-click="save_profile()">
+				{% endif %}
 			</div>
 			<p ng-show="error_flag" class="error_message">[[error_message]]</p>
 		</div>

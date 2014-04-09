@@ -320,7 +320,6 @@ class JobSeekerRegistrationMoreInfo(View):
         if seeker1['industry'] != "":
             employment.curr_industry = seeker1['industry']
         if seeker1['functions'] != "":
-            
             employment.function = seeker1['functions']
         employment.skills = seeker1['skills']
         employment.save()
@@ -553,8 +552,9 @@ class GetProfileDetails(View):
         company = []
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
+            print userprofile.user_type
             if userprofile.user_type == 'job_seeker':
-
+                print "in seeker"
                 if userprofile.jobseekerprofile_set.all().count() >0:
                     jobseeker = userprofile.jobseekerprofile_set.all()[0]
 
@@ -591,13 +591,11 @@ class GetProfileDetails(View):
                     'profile_photo': jobseeker.photo.name if jobseeker else '',
                 })
             else:
+                print "in employer"
                 if userprofile.recruiterprofile_set.all().count() > 0:
                     recruiter = userprofile.recruiterprofile_set.all()[0]
                     
                     company = recruiter.company
-
-                    if userprofile.employment_set.all().count() > 0:
-                        employment = userprofile.employment_set.all()[0]
 
                 ctx_recruiter.append({
                     'name' : company.company_name if company else '' ,
@@ -811,38 +809,25 @@ class SearchCV(View):
         cv_title = request.GET.get('cv_title', '')
         age = request.GET.get('age', '')
         keyword = request.GET.get('keyword', '')
-        # print cv_title, age, keyword
-        education_cv_title = []
-        seeker_profile_age = []
-        employment_keyword = []
-        ctx_userprofiles = []
-        jobs = []
-        if cv_title:
-            education_cv_title = Education.objects.filter(resume_title__contains = cv_title).distinct('userprofile')
-            print education_cv_title
-        if age != 'undefined' :
-            seeker_profile_age = JobSeekerProfile.objects.filter(age = age).distinct('profile')
-        if keyword:
-            employment_keyword = Employment.objects.filter(skills__contains = keyword).distinct('userprofile')
-        
-        set1 = sets.Set(education_cv_title)
-        set2 = sets.Set(seeker_profile_age)
-        set3 = sets.Set(employment_keyword)
-        set12 = set1 | set2
-        set13 = set2 | set3
-        userprofiles = set12 | set13
-        print userprofiles
+        print cv_title, age, keyword
+        jobseeker_profiles = []
+
+        if cv_title == 'undefined':
+            cv_title = ''
+        if keyword == 'undefined':
+            keyword = ''
+
+        if age != 'undefined':
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, age = age, employment__skills__contains=keyword).distinct('id')
+            
+        if age == 'undefined' :
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, employment__skills__contains=keyword).distinct('id')
         
         context = {
-            'jobs': jobs,
+            'cvs': jobseeker_profiles,
         }
-
-        if len(jobs) == 0:
-            context.update({
-                'searched_for': 'searched_for',
-            })
         
-        return render(request, 'search_jobs.html', context) 
+        return render(request, 'search_cvs_result.html', context) 
 
 
 class Companies(View):
@@ -864,6 +849,20 @@ class Companies(View):
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype="application/json")
 
+class AppliedJobsView(View):
 
+    def get(self, request, *args, **kwargs):
+
+        applied_jobs = []
+        profile = UserProfile.objects.get(user_id = kwargs['user_id'])
+        print profile
+        jobseeker_profile = profile.jobseekerprofile_set.all()[0]
+        print jobseeker_profile
+        applied_jobs = jobseeker_profile.applied_jobs.all()
+        print applied_jobs
+        context = {
+            'applied_jobs':applied_jobs,
+        }
+        return render(request, 'applied_jobs.html', context)
     
 
