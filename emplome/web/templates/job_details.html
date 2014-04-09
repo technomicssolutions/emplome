@@ -10,45 +10,22 @@
 	
 		<h3>{{job.job_title}} </h3>
 
-		<div class="label-box-left">
-			<label>Reference Code</label><br>
-			<label>Experience</label> <br>
-			<label>Education</label> <br>
-			<label>Specialization</label><br>
-			<label>Industry</label> Type <br>
-			<label>Functional Area</label> <br>
-			<label>Required Skills</label> <br>
-			<label>Job Summary</label> <br>
-			<label>Job Description</label><br>
-			<label>Job Location</label><br>
-			<label>Nationality</label><br>
-			<label>Company Profle</label><br>
-			<label>Last Date to Apply</label><br>
-			<label>Job Owner Name</label><br>
-			<label>Phone No.</label><br>
-			<label>E-mail Id</label><br>
-			<label>Posting Date</label><br>
+		<div class="job_description"> 
+			<h2>Job Description</h2>
+			<p>{{ job.summary }}</p>
+			<span>
+				Salary : As per Industry Standard
+				Industry : {{job.industry}}
+				Location : {{ job.location }}
+				Role : {{ job.job_title }}
+			</span>
+
 		</div>
 
-		<div class="label-box-right">
-			: {{job.ref_code}}<br>
-			: {{job.exp_req_min}} - {{job.exp_req_max}} Yrs<br>
-			: {{job.education_req}}<br>
-			: {{job.specialization}}<br>
-			: {{job.industry}}<br>
-			: {{job.function}}<br>
-			: {{job.skills}}<br>
-			: {{job.summary}}<br>
-			: <a href="/site_media/{{job.document}}" target="_blank">Click here</a><br>
-			: {{job.job_location}}<br>
-			: {{job.nationality}}<br>
-			: {{profile.recruiterprofile_set.all.0.company.description}}<br>
-			: {{job.last_date}}<br>
-			: {{job.name}}<br>
-			: {{job.phone}}<br>
-			: {{job.mail_id}}<br>
-			: {{job.last_date}}<br>
+		<div>
+
 		</div>
+
 		<div class="edit-button">
 			{% if user.is_authenticated and user.userprofile_set.all.0.userprofile == 'job_seeker' %}
 				{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
@@ -56,6 +33,8 @@
 		 		{% else %}
 		 			<p class="error_message">You have applied to this Job</p>
 		 		{% endif %}
+		 	{% else %}
+		 		<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
 		 	{% endif %}
 	 	</div>
 	</div>
