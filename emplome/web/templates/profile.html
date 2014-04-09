@@ -73,7 +73,7 @@
 		 	</div>
 		 		
 		 		{% if user == profile.user %}
-					<a href="{% url 'edit_profile_recruiter' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
+		 			<a href="{% url 'edit_profile_recruiter' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
 				{% endif %}
 		 		
 		 	</div>
@@ -130,7 +130,7 @@
 		 		{{user.id}}
 		 		{{profile.user.id}}
 		 		{% if user == profile.user %}
-					<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
+		 			<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
 				{% endif %}
 			</div>
 		</div>
