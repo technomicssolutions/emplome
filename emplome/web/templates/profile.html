@@ -44,14 +44,13 @@
 
 {% block content %}
 	<div class="container">
+
 		{% if user.userprofile_set.all.0.user_type == 'employer' %}
 			<div class="welcome-box">
 				<strong>{{error}}</strong><br />
 				<label>Welcome to your Home Page</label><br />
 				<label>Post jobs and find the best</label><br />
 			</div>
-
-
 			<div class="content-box">
 				<br><br>
 				
@@ -62,13 +61,15 @@
 					<label>Mobile</label><br>
 					<label>Industry Type </label><br>
 			 		<label>Location </label><br>
+			 		<label>City</label><br>
 			 	</div>
 
 		 	<div class="label-box-right">
 		 		: {{profile.user.email}}<br>
-		 		: {{ profile.mobile }}<br>
+		 		: {{profile.mobile }}<br>
 		 		: {{profile.company.industry_type}}<br>
 		 		: {{profile.country}}<br>
+		 		: {{profile.city}}<br>
 		 	</div>
 		 		
 		 		{% if user == profile.user %}
@@ -95,8 +96,9 @@
 
 				<div class="formrow" id="photos">
 					<div class="rounded_photo" id="profile_image">
-			            <img src="/site_media/{{jobseeker_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
-			        </div>
+			            <img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+			        </div> 
+			        <!-- /site_media/[[seeker.resume]]  -->
 		    	</div>
 		    	<br>
 		    </div>
@@ -115,10 +117,10 @@
 
 			 	<div class="label-box-right">
 			 		: {{profile.user.email}}<br>
-			 		: {{ profile.mobile }}<br>
-			 		: {{profile.employment_set.all.0.function}}<br>
-			 		: {{profile.employment_set.all.0.curr_industry}}<br>
-			 		: {{profile.employment_set.all.0.exp_yrs}} Year(s), {{profile.employment_set.all.0.exp_mnths}} Month(s)<br>
+			 		: {{profile.mobile }}<br>
+			 		: {{profile.jobseekerprofile_set.all.0.employment.function}}<br>
+			 		: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br>
+			 		: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s), {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br>
 			 		: {{profile.country}}
 			 	</div>
 			</div>

@@ -354,7 +354,7 @@ class PostJobsView(View):
 
         current_user = request.user
 
-        jobPosting, created = Job.objects.get_or_create(recruiter = current_user)
+        jobPosting = Job.objects.create(recruiter = current_user)
         post_data = request.POST
 
         jobpost = ast.literal_eval(post_data['jobpost'])
@@ -466,6 +466,7 @@ class JobDetailsView(View):
             ctx_jobpost.append({
                 'title': job.job_title,
                 'code': job.ref_code,
+                'company': job.company.company_name,
                 'summary': job.summary,            
                 'details': job.document.name,            
                 'skills': job.skills,
@@ -558,7 +559,7 @@ class GetProfileDetails(View):
                 if userprofile.jobseekerprofile_set.all().count() >0:
                     jobseeker = userprofile.jobseekerprofile_set.all()[0]
 
-                ctx_seeker.append({
+                ctx_seeker.append ({
                     'email': user.email,
                     'first_name': user.first_name,
                     'gender': jobseeker.gender if jobseeker else '',
@@ -579,6 +580,7 @@ class GetProfileDetails(View):
                     'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
                     'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
                 })
+
                 ctx_seeker1.append({
                     'years': jobseeker.employment.exp_yrs if jobseeker.employment else '' ,
                     'months': jobseeker.employment.exp_mnths if jobseeker.employment else '' ,
@@ -775,7 +777,7 @@ class PublishJob(View):
         except Exception as ex:
             print str(ex)
             jobs = []
-
+        print jobs
         context = {
           'jobs': jobs,
           'message': 'Published', 
@@ -848,6 +850,23 @@ class Companies(View):
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype="application/json")
+
+class ApplyJobs(View):
+
+    def get(self, request, *args, **kwargs):
+
+        current_user = request.user
+
+        job = Job.objects.get(id = kwargs['job_id'])
+        jobseeker, created = JobSeekerProfile.objects.get_or_create(profile = current_user)
+        jobseeker.applied_jobs.add(job)
+        jobseeker.save()
+
+        context = {
+            'job' : job,
+        }
+
+        return render(request, 'job_details.html', context)
 
 class AppliedJobsView(View):
 

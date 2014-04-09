@@ -12,42 +12,49 @@
 		{% if jobs %}
 			{% for job in jobs %}
 				<h3>{{job.job_title}}</h3>
-				Company : {{job.company.company_name}}
-				<br>
-				Ref. Code : {{job.ref_code}}
-				<br>
-				Job Summary : {{job.summary}}
-				<br>
-				Job Details : {{job.document}}
-				<br>
-				Key Words/Skills : {{job.skills}}
-				<br>
-				Industry Type : {{job.industry}}
-				<br>
-				Job Location : {{job.job_location}}
-				<br>
-				Functional Area : {{job.function}}
-				<br>
-				Education Required : {{job.education_req}}
-				<br>
-				Specialization : {{job.specialization}}
-				<br>
-				Minium Experience Required : {{job.exp_req_min}}
-				<br>
-				Maximum Experience Required : {{job.exp_req_max}}
-				<br>
-				Nationality : {{job.nationality}}
-				<br>
-				Last Date to Apply : {{job.last_date}}
-				<br>
-				Name of the Job Owner : {{job.name}}
-				<br>
-				Phone : {{job.phone}}
-				<br>
-				Mail Id : {{job.mail_id}}
-				<br>
-				Date Posted : {{job.posting_date}}
-				<br>
+
+				<div class="label-box-left">
+					<label>Company </label>	<br>
+					<label>Ref. Code </label><br>
+					<label>Job Summary </label><br>
+					<label>Job Details </label><br>
+					<label>Key Words/Skills </label><br>
+					<label>Industry Type </label><br>
+					<label>Job Location </label><br>
+					<label>Functional Area </label><br>
+					<label>Education Required </label><br>
+					<label>Specialization </label><br>
+					<label>Minimum Experience </label><br>
+					<label>Maximum Experience </label><br>
+					<label>Nationality </label><br>
+					<label>Last Date to Apply </label><br>
+					<label>Name of the Job Owner </label><br>
+					<label>Phone </label><br>
+					<label>Mail Id </label><br>
+					<label>Date Posted </label><br><br>
+				</div>
+
+				<div class="label-box-right">
+					: {{job.company.company_name}}<br>
+					: {{job.ref_code}}<br>
+					: {{job.summary}}<br>
+					: <a href="uploads/doc">{{job.document}}</a><br>
+					: {{job.skills}}<br>
+					: {{job.industry}}<br>
+					: {{job.job_location}}<br>
+					: {{job.function}}<br>
+					: {{job.education_req}}<br>
+					: {{job.specialization}}<br>
+					: {{job.exp_req_min}}<br>
+					: {{job.exp_req_max}}<br>
+					: {{job.nationality}}<br>
+					: {{job.last_date}}<br>
+					: {{job.name}}<br>
+					: {{job.phone}}<br>
+					: {{job.mail_id}}<br>
+					: {{job.posting_date}}<br><br>
+				</div>
+
 				<br>
 				<a href="{% url 'post_jobs_edit' job_id=job.id %}"><input type="submit" name="edit" value="Edit"></a>
 				<a href="{% url 'delete_job' job_id=job.id %}"><input type="submit" name="edit" value="Delete"></a>
