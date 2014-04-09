@@ -34,14 +34,16 @@
 			<div>
 				<p>{{ job.description}}</p>
 			</div>
-			{% if user.is_authenticated and user.userprofile_set.all.0.userprofile == 'job_seeker' %}
-				{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
-		 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
-		 		{% else %}
-		 			<p class="error_message">You have applied to this Job</p>
-		 		{% endif %}
-		 	
-		 	{% endif %}
+			{% if user.userprofile_set.all.0.user_type == 'job_seeker'%}
+                {% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
+                    <a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
+                {% else %}
+                    <p id="info_message">You have applied to this Job</p>
+                {% endif %}
+            {%endif %}
+            {% if not user.is_authenticated %}
+                <a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Login to apply"></a>
+            {% endif %}
 		</div>
 
 		<div>

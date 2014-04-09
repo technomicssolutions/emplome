@@ -4,7 +4,6 @@ from datetime import datetime
 
 import simplejson
 import ast
-import sets
 
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import View
@@ -37,7 +36,6 @@ class SearchJobsView(View):
     def get(self, request, *args, **kwargs):
 
         search = False
-        print request.GET
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
         skills = request.GET.get('skills', '')
@@ -305,7 +303,6 @@ class JobSeekerRegistrationMoreInfo(View):
         post_data = request.POST
         userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
         jobseeker, created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
-        print created
         seeker1 = ast.literal_eval(post_data['seeker1'])
         if jobseeker.employment:
             employment = jobseeker.employment
