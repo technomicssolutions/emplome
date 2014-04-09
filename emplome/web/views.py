@@ -370,6 +370,12 @@ class PostJobsView(View):
         if document:
             jobPosting.document = document
         jobPosting.skills =jobpost['skills']
+        jobPosting.industry = jobpost['industry']
+        jobPosting.job_location = jobpost['job_location']
+        jobPosting.education_req = jobpost['education_req']
+        jobPosting.function = jobpost['function']
+        jobPosting.specialization = jobpost['specialization']
+        jobPosting.nationality = jobpost['nationality']
 
         if jobpost['last_date']:
             jobPosting.last_date  = datetime.strptime(jobpost['last_date'], '%d-%m-%Y')
