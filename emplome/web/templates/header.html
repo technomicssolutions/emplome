@@ -41,9 +41,7 @@
             </div>
         </li>
         
-        <li>
-            <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
-        </li>
+            
        {% if user.is_authenticated %}
             {% if user.userprofile_set.all %}
                 {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
@@ -66,7 +64,10 @@
             </li>
             <li>
                 <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a> 
-            </li>         
+            </li>  
+            <li>
+                <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
+            </li>       
         {% endif %}
     </ul>
 </div>
