@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 	url(r'^recruiter/post-jobs/$',login_required(PostJobsView.as_view()), name='postjobs'),
 	url(r'^recruiter/post-jobs/edit/(?P<job_id>\d+)/$',login_required(EditPostJobsView.as_view()), name='post_jobs_edit'),
 	url(r'^job/details/(?P<job_id>\d+)/$',JobDetailsView.as_view(), name='job_details'),
-	url(r'^applied_jobs/(?P<user_id>\d+)$', login_required(AppliedJobsView.as_view()), name='applied_jobs'),
+	url(r'^applied_jobs/(?P<user_id>\d+)/$', login_required(AppliedJobsView.as_view()), name='applied_jobs'),
 
 	url(r'^job_seeker_registration/$', JobSeekerRegistration.as_view(), name='job_seeker_registration'),
 	url(r'^job_seeker_registration_more_info/(?P<user_id>\d+)/$', JobSeekerRegistrationMoreInfo.as_view(), name='job_seeker_registration_more_info'),
