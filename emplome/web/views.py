@@ -371,10 +371,10 @@ class PostJobsView(View):
             jobPosting.document = document
         jobPosting.skills =jobpost['skills']
         jobPosting.industry = jobpost['industry']
-        jobPosting.job_location = jobpost['job_location']
-        jobPosting.education_req = jobpost['education_req']
+        jobPosting.job_location = jobpost['location']
+        jobPosting.education_req = jobpost['requirement']
         jobPosting.function = jobpost['function']
-        jobPosting.specialization = jobpost['specialization']
+        jobPosting.specialization = jobpost['specialisation']
         jobPosting.nationality = jobpost['nationality']
 
         if jobpost['last_date']:
@@ -428,7 +428,8 @@ class EditPostJobsView(View):
         jobpost = ast.literal_eval(post_data['jobpost'])
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
-        jobPosting.company = jobpost['company']
+        company, created = CompanyProfile.objects.get_or_create(company_name = jobpost['company'])
+        jobPosting.company = company
         jobPosting.summary = jobpost['summary']
 
         document = request.FILES.get('product_pdf', '')
