@@ -46,7 +46,7 @@
             {% if user.userprofile_set.all %}
                 {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
                     <li>
-                        <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a>
+                        <a class="tabUnsel" title="Edit Profile" href="{% url 'profile' user_id=user.id %}">Profile</a>
                     </li>
                     <li>
                         <a class="tabUnsel" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
