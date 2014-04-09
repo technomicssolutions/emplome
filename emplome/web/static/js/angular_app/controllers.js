@@ -1475,7 +1475,7 @@ function  SearchController($scope,$element,$http,$timeout){
             $scope.alert_style = {};
             $scope.error_flag = false;
             $scope.error_message = '';
-            var url = '/search_cv/?cv_title='+$scope.resume_title+'&age='+$scope.search.age+'&keyword='+$scope.keyword;
+            var url = '/search_cv/?cv_title='+$scope.resume_title+'&age='+$scope.age+'&keyword='+$scope.keyword;
             document.location.href = url;
         }
 

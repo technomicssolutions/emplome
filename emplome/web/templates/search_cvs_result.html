@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Search CVs{% endblock title %}
+{% block body_id %}search_cvs{% endblock body_id %}
+{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+{% block search %}
+	<div class="search_box">
+        <!-- <h3> SEARCH JOBS </h3> -->
+        <div class="search_box_content">
+            <label>Keywords</label>
+            <input type="text" name="search" placeholder="skills" ng-model="skill">
+            <p ng-show="is_keyword" class="error_message">Please enter the skills</p>
+        </div>
+        <div class="search_box_content">
+            <label>Location</label>
+            <input type="text" name="search" placeholder="country" ng-model="job_location">
+            <p ng-show="is_location" class="error_message">Please enter the Location</p>
+        </div>
+        <div class="search_box_content">
+            <label>Exp</label><br>
+            <select ng-model="experience">
+                <option value="select" >Exp</option>
+                <option value="[[exp]]" ng-repeat="exp in experiences">[[exp]]</option>
+            </select>
+            <p ng-show="is_exp" class="error_message">Please Choose the Exp</p>
+        </div>
+        <div class="search_box_content">
+            <label>Functional Area</label><br>
+            <select ng-model="functional_area">
+                <option value="select">Select</option>
+                <option value="[[function]]" ng-repeat="function in functions">[[function]]</option>
+            </select>
+            <p ng-show="is_function" class="error_message">Please choose the Functional area</p>
+        </div>
+
+        <div class="search_box_content">
+            <a href="" class="search_button" ng-click="job_search()">Search</a>
+            
+        </div>
+        
+    </div>
+{% endblock search %}
+
+{% block content %}
+
+    {% if cvs|length%}
+        {% for cv in cvs %}
+            <div class="search_result_warning">
+                <h2><a href="{% url 'profile' user_id=cv.profile.user.id%}"> {{cv.profile.user.first_name}} {{cv.profile.user.last_name}} </a></h2>
+                <p> Age: {{cv.age}} </p>
+                <p> Resume : <a href="/site_media/{{cv.education.resume.name}}" target="_blank">{{ cv.education.resume_title }}</a> </p>
+                <p> Skills: {{cv.employment.skills}} </p>
+                <p> Experience: {{cv.emploment.exp_yrs}} Years - {{cv.employment.exp_mnths}} Months</p>
+                <br>
+            </div>
+        
+            <!-- <div class="edit-button">
+                <a href=""><input type="submit" name="apply" value="Apply Job"></a>
+            </div> -->
+            <br>
+        {% endfor %}
+    {% else %}
+        <div class="search_result_warning">
+            <p class="error_message">No CVs found for this criteria. </p>
+            <p>Your search did not match any documents.</p>
+            <p>Suggestions:</p>
+            <ul>
+                <li>Please check your spelling and try some different Keywords.</li>
+                <li>Try relaxing search criteria. </li>
+            </ul>
+                
+                
+        </div>
+    {% endif %}
+
+{% endblock content %}
