@@ -21,6 +21,11 @@
 
 			
 		</div>
+		
+		<div class="formrow">
+			<label > Email<span class="red">*</span></label>  
+			<input type="text"  name="email" ng-model="recruiter.email">
+		</div>
 		<div class="formrow">
 			<label> Industry Type<span class="red">*</span></label>
 			
@@ -28,10 +33,6 @@
 				<option value="">-----Select----<option>					
 				<option ng-repeat="industry in industries" value="[[industry]]" ng-selected="industry == recruiter.industry">[[industry]]</option>
 				</select>
-		</div>
-		<div class="formrow">
-			<label > Email<span class="red">*</span></label>  
-			<input type="text"  name="email" ng-model="recruiter.email">
 		</div>
 		{% if not user_loggedin %}
 			<div class="formrow">
@@ -59,8 +60,14 @@
 			<label> City</label>
 			<input type="text" name="city" ng-model="recruiter.city">
 		</div>
+		<div class="formrow">
+			<label> Company Description</label>
+			<textarea ng-model="recruiter.description"> </textarea>
+		</div>
+
 		<div  align="Center">
 			<div class="buttons">
+
 				{% if user.is_authenticated %}
 					<input type="submit" value="Edit & Save" ng-click="save_profile()">	
 				{% else %}
