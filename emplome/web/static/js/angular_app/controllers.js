@@ -1303,7 +1303,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       return false;
     } else if ($scope.jobpost.skills == '' || $scope.jobpost.skills == undefined) {
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide the S Required kills';
+      $scope.error_message = 'Please provide the Required Skills';
       return false;
     } else if ($scope.jobpost.min == '' || $scope.jobpost.min == undefined || $scope.jobpost.min == '-min-') {
       $scope.error_flag = true;

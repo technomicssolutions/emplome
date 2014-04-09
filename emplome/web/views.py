@@ -870,10 +870,16 @@ class ApplyJobs(View):
 
     def get(self, request, *args, **kwargs):
 
+        current_user = request.user
+
         job = Job.objects.get(id = kwargs['job_id'])
         jobseeker, created = JobSeekerProfile.objects.get_or_create(profile = current_user)
         jobseeker.applied_jobs.add(job)
         jobseeker.save()
+
+        context = {
+            'job' : job,
+        }
 
         return render(request, 'job_details.html', context)
 
