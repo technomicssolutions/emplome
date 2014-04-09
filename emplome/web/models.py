@@ -918,7 +918,6 @@ class JobSeekerProfile(models.Model):
     profile = models.ForeignKey(UserProfile)
     gender = models.CharField('Gender', max_length=7, choices=GENDER)
     nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
-    current_location = models.CharField('Current Location', null=True, blank=True, max_length=50, choices=COUNTRY_CHOICES)
     alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
     photo = models.FileField( upload_to = "uploads/photos/", max_length=20000, null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
