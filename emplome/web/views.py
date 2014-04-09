@@ -858,7 +858,7 @@ class ApplyJobs(View):
         current_user = request.user
 
         job = Job.objects.get(id = kwargs['job_id'])
-        jobseeker, created = JobSeekerProfile.objects.get_or_create(profile_user = current_user)
+        jobseeker, created = JobSeekerProfile.objects.get_or_create(profile__user = current_user)
         jobseeker.applied_jobs.add(job)
         jobseeker.save()
 
