@@ -50,12 +50,13 @@
 			: {{job.last_date}}<br>
 		</div>
 		<div class="edit-button">
-			{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
-	 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
-	 		{% else %}
-	 			<p class="error_message">You have applied to this Job</p>
-	 		{% endif %}
-
+			{% if user.is_authenticated %}
+				{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
+		 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
+		 		{% else %}
+		 			<p class="error_message">You have applied to this Job</p>
+		 		{% endif %}
+		 	{% endif %}
 	 	</div>
 	</div>
 	

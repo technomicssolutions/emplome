@@ -1,73 +1,72 @@
-<div class="logodiv">
-    <!-- <a title="NaukriGulf.com" href="http://www.naukrigulf.com/">
-        <img class="fl" width="246" height="72" src="http://static.naukimg.com/ni/nistatic/nihome/images/naukrigulf_arabic.gif" alt="NaukriGulf.com">
-    </a> -->
+<div class="menu_header">
     <div class="logo">
         <a href="{% url 'home' %}"><h2>Emplome</h2></a>
     </div>
-    {% if user.is_authenticated %}
 
-        <div class="dropdown">
-            <a class="dropdwn" href="{% url 'profile' user_id=user.id %}">{{ user.username }}
-                <em class="downArr"> </em>
-            </a>
-            <ul class="dropdown_details">
-                <li><a href="{% url 'reset_password' user_id=user.id %}">Change Password</a></li>
-                <li><a href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-        </div>
 
-    {% endif %}
-    
-</div>
-<div class="navi">
-    <ul class="middle">
-        <li>
-            <a class="active" title="Home" href="{% url 'home' %}">
-                <!-- <em class="home">Home</em> -->
-                Home
-            </a>
-        </li>
-        <li id="ddN" class="ddn">
-            <a title="Search Jobs" href="search-jobs?tracksrc=503">
-                Search Jobs
-                <em class="downArr"> </em>
-            </a>
-            <div class="ddNC">
-                <a title="" href="{% url 'search' %}">Advance Search</a>
-                <a title="" href="" onClick="search_by_location('location')">Jobs By Location</a>
-                <a title="" href="" onClick="search_by_location('skills')">Jobs By Skills</a>
-            </div>
-        </li>
-        
-            
-       {% if user.is_authenticated %}
-            {% if user.userprofile_set.all %}
-                {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
-                    <li>
-                        <a class="tabUnsel" title="Edit Profile" href="{% url 'profile' user_id=user.id %}">Profile</a>
-                    </li>
-                    <li>
-                        <a class="tabUnsel" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
-                    </li>
-                {% endif %}
-
+    <div class="menu_div">
+        <ul>
+            {% if user.is_authenticated %}
+                <li class="menu"> <a href=""> {{ user.username }} <a href="{% url 'profile' user_id=user.id %}">
+                    <em class="downArr"> </em>
+                </a> </a>
+                    <ul>
+                        <li><a href="{% url 'reset_password' user_id=user.id %}">Change Password</a></li>
+                        <li><a href="{% url 'edit_profile' user_id=user.id %}">Edit Profile</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
             {% endif %}
-           
-        {% else %}
+        </ul>
+    </div>
+    <div class="navi">
+        <ul class="middle">
             <li>
-                <a class="tabUnsel" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
-                Post Resume
-                    <!-- <sup>Free</sup> -->
+                <a class="active" title="Home" href="{% url 'home' %}">
+                    
+                    Home
                 </a>
             </li>
-            <li>
-                <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a> 
-            </li>  
-            <li>
-                <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
-            </li>       
-        {% endif %}
-    </ul>
+            <li id="ddN" class="ddn">
+                <a title="Search Jobs" href="search-jobs?tracksrc=503">
+                    Search Jobs
+                    <em class="downArr"> </em>
+                </a>
+                <div class="ddNC">
+                    <a title="" href="{% url 'search' %}">Advance Search</a>
+                    <a title="" href="" onClick="search_by_location('location')">Jobs By Location</a>
+                    <a title="" href="" onClick="search_by_location('skills')">Jobs By Skills</a>
+                </div>
+            </li>
+            
+                
+           {% if user.is_authenticated %}
+                {% if user.userprofile_set.all %}
+                    {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
+                        <li>
+                            <a class="tabUnsel" title="Edit Profile" href="{% url 'profile' user_id=user.id %}">Profile</a>
+                        </li>
+                        <li>
+                            <a class="tabUnsel" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
+                        </li>
+                    {% endif %}
+
+                {% endif %}
+               
+            {% else %}
+                <li>
+                    <a class="tabUnsel" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
+                    Post Resume
+                        
+                    </a>
+                </li>
+                <li>
+                    <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a> 
+                </li>  
+                <li>
+                    <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
+                </li>       
+            {% endif %}
+        </ul>
+    </div> 
 </div>
