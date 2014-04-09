@@ -799,6 +799,7 @@ label textarea{
 .menu_div {
     float: right;
     height: 50%;
+
 }
 
 .menu_div ul li {
@@ -806,12 +807,13 @@ label textarea{
     display: block;
     padding: 2px 10px 2px 5px;
     position: relative;
+
 }
 
 .menu_div ul li ul li {
     float: none;
     display: block;
-    padding: 3px 5px 0px 5px;
+    /*padding: 3px 5px 0px 5px;*/
     border: none;   
     height: 30px;
     
@@ -825,7 +827,6 @@ label textarea{
     min-width: 100px;
     display: none;
     font-size: 11px;
-    border: 1px solid #3493D9;
     border-radius: 5px;
 }
 
@@ -863,3 +864,7 @@ label textarea{
 }
 
 /**************************** Header Drop Down End***********************************/
+
+.posted_jobs_container {
+    width: 80%;
+}
