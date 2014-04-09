@@ -1234,7 +1234,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'function': '-select-',
         'requirement': '-select-',
         'specialisation': '',
-        'nationality': '-select-',
+        'nationality': '',
         'last_date': '',
         'post_date': '',
         'name': '',
@@ -1283,13 +1283,9 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
   $scope.form_validation_postjob = function(){
     if ($scope.jobpost.company == 'other'){
-      $scope.jobpost.company = $scope.new_company 
+        $scope.jobpost.company = $scope.new_company 
     }
-    if ($scope.jobpost.company == 'select' || $scope.jobpost.company == 'other' || $scope.jobpost.company == ''){
-      $scope.error_flag = true;
-      $scope.error_message = 'Please provide Company Name';
-      return false;
-    }
+    
     if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Job Title';
@@ -1298,7 +1294,11 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Reference Code';
       return false;
-    } else if ($scope.jobpost.summary == '' || $scope.jobpost.summary == undefined) {
+    } else if ($scope.jobpost.company == 'other' || $scope.jobpost.company == '' || $scope.jobpost.company == undefined) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide Company Name';
+      return false; 
+    }  else if ($scope.jobpost.summary == '' || $scope.jobpost.summary == undefined) {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Job summary';
       return false;
@@ -1326,10 +1326,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide the Function';
       return false;
-    // } else if ($scope.jobpost.role == '' || $scope.jobpost.role == undefined) {
-    //   $scope.error_flag = true;
-    //   $scope.error_message = 'Please provide the Role';
-    //   return false;
     } else if ($scope.jobpost.requirement == '' || $scope.jobpost.requirement == undefined || $scope.jobpost.requirement == '-select-') {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide the Education Required';
