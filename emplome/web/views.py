@@ -422,6 +422,7 @@ class EditPostJobsView(View):
         jobpost = ast.literal_eval(post_data['jobpost'])
         jobPosting.job_title = jobpost['title']
         jobPosting.ref_code = jobpost['code']
+        jobPosting.company = jobpost['company']
         jobPosting.summary = jobpost['summary']
 
         document = request.FILES.get('product_pdf', '')
@@ -605,6 +606,7 @@ class GetProfileDetails(View):
                     'mobile' : userprofile.mobile if userprofile else '',
                     'phone' : userprofile.land_num if userprofile else '',
                     'city': userprofile.city if userprofile else '',
+                    'description': company.description if company else '',
                 })
         if request.is_ajax():
             res = {
@@ -721,6 +723,7 @@ class RecruiterProfileEdit(View):
             company = recruiter.company
             company.company_name = post_dict['name']
             company.industry_type = post_dict['industry']
+            company.description = post_dict['description']
             company.save()
             recruiter.company = company
             recruiter.save()

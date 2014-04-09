@@ -1142,6 +1142,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
             'mobile' : '',
             'phone' : '',
             'city': '',
+            'description': '',
 
         } 
         if (user_id) {
@@ -1165,9 +1166,9 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please choose the industry type';
             return false;
-        } else if ($scope.recruiter.email == '' || $scope.recruiter.email == undefined) {
+        } else if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter the email';
+            $scope.error_message = 'Please provide your email id';
             return false;
         } 
         //  else if (!$scope.user_already_exists) {
