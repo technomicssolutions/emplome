@@ -611,13 +611,16 @@ a {
     margin-top: 5%;
    
 }
+.profile_container {
+    margin: auto;
+    width: 90%;
+}
 
 
 /************* RECRUITER STYLE *****************/
 .form_container{
     width:60%;
     margin-left: 20%;
-    border:1px solid #000000;
     padding: 2%;
 }
 .form_container1{
@@ -796,15 +799,12 @@ label textarea{
 .menu_div {
     float: right;
     height: 50%;
-    margin-top: 2%;
-    margin-right: 7%;
 }
 
 .menu_div ul li {
     float: left;
     display: block;
     padding: 2px 10px 2px 5px;
-    border-right: 1px solid #FFFFFF;
     position: relative;
 }
 
@@ -814,6 +814,7 @@ label textarea{
     padding: 3px 5px 0px 5px;
     border: none;   
     height: 30px;
+    
 }
 .menu_div ul li ul {
     position: absolute;
@@ -821,8 +822,11 @@ label textarea{
     margin: 0px;
     padding: 5px;
     background-color: #FFFFFF;
-    min-width: 150px;
+    min-width: 100px;
     display: none;
+    font-size: 11px;
+    border: 1px solid #3493D9;
+    border-radius: 5px;
 }
 
 .menu_header {
@@ -830,7 +834,7 @@ label textarea{
     min-height: 20px !important;
     margin: 0px !important;
     color: #000000;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 100;
     display: block;
     padding: 1px 0px 1px 0px;
