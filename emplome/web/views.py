@@ -257,6 +257,7 @@ class JobSeekerRegistration(View):
             employment = Employment()
         else:
             education = job_seeker.education
+            employment = job_seeker.employment
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":
