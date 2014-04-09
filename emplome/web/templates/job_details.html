@@ -50,7 +50,12 @@
 			: {{job.last_date}}<br>
 		</div>
 		<div class="edit-button">
-	 		<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
+			{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs %}
+	 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
+	 		{% else %}
+	 			<p class="error_message">You have already applied to this Job</p>
+	 		{% endif %}
+
 	 	</div>
 	</div>
 	
