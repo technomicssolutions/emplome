@@ -868,3 +868,10 @@ label textarea{
 .posted_jobs_container {
     width: 80%;
 }
+
+.job_description {
+    line-height: 18px;
+}
+#job_description_text {
+    border-bottom: 2px solid #FFB812;
+}

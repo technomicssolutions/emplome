@@ -7,19 +7,42 @@
 <div class="container">
 	<div class="content-box">
 		<h1>{{job.company.company_name}} </h1>
-	
-		<h3>{{job.job_title}} </h3>
 
 		<div class="job_description"> 
-			<h2>Job Description</h2>
+			<div id="job_description_text">
+				<h2>Job Description</h2>
+			</div>
+				
 			<p>{{ job.summary }}</p>
 			<span>
-				Salary : As per Industry Standard
-				Industry : {{job.industry}}
-				Location : {{ job.location }}
-				Role : {{ job.job_title }}
+				Salary : As per Industry Standard <br/>
+				Industry : {{job.industry}} <br/>
+				Location : {{ job.location }} <br/>
+				Role : {{ job.job_title }} <br/>
 			</span>
 
+			<div id="job_description_text"><h2>Desired Candidate Profile</h2></div>
+			<div><br>
+				<span>
+				Skills : {{job.skills}} <br/>
+				Experience : {{job.exp_req_min}} - {{job.exp_req_max}}<br/>
+				Specialization : {{ job.specialization }} <br/>
+			</span>
+			</div>
+			<div id="job_description_text">
+				<h2>Company Profile</h2>
+			</div><br>
+			<div>
+				<p>{{ job.description}}</p>
+			</div>
+			{% if user.is_authenticated and user.userprofile_set.all.0.userprofile == 'job_seeker' %}
+				{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
+		 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
+		 		{% else %}
+		 			<p class="error_message">You have applied to this Job</p>
+		 		{% endif %}
+		 	
+		 	{% endif %}
 		</div>
 
 		<div>
@@ -27,15 +50,7 @@
 		</div>
 
 		<div class="edit-button">
-			{% if user.is_authenticated and user.userprofile_set.all.0.userprofile.user_type == 'job_seeker' %}
-				{% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
-		 			<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
-		 		{% else %}
-		 			<p class="error_message">You have applied to this Job</p>
-		 		{% endif %}
-		 	{% else %}
-		 		<a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
-		 	{% endif %}
+			
 	 	</div>
 	</div>
 	
