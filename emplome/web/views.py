@@ -78,14 +78,18 @@ class SearchJobsView(View):
             #     industry = ''
             # if exp == 'undefined':
             #     exp = ''
-            if exp:
-                jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True).order_by('-id').order_by('order')
+            # if exp:
+            #     jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True).order_by('-id').order_by('order')
                 
-            else:
+            # else:
+            #     jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry), is_publish=True).order_by('-id').order_by('order')
+            # if not jobs.exists():
+            #     searched_for = ''
+
+            if len(exp) > 0 and exp != 'undefined': 
+                jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True).order_by('-id').order_by('order')
+            else exp == 'undefined' :
                 jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry), is_publish=True).order_by('-id').order_by('order')
-            if not jobs.exists():
-                searched_for = ''
-        
         context = {
             'jobs': jobs,
         }
@@ -858,8 +862,7 @@ class SearchCV(View):
             print age
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, age = age, employment__skills__contains=keyword).distinct('id')
             
-        if age == 'undefined' :
-            print "age in null == ", age
+        else age == 'undefined' :
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, employment__skills__contains=keyword).distinct('id')
         
         context = {
