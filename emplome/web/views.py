@@ -227,10 +227,19 @@ class JobSeekerRegistration(View):
 
         post_data = request.POST
         seeker = ast.literal_eval(post_data['seeker'])
-        user, user_created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
-        if user_created:
-            user.set_password(seeker['password'])
-        user.save()
+        try:
+            user, user_created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
+            print user_created
+            if user_created:
+                user.set_password(seeker['password'])
+            user.save()
+        except IntegrityError, ex:
+            status_code = 500
+            response = simplejson.dumps({
+                'result': 'error', 
+                'message': 'This email already existing'
+            })
+            return HttpResponse(response, status = status_code, mimetype = 'application/json')
         
         userprofile, created = UserProfile.objects.get_or_create(user = user)
         
@@ -261,6 +270,7 @@ class JobSeekerRegistration(View):
             employment = Employment()
         else:
             education = job_seeker.education
+            employment = job_seeker.employment
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":

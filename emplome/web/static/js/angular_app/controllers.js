@@ -935,24 +935,23 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
     
     $scope.form_validation = function(){
+        console.log('hii'+$scope.profile_edit);
         if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your email id';
             return false;
-        } else if (!$scope.profile_edit) {
-            if ($scope.seeker.password == '' || $scope.seeker.password == undefined){
-                $scope.error_flag = true;
-                $scope.error_message = 'Please provide a password';
-                return false;
-            } else if ($scope.seeker.password1 == '' || $scope.seeker.password1 == undefined){  
-                $scope.error_flag = true;
-                $scope.error_message = 'Please re-enter the password';
-                return false;
-            } else if ($scope.seeker.password != $scope.seeker.password1){  
-                $scope.error_flag = true;
-                $scope.error_message = 'Please enter the password correctly';
-                return false;
-            } 
+        } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password == '' || $scope.seeker.password == undefined)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please provide a password';
+            return false;
+        } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password1 == '' || $scope.seeker.password1 == undefined)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please re-enter the password';
+            return false;
+        } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password != $scope.seeker.password1)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter the password correctly';
+            return false;
         } else if ($scope.seeker.first_name == '' || $scope.seeker.first_name == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please give your name';
@@ -971,7 +970,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.marital_status == '' || $scope.seeker.marital_status == undefined || $scope.seeker.marital_status == 'select'){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select your marital_status';
+            $scope.error_message = 'Please select your marital status';
             return false;
         } else if ($scope.seeker.nationality == '' || $scope.seeker.nationality == undefined || $scope.seeker.nationality == 'select'){
             $scope.error_flag = true;
@@ -1002,7 +1001,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_message = 'Please give a title for your Resume';
             return false;
         }
-    return true;
+        return true;
     }
 
   
@@ -1057,17 +1056,28 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 }
             }).success(function(data, status){
                 $scope.user_id = data.user_id;
-                $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
-                {
-                    $scope.seeker = data.seeker[0]; 
-                    $scope.seeker1 = data.seeker1[0];
-                    $scope.seeker.id = $scope.user_id;
-                }).error(function(data, status)
-                {
-                    console.log(data || "Request failed");
-                });
+                
+                if(data.result == 'error') {
+                    console.log(data);
+                    $scope.error_flag = true;
+                    $scope.error_message = data.message;
+                } else {
+                    $scope.error_flag = false;
+                    $scope.error_message = '';
+                    $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
+                    {
+                        $scope.seeker = data.seeker[0]; 
+                        $scope.seeker1 = data.seeker1[0];
+                        $scope.seeker.id = $scope.user_id;
+                    }).error(function(data, status)
+                    {
+                        console.log(data || "Request failed");
+                    });
+                }
+                
             }).error(function(data, status){
-            
+                $scope.error_flag = true;
+                $scope.error_message = data.message;
             });
         }
      
@@ -1078,6 +1088,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
     $scope.is_valid = $scope.form_validation_more_info();
         if ($scope.is_valid) {
+            if($scope.seeker1.designation == null){
+                $scope.seeker1.designation = '';
+            }
+            if($scope.seeker1.salary == null){
+                $scope.seeker1.salary = '';
+            }
             $scope.error_flag = false;
             $scope.error_message = '';
 
