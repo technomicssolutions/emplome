@@ -47,23 +47,32 @@ class SearchJobsView(View):
         jobs = []
         if location and function and skills and exp and not search:
             experience = int(exp)
-            jobs = Job.objects.filter(Q(job_location=location) , Q(function=function), Q(skills=skills), Q(exp_req_min__lte=experience, exp_req_max__gte=experience), is_publish=True)
+            jobs = Job.objects.filter(Q(job_location__icontains=location) , Q(function__icontains=function), Q(skills__icontains=skills), Q(exp_req_min__lte=experience, exp_req_max__gte=experience), is_publish=True)
             if not jobs.exists():
                 searched_for = str('"'+location+ '-'+skills+'-'+function+'-'+exp+'"')
         
         elif location and not function and not skills and not exp and not industry and not search: 
-            jobs = Job.objects.filter(job_location=location, is_publish=True)    
+            jobs = Job.objects.filter(job_location__icontains=location, is_publish=True)    
             if not jobs.exists():
                 searched_for = str('"'+location+'"')       
         elif function and not location and not skills and not exp and not industry and not search:
-            jobs = Job.objects.filter(function=function, is_publish=True)
+            jobs = Job.objects.filter(function__icontains=function, is_publish=True)
             if not jobs.exists():
                 searched_for = str('"'+function+'"')
         elif skills and not location and not function and not exp and not industry and not search:
-            jobs = Job.objects.filter(skills__contains=skills, is_publish=True)
+            jobs = Job.objects.filter(skills__icontains=skills, is_publish=True)
             if not jobs.exists():
                 searched_for = str('"'+skills+'"')   
         else:
+            if location == 'undefined':
+                location = ''
+            if function == 'undefined':
+                function = ''
+            if skills == 'undefined':
+                skills = ''
+            if industry == 'undefined':
+                industry = ''
+            print "in else"
             if exp:
                 jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry), is_publish=True)
             else:
