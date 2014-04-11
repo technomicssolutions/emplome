@@ -16,7 +16,7 @@ def site_variables(request):
         if job.function not in ctx_function:
             ctx_function.append(job.function)
     try:
-        success_stories = SuccessStory.objects.filter(publish=True).order_by('-id')
+        success_stories = SuccessStory.objects.filter(publish=True).order_by('-id').order_by('order');
         if success_stories.count() > 3:
             stories = success_stories[:3]
         elif success_stories.count() <= 3:
@@ -24,7 +24,7 @@ def site_variables(request):
     except:
         stories = []
     try:
-        recommendations = Recommendation.objects.all().order_by('-id')
+        recommendations = Recommendation.objects.all().order_by('-id').order_by('order');
         if recommendations.count() > 3:
             recommendation = recommendations[:3]
         elif recommendations.count() <= 3:
