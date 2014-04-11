@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Job Host{% endblock title %}
+{% block title %}Post Job{% endblock title %}
 {% block body_id %}jobpost{% endblock body_id %}
 
 {% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}','{{job_id}}')"{% endblock controller %}
@@ -11,7 +11,11 @@
 
 		<div class="separation">
 			<br>
-			<h2 class="hd1">Job Posting</h2>
+			{% if job_id %}
+				<h2 class="hd1">Posted Job</h2>
+			{% else %}
+				<h2 class="hd1">Post A Job</h2>
+			{% endif %}
 			
 			<p class="mandatory">* Mandatory Fields</p>
 			<br>
@@ -158,6 +162,7 @@
 		</div>
 				<!-- <div class="inner"> -->
 		<div class="separation">
+			
 			<div class="formrow" align="center">
 				<input type="checkbox" name="checkbox" ng-model="checkbox">
 				Reveal contact details to seekers who applied for the job

@@ -70,8 +70,6 @@ class SearchJobsView(View):
                 jobs = Job.objects.filter(Q(job_location__contains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True)
             if not jobs.exists():
                 searched_for = ''
-                # exp_req_min__gte=exp, exp_req_max__lte=exp,
-
         
         context = {
             'jobs': jobs,
@@ -478,26 +476,26 @@ class JobDetailsView(View):
             ctx_jobpost = []
                    
             ctx_jobpost.append({
-                'title': job.job_title,
-                'code': job.ref_code,
-                'company': job.company.company_name,
-                'summary': job.summary,            
-                'details': job.document.name,            
-                'skills': job.skills,
-                'min':job.exp_req_min,
-                'max':job.exp_req_max,
-                'location':job.job_location,
-                'industry':job.industry,
-                'function': job.function,            
-                'requirement': job.education_req,
-                'specialisation': job.specialization,
-                'nationality': job.nationality,
-                'last_date': job.last_date.strftime('%d-%m-%Y'),
-                'name': job.name,
-                'phone': job.phone,
-                'email': job.mail_id,
-                'profile':job.description, 
-                'post_date': job.posting_date.strftime('%d-%m-%Y'), 
+                'title': job.job_title if job.job_title else '',
+                'code': job.ref_code if job.ref_code else '',
+                'company': job.company.company_name if job.company else '',
+                'summary': job.summary if job.summary else '',            
+                'details': job.document.name if job.document else '',             
+                'skills': job.skills if job.skills else '',
+                'min':job.exp_req_min if job.exp_req_min else '',
+                'max':job.exp_req_max if job.exp_req_max else '',
+                'location':job.job_location if job.job_location else '',
+                'industry':job.industry if job.industry else '',
+                'function': job.function if job.function else '',            
+                'requirement': job.education_req if job.education_req else '',
+                'specialisation': job.specialization if job.specialization else '',
+                'nationality': job.nationality if job.nationality else '',
+                'last_date': job.last_date.strftime('%d-%m-%Y') if job.last_date else '',
+                'name': job.name if job.name else '',
+                'phone': job.phone if job.phone else '',
+                'email': job.mail_id if job.mail_id else '',
+                'profile':job.description if job.description else '', 
+                'post_date': job.posting_date.strftime('%d-%m-%Y') if job.posting_date else '', 
             })
             
             res = {
@@ -754,7 +752,7 @@ class RecruiterProfileEdit(View):
                 'error_message': str(ex),
             }
             
-            status_code = 200
+            status_code = 500
 
         response = simplejson.dumps(res)
 

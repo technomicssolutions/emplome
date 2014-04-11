@@ -1162,17 +1162,15 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter the company name';
             return false;
+        } else if (!(validateEmail($scope.recruiter.email))){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please provide a valid email id';
+            return false;
         } else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
             $scope.error_flag = true;
             $scope.error_message = 'Please choose the industry type';
             return false;
-        } else if (!(validateEmail($scope.seeker.email))){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please provide your email id';
-            return false;
-        } 
-        //  else if (!$scope.user_already_exists) {
-        else if (!$scope.user_id) {
+        } else if (!$scope.user_id) {
             if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter the password';
@@ -1184,8 +1182,13 @@ function RecruiterController($scope, $element, $http, $timeout) {
     $scope.save_profile = function(){
         $scope.is_valid = $scope.recruiter_validation();
         if ($scope.is_valid) {
+            console.log($scope.user_id);
             $scope.error_flag = false;
             $scope.error_message = '';
+            
+            if ($scope.recruiter.description == null){
+                $scope.recruiter.description = '';
+            }
             if ($scope.user_id) {
                 var url = '/edit_profile/recruiter/'+$scope.user_id+'/';
             } else {
@@ -1206,7 +1209,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
                 }
             }).success(function(data, status){
                 
-                document.location.href = '/profile/'+data.user_id+'/';
+                document.location.href = '/profile/'+$scope.user_id+'/';
               
             }).error(function(data, status){
            
@@ -1288,7 +1291,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
     
     if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide Job Title';
+      $scope.error_message = 'Please provide a Job Title';
       return false;
     } else if ($scope.jobpost.code == '' || $scope.jobpost.code == undefined) {
       $scope.error_flag = true;
@@ -1345,11 +1348,11 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
     } else if (!(validateEmail($scope.jobpost.email))) {
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide your Email';
+      $scope.error_message = 'Please provide a valid Email';
       return false;
     } else if ($scope.jobpost.profile == '' || $scope.jobpost.profile == undefined) {
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide the Company Name';
+      $scope.error_message = 'Please provide the Company Profile';
       return false;
     } 
     return true;

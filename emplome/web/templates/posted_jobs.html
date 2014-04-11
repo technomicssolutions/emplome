@@ -11,50 +11,27 @@
 	<div class="separation">
 		{% if jobs %}
 			{% for job in jobs %}
-				<h3>{{job.job_title}}</h3>
 
-				<div class="label-box-left">
-					<label>Company </label>	<br>
-					<label>Ref. Code </label><br>
-					<label>Job Summary </label><br>
-					<label>Job Details </label><br>
-					<label>Key Words/Skills </label><br>
-					<label>Industry Type </label><br>
-					<label>Job Location </label><br>
-					<label>Functional Area </label><br>
-					<label>Education Required </label><br>
-					<label>Specialization </label><br>
-					<label>Minimum Experience </label><br>
-					<label>Maximum Experience </label><br>
-					<label>Nationality </label><br>
-					<label>Last Date to Apply </label><br>
-					<label>Name of the Job Owner </label><br>
-					<label>Phone </label><br>
-					<label>Mail Id </label><br>
-					<label>Date Posted </label><br><br>
+				<div class="posted_job_container">
+					<div class="sub_container"> <b><label id="job_title">{{job.job_title}}</label></b> - {{job.job_location}} </div>
+					<label>From : {{job.company.company_name}}</label>
+					<div class="sub_container">
+						<div class="job_details">
+							<div id="details"><label>Experience </label></div>
+							<span>: {{job.exp_req_min}} - {{job.exp_req_max}}</span>
+						</div>
+						<div class="job_details">
+							<div id="details"><label>Education </label></div>
+							<span>:{{job.education_req}}</span>
+						</div>
+						<div class="job_details">
+							<div id="details"><label>Specialization </label></div>
+							<span>:{{job.specialization}}</span>
+						</div>
+					</div>
 				</div>
 
-				<div class="label-box-right">
-					: {{job.company.company_name}}<br>
-					: {{job.ref_code}}<br>
-					: {{job.summary}}<br>
-					: <a href="/site_media/{{job.document}}" target="_blank">Click Here</a><br>
-					: {{job.skills}}<br>
-					: {{job.industry}}<br>
-					: {{job.job_location}}<br>
-					: {{job.function}}<br>
-					: {{job.education_req}}<br>
-					: {{job.specialization}}<br>
-					: {{job.exp_req_min}}<br>
-					: {{job.exp_req_max}}<br>
-					: {{job.nationality}}<br>
-					: {{job.last_date}}<br>
-					: {{job.name}}<br>
-					: {{job.phone}}<br>
-					: {{job.mail_id}}<br>
-					: {{job.posting_date}}<br><br>
-				</div>
-
+				
 				<br>
 				<a href="{% url 'post_jobs_edit' job_id=job.id %}"><input type="submit" name="edit" value="Edit"></a>
 				<a href="{% url 'delete_job' job_id=job.id %}"><input type="submit" name="edit" value="Delete"></a>
@@ -64,7 +41,7 @@
 				{{message}}
 			{% endfor %}
 		{% else %}
-			<p> No jobs </p>
+			<p id="info_message"> You have no posted jobs. Please click on <a href="{% url 'postjobs' %}">Post job</a> to post a job</p>
 		{% endif %}
 
 	</div>
