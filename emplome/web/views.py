@@ -853,10 +853,13 @@ class SearchCV(View):
         if keyword == 'undefined':
             keyword = ''
 
-        if age != 'undefined' or age != ' ':
+        # if age != 'undefined':
+        if len(age) > 0 and age != 'undefined': 
+            print age
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, age = age, employment__skills__contains=keyword).distinct('id')
             
         if age == 'undefined' :
+            print "age in null == ", age
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, employment__skills__contains=keyword).distinct('id')
         
         context = {
