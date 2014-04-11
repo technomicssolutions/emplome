@@ -191,6 +191,10 @@ a {
     margin-bottom: 15px;
 }
 
+.middle_content a {
+     font-size: 11px;
+}
+
 /********** End Footer Styles ***********/
 
 

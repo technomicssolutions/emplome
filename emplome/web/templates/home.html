@@ -68,7 +68,7 @@
         <h4>Featured Jobs</h4>	
         {% if featured_jobs %}
             {% for job in featured_jobs %}
-                <a href="{% url 'featured_job' job_id=job.id %}">{{job.job_title}}, {{job.company.company_name}}, {{job.job_location }}</a>
+                <a href="{% url 'featured_job' job_id=job.id %}">{{job.job_title}} - {{job.company.company_name}} - {{job.job_location }}.</a><br>
             {% endfor %}
         {% endif %}
 
