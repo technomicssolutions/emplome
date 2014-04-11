@@ -6,15 +6,19 @@ def site_variables(request):
     current_site = Site.objects.get_current()
     ctx_location = []
     ctx_function = []
+    ctx_featured_job = []
     stories = []
     recommendation = []
     jobs = Job.objects.filter(is_publish=True).order_by('-id').order_by('order')
+    featured_jobs = Job.objects.filter(is_publish=True, is_featured=True).order_by('-id').order_by('order')
     for job in jobs:
         if job.job_location not in ctx_location:
             ctx_location.append(job.job_location)
     for job in jobs:
         if job.function not in ctx_function:
             ctx_function.append(job.function)
+    for job in featured_jobs:
+        ctx_featured_job.append(job)
     try:
         success_stories = SuccessStory.objects.filter(publish=True).order_by('-id')
         if success_stories.count() > 3:
@@ -39,4 +43,5 @@ def site_variables(request):
         'functions': ctx_function,
         'success_stories': stories ,
         'recommendations': recommendation ,
+        'featured_jobs': ctx_featured_job,
     }

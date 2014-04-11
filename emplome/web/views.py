@@ -64,18 +64,18 @@ class SearchJobsView(View):
             if not jobs.exists():
                 searched_for = str('"'+skills+'"')   
         else:
-            if location == 'undefined':
-                location = ''
-            if function == 'undefined':
-                function = ''
-            if skills == 'undefined':
-                skills = ''
-            if industry == 'undefined':
-                industry = ''
-            if exp == 'undefined':
-                exp = ''
+            # if location == 'undefined':
+            #     location = ''
+            # if function == 'undefined':
+            #     function = ''
+            # if skills == 'undefined':
+            #     skills = ''
+            # if industry == 'undefined':
+            #     industry = ''
+            # if exp == 'undefined':
+            #     exp = ''
             if exp:
-                jobs = Job.objects.filter(Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True).order_by('-id').order_by('order')
+                jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True).order_by('-id').order_by('order')
                 
             else:
                 jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry), is_publish=True).order_by('-id').order_by('order')
@@ -911,4 +911,12 @@ class AppliedJobsView(View):
         }
         return render(request, 'applied_jobs.html', context)
     
+class FeaturedJobView(View):
 
+    def get(self, request, *args, **kwargs):
+        job = Job.objects.get(id = kwargs['job_id'])
+        context = {
+            'job': job,
+        }
+
+        return render(request, 'job_details.html', context)
