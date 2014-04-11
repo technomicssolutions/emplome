@@ -54,7 +54,6 @@ class SearchJobsView(View):
                 searched_for = str('"'+location+ '-'+skills+'-'+function+'-'+exp+'"')
         
         elif location and not function and not skills and not exp and not industry and not search: 
-
             jobs = Job.objects.filter(job_location=location, is_publish=True).order_by('-id').order_by('order')    
             if not jobs.exists():
                 searched_for = str('"'+location+'"')       
@@ -165,6 +164,7 @@ class ProfileView(View):
             context = {
                 'profile': profile,
             }
+            print profile.jobseekerprofile_set.all()[0].employment.curr_industry
         except:
             context = {
                 'error':'You have no profile'
