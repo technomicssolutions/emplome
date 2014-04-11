@@ -8,7 +8,7 @@ def site_variables(request):
     ctx_function = []
     stories = []
     recommendation = []
-    jobs = Job.objects.filter(is_publish=True)
+    jobs = Job.objects.filter(is_publish=True).order_by('-id').order_by('order')
     for job in jobs:
         if job.job_location not in ctx_location:
             ctx_location.append(job.job_location)
