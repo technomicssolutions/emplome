@@ -87,11 +87,12 @@ class SearchJobsView(View):
 
             if len(exp) > 0 and exp != 'undefined': 
                 jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry) | Q(exp_req_min__gte=int(exp), exp_req_max__lte=int(exp)), is_publish=True).order_by('-id').order_by('order')
-            else exp == 'undefined' :
-                jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__contains=skills)| Q(industry__contains=industry), is_publish=True).order_by('-id').order_by('order')
+            elif exp == 'undefined' :
+                jobs = Job.objects.filter(Q(job_location__icontains=location) | Q(function__contains=function) | Q(skills__icontains=skills)| Q(industry__contains=industry), is_publish=True).order_by('-id').order_by('order')
         context = {
             'jobs': jobs,
         }
+        searched_for = ''
 
         if len(jobs) == 0:
             context.update({
