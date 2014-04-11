@@ -677,17 +677,17 @@ class ForgotPassword(View):
                 for i in range(len(to)):
                     msg = EmailMultiAlternatives(subject, text_content, from_email, [to[i]])
                     msg.attach_alternative(html_content, "text/html")
-                    try:
-                        msg.send()
-                        context = {
-                            'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
-                        }
-                        return render(request, 'forgot_password.html', context)
-                    except Exception as ex:
-                        context = {
-                            'message': 'Please try after some time',
-                        }
-                        return render(request, 'forgot_password.html', context)
+                    # try:
+                    msg.send()
+                    context = {
+                        'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
+                    }
+                    return render(request, 'forgot_password.html', context)
+                    # except Exception as ex:
+                    #     context = {
+                    #         'message': 'Please try after some time',
+                    #     }
+                    #     return render(request, 'forgot_password.html', context)
 
         else:
             context = {
@@ -847,7 +847,7 @@ class SearchCV(View):
         if keyword == 'undefined':
             keyword = ''
 
-        if age != 'undefined':
+        if age != 'undefined' or age != ' ':
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__contains= cv_title, age = age, employment__skills__contains=keyword).distinct('id')
             
         if age == 'undefined' :
