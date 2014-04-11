@@ -40,6 +40,6 @@ urlpatterns = patterns('',
 	url(r'^companies/$', Companies.as_view(), name='companies'),
 
 	url(r'^apply/(?P<job_id>\d+)/$', login_required(ApplyJobs.as_view()), name='apply_jobs'),
-
+	url(r'^featured_job/(?P<job_id>\d+)/$', FeaturedJobView.as_view(), name='featured_job'),
 
 )
