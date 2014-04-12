@@ -67,7 +67,6 @@ class SearchJobsView(View):
             if not jobs.exists():
                 searched_for = str('"'+skills+'"')   
         else:
-            print "in else"
             if location == 'undefined':
                 location = ''
             if function == 'undefined':
@@ -76,7 +75,6 @@ class SearchJobsView(View):
                 skills = ''
             if industry == 'undefined':
                 industry = ''
-            print "exp == ", exp 
             if len(exp) > 0 and exp != 'undefined': 
                 jobs = Job.objects.filter(job_location__contains=location, function__contains=function, skills__icontains=skills, exp_req_min__lte=int(exp), exp_req_max__gte=int(exp), is_publish=True).order_by('-id').order_by('order')
             elif exp == 'undefined' or exp == '':
