@@ -590,7 +590,7 @@ FUNCTIONS = (
         ('Advertising/Pr/Events', 'Advertising/Pr/Events'),
         ('Agriculture/Dairy/Poultry', 'Agriculture/Dairy/Poultry'),
         ('Hotels/Hospitality/Tourism/Recreative', 'Hotels/Hospitality/Tourism/Recreative'),
-        ('Air Conditioning/Rion', 'Air Conditioning/Rion'),
+        ('Air Conditioning/Refrigeration', 'Air Conditioning/Refrigeration'),
         ('Airline/Aviation', 'Airline/Aviation'),
         ('Architecture/Interior Designing', 'Architecture/Interior Designing'),
         ('Automotive/Auto Ancillary', 'Automotive/Auto Ancillary'),

@@ -12,7 +12,7 @@
 			<div id="job_description_text">
 				<h2>Job Description</h2>
 			</div>
-				
+				{{error}}
 			<p>{{ job.summary }}</p>
 			<span>
 				Salary : As per Industry Standard <br/>
@@ -43,7 +43,7 @@
                 {% endif %}
             {%endif %}
             {% if not user.is_authenticated %}
-                <a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Login to apply"></a>
+                <a href="{% url 'apply_jobs' job_id=job.id %}" target="_blank"><input type="submit" name="apply" value="Login to apply"></a>
             {% endif %}
 		</div>
 

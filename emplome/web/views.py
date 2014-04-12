@@ -54,7 +54,7 @@ class SearchJobsView(View):
                 searched_for = str('"'+location+ '-'+skills+'-'+function+'-'+exp+'"')
         
         elif location and not function and not skills and not exp and not industry and not search: 
-            jobs = Job.objects.filter(job_location=location, is_publish=True).order_by('-id').order_by('order')    
+            jobs = Job.objects.filter(job_location__icontains=location, is_publish=True).order_by('-id').order_by('order')    
             if not jobs.exists():
                 searched_for = str('"'+location+'"')       
         elif function and not location and not skills and not exp and not industry and not search:
@@ -62,11 +62,12 @@ class SearchJobsView(View):
             if not jobs.exists():
                 searched_for = str('"'+function+'"')
         elif skills and not location and not function and not exp and not industry and not search:
-            jobs = Job.objects.filter(skills__contains=skills, is_publish=True).order_by('-id').order_by('order')
+            jobs = Job.objects.filter(skills__icontains=skills, is_publish=True).order_by('-id').order_by('order')
 
             if not jobs.exists():
                 searched_for = str('"'+skills+'"')   
         else:
+            print "in else"
             if location == 'undefined':
                 location = ''
             if function == 'undefined':
@@ -75,10 +76,10 @@ class SearchJobsView(View):
                 skills = ''
             if industry == 'undefined':
                 industry = ''
-
+            print "exp == ", exp 
             if len(exp) > 0 and exp != 'undefined': 
                 jobs = Job.objects.filter(job_location__contains=location, function__contains=function, skills__icontains=skills, exp_req_min__lte=int(exp), exp_req_max__gte=int(exp), is_publish=True).order_by('-id').order_by('order')
-            elif exp == 'undefined' :
+            elif exp == 'undefined' or exp == '':
                 jobs = Job.objects.filter(job_location__icontains=location, function__contains=function , skills__icontains=skills, industry__contains=industry, is_publish=True).order_by('-id').order_by('order')
                 
             if not jobs.exists():
@@ -895,11 +896,19 @@ class ApplyJobs(View):
     def get(self, request, *args, **kwargs):
 
         current_user = request.user
-
+        context = {}
         job = Job.objects.get(id = kwargs['job_id'])
-        jobseeker, created = JobSeekerProfile.objects.get_or_create(profile__user = current_user)
-        jobseeker.applied_jobs.add(job)
-        jobseeker.save()
+        try:
+            if current_user.userprofile_set.all().count > 0:
+                if current_user.userprofile_set.all()[0].user_type == 'job_seeker':
+                    jobseeker, created = JobSeekerProfile.objects.get_or_create(profile__user = current_user)
+                    jobseeker.applied_jobs.add(job)
+                    jobseeker.save()
+        except:
+            context.update({
+                'error': 'You cannot apply',
+            })
+
 
         context = {
             'job' : job,
