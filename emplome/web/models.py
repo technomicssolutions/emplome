@@ -322,7 +322,6 @@ NATIONALITY = (
     ('Colombian', 'Colombian'),
     ('Comoros', 'Comoros'),
     ('Congo', 'Congo'),
-    # ('Congo', 'Congo'),
     ('Cook Islands', 'Cook Islands'),
     ('Costa Rica', 'Costa Rica'),
     ("Cote D'Ivoire", "Cote D'Ivoire"),
@@ -722,6 +721,9 @@ MONTHS =(
 
 
 BASIC_EDU = (
+    ('Diploma', 'Diploma'),
+    ('Intermediate Schooling', 'Intermediate Schooling'),
+    ('Secondary Schooling', 'Secondary Schooling'),
     ('Bachelor of Architecture', 'Bachelor of Architecture'),
     ('Bachelor of Arts', 'Bachelor of Arts'),
     ('Bachelor of Business Administration', 'Bachelor of Business Administration'),
@@ -736,9 +738,6 @@ BASIC_EDU = (
     ('Bachelor of Vetirenary Science', 'Bachelor of Vetirenary Science'),
     ('Bachelor of Computer Application', 'Bachelor of Computer Application'),
     ('MBBS', 'MBBS'),
-    ('Diploma', 'Diploma'),
-    ('Intermediate Schooling', 'Intermediate Schooling'),
-    ('Secondary Schooling', 'Secondary Schooling'),
     ('Other', 'Other'),
 )
 
@@ -767,6 +766,9 @@ MASTERS_EDU = (
 )
 
 EDUCATION_REQUIRED = (
+    ('Diploma', 'Diploma'),
+    ('Intermediate Schooling', 'Intermediate Schooling'),
+    ('Secondary Schooling', 'Secondary Schooling'),
     ('Bachelor of Architecture', 'Bachelor of Architecture'),
     ('Bachelor of Arts', 'Bachelor of Arts'),
     ('Bachelor of Business Administration', 'Bachelor of Business Administration'),
@@ -781,9 +783,6 @@ EDUCATION_REQUIRED = (
     ('Bachelor of Vetirenary Science', 'Bachelor of Vetirenary Science'),
     ('Bachelor of Computer Application', 'Bachelor of Computer Application'),
     ('MBBS', 'MBBS'),
-    ('Diploma', 'Diploma'),
-    ('Intermediate Schooling', 'Intermediate Schooling'),
-    ('Secondary Schooling', 'Secondary Schooling'),
     ('Chartered Accountant', 'Chartered Accountant'),
     ('CA Inter', 'CA Inter'),
     ('Chartered Financial Analyst', 'Chartered Financial Analyst'),
