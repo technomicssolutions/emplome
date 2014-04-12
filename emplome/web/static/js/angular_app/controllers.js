@@ -923,6 +923,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
             {
                 $scope.seeker = data.seeker[0]; 
+                $('#dob').val($scope.seeker.dob);
                 $scope.seeker1 = data.seeker1[0];
                 $scope.seeker.id = $scope.user_id;
             }).error(function(data, status)
@@ -934,7 +935,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
     
     $scope.form_validation = function(){
-        console.log(+$scope.seeker.resume_text, $scope.seeker.resume);
+
+        $scope.seeker.dob = $('#dob').val();
         if ($scope.resume_doc.src){
             $scope.seeker.resume = $scope.resume_doc.src; 
         }
@@ -1291,6 +1293,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $http.get('/job/details/'+$scope.job_id+'/').success(function(data)
             {
                 $scope.jobpost = data.jobpost[0]; 
+                $('last_date').val($scope.jobpost.last_date);
+                $('post_date').val($scope.jobpost.post_date);
             }).error(function(data, status)
             {
                 console.log(data || "Request failed");
@@ -1305,6 +1309,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }
 
   $scope.form_validation_postjob = function(){
+    $scope.jobpost.last_date = $('last_date').val();
+    $scope.jobpost.post_date = $('post_date').val();
     if ($scope.jobpost.company == 'other'){
         $scope.jobpost.company = $scope.new_company 
     }
