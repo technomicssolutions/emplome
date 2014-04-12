@@ -934,7 +934,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
     
     $scope.form_validation = function(){
-        console.log('hii'+$scope.seeker.resume_text, $scope.seeker.resume);
+        console.log(+$scope.seeker.resume_text, $scope.seeker.resume);
         if ($scope.resume_doc.src){
             $scope.seeker.resume = $scope.resume_doc.src; 
         }
