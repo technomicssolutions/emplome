@@ -909,6 +909,7 @@ class ApplyJobs(View):
                         if job.last_date < current_date:
                             context = {
                                 'error' : 'Time expired, you cannot apply',
+                                'job' : job,
                             }
                             return render(request, 'job_details.html', context)
 
@@ -917,6 +918,7 @@ class ApplyJobs(View):
         except:
             context.update({
                 'error': 'You cannot apply',
+                'job' : job,
             })
 
 
