@@ -7,7 +7,8 @@
     <div class="menu_div">
         <ul>
             {% if user.is_authenticated %}
-                <li class="menu"> <a href=""> {{ user.username }} <a href="{% url 'profile' user_id=user.id %}">
+               <!--  <li class="menu"> <a href=""> {{ user.username }} <a href="{% url 'profile' user_id=user.id %}"> -->
+                     <li class="menu"> <a href="{% url 'profile' user_id=user.id %}"> {{ user.username }}
                     <em class="downArr"> </em>
                 </a> </a>
                     <ul>

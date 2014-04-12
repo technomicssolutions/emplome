@@ -41,7 +41,7 @@
     </div>
 {% endblock search %}
 {% block content %}
-    {% if jobs %}
+    {% if applied_jobs|length %}
     	{% for job in applied_jobs %}
             <div class="search_result_warning">
                 <h2><a href="{% url 'job_details' job_id=job.id %}">{{job.job_title}} </a></h2>

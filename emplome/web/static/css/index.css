@@ -776,6 +776,12 @@ label textarea{
     text-align: center;
 }
 
+#err_msg {
+    font-size: 17px;
+    margin-top: 30px;
+    text-align: center;
+}
+
 /**************************   Forgot Password module end******************************/
 
 /**************************  Success Stories Details page******************************/
