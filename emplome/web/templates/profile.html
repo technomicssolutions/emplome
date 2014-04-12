@@ -46,6 +46,7 @@
 	<div class="profile_container">
 
 		{% if user.userprofile_set.all.0.user_type == 'employer' %}
+
 			{% if user.id == profile.user.id %}
 
 				<div class="welcome-box">
@@ -71,8 +72,7 @@
 				 	<div class="label-box-right">
 				 		: {{profile.user.email}}<br>
 				 		: {{profile.mobile }}<br>
-				 		: {{profile.recruiterprofile_set.all.0.company.industry_type}}<br>	 		
-				 		: {{profile.country}}<br>
+				 		: {{profile.recruiterprofile_set.all.0.company.industry_type}}<br>: {{profile.country}}<br>
 				 		: {{profile.city}}<br>
 				 	</div>
 				 		
@@ -82,7 +82,7 @@
 			 		
 			 	</div>
 				
-				{% else %}
+			{% else %}
 
 				<div class="profile-box">
 					<div class="content-box">
@@ -102,9 +102,10 @@
 				   		<div class="label-box-left">
 							<label>Email id </label> <br>					
 							<label>Mobile </label> <br>
+							<label>Work Experience </label> <br>	
+							<label>Skills </label> <br>	
 							<label>Functional Area </label> <br>					
-							<label>Industry Type </label> 	<br>				
-							<label>Work Experience </label> <br>				
+							<label>Industry Type </label> 	<br>											
 							<label>Location </label> <br>
 					 			
 				 		</div>
@@ -112,10 +113,11 @@
 					 	<div class="label-box-right">
 					 		: {{profile.user.email}}<br>
 					 		: {{profile.mobile }}<br>
-					 		: {{profile.jobseekerprofile_set.all.0.employment.function}}<br>
-					 		: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br>
 					 		: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s), {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br>
-					 		: {{profile.country}}
+					 		: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br>
+					 		: {{profile.jobseekerprofile_set.all.0.employment.function}}<br>
+					 		: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br>			 		
+					 		: {{profile.country}}<br>
 					 	</div>
 					</div>
 					

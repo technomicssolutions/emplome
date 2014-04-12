@@ -162,14 +162,15 @@ class ProfileView(View):
         try:
             user = User.objects.get(id = kwargs['user_id'])
             profile = UserProfile.objects.get(user = user)
+            print profile
             context = {
                 'profile': profile,
             }
-            print profile.jobseekerprofile_set.all()[0].employment.curr_industry
         except:
             context = {
                 'error':'You have no profile'
-        }
+            }
+         
         return render(request, 'profile.html', context) 
 
 class RecruiterHomeView(View):
@@ -857,11 +858,11 @@ class SearchCV(View):
         # if age != 'undefined':
         if len(age) > 0 and age != 'undefined': 
             print age
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__contains=keyword).distinct('id')
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
 
         elif age == 'undefined' :
             print "age in null == ", age
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__contains=keyword).distinct('id')
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword).distinct('id')
         
         context = {
             'cvs': jobseeker_profiles,
