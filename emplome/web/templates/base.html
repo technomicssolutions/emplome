@@ -6,14 +6,44 @@
         <title>{% block title %}{% endblock title%} | Emplome </title>
         <link rel="shortcut icon" href="/static/images/f_icon.png" type="image/x-icon" />
         <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+        <link rel="stylesheet" href="/static/css/calendar/jquery.ui.all.css">
         <link rel="stylesheet" href="/static/css/index.css">
         <!--  Angularjs -->
+        <script src="/static/js/jquery-1.9.1.js"></script>
         <script src="/static/js/angular_app/lib/angular/angular.js"></script>
         <script src="/static/js/angular_app/lib/angular/angular-resource.js"></script>
         <script src="/static/js/angular_app/app.js"></script>
         <script src="/static/js/angular_app/services.js"></script>
         <script src="/static/js/angular_app/directives.js"></script>
         <script src="/static/js/angular_app/controllers.js"></script>
+
+        <script src="/static/js/calendar/jquery.ui.core.js"></script>
+        <script src="/static/js/calendar/jquery.ui.widget.js"></script>
+        <script src="/static/js/calendar/jquery.ui.datepicker.js"></script>
+
+        <script>
+            // $(function() {
+            //  $( "#datepicker" ).datepicker({
+            //      dateFormat: "yy-mm-d"
+            //  });
+            // });
+            $(function() {
+                $( "#dob" ).datepicker({
+                    dateFormat: "dd-mm-yy"
+                });
+            });
+            $(function() {
+                $( "#last_date" ).datepicker({
+                    dateFormat: "dd-mm-yy"
+                });
+            });
+            $(function() {
+                $( "#post_date" ).datepicker({
+                    dateFormat: "dd-mm-yy"
+                });
+            });
+        </script> 
+
         {% block extrahead %}
 
         {% endblock extrahead %}
