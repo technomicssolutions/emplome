@@ -240,8 +240,15 @@ class JobSeekerRegistration(View):
         post_data = request.POST
         seeker = ast.literal_eval(post_data['seeker'])
         try:
-            user, user_created = User.objects.get_or_create(username=seeker['email'], email=seeker['email'],first_name=seeker['first_name'])
-            print user_created
+            if request.user.is_authenticated():
+                user = request.user
+                user_created = False
+            else:
+                user, user_created = User.objects.get_or_create(username=seeker['email'])
+            if user.email != seeker['email']:
+                user.username = seeker['email']
+            user.email=seeker['email']
+            user.first_name=seeker['first_name']
             if user_created:
                 user.set_password(seeker['password'])
             user.save()
@@ -852,11 +859,9 @@ class SearchCV(View):
 
         # if age != 'undefined':
         if len(age) > 0 and age != 'undefined': 
-            print age
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
 
         elif age == 'undefined' :
-            print "age in null == ", age
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword).distinct('id')
         
         context = {
