@@ -347,6 +347,9 @@ function get_countries($scope){
 
 function get_basic_education($scope){
     $scope.basic_education = [
+        'Diploma',
+        'Intermediate Schooling',
+        'Secondary Schooling',
         'Bachelor of Architecture',
         'Bachelor of Arts',
         'Bachelor of Business Administration',
@@ -360,11 +363,7 @@ function get_basic_education($scope){
         'Bachelor of Technology/Engineering'    ,
         'Bachelor of Vetirenary Science'    ,
         'Bachelor of Computer Application'  ,
-        'MBBS',
-        'Other',
-        'Diploma',
-        'Intermediate Schooling',
-        'Secondary Schooling',
+        'MBBS',        
         'Other',
     ]
 }
@@ -396,6 +395,9 @@ function get_masters_education($scope){
 
 function get_education_required($scope){
     $scope.education_required = [
+        'Diploma',
+        'Intermediate Schooling',
+        'Secondary Schooling',
         'Bachelor of Architecture',
         'Bachelor of Arts',
         'Bachelor of Business Administration',
@@ -410,9 +412,6 @@ function get_education_required($scope){
         'Bachelor of Vetirenary Science'    ,
         'Bachelor of Computer Application'  ,
         'MBBS',
-        'Diploma',
-        'Intermediate Schooling',
-        'Secondary Schooling',
         'Chartered Accountant',
         'CA Inter',
         'Chartered Financial Analyst',
@@ -655,7 +654,7 @@ function get_nationalities($scope){
         'Turkmenistan',
         'Turks and Caicos Islands',
         'Tuvalu',
-          'Uganda',
+        'Uganda',
         'Ukraine',
         'United Kingdom',
         'United States',
