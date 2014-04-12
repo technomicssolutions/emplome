@@ -187,7 +187,7 @@
 			<div class="btn">
 				<label></label>
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg()">
-				<input class="button" type="submit" name="next" value="Next" ng-click="reg_next()">
+				<input ng-show="user_id" class="button" type="submit" name="next" value="Next" ng-click="reg_next()">
 			</div>
 			<div class="message">
 				<!-- <p>{{message}}</p> -->
