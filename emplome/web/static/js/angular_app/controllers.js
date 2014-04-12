@@ -935,7 +935,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
     
     $scope.form_validation = function(){
-        console.log('hii'+$scope.profile_edit);
+        console.log('hii'+$scope.seeker.resume_text, $scope.seeker.resume);
+        if ($scope.resume_doc.src){
+            $scope.seeker.resume = $scope.resume_doc.src; 
+        }
         if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your email id';
@@ -1000,6 +1003,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please give a title for your Resume';
             return false;
+        } else if (($scope.seeker.resume_text == '' || $scope.seeker.resume_text == undefined) && ($scope.seeker.resume == undefined || $scope.seeker.resume == '')){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please attach or copy & paste your Resume';
+            return false;
         }
         return true;
     }
@@ -1058,7 +1065,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 $scope.user_id = data.user_id;
                 
                 if(data.result == 'error') {
-                    console.log(data);
                     $scope.error_flag = true;
                     $scope.error_message = data.message;
                 } else {
@@ -1198,7 +1204,6 @@ function RecruiterController($scope, $element, $http, $timeout) {
     $scope.save_profile = function(){
         $scope.is_valid = $scope.recruiter_validation();
         if ($scope.is_valid) {
-            console.log($scope.user_id);
             $scope.error_flag = false;
             $scope.error_message = '';
             
