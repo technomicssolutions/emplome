@@ -78,12 +78,10 @@ class SearchJobsView(View):
                 industry = ''
             print "exp == ", exp 
             if len(exp) > 0 and exp != 'undefined': 
-                print "in if"
                 jobs = Job.objects.filter(job_location__contains=location, function__contains=function, skills__icontains=skills, exp_req_min__lte=int(exp), exp_req_max__gte=int(exp), is_publish=True).order_by('-id').order_by('order')
             elif exp == 'undefined' or exp == '':
-                print "in else"
                 jobs = Job.objects.filter(job_location__icontains=location, function__contains=function , skills__icontains=skills, industry__contains=industry, is_publish=True).order_by('-id').order_by('order')
-                print jobs
+                
             if not jobs.exists():
                 searched_for = ''
         context = {
@@ -109,7 +107,6 @@ class Logout(View):
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         context = {}
-        print request.GET
         next_url = request.GET.get('next', '')
         context = {
             'next': next_url,
@@ -142,7 +139,6 @@ class LoginView(View):
                 else:
                     return render(request, 'login_job_seeker.html', context)
             if userdata.user_type == 'employer':
-                # if request.POST['next']:
                     
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
             else:
@@ -163,7 +159,6 @@ class ProfileView(View):
         try:
             user = User.objects.get(id = kwargs['user_id'])
             profile = UserProfile.objects.get(user = user)
-            print profile
             context = {
                 'profile': profile,
             }
