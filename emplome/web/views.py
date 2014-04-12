@@ -897,31 +897,28 @@ class ApplyJobs(View):
 
         current_user = request.user
         current_date = dt.datetime.now().date()
-        print current_date
         context = {}
         job = Job.objects.get(id = kwargs['job_id'])
 
-        # try:
         if current_user.userprofile_set.all().count > 0:
             if current_user.userprofile_set.all()[0].user_type == 'job_seeker':
                 jobseeker, created = JobSeekerProfile.objects.get_or_create(profile__user = current_user)
                 if job.last_date:
                     if job.last_date < current_date:
-                        print "less"
                         context = {
                             'message' : 'Time expired, you cannot apply',
                             'job' : job,
                         }
-                        print context
                         return render(request, 'job_details.html', context)
 
                 jobseeker.applied_jobs.add(job)
                 jobseeker.save()
-        # except:
-        #     context.update({
-        #         'message': 'You cannot apply',
-        #     })
-
+            else:
+                context = {
+                    'message': 'You cannot apply',
+                    'job' : job,
+                }
+                return render(request, 'job_details.html', context)
 
         context = {
             'job' : job,
