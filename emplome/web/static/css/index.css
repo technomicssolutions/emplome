@@ -324,7 +324,7 @@ a {
     margin-right: 5px;
     padding: 0 10px;
 }
-.middle a:hover, .middle a.active {
+.middle a:hover{
     background: none repeat scroll 0 0 #2466AF;
     border-radius: 0.417em;
     text-decoration: none;
@@ -696,6 +696,9 @@ label textarea{
 .error_message {
     color: #FF0000;
     margin: 0px;
+    text-align: center;
+    font-size: 16px;
+    padding-top: 55px
 }
 .alert {
     border: 1px solid #FF0000;
@@ -841,7 +844,7 @@ label textarea{
     margin: 0px;
     /*padding: 5px;*/
     background-color: #FFFFFF;
-    min-width: 140px;
+     min-width: 123px;
     display: none;
     font-size: 11px;
     border-radius: 3px;
@@ -929,7 +932,57 @@ label textarea{
 .sub_container {
     margin-top: 16px;
 }
-#profile #active {
+#profile #active-profile {
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#applied-jobs #active-applied {
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#job_seeker_registration #active-post-cv{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#recruiter #active-recruiter{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#job_seeker_login #active-jobseeker{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#search #active-search{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#home #active-home{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#jobpost #active-postjobs{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#search_cvs #active-searchcv{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#recreg #active-edit-profile{
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#posted_jobs #active-posted-jobs{
     background: none repeat scroll 0 0 #2466AF;
     border-radius: 0.417em;
     text-decoration: none;

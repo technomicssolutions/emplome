@@ -205,6 +205,7 @@ class RecruiterRegistrationView(View):
         userprofile.country = post_dict['country']
         userprofile.save()
         companyprofile, created = CompanyProfile.objects.get_or_create(company_name = post_dict['name'], industry_type = post_dict['industry']) 
+        companyprofile.description = post_dict['description']
         recruiter, created = RecruiterProfile.objects.get_or_create(profile=userprofile)
         recruiter.company = companyprofile
 
@@ -390,7 +391,7 @@ class PostJobsView(View):
 
         jobPosting = Job.objects.create(recruiter = current_user)
         post_data = request.POST
-
+        print post_data
         jobpost = ast.literal_eval(post_data['jobpost'])
         
         profile = current_user.userprofile_set.all()[0]

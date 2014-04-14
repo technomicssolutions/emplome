@@ -1019,9 +1019,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_message = 'Please provide your Experience';
             return false;
         } else if ($scope.seeker1.salary != '' || $scope.seeker1.salary != undefined ){
-            console.log('salary checking');
+            // console.log('salary checking');
             if ($scope.seeker1.salary != Number($scope.seeker1.salary)) {
-                console.log('salary checkinggg');
+                // console.log('salary checkinggg');
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter a valid amount for Salary';
                 return false;
@@ -1220,7 +1220,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
         }
         return true;
     }
-    
+
     $scope.save_profile = function(){
         $scope.is_valid = $scope.recruiter_validation();
         if ($scope.is_valid) {
@@ -1328,6 +1328,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }
 
   $scope.form_validation_postjob = function(){
+    console.log($('last_date').val(),$('post_date').val())
     $scope.jobpost.last_date = $('last_date').val();
     $scope.jobpost.post_date = $('post_date').val();
     if ($scope.jobpost.company == 'other'){
@@ -1405,7 +1406,9 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
 
     $scope.save_job = function(){
-
+      console.log($('last_date').val(),$('post_date').val())
+      $scope.jobpost.last_date = $('last_date').val();
+      $scope.jobpost.post_date = $('post_date').val();
         $scope.is_valid = $scope.form_validation_postjob();
         if ($scope.is_valid) {
           $scope.error_flag = false;
@@ -1431,11 +1434,11 @@ function  JobPostingController($scope,$element,$http,$timeout){
               var url = "/recruiter/post-jobs/edit/"+$scope.job_id+"/";
             } else {
               if(edit == 1){
-                  var url = "/recruiter/post-jobs/";
+                  var url = "/recruiter/post-jobs/";               
               }
-              else{
-                  var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
-              }
+              // else{
+              //     var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
+              // }
             }
             
 
@@ -1447,6 +1450,10 @@ function  JobPostingController($scope,$element,$http,$timeout){
                 }).success(function(data, status){
                     $scope.id = data.id;
                     $scope.edit = $scope.edit + 1;  
+                    
+                    var url = '/posted_jobs/';
+                    // document.location.href = url;
+
               }).error(function(data, status){
                   console.log(data);
             });

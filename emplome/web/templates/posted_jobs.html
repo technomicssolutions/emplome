@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Posted Jobs
 {% endblock title %}
-{% block body_id %}posted jobs{% endblock body_id %}
+{% block body_id %}posted_jobs{% endblock body_id %}
 
 {% block controller %}ng-controller="JobPostingController" ng-init="init('{{csrf_token}}','{{job_id}}')"{% endblock controller %}
 

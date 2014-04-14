@@ -27,13 +27,13 @@
     <div class="navi">
         <ul class="middle">
             <li>
-                <a class="active" title="Home" href="{% url 'home' %}">
+                <a id="active-home" title="Home" href="{% url 'home' %}">
                     <!-- <em class="home"></em> -->Home
                 </a>
             </li>
             
             <li>
-                <a class="tabUnsel" title="Post Jobs" href="{% url 'postjobs' %}">
+                <a class="tabUnsel" id="active-postjobs" title="Post Jobs" href="{% url 'postjobs' %}">
                 Post Job
                 </a>
             </li>
@@ -41,18 +41,18 @@
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                     <li>
-                        <a class="tabUnsel" title="Edit Profile" href="{% url 'search' %}">Search CV</a>
+                        <a class="tabUnsel" id="active-searchcv" title="Search CV" href="{% url 'search' %}">Search CV</a>
                     </li>
                 {% endif %}
                 <li>
-                    <a class="tabUnsel" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
+                    <a class="tabUnsel" id="active-edit-profile" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
                 </li>
                 <li>
-                   <a class="tabUnsel" title="Edit Profile" href="{% url 'posted_jobs' %}">Posted Jobs</a>
+                   <a class="tabUnsel" id="active-posted-jobs" title="Posted Jobs" href="{% url 'posted_jobs' %}">Posted Jobs</a>
                 </li>
             {% else %}
                 <li>
-                    <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>  
+                    <a class="tabUnsel" id="active-recruiter" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>  
                 </li>   
             {% endif %}
         </ul>

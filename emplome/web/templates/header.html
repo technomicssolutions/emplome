@@ -22,13 +22,13 @@
     <div class="navi">
         <ul class="middle">
             <li>
-                <a title="Home" href="{% url 'home' %}">
+                <a id="active-home" title="Home" href="{% url 'home' %}">
                     
                     Home
                 </a>
             </li>
             <li id="ddN" class="ddn">
-                <a title="Search Jobs" href="{% url 'search' %}">
+                <a id="active-search" title="Search Jobs" href="{% url 'search' %}">
                     Search Jobs
                     <em class="downArr"> </em>
                 </a>
@@ -44,10 +44,10 @@
                 {% if user.userprofile_set.all %}
                     {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
                         <li>
-                            <a class="tabUnsel" id="active" title="Edit Profile" href="{% url 'profile' user_id=user.id %}">Profile</a>
+                            <a class="tabUnsel" id="active-profile" title="Profile" href="{% url 'profile' user_id=user.id %}">Profile</a>
                         </li>
                         <li>
-                            <a class="tabUnsel" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
+                            <a class="tabUnsel" id="active-applied" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
                         </li>
                     {% endif %}
 
@@ -55,16 +55,16 @@
                
             {% else %}
                 <li>
-                    <a class="tabUnsel" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
+                    <a class="tabUnsel" id="active-post-cv" title="Post Your CV" href="{% url 'job_seeker_registration' %}">
                     Post Resume
                         
                     </a>
                 </li>
                 <li>
-                    <a class="tabUnsel" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a> 
+                    <a class="tabUnsel" id="active-recruiter" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a> 
                 </li>  
                 <li>
-                    <a class="tabUnsel" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
+                    <a class="tabUnsel" id="active-jobseeker" title="Job Seekers Login" href="{% url 'login' %}">Job Seekers</a>
                 </li>       
             {% endif %}
         </ul>
