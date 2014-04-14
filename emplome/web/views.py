@@ -187,9 +187,7 @@ class RecruiterRegistrationView(View):
         }
         return render(request, 'recruiter_registration.html', context)
 
-    def post(self, request, *args, **kwargs):
-
-        
+    def post(self, request, *args, **kwargs):        
         post_dict = ast.literal_eval(request.POST['recruiter'])
         
         user, created = User.objects.get_or_create(username=post_dict['email'])
@@ -290,8 +288,6 @@ class JobSeekerRegistration(View):
         else:
             education = job_seeker.education if job_seeker.education else Education()
             employment = job_seeker.employment if job_seeker.employment else Employment()
-            # education = job_seeker.education
-            # employment = job_seeker.employment
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":
@@ -323,8 +319,6 @@ class JobSeekerRegistration(View):
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype='application/json')
-
-
 
         
 class JobSeekerRegistrationMoreInfo(View):
@@ -689,7 +683,6 @@ class ForgotPassword(View):
                 for i in range(len(to)):
                     msg = EmailMultiAlternatives(subject, text_content, from_email, [to[i]])
                     msg.attach_alternative(html_content, "text/html")
-                    # try:
                     msg.send()
                     context = {
                         'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
