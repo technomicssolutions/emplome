@@ -287,8 +287,10 @@ class JobSeekerRegistration(View):
             education = Education()
             employment = Employment()
         else:
-            education = job_seeker.education
-            employment = job_seeker.employment
+            education = job_seeker.education if job_seeker.education else Education()
+            employment = job_seeker.employment if job_seeker.employment else Employment()
+            # education = job_seeker.education
+            # employment = job_seeker.employment
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":
@@ -935,6 +937,7 @@ class AppliedJobsView(View):
         context = {
             'applied_jobs':applied_jobs,
         }
+        
         return render(request, 'applied_jobs.html', context)
     
 class FeaturedJobView(View):
