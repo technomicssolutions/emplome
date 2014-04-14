@@ -1810,6 +1810,7 @@ $.extend(Datepicker.prototype, {
 					return (isNaN(year) ? thisYear : year);
 				};
 				year = determineYear(years[0]);
+				console.log("year == ", year);
 				endYear = Math.max(year, determineYear(years[1] || ""));
 				year = (minDate ? Math.max(year, minDate.getFullYear()) : year);
 				endYear = (maxDate ? Math.min(endYear, maxDate.getFullYear()) : endYear);
