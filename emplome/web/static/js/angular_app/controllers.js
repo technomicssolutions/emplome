@@ -1056,9 +1056,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             }
             if ($scope.seeker.pass_year_masters == null) {
                 $scope.seeker.pass_year_masters = '';
-            }
-
-            
+            }           
 
             var file = $scope.resume_doc.src;
             params = {
@@ -1222,6 +1220,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
         }
         return true;
     }
+    
     $scope.save_profile = function(){
         $scope.is_valid = $scope.recruiter_validation();
         if ($scope.is_valid) {
