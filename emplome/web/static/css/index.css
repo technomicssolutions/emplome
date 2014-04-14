@@ -929,3 +929,8 @@ label textarea{
 .sub_container {
     margin-top: 16px;
 }
+#profile #active {
+    background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
