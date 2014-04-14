@@ -841,10 +841,7 @@ function HomeController($scope, $element, $http, $timeout, share, $location)
         search_job($scope, '');
     }
 }
-function Registration($scope)
-{
-    
-}
+
 
 function JobSeekerController($scope, $element, $http, $timeout) {
 
@@ -1160,9 +1157,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         var url = '/profile/'+$scope.user_id+'/';
         document.location.href = url;
     }
-    
 }
-
 
 function RecruiterController($scope, $element, $http, $timeout) {
     $scope.error_flag = false;
@@ -1191,6 +1186,8 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
             {
                 $scope.recruiter = data.recruiter[0]; 
+                $('#last_date').val($scope.recruiter.last_date);
+                $('#post_date').val($scope.recruiter.post_date);
                 
             }).error(function(data, status)
             {
@@ -1254,7 +1251,6 @@ function RecruiterController($scope, $element, $http, $timeout) {
               
             }).error(function(data, status){
            
-
             });
         }
     }
@@ -1312,8 +1308,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $http.get('/job/details/'+$scope.job_id+'/').success(function(data)
             {
                 $scope.jobpost = data.jobpost[0]; 
-                $('last_date').val($scope.jobpost.last_date);
-                $('post_date').val($scope.jobpost.post_date);
+                $('#last_date').val($scope.jobpost.last_date);
+                $('#post_date').val($scope.jobpost.post_date);
             }).error(function(data, status)
             {
                 console.log(data || "Request failed");
@@ -1328,13 +1324,12 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }
 
   $scope.form_validation_postjob = function(){
-    console.log($('last_date').val(),$('post_date').val())
-    $scope.jobpost.last_date = $('last_date').val();
-    $scope.jobpost.post_date = $('post_date').val();
+    // console.log($('last_date').val(),$('post_date').val())
+    $scope.jobpost.last_date = $('#last_date').val();
+    $scope.jobpost.post_date = $('#post_date').val();
     if ($scope.jobpost.company == 'other'){
         $scope.jobpost.company = $scope.new_company 
-    }
-    
+    }    
     if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide a Job Title';
@@ -1391,7 +1386,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please enter your Phone Number';
       return false;
-
     } else if (!(validateEmail($scope.jobpost.email))) {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide a valid Email';
@@ -1406,9 +1400,9 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
 
     $scope.save_job = function(){
-      console.log($('last_date').val(),$('post_date').val())
-      $scope.jobpost.last_date = $('last_date').val();
-      $scope.jobpost.post_date = $('post_date').val();
+      // console.log($('last_date').val(),$('post_date').val())
+      $scope.jobpost.last_date = $('#last_date').val();
+      $scope.jobpost.post_date = $('#post_date').val();
         $scope.is_valid = $scope.form_validation_postjob();
         if ($scope.is_valid) {
           $scope.error_flag = false;
@@ -1436,9 +1430,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
               if(edit == 1){
                   var url = "/recruiter/post-jobs/";               
               }
-              // else{
-              //     var url = "/recruiter/post-jobs/edit/"+$scope.id+"/";
-              // }
+              
             }
             
 
@@ -1452,7 +1444,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
                     $scope.edit = $scope.edit + 1;  
                     
                     var url = '/posted_jobs/';
-                    // document.location.href = url;
+                    document.location.href = url;
 
               }).error(function(data, status){
                   console.log(data);
@@ -1462,19 +1454,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
         
     }
     
-    $scope.get_job_details = function(){
-        $http.get('/jobs/details/'+$scope.existing_job+'/').success(function(data)
-        {
-            $scope.existing_job_detail = data.existing_job_details;
-            $scope.jobpost = data.existing_job_details[0];
-            
-        }).error(function(data, status)
-        {
-            console.log(data || "Request failed");
-        });
-
-    }
-
     $scope.view_posted_jobs = function() {
         var url = '/posted_jobs/';
         document.location.href = url;
@@ -1487,7 +1466,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
         
     }
 }
-
 
 function  SearchController($scope,$element,$http,$timeout){
 
@@ -1505,7 +1483,6 @@ function  SearchController($scope,$element,$http,$timeout){
 
     $scope.init = function(csrf_token) {
         $scope.csrf_token = csrf_token;
-        // get_countries($scope);
         get_functions($scope);
         get_industries($scope);
 
@@ -1517,6 +1494,7 @@ function  SearchController($scope,$element,$http,$timeout){
     $scope.search = function(search_type){
         search_job($scope, search_type);
     } 
+
     $scope.search_cv = function() {
         if (($scope.resume_title == '' || $scope.resume_title == undefined) && ($scope.age == '' || $scope.age == undefined) && ($scope.keyword == '' || $scope.keyword == undefined)) {
                 $scope.error_flag = true;

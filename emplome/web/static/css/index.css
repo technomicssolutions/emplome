@@ -94,8 +94,17 @@ a {
     float: left;
     min-height: 100px;
     padding: 5px;
-    width: 23%;
+    width: 21%;
 }
+
+.footer_block_function {
+    float: left;
+    min-height: 100px;
+    padding: 5px;
+    width: 32%;
+}
+
+
 .footer_bottom p {
     margin: auto;
     text-align: center;
@@ -984,6 +993,11 @@ label textarea{
 }
 #posted_jobs #active-posted-jobs{
     background: none repeat scroll 0 0 #2466AF;
+    border-radius: 0.417em;
+    text-decoration: none;
+}
+#search #active-searchcv{
+     background: none repeat scroll 0 0 #2466AF;
     border-radius: 0.417em;
     text-decoration: none;
 }

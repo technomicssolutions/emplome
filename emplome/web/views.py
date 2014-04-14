@@ -482,9 +482,9 @@ class EditPostJobsView(View):
         jobPosting.description = jobpost['profile']        
         jobPosting.exp_req_min = jobpost['min']
         jobPosting.exp_req_max = jobpost['max']
-
         if jobpost['last_date']:
             jobPosting.last_date  = datetime.strptime(jobpost['last_date'], '%d-%m-%Y')
+            print jobPosting.last_date
         if jobpost['post_date']:
             jobPosting.posting_date = datetime.strptime(jobpost['post_date'], '%d-%m-%Y')
         jobPosting.save()
@@ -695,12 +695,7 @@ class ForgotPassword(View):
                         'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
                     }
                     return render(request, 'forgot_password.html', context)
-                    # except Exception as ex:
-                    #     context = {
-                    #         'message': 'Please try after some time',
-                    #     }
-                    #     return render(request, 'forgot_password.html', context)
-
+                    
         else:
             context = {
                 'message': 'You have no matching profiles with this email id',
@@ -859,7 +854,6 @@ class SearchCV(View):
         if keyword == 'undefined':
             keyword = ''
 
-        # if age != 'undefined':
         if len(age) > 0 and age != 'undefined': 
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
 
