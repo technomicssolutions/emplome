@@ -22,9 +22,10 @@
 			<select name="years" style="width: 14%" ng-model="seeker1.years">
 				<option value="">Years</option>
 				<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == seeker1.years">[[expr]]</option>
-			</select>
+			</select> Years
 			<select name="months" style="width: 14%" ng-model="seeker1.months">
-				<option value="">0</option>
+				<option value="">Months</option>
+				<option value="0">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -36,7 +37,7 @@
 				<option value="9">9</option>
 				<option value="10">10</option>
 				<option value="11">11</option>
-			</select>
+			</select> Months
 		</div>
 		<div class="formrow">
 			<label>Monthly Salary</label>

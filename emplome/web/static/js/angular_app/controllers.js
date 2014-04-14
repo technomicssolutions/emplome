@@ -1018,16 +1018,24 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your Experience';
             return false;
+        } else if ($scope.seeker1.salary != '' || $scope.seeker1.salary != undefined ){
+            console.log('salary checking');
+            if ($scope.seeker1.salary != Number($scope.seeker1.salary)) {
+                console.log('salary checkinggg');
+                $scope.error_flag = true;
+                $scope.error_message = 'Please enter a valid amount for Salary';
+                return false;
+            }  
         } else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please enter Skills';
             return false;
         } else if ($scope.checkbox == false){
-      $scope.error_flag = true;
-      $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
-      return false;
-    }
-  return true;
+            $scope.error_flag = true;
+            $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
+            return false;
+        } 
+  return true; 
     }
 
 
@@ -1046,6 +1054,11 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             if ($scope.seeker.alt_email == null) {
                 $scope.seeker.alt_email = '';
             }
+            if ($scope.seeker.pass_year_masters == null) {
+                $scope.seeker.pass_year_masters = '';
+            }
+
+            
 
             var file = $scope.resume_doc.src;
             params = {
@@ -1101,6 +1114,13 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             if($scope.seeker1.salary == null){
                 $scope.seeker1.salary = '';
             }
+            if($scope.seeker1.functions == null){
+                $scope.seeker1.functions = '';
+            }
+            if($scope.seeker1.industry == null){
+                $scope.seeker1.industry = '';
+            }
+            
             $scope.error_flag = false;
             $scope.error_message = '';
 

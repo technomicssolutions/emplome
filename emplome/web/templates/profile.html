@@ -87,7 +87,11 @@
 
 						<div class="formrow" id="photos">
 							<div class="rounded_photo" id="profile_image">
-					            <img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+								{% if profile.jobseekerprofile_set.all.0.photo %}
+					            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+					            {% else %}
+					            	<img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+					            {% endif %}
 					        </div> 
 					    </div>
 				    </div>
@@ -135,10 +139,13 @@
 			<div class="content-box">
 				<br><br>
 				<h2>My Profile</h2>
-
 				<div class="formrow" id="photos">
 					<div class="rounded_photo" id="profile_image">
-			            <img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+			            {% if profile.jobseekerprofile_set.all.0.photo %}
+			            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+			            {% else %}
+			            	<img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+					    {% endif %}
 			        </div> 
 			        <!-- /site_media/[[seeker.resume]]  -->
 		    	</div>
