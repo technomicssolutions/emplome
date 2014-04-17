@@ -187,7 +187,8 @@ class RecruiterRegistrationView(View):
         }
         return render(request, 'recruiter_registration.html', context)
 
-    def post(self, request, *args, **kwargs):        
+    def post(self, request, *args, **kwargs):    
+        
         post_dict = ast.literal_eval(request.POST['recruiter'])
         
         user, created = User.objects.get_or_create(username=post_dict['email'])
