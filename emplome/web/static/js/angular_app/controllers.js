@@ -1016,14 +1016,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your Experience';
             return false;
-        } else if ($scope.seeker1.salary != '' || $scope.seeker1.salary != undefined ){
+        } else if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary != Number($scope.seeker1.salary)){
             // console.log('salary checking');
-            if ($scope.seeker1.salary != Number($scope.seeker1.salary)) {
+            // if ($scope.seeker1.salary != Number($scope.seeker1.salary)) {
                 // console.log('salary checkinggg');
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter a valid amount for Salary';
                 return false;
-            }  
+            // }  
         } else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please enter Skills';
@@ -1197,6 +1197,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
         }
     }
     $scope.recruiter_validation = function(){
+        var letters = /^[A-Za-z]+$/;  
         if ($scope.recruiter.name == '' || $scope.recruiter.name == undefined) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter the company name';
@@ -1209,16 +1210,16 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please choose the industry type';
             return false;
-        } else if ($scope.recruiter.mobile == '' || $scope.recruiter.mobile == undefined) {
+        } else if ($scope.recruiter.mobile == '' || $scope.recruiter.mobile == undefined || $scope.recruiter.mobile.match(letters)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please choose the industry type';
+            $scope.error_message = 'Please provide a valid mobile number';
+            return false;
+        } else if ($scope.recruiter.phone.match(letters)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter a valid land no.';
             return false;
         } else if (!$scope.user_id) {
             if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
-            else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
-            $scope.error_flag = true;
-            $scope.error_message = 'Please choose the industry type';
-            return false;    $scope.error_flag = true;
                 $scope.error_message = 'Please enter the password';
                 return false;
             }

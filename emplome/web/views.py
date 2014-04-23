@@ -282,7 +282,7 @@ class JobSeekerRegistration(View):
         userprofile.user_type = 'job_seeker'
         userprofile.country = seeker['country']
         userprofile.city = seeker['city']
-        userprofile.mobile = int(seeker['mobile'])
+        userprofile.mobile = seeker['mobile']
         userprofile.save()
 
         job_seeker, job_seeker_created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
