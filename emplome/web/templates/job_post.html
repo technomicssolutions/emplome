@@ -38,7 +38,6 @@
 					<option value="other">Other</option>
 				</select>
 				<input type ="text" name="title" ng-model="new_company" value="" ng-show="is_new_company">
-				<!-- <input type ="text" name="title" ng-model="jobpost.title" value=""> -->
 			</div>		
 		</div>
 
@@ -51,12 +50,9 @@
 			</div>
 			<div class="formrow">
 				<label>Job Details</label>
-				<!-- <label>Provide job details below or Pick from the doccument</label> -->
 				<input type="file" fileread="product_pdf.src"/>
 			    <input type="hidden" ng-model="product_pdf.src"/>
 			    <a href="/site_media/[[jobpost.details]]" ng-show="jobpost.details" target="_blank">Details</a>
-			    <!-- <label class="white">.</label>
-				<textarea ng-model="jobpost.details"></textarea> -->
 			</div>
 			<br>
 		</div>
@@ -68,10 +64,8 @@
 				<label>Keyword/Skills<span class="red">*</span></label>
 				<input type ="text" name="skills" ng-model="jobpost.skills">
 			</div>
-			<!-- <div class="inner2"> -->
 			<div class="formrow">
 				<label>Experience<span class="red">*</span></label>
-				<!-- <div class="inner3"> -->
 				<select style="width: 14%" name="min" ng-model="jobpost.min">
 					<option>-min-</option>
 					<option ng-repeat="min in Min" value="[[min]]" ng-selected="min == jobpost.min">[[min]]</option>
@@ -104,12 +98,7 @@
 					<option ng-repeat="function in functions" value="[[function]]" ng-selected="function == jobpost.function">[[function]]</option>
 				</select>
 			</div>
-			<!-- <div class="formrow">
-				<label>Role<span class="red">*</span></label>
-				<select name="role" ng-model="jobpost.role">
-						<option>-select-</option>
-				</select>
-			</div> -->
+			
 			<div class="formrow">
 				<label>Education Requirement<span class="red">*</span></label>
 				<select name="requirement" ng-model="jobpost.requirement">
@@ -127,6 +116,7 @@
 				<select name="nationality" ng-model="jobpost.nationality">
 					<option value="">-select-</option>
 					<option ng-repeat="nationality in nationalities" value="[[nationality]]" ng-selected="nationality == jobpost.nationality">[[nationality]]</option>
+					<option>Any</option>
 				</select>
 			</div>
 			<div class="formrow">
@@ -160,13 +150,9 @@
 						
 			</div>
 		</div>
-				<!-- <div class="inner"> -->
+				
 		<div class="separation">
 			
-			<!-- <div class="formrow" align="center">
-				<input type="checkbox" name="checkbox" ng-model="checkbox">
-				Reveal contact details to seekers who applied for the job
-			</div> -->
 			<div class="btn" align="center" id="job_submit">
 				<input type="button" value="submit" ng-click="save_job()">
 				
