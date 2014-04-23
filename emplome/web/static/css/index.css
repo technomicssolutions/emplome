@@ -310,6 +310,7 @@ a {
     overflow: hidden;
 }
 .navi {
+    background-color: #4D9CD5;
     background: linear-gradient(to bottom, #89BBE5 0px, #67AADD 47%, #4D9CD5 66%, #2E8BCB 100%) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
     border-radius: 0.417em;
     font: 400 12px/1 Arial,Helvetica,sans-serif;
