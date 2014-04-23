@@ -933,7 +933,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
     
     $scope.form_validation = function(){
-
+        var letters = /^[A-Za-z]+$/;  
         $scope.seeker.dob = $('#dob').val();
         if ($scope.resume_doc.src){
             $scope.seeker.resume = $scope.resume_doc.src; 
@@ -986,7 +986,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter your city';
             return false;
-        } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile != Number($scope.seeker.mobile)){
+        } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile.match(letters)) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter your mobile number';
             return false;
