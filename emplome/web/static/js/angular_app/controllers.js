@@ -960,11 +960,11 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.gender == '' || $scope.seeker.gender == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter your gender';
+            $scope.error_message = 'Please provide your gender';
             return false;
         } else if ($scope.seeker.dob == '' || $scope.seeker.dob == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter your Date of Birth';
+            $scope.error_message = 'Please provide your Date of Birth';
             return false;
         } else if ($scope.seeker.religion == '' || $scope.seeker.religion == undefined || $scope.seeker.religion == 'select'){
             $scope.error_flag = true;
@@ -988,7 +988,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile.match(letters)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter a valid mobile number';
+            $scope.error_message = 'Please enter a valid Mobile Number';
             return false;
         } else if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
             $scope.error_flag = true;
@@ -996,7 +996,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.pass_year_basic == '' || $scope.seeker.pass_year_basic == undefined || $scope.seeker.pass_year_basic == 'select'){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select the year of passing';
+            $scope.error_message = 'Please select the Year of Passing';
             return false;
         } else if ($scope.seeker.resume_title == '' || $scope.seeker.resume_title == undefined){
             $scope.error_flag = true;
@@ -1012,18 +1012,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
   
     $scope.form_validation_more_info = function(){
-        if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please provide your Experience';
-            return false;
-        } else if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary != Number($scope.seeker1.salary)){
-            // console.log('salary checking');
-            // if ($scope.seeker1.salary != Number($scope.seeker1.salary)) {
-                // console.log('salary checkinggg');
+        // if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
+        //     $scope.error_flag = true;
+        //     $scope.error_message = 'Please provide your Experience';
+        //     return false;
+        } else if ($scope.seeker1.salary != Number($scope.seeker1.salary)){
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter a valid amount for Salary';
-                return false;
-            // }  
+                return false; 
         } else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please enter Skills';
@@ -1212,7 +1208,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.recruiter.mobile == '' || $scope.recruiter.mobile == undefined || $scope.recruiter.mobile.match(letters)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide a valid mobile number';
+            $scope.error_message = 'Please provide a valid Mobile Number';
             return false;
         } else if ($scope.recruiter.phone.match(letters)) {
             $scope.error_flag = true;
@@ -1383,7 +1379,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       return false;
     } else if ($scope.jobpost.function == '' || $scope.jobpost.function == undefined || $scope.jobpost.function == '-select-') {
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide the Function';
+      $scope.error_message = 'Please provide the Category/Function';
       return false;
     } else if ($scope.jobpost.requirement == '' || $scope.jobpost.requirement == undefined || $scope.jobpost.requirement == '-select-') {
       $scope.error_flag = true;
