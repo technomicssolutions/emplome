@@ -986,7 +986,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter your city';
             return false;
-        } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined){
+        } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile != Number($scope.seeker.mobile)){
             $scope.error_flag = true;
             $scope.error_message = 'Please enter your mobile number';
             return false;
@@ -1255,7 +1255,9 @@ function RecruiterController($scope, $element, $http, $timeout) {
                 
               
             }).error(function(data, status){
-           
+                $scope.error_flag = true;
+                $scope.error_message = data.message;
+                return false;
             });
         }
     }
