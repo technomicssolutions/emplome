@@ -217,7 +217,7 @@ class RecruiterRegistrationView(View):
         else:
             if request.is_ajax():
                 res = {
-                    'message': 'This email id already exists, please login',
+                    'message': 'User already exists, Please login or try another email id',
                     'result': 'error',
                 }
                 response = simplejson.dumps(res)
