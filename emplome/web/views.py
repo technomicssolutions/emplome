@@ -690,7 +690,11 @@ class ForgotPassword(View):
             subject = 'Reset Your Password'
             text_content = 'This is Important'
             from_email = settings.DEFAULT_FROM_EMAIL
-            url = 'http://%s%s'%(Site.objects.get_current().domain,'/reset_password/'+str(user.id)+'/') 
+            try:
+                site_url = Site.objects.get_current().domain
+            except:
+                site_url = Site.objects.all()[0]
+            url = 'http://%s%s'%(site_url,'/reset_password/'+str(user.id)+'/') 
             ctx = {
                 'url': url,
                 'user': user,

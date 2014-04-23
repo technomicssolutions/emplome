@@ -1015,8 +1015,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         // if ($scope.seeker1.years == ''|| $scope.seeker1.years == undefined){
         //     $scope.error_flag = true;
         //     $scope.error_message = 'Please provide your Experience';
-        //     return false;
-        } else if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary != Number($scope.seeker1.salary)){
+        //     return false;}
+
+         if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary != Number($scope.seeker1.salary)){
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter a valid amount for Salary';
                 return false; 
@@ -1210,10 +1211,10 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please provide a valid Mobile Number';
             return false;
-        } else if ($scope.recruiter.phone.match(letters)) {
-            $scope.error_flag = true;
-            $scope.error_message = 'Please enter a valid land no.';
-            return false;
+        // } else if ($scope.recruiter.phone.match(letters)) {
+        //     $scope.error_flag = true;
+        //     $scope.error_message = 'Please enter a valid land no.';
+        //     return false;
         } else if (!$scope.user_id) {
             if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
                 $scope.error_message = 'Please enter the password';
