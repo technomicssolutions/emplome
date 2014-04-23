@@ -253,6 +253,15 @@ class JobSeekerRegistration(View):
                 user_created = False
             else:
                 user, user_created = User.objects.get_or_create(username=seeker['email'])
+                if not user_created:
+                    if request.is_ajax():
+                        res = {
+                            'message': 'This email id already exists, please login',
+                            'result': 'error',
+                        }
+                        response = simplejson.dumps(res)
+                        status_code = 500
+                        return HttpResponse(response, status = status_code, mimetype='application/json')
             if user.email != seeker['email']:
                 user.username = seeker['email']
             user.email=seeker['email']
