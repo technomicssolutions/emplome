@@ -1017,10 +1017,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         //     $scope.error_message = 'Please provide your Experience';
         //     return false;}
 
-         if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary != Number($scope.seeker1.salary)){
+         if ($scope.seeker1.salary != '' || $scope.seeker1.salary != undefined){
+            if($scope.seeker1.salary != Number($scope.seeker1.salary)){
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter a valid amount for Salary';
                 return false; 
+              }
         } else if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please enter Skills';
@@ -1339,6 +1341,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
   $scope.form_validation_postjob = function(){
     // console.log($('last_date').val(),$('post_date').val())
+    var letters = /^[A-Za-z]+$/;  
     $scope.jobpost.last_date = $('#last_date').val();
     $scope.jobpost.post_date = $('#post_date').val();
     if ($scope.jobpost.company == 'other'){

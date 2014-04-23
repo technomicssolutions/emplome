@@ -115,8 +115,9 @@
 				<label>Nationality<span class="red">*</span></label>
 				<select name="nationality" ng-model="jobpost.nationality">
 					<option value="">-select-</option>
-					<option ng-repeat="nationality in nationalities" value="[[nationality]]" ng-selected="nationality == jobpost.nationality">[[nationality]]</option>
 					<option>Any</option>
+					<option ng-repeat="nationality in nationalities" value="[[nationality]]" ng-selected="nationality == jobpost.nationality">[[nationality]]</option>
+
 				</select>
 			</div>
 			<div class="formrow">

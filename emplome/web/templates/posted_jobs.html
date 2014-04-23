@@ -13,7 +13,8 @@
 			{% for job in jobs %}
 
 				<div class="posted_job_container">
-					<div class="sub_container"> <b><label id="job_title">{{job.job_title}}</label></b> - {{job.job_location}} </div>
+					<div class="sub_container"> 
+						<b> <label id="job_title">{{job.job_title}}</label></b> - {{job.job_location}} </div>
 					<label>From : {{job.company.company_name}}</label>
 					<div class="sub_container">
 						<div class="job_details">
