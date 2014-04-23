@@ -51,9 +51,7 @@
 			<label>Current Industry</label>
 			<select name="industry" ng-model="seeker1.industry"> 
 				<option value="">--------------Select------------</option>
-				<option ng-repeat="industry in industries" value="[[industry]]" ng-selected="industry == seeker1.industry">[[industry]]</option>
-				<!-- <option>Other</option>
-				<option>Any</option> -->
+				<option ng-repeat="industry in industries" value="[[industry]]" ng-selected="industry == seeker1.industry">[[industry]]</option>				
 			</select>
 		</div>
 
@@ -62,7 +60,6 @@
 			<select name ="functions" ng-model="seeker1.functions">
 				<option value="">---------------Select-------------</option>
 				<option ng-repeat="function in functions" value="[[function]]" ng-selected="function == seeker1.functions">[[function]]</option>
-				<!-- <option>Other</option> -->
 			</select>
 		</div>
 	
@@ -104,9 +101,7 @@
 			<input type="checkbox" name="checkbox" ng-model="checkbox">I have read and agree to the privacy statement and terms of use
 		</div>
 
-		<!-- <div class="formrow"> -->
 			<div class="btn">
-				<!-- <label></label> -->
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg_more()">
 				<a href="" target="_blank" ng-click="view_profile()">View Profile</a>
 				
@@ -114,7 +109,6 @@
 			<div class="message">
 				<p ng-show="error_flag">[[error_message]]</p>
 			</div>
-		<!-- </div> -->
 		<br>
 	</div>
 	</form>
