@@ -1016,7 +1016,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         //     $scope.error_flag = true;
         //     $scope.error_message = 'Please provide your Experience';
         //     return false;
-        } else if ($scope.seeker1.salary != Number($scope.seeker1.salary)){
+        } else if ($scope.seeker1.salary == '' || $scope.seeker1.salary == undefined || $scope.seeker1.salary != Number($scope.seeker1.salary)){
                 $scope.error_flag = true;
                 $scope.error_message = 'Please enter a valid amount for Salary';
                 return false; 
