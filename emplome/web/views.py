@@ -38,6 +38,7 @@ class SearchJobsView(View):
         search = False
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
+        print function
         skills = request.GET.get('skills', '')
         exp = request.GET.get('experience', '')
         industry = request.GET.get('industry', '')
