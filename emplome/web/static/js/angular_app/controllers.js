@@ -1168,7 +1168,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
 		$scope.csrf_token = csrf_token;
         $scope.user_id = user_id;
         get_industries($scope);
-    	get_countries($scope);
+    	   get_countries($scope);
 
         $scope.recruiter = {
             'name' : '',
@@ -1247,8 +1247,12 @@ function RecruiterController($scope, $element, $http, $timeout) {
                 headers: {'Content-Type': undefined
                 }
             }).success(function(data, status){
+                if ($scope.user_id) {
+                  document.location.href = '/profile/'+$scope.user_id+'/';
+                } else {
+                  document.location.href = '/';
+                }
                 
-                document.location.href = '/profile/'+$scope.user_id+'/';
               
             }).error(function(data, status){
            
