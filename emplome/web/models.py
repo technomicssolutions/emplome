@@ -844,7 +844,7 @@ class Job(models.Model):
     exp_req_min = models.IntegerField('Experience Required Min', null=True, blank=True, choices=YEARS)
     exp_req_max = models.IntegerField('Experience Required Max', null=True, blank=True, choices=YEARS)
     is_featured = models.BooleanField('Is Featured', default=False)
-    description = models.CharField('Description', max_length=1500, null=True, blank=True)
+    description = models.TextField('Description', null=True, blank=True)
     is_publish = models.BooleanField('Publish', default=False)
 
     def __unicode__(self):
@@ -883,9 +883,9 @@ class Education(models.Model):
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
     doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
-    resume = models.FileField(upload_to = "uploads/resumes/", max_length=30000, null=True, blank=True)
-    resume_text = models.CharField('Resume Text', null=True, blank=True, max_length=20000)
-    certificate = models.FileField(upload_to = "uploads/certificates/", max_length=20000, null=True, blank=True)
+    resume = models.FileField(upload_to = "uploads/resumes/", null=True, blank=True)
+    resume_text = models.TextField('Resume Text', null=True, blank=True)
+    certificate = models.FileField(upload_to = "uploads/certificates/", null=True, blank=True)
 
     def __unicode__(self):
         return str(self.basic_edu)
@@ -918,7 +918,7 @@ class JobSeekerProfile(models.Model):
     gender = models.CharField('Gender', max_length=7, choices=GENDER)
     nationality = models.CharField('Nationality', max_length=50, choices=NATIONALITY)
     alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
-    photo = models.FileField( upload_to = "uploads/photos/", max_length=20000, null=True, blank=True)
+    photo = models.FileField( upload_to = "uploads/photos/", null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
     religion = models.CharField('Religion', null=True, blank=True, max_length=20)
     dob = models.DateTimeField('DOB', null=True, blank=True)
