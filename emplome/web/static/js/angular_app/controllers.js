@@ -672,6 +672,7 @@ function get_nationalities($scope){
         'Zambian',
         'Zimbabwe',
         'Other',
+        
     ]
 }
 
