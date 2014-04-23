@@ -94,8 +94,7 @@ class SearchJobsView(View):
             })
         
         return render(request, 'search_jobs.html', context) 
-
-        
+    
 
 class Logout(View):
     def get(self, request, *args, **kwargs):
@@ -144,13 +143,14 @@ class LoginView(View):
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
         else:
             context = {
-                'message' : 'Username and Password cannot be null',
+                'message' : 'Username or Password cannot be null',
             }
             context.update(request.POST)
             if request.POST['user_type'] == 'recruiter':
                 return render(request, 'recruiter_home.html', context)
             else:
                 return render(request, 'login_job_seeker.html', context)
+
 
 class ProfileView(View):
     def get(self, request, *args, **kwargs):
@@ -168,6 +168,7 @@ class ProfileView(View):
          
         return render(request, 'profile.html', context) 
 
+
 class RecruiterHomeView(View):
     def get(self, request, *args, **kwargs):
         
@@ -177,6 +178,7 @@ class RecruiterHomeView(View):
             'employer': employer,
         }
         return render(request, 'recruiter_home.html', {})
+
 
 class RecruiterRegistrationView(View):
 
@@ -217,7 +219,7 @@ class RecruiterRegistrationView(View):
         else:
             if request.is_ajax():
                 res = {
-                    'message': 'User already exists, Please login or try another email id',
+                    'message': 'User already exists',
                     'result': 'error',
                 }
                 response = simplejson.dumps(res)
@@ -257,7 +259,7 @@ class JobSeekerRegistration(View):
                 if not user_created:
                     if request.is_ajax():
                         res = {
-                            'message': 'This email id already exists, please login',
+                            'message': 'User already exists',
                             'result': 'error',
                         }
                         response = simplejson.dumps(res)
@@ -393,6 +395,7 @@ class JobSeekerRegistrationMoreInfo(View):
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype='application/json')
 
+
 class PostJobsView(View):
     def get(self, request,*args, **kwargs):
         context = {
@@ -446,7 +449,6 @@ class PostJobsView(View):
         return HttpResponse(response, status = status_code, mimetype="application/json")
 
 
-
 class PostedJobsView(View):
      def get(self, request,*args, **kwargs):
         jobs = []
@@ -455,7 +457,6 @@ class PostedJobsView(View):
           'jobs': jobs,
         }
         return render(request, 'posted_jobs.html', context)
-
 
 
 class EditPostJobsView(View):
@@ -510,6 +511,7 @@ class EditPostJobsView(View):
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
 
+
 class JobDetailsView(View):
     def get(self, request, *args, **kwargs):
         job = Job.objects.get(id=kwargs['job_id'])
@@ -553,6 +555,7 @@ class JobDetailsView(View):
         else:
             return render(request, 'job_details.html', context)
 
+
 class SearchView(View):
 
     def get(self, request, *args, **kwargs):
@@ -594,6 +597,7 @@ class EditProfile(View):
             'user_id': user_id,
         }
         return render(request, 'job_seeker_registration.html', context)
+
 
 class GetProfileDetails(View):
 
@@ -676,6 +680,7 @@ class GetProfileDetails(View):
             
             return HttpResponse(response, status=status_code, mimetype='application/json')
 
+
 class ForgotPassword(View):
 
     def get(self, request, *args, **kwargs):
@@ -719,6 +724,7 @@ class ForgotPassword(View):
             }
             return render(request, 'forgot_password.html', context)
 
+
 class ResetPassword(View):
 
     def get(self, request, *args, **kwargs):
@@ -746,6 +752,7 @@ class ResetPassword(View):
                 'user_id': user_id,
             }
         return render(request, 'reset_password.html', context)
+
 
 class RecruiterProfileEdit(View):
 
@@ -801,6 +808,7 @@ class RecruiterProfileEdit(View):
 
         return HttpResponse(response, status = status_code, mimetype="application/json")
 
+
 class SuccessStoriesView(View):
 
     def get(self, request, *args, **kwargs):
@@ -818,6 +826,7 @@ class SuccessStoriesView(View):
             'success_stories': stories,
         }
         return render(request, 'success_stories.html', context)
+
 
 class PublishJob(View):
 
@@ -838,6 +847,7 @@ class PublishJob(View):
 
         return HttpResponseRedirect(reverse('posted_jobs'))
 
+
 class DeleteJob(View):
 
     def get(self, request, *args, **kwargs):
@@ -853,8 +863,8 @@ class DeleteJob(View):
           'jobs': jobs,
           'message': 'Deleted',
         }
-
         return HttpResponseRedirect(reverse('posted_jobs'))
+
 
 class SearchCV(View):
 
@@ -903,6 +913,7 @@ class Companies(View):
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype="application/json")
 
+
 class ApplyJobs(View):
 
     def get(self, request, *args, **kwargs):
@@ -938,6 +949,7 @@ class ApplyJobs(View):
 
         return render(request, 'job_details.html', context)
 
+
 class AppliedJobsView(View):
 
     def get(self, request, *args, **kwargs):
@@ -951,7 +963,8 @@ class AppliedJobsView(View):
         }
         
         return render(request, 'applied_jobs.html', context)
-    
+  
+
 class FeaturedJobView(View):
 
     def get(self, request, *args, **kwargs):
@@ -959,5 +972,4 @@ class FeaturedJobView(View):
         context = {
             'job': job,
         }
-
         return render(request, 'job_details.html', context)

@@ -1211,10 +1211,12 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please provide a valid Mobile Number';
             return false;
-        // } else if ($scope.recruiter.phone.match(letters)) {
-        //     $scope.error_flag = true;
-        //     $scope.error_message = 'Please enter a valid land no.';
-        //     return false;
+        } else if ($scope.recruiter.phone != '' || $scope.recruiter.phone != undefined) {
+            if ($scope.recruiter.phone.match(letters)) {
+              $scope.error_flag = true;
+              $scope.error_message = 'Please enter a valid land no.';
+              return false;
+            }
         } else if (!$scope.user_id) {
             if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
                 $scope.error_message = 'Please enter the password';
@@ -1394,7 +1396,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide the Name of the Job Owner';
       return false;
-    } else if ($scope.jobpost.phone == '' || $scope.jobpost.phone == undefined) {
+    } else if ($scope.jobpost.phone == '' || $scope.jobpost.phone == undefined || $scope.jobpost.phone.match(letters)) {
       $scope.error_flag = true;
       $scope.error_message = 'Please enter your Phone Number';
       return false;
@@ -1412,7 +1414,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
 
 
     $scope.save_job = function(){
-      // console.log($('last_date').val(),$('post_date').val())
+
       $scope.jobpost.last_date = $('#last_date').val();
       $scope.jobpost.post_date = $('#post_date').val();
         $scope.is_valid = $scope.form_validation_postjob();
@@ -1443,8 +1445,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
                   var url = "/recruiter/post-jobs/";               
               }
               
-            }
-            
+            }            
 
             $http.post(url, fd, {
                     transformRequest: angular.identity,

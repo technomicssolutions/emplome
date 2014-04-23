@@ -126,7 +126,7 @@
 			<div class="formrow">
 				<label>Basic Education<span class="red">*</span></label>
 				<select name="basic_edu" ng-model="seeker.basic_edu">
-					<option value="">Select Bachelor's/Diploma/School</option>
+					<option value="">-----------Select---------</option>
 					<option ng-repeat="education in basic_education" value="[[education]]" ng-selected="education == seeker.basic_edu">[[education]]</option>
 				</select>
 			</div>
@@ -142,7 +142,7 @@
 			<div class="formrow">
 				<label>Masters Education</label>
 				<select name="masters_edu" ng-model="seeker.masters_edu">
-					<option value="">-------------Select-------------</option>
+					<option value="">---------Select---------</option>
 					<option ng-repeat="edu in masters_education" value="[[edu]]" ng-selected="edu == seeker.masters_edu">[[edu]]</option>
 				</select>
 			</div>
@@ -183,15 +183,13 @@
 			<br>
 		</div>
 		<div class="separation">
-			<br>
-		<!-- <div class="formrow"> -->
+			<br>		
 			<div class="btn">
 				<label></label>
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg()">
 				<input ng-show="user_id" class="button" type="submit" name="next" value="Next" ng-click="reg_next()">
 			</div>
 			<div class="message">
-				<!-- <p>{{message}}</p> -->
 				<p ng-show="error_flag">[[error_message]]</p>
 			</div>
 
