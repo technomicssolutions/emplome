@@ -988,7 +988,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile != Number($scope.seeker.mobile)){
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter your mobile number';
+            $scope.error_message = 'Please enter a valid mobile number';
             return false;
         } else if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
             $scope.error_flag = true;
@@ -1209,9 +1209,16 @@ function RecruiterController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please choose the industry type';
             return false;
+        } else if ($scope.recruiter.mobile == '' || $scope.recruiter.mobile == undefined) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please choose the industry type';
+            return false;
         } else if (!$scope.user_id) {
             if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
-                $scope.error_flag = true;
+            else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please choose the industry type';
+            return false;    $scope.error_flag = true;
                 $scope.error_message = 'Please enter the password';
                 return false;
             }
