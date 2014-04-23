@@ -1001,3 +1001,11 @@ label textarea{
     border-radius: 0.417em;
     text-decoration: none;
 }
+
+#recruiter form {
+    height: 87px;
+}
+
+.login_details .control {
+    height: 35px;
+}
