@@ -858,7 +858,6 @@ function HomeController($scope, $element, $http, $timeout, share, $location)
     }
 }
 
-
 function JobSeekerController($scope, $element, $http, $timeout) {
 
     $scope.year = [];
@@ -944,7 +943,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 console.log(data || "Request failed");
             });
         }
-
     }
     
     $scope.form_validation = function(){
@@ -1101,8 +1099,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 $scope.error_flag = true;
                 $scope.error_message = data.message;
             });
-        }
-     
+        }     
     }
     
 

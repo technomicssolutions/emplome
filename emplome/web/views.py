@@ -627,7 +627,6 @@ class GetProfileDetails(View):
                     'first_name': user.first_name,
                     'gender': jobseeker.gender if jobseeker else '',
                     'dob': jobseeker.dob.strftime('%d-%m-%Y') if jobseeker else '',
-                    'religion': jobseeker.religion if jobseeker else '',
                     'marital_status': jobseeker.marital_status if jobseeker else '',
                     'nationality': jobseeker.nationality if jobseeker else '',
                     'country': userprofile.country if userprofile else '',
