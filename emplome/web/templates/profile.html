@@ -35,7 +35,6 @@
 
         <div class="search_box_content">
             <a href="" class="search_button" ng-click="job_search()">Search</a>
-            <!-- <input type="submit" value="Search"> -->
         </div>
         
     </div>
@@ -89,7 +88,13 @@
 								{% if profile.jobseekerprofile_set.all.0.photo %}
 					            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
 					            {% else %}
-					            	<img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+						            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
+						            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+						            
+						            {% else %}
+						            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+						            {% endif %}
+
 					            {% endif %}
 					        </div> 
 					    </div>
@@ -143,7 +148,15 @@
 			            {% if profile.jobseekerprofile_set.all.0.photo %}
 			            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
 			            {% else %}
-			            	<img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+
+				            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
+				            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            
+				            {% else %}
+				            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            {% endif %}
+
+			            	<!-- <img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture"> -->
 					    {% endif %}
 			        </div> 
 			        <!-- /site_media/[[seeker.resume]]  -->

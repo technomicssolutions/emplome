@@ -420,6 +420,8 @@ class PostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
+        jobPosting.salary =jobpost['salary']
+        jobPosting.currency =jobpost['currency']    
         jobPosting.skills =jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
@@ -484,6 +486,8 @@ class EditPostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
+        jobPosting.salary =jobpost['salary']
+        jobPosting.currency =jobpost['currency'] 
         jobPosting.skills =jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']

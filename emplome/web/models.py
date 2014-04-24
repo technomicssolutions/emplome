@@ -638,19 +638,6 @@ MARITAL_STATUS = (
 
 )
 
-RELIGION = (
-    ('Islam', 'Islam'),
-    ('Christian', 'Christian'),
-    ('Hindu', 'Hindu'),
-    ('Buddhist', 'Buddhist'),
-    ('Sikh', 'Sikh'),
-    ('Jain', 'Jain'),
-    ('Zoroaster', 'Zoroaster'),
-    ('Other', 'Other'),
-    ('Do not wish to Disclose', 'Do not wish to Disclose'),
-)
-
-
 YEARS = (
     (0,'0'),
     (1, '1'),
@@ -806,6 +793,20 @@ EDUCATION_REQUIRED = (
 
 )
 
+CURRENCIES = (
+    ('US Dollars', 'US Dollars'),
+    ('UK Pound', 'UK Pound'),
+    ('Indian Rupees', 'Indian Rupees'), 
+    ('UAE Dhirhams', 'UAE Dhirhams'),
+    ('Dinar', 'Dinar'),
+    ('Riyal', 'Riyal'),
+    ('Australian Dollars','Australian Dollars'),
+    ('Singapore Dollars','Singapore Dollars'),
+    ('Sri Lankan Rupee', 'Sri Lankan Rupee'),
+    ('Euro', 'Euro'),        
+    ('Yen', 'Yen'),       
+)
+
 class CompanyProfile(models.Model):
 
     company_name = models.CharField('Company Name', max_length=50, null=True, blank=True)
@@ -847,6 +848,8 @@ class Job(models.Model):
     is_featured = models.BooleanField('Is Featured', default=False)
     description = models.TextField('Description', null=True, blank=True)
     is_publish = models.BooleanField('Publish', default=False)
+    salary = models.IntegerField('Salary', null=True, blank=True)
+    currency = models.CharField('Currency', max_length=30, null=True, blank=True, choices=CURRENCIES)
 
     def __unicode__(self):
         return self.job_title
@@ -921,7 +924,6 @@ class JobSeekerProfile(models.Model):
     alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
     photo = models.FileField( upload_to = "uploads/photos/", null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
-    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
     dob = models.DateTimeField('DOB', null=True, blank=True)
     age = models.IntegerField('Age', null=True, blank=True)
     education = models.ForeignKey(Education, null=True, blank=True)

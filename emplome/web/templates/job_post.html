@@ -38,7 +38,8 @@
 					<option value="other">Other</option>
 				</select>
 				<input type ="text" name="title" ng-model="new_company" value="" ng-show="is_new_company">
-			</div>		
+			</div>
+			
 		</div>
 
 		<div class="separation">
@@ -53,6 +54,14 @@
 				<input type="file" fileread="product_pdf.src"/>
 			    <input type="hidden" ng-model="product_pdf.src"/>
 			    <a href="/site_media/[[jobpost.details]]" ng-show="jobpost.details" target="_blank">Details</a>
+			</div>
+			<div class="formrow">
+				<label>Salary</label>
+				<input style="width: 18%" type ="text" name="salary" ng-model="jobpost.salary">
+					<select style="width: 16%" name="currency" ng-model="jobpost.currency">
+					<option value="">-Select Currency-</option>
+					<option ng-repeat="currency in currencies" value="[[currency]]" ng-selected="currency == jobpost.currency">[[currency]]</option>
+				</select>
 			</div>
 			<br>
 		</div>

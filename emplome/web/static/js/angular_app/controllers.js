@@ -818,6 +818,21 @@ function get_functions($scope){
     ]
 }
 
+function get_currencies($scope){
+    $scope.currencies = ['US Dollars',
+        'UK Pound',
+        'Indian Rupees', 
+        'UAE Dhirhams',
+        'Dinar',        
+        'Riyal',
+        'Australian Dollars',
+        'Singapore Dollars',
+        'Sri Lankan Rupee',
+        'Euro',        
+        'Yen',       
+    ]
+}
+
 function HomeController($scope, $element, $http, $timeout, share, $location)
 {
     $scope.is_keyword = false;
@@ -940,47 +955,43 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         }
         if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide your email id';
+            $scope.error_message = 'Please provide your Email id';
             return false;
         } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password == '' || $scope.seeker.password == undefined)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide a password';
+            $scope.error_message = 'Please provide a Password';
             return false;
         } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password1 == '' || $scope.seeker.password1 == undefined)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please re-enter the password';
+            $scope.error_message = 'Please Re-enter the Password';
             return false;
         } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password != $scope.seeker.password1)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter the password correctly';
+            $scope.error_message = 'Please enter the Password Correctly';
             return false;
         } else if ($scope.seeker.first_name == '' || $scope.seeker.first_name == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please give your name';
+            $scope.error_message = 'Please give your Name';
             return false;
         } else if ($scope.seeker.gender == '' || $scope.seeker.gender == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide your gender';
+            $scope.error_message = 'Please provide your Gender';
             return false;
         } else if ($scope.seeker.dob == '' || $scope.seeker.dob == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please provide your Date of Birth';
             return false;
-        } else if ($scope.seeker.religion == '' || $scope.seeker.religion == undefined || $scope.seeker.religion == 'select'){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please select your religion';
-            return false;
         } else if ($scope.seeker.marital_status == '' || $scope.seeker.marital_status == undefined || $scope.seeker.marital_status == 'select'){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select your marital status';
+            $scope.error_message = 'Please select your Marital Status';
             return false;
         } else if ($scope.seeker.nationality == '' || $scope.seeker.nationality == undefined || $scope.seeker.nationality == 'select'){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select your nationality';
+            $scope.error_message = 'Please select your Nationality';
             return false;
         } else if ($scope.seeker.country == '' || $scope.seeker.country == undefined || $scope.seeker.country == 'select'){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select country';
+            $scope.error_message = 'Please select Country';
             return false;
         } else if ($scope.seeker.city == '' || $scope.seeker.city == undefined){
             $scope.error_flag = true;
@@ -988,7 +999,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile.match(letters)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter a valid Mobile Number';
+            $scope.error_message = 'Please enter a Valid Mobile Number';
             return false;
         } else if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
             $scope.error_flag = true;
@@ -1000,11 +1011,11 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.resume_title == '' || $scope.seeker.resume_title == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please give a title for your Resume';
+            $scope.error_message = 'Please give a Title for your Resume';
             return false;
         } else if (($scope.seeker.resume_text == '' || $scope.seeker.resume_text == undefined) && ($scope.seeker.resume == undefined || $scope.seeker.resume == '')){
             $scope.error_flag = true;
-            $scope.error_message = 'Please attach or copy & paste your Resume';
+            $scope.error_message = 'Please Attach or Copy & Paste your Resume';
             return false;
         }
         return true;
@@ -1016,7 +1027,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         if (($scope.seeker1.salary != '' || $scope.seeker1.salary != undefined) && $scope.seeker1.salary != Number($scope.seeker1.salary)){
          
               $scope.error_flag = true;
-              $scope.error_message = 'Please enter a valid amount for Salary';
+              $scope.error_message = 'Please enter a Valid Amount for Salary';
               return false;
         }   
         if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
@@ -1195,32 +1206,28 @@ function RecruiterController($scope, $element, $http, $timeout) {
         var letters = /^[A-Za-z]+$/;  
         if ($scope.recruiter.name == '' || $scope.recruiter.name == undefined) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter the company name';
+            $scope.error_message = 'Please enter the Company Name';
             return false;
         } else if (!(validateEmail($scope.recruiter.email))){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide a valid email id';
+            $scope.error_message = 'Please provide a valid Email id';
             return false;
         } else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please choose the industry type';
+            $scope.error_message = 'Please choose the Type of Industry';
+            return false;
+        } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.recruiter.password == '' || $scope.recruiter.password == undefined)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please provide a Password';
             return false;
         } else if ($scope.recruiter.mobile == '' || $scope.recruiter.mobile == undefined || $scope.recruiter.mobile.match(letters)) {
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide a valid Mobile Number';
-            return false;
-        } 
-
-        else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.recruiter.password == '' || $scope.recruiter.password == undefined)) {
-            $scope.error_flag = true;
-            $scope.error_message = 'Please provide a password';
-            return false;
-        }
-
-        else if ($scope.recruiter.phone != '' || $scope.recruiter.phone != undefined) {
+            $scope.error_message = 'Please provide a Valid Mobile Number';
+            return false;        
+        } else if ($scope.recruiter.phone != '' || $scope.recruiter.phone != undefined) {
             if ($scope.recruiter.phone.match(letters)) {
               $scope.error_flag = true;
-              $scope.error_message = 'Please enter a valid land no.';
+              $scope.error_message = 'Please enter a Valid Land no.';
               return false;
             }
         } 
@@ -1289,6 +1296,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'company': '',
         'summary': '',
         'details': '',
+        'currency': '',
         'skills': '',
         'location': '-select-',
         'industry': '-select-',
@@ -1315,6 +1323,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
 		get_industries($scope);
 		get_functions($scope);
 		get_education_required($scope);
+    get_currencies($scope);
     $scope.job_id = id;
 
     $http.get('/companies/').success(function(data)
@@ -1406,7 +1415,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       return false;
     } else if ($scope.jobpost.phone == '' || $scope.jobpost.phone == undefined || $scope.jobpost.phone.match(letters)) {
       $scope.error_flag = true;
-      $scope.error_message = 'Please enter your Phone Number';
+      $scope.error_message = 'Please enter a Valid Phone Number';
       return false;
     } else if (!(validateEmail($scope.jobpost.email))) {
       $scope.error_flag = true;
