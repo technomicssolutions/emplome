@@ -275,7 +275,7 @@ a {
 .message p {
     color: #FF0000;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /*******************End Job SeekerStyles*************/
@@ -706,7 +706,7 @@ label textarea{
     color: #FF0000;
     margin: 0px;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     padding-top: 55px
 }
 .alert {

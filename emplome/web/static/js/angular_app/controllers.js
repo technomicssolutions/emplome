@@ -1084,7 +1084,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                     $scope.error_message = data.message;
                 } else {
                     $scope.error_flag = true;
-                    $scope.error_message = 'Successfully Saved';
+                    $scope.error_message = 'Successfully Completed the First Step of Registration. Proceed to the Next Step';
                     $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
                     {
                         $scope.seeker = data.seeker[0]; 
@@ -1149,7 +1149,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 }
             }).success(function(data, status){ 
                 $scope.error_flag = true;
-                $scope.error_message = 'Successfully Saved';            
+                $scope.error_message = 'Successfully Completed Registration';            
                 console.log("Successfully Saved");
               
             }).error(function(data, status){           
