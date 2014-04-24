@@ -886,10 +886,9 @@ class SearchCV(View):
         if len(age) > 0 and age != 'undefined': 
             values_list('shared_note', flat=True).distinct()
             # jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).values_list('id', flat=True).distinct()
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword)
         elif age == 'undefined' :
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword).values_list('id', flat=True).distinct()
-        
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword)
         context = {
             'cvs': jobseeker_profiles,
         }
