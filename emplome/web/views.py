@@ -276,7 +276,7 @@ class JobSeekerRegistration(View):
             status_code = 500
             response = simplejson.dumps({
                 'result': 'error', 
-                'message': 'This email already existing'
+                'message': 'User already exists'
             })
             return HttpResponse(response, status = status_code, mimetype = 'application/json')
         
@@ -884,10 +884,11 @@ class SearchCV(View):
             keyword = ''
 
         if len(age) > 0 and age != 'undefined': 
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
-
+            values_list('shared_note', flat=True).distinct()
+            # jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).values_list('id', flat=True).distinct()
         elif age == 'undefined' :
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword).distinct('id')
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword).values_list('id', flat=True).distinct()
         
         context = {
             'cvs': jobseeker_profiles,
