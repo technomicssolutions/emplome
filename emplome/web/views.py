@@ -975,17 +975,16 @@ class FeaturedJobView(View):
         return render(request, 'job_details.html', context)
 
 
-# class AppliedUsers(View):
+class AppliedUsers(View):
 
-#     def get(self, request, *args, **kwargs):
-#         jobs = Job.objects.get(recruiter=request.user)
-#         applied_jobs = jobs.JobSeeker_set.all()
-#         print applied_jobs
-#         context ={
-#             'jobs': jobs,
-#             'applied_jobs': applied_jobs,
-#         }
-#         return render(request, 'profile.html', context)
+    def get(self, request, *args, **kwargs):
+        job = Job.objects.get(id=kwargs['job_id'])
+        profiles = job.jobseekerprofile_set.all()
+        context = {
+            'job': job,
+            'profiles': profiles,
+        }
+        return render(request, 'applied_users.html', context)
 
 
 

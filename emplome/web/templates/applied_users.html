@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Applied Users{% endblock title %}
+{% block body_id %}applied_users{% endblock body_id %}
+
+{% block content %}
+
+<div class="posted_jobs_container">
+	<div class="separation">
+		<h3> Applicants For The Job {{ job.job_title }} </h3>
+		{% if profiles %}
+			{% for profile in profiles %}
+				<div class="posted_job_container">
+					<div class="sub_container"> 
+						
+						<b> <label id="profile_name"><a href="{% url 'profile' user_id=profile.profile.user.id%}">{{profile.profile.user.first_name}}</a></label></b> 
+					</div>
+					
+					<div class="sub_container">
+						<div class="job_details">
+							<div id="details">
+								<label>Experience </label>
+							</div>
+							<span>: {{profile.employment.exp_yrs}} Year(s), {{profile.employment.exp_mnths}} Month(s)</span><br>
+						</div>
+						<div class="job_details">
+							<div id="details">
+								<label>Education </label>
+							</div>
+							{% if profile.education.masters %}
+								<span>: {{profile.education.masters}}</span><br>
+							{% else %}
+								<span>: {{profile.education.basic_edu}}</span><br>
+							{% endif %}
+						</div>
+						
+					</div>
+				</div>
+		
+			{% endfor %}
+		{% else %}
+			<div class="posted_job_container">
+				<div class="sub_container"> 
+					<p>No Applicants</p>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock content %}

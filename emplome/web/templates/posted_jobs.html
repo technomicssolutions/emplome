@@ -14,7 +14,7 @@
 
 				<div class="posted_job_container">
 					<div class="sub_container"> 
-						<b> <label id="job_title">{{job.job_title}}</label></b> - {{job.job_location}} </div>
+						<b> <label id="job_title"><a href="{% url 'applied_users' job_id=job.id%}">{{job.job_title}}</a></label></b> - {{job.job_location}} </div>
 					<label>From : {{job.company.company_name}}</label>
 					<div class="sub_container">
 						<div class="job_details">
