@@ -198,6 +198,15 @@ class RecruiterRegistrationView(View):
         user.email = post_dict['email']
         if created:
             user.set_password(post_dict['password'])
+        else:
+            if request.is_ajax():
+                res = {
+                    'message': 'User already exists',
+                    'result': 'error',
+                }
+                response = simplejson.dumps(res)
+                status_code = 500
+                return HttpResponse(response, status = status_code, mimetype='application/json')
         user.save()
         userprofile, created = UserProfile.objects.get_or_create(user = user)
         userprofile.user_type = "employer"
@@ -216,15 +225,6 @@ class RecruiterRegistrationView(View):
             login_user = authenticate(username=post_dict['email'], password=post_dict['password'])
             if login_user and login_user.is_active:
                 login(request, login_user)
-        else:
-            if request.is_ajax():
-                res = {
-                    'message': 'User already exists',
-                    'result': 'error',
-                }
-                response = simplejson.dumps(res)
-                status_code = 500
-                return HttpResponse(response, status = status_code, mimetype='application/json')
         if request.is_ajax():
             res = {
                 'user_id': user.id,
@@ -291,11 +291,9 @@ class JobSeekerRegistration(View):
         job_seeker, job_seeker_created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
 
         job_seeker.gender = seeker['gender']
-        job_seeker.religion = seeker['religion']
         job_seeker.dob = datetime.strptime(seeker['dob'], '%d-%m-%Y')
         current_year = dt.datetime.now().year        
         age = current_year - job_seeker.dob.year
-
         job_seeker.age = age
         job_seeker.marital_status = seeker['marital_status']
         job_seeker.nationality = seeker['nationality']
@@ -361,7 +359,8 @@ class JobSeekerRegistrationMoreInfo(View):
             employment = jobseeker.employment
         else:
             employment = Employment()
-        employment.exp_yrs = int(seeker1['years'])
+        if seeker1['years'] != "":
+            employment.exp_yrs = int(seeker1['years'])
         if seeker1['months'] != "":
             employment.exp_mnths = int(seeker1['months'])
         if seeker1['salary'] != "":

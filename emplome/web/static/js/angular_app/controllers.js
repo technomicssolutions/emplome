@@ -1077,13 +1077,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 }
             }).success(function(data, status){
                 $scope.user_id = data.user_id;
+
                 
                 if(data.result == 'error') {
                     $scope.error_flag = true;
                     $scope.error_message = data.message;
                 } else {
-                    $scope.error_flag = false;
-                    $scope.error_message = '';
+                    $scope.error_flag = true;
+                    $scope.error_message = 'Successfully Saved';
                     $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
                     {
                         $scope.seeker = data.seeker[0]; 
@@ -1100,13 +1101,18 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 $scope.error_message = data.message;
             });
         }     
-    }
-    
+    }    
 
     $scope.save_reg_more = function(){
 
     $scope.is_valid = $scope.form_validation_more_info();
         if ($scope.is_valid) {
+            if ($scope.seeker1.years == null) {
+                $scope.seeker1.years = '';
+            }
+            if ($scope.seeker1.months == null) {
+                $scope.seeker1.months = '';
+            }
             if($scope.seeker1.designation == null){
                 $scope.seeker1.designation = '';
             }
@@ -1118,8 +1124,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             }
             if($scope.seeker1.industry == null){
                 $scope.seeker1.industry = '';
-            }
-            
+            }            
             $scope.error_flag = false;
             $scope.error_message = '';
 
@@ -1142,15 +1147,15 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined
                 }
-            }).success(function(data, status){
+            }).success(function(data, status){ 
+                $scope.error_flag = true;
+                $scope.error_message = 'Successfully Saved';            
                 console.log("Successfully Saved");
               
-            }).error(function(data, status){
-           
+            }).error(function(data, status){           
 
             });
-        }
-    
+        }    
     }
 
     $scope.reg_next =function(){
