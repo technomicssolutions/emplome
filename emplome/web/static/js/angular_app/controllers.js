@@ -953,7 +953,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         }
         if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide your Email id';
+            $scope.error_message = 'Please provide a Valid Email Id';
             return false;
         } else if (($scope.user_id == '' || $scope.user_id == undefined) && ($scope.seeker.password == '' || $scope.seeker.password == undefined)) {
             $scope.error_flag = true;
@@ -969,7 +969,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.first_name == '' || $scope.seeker.first_name == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please give your Name';
+            $scope.error_message = 'Please enter your Name';
             return false;
         } else if ($scope.seeker.gender == '' || $scope.seeker.gender == undefined){
             $scope.error_flag = true;
@@ -1212,7 +1212,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
             return false;
         } else if (!(validateEmail($scope.recruiter.email))){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide a valid Email id';
+            $scope.error_message = 'Please provide a valid Email Id';
             return false;
         } else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
             $scope.error_flag = true;
@@ -1356,7 +1356,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }
 
   $scope.form_validation_postjob = function(){
-    // console.log($('last_date').val(),$('post_date').val())
     var letters = /^[A-Za-z]+$/;  
     $scope.jobpost.last_date = $('#last_date').val();
     $scope.jobpost.post_date = $('#post_date').val();
@@ -1421,7 +1420,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       return false;
     } else if (!(validateEmail($scope.jobpost.email))) {
       $scope.error_flag = true;
-      $scope.error_message = 'Please provide a valid Email';
+      $scope.error_message = 'Please provide a Valid Email Id';
       return false;
     } else if ($scope.jobpost.profile == '' || $scope.jobpost.profile == undefined) {
       $scope.error_flag = true;
