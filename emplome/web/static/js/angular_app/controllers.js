@@ -899,7 +899,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'pass_year_masters': '',
         'doctrate': '',
         'resume_title': '',
-        'resume_text': '',
         'resume': '',
     }
 
@@ -1233,12 +1232,6 @@ function RecruiterController($scope, $element, $http, $timeout) {
               return false;
             }
         } 
-        // else if (!$scope.user_id) {
-        //     if ($scope.recruiter.password == '' || $scope.recruiter.password == undefined) {
-        //         $scope.error_message = 'Please enter the password';
-        //         return false;
-        //     }
-        // }
         return true;
     }
 
@@ -1274,9 +1267,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
                   document.location.href = '/profile/'+$scope.user_id+'/';
                 } else {
                   document.location.href = '/';
-                }
-                
-              
+                } 
             }).error(function(data, status){
                 $scope.error_flag = true;
                 $scope.error_message = data.message;
@@ -1328,7 +1319,10 @@ function  JobPostingController($scope,$element,$http,$timeout){
 		get_education_required($scope);
     get_currencies($scope);
     $scope.job_id = id;
-
+    for(var i=0; i<=50; i++){
+        $scope.Min.push(i);
+        $scope.Max.push(i);
+    } 
     $http.get('/companies/').success(function(data)
     {
         $scope.companies = data.companies; 
@@ -1341,6 +1335,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $http.get('/job/details/'+$scope.job_id+'/').success(function(data)
             {
                 $scope.jobpost = data.jobpost[0]; 
+                console.log(data.jobpost[0]);
+                console.log($scope.jobpost);
                 $('#last_date').val($scope.jobpost.last_date);
                 $('#post_date').val($scope.jobpost.post_date);
             }).error(function(data, status)
@@ -1348,13 +1344,8 @@ function  JobPostingController($scope,$element,$http,$timeout){
                 console.log(data || "Request failed");
             });
     }
-
-		for(var i=0; i<=50; i++){
-      	 	$scope.Min.push(i);
-      	 	$scope.Max.push(i);
-    	}	
-
-    }
+		
+  }
 
   $scope.form_validation_postjob = function(){
     var letters = /^[A-Za-z]+$/;  
@@ -1387,14 +1378,19 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide the Required Skills';
       return false;
-    } else if ($scope.jobpost.min == '' || $scope.jobpost.min == undefined || $scope.jobpost.min == '-min-') {
-      $scope.error_flag = true;
-      $scope.error_message = 'Please provide the minimum Experience Required';
-      return false;
-    } else if ($scope.jobpost.max == '' || $scope.jobpost.max == undefined || $scope.jobpost.max == '-max-') {
-      $scope.error_flag = true;
-      $scope.error_message = 'Please provide the maximum Experience Required';
-      return false;
+    } else if ($scope.jobpost.min != 0 ) {
+      if($scope.jobpost.min == '' || $scope.jobpost.min == undefined || $scope.jobpost.min == '-min-'){
+        console.log('$scope.jobpost.min', $scope.jobpost.min, $scope.jobpost.min == '' , $scope.jobpost.min == undefined, $scope.jobpost.min == '-min-');
+        $scope.error_flag = true;
+        $scope.error_message = 'Please provide the minimum Experience Required';
+        return false;
+      }
+    } else if ($scope.jobpost.max != 0 ) {
+      if($scope.jobpost.max == '' || $scope.jobpost.max == undefined || $scope.jobpost.max == '-min-'){
+        $scope.error_flag = true;
+        $scope.error_message = 'Please provide the maximum Experience Required';
+        return false;
+      }
     } else if ($scope.jobpost.location == '' || $scope.jobpost.location == undefined || $scope.jobpost.location == '-select-') {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide the Job location';
@@ -1468,8 +1464,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
                   var url = "/recruiter/post-jobs/";               
               }
               
-            }            
-
+            } 
             $http.post(url, fd, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined

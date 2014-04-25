@@ -92,16 +92,14 @@ a {
 
 .footer_block {
     float: left;
-    height: auto;
-    /*min-height: 100px;*/
+    min-height: 100px;
     padding: 5px;
     width: 21%;
 }
 
 .footer_block_function {
     float: left;
-    height: auto;
-    /*min-height: 100px;*/
+    min-height: 100px;
     padding: 5px;
     width: 32%;
 }
