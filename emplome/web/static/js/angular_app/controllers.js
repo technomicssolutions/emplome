@@ -861,6 +861,7 @@ function HomeController($scope, $element, $http, $timeout, share, $location)
 function JobSeekerController($scope, $element, $http, $timeout) {
 
     $scope.year = [];
+    $scope.months =[];
     $scope.experience =[];
 
     $scope.is_valid = false;
@@ -886,7 +887,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'first_name': '',
         'gender': '',
         'dob':'',
-        'religion': '',
         'marital_status': '',
         'nationality': '',
         'country': '',
