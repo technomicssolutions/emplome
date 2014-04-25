@@ -419,9 +419,9 @@ class PostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
-        jobPosting.salary =jobpost['salary']
-        jobPosting.currency =jobpost['currency']    
-        jobPosting.skills =jobpost['skills']
+        jobPosting.salary = jobpost['salary']
+        jobPosting.currency = jobpost['currency']    
+        jobPosting.skills = jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
         jobPosting.education_req = jobpost['requirement']
@@ -485,9 +485,9 @@ class EditPostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
-        jobPosting.salary =jobpost['salary']
-        jobPosting.currency =jobpost['currency'] 
-        jobPosting.skills =jobpost['skills']
+        jobPosting.salary = jobpost['salary']
+        jobPosting.currency = jobpost['currency'] 
+        jobPosting.skills = jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
         jobPosting.function = jobpost['function']
@@ -531,7 +531,8 @@ class JobDetailsView(View):
                 'company': job.company.company_name if job.company else '',
                 'summary': job.summary if job.summary else '',            
                 'details': job.document.name if job.document else '', 
-                'salary' : job.salary if job.salary else '',            
+                'salary' : job.salary if job.salary else '',                
+                'currency': job.currency if job.currency else '',
                 'skills': job.skills if job.skills else '',
                 'min':job.exp_req_min if job.exp_req_min else '',
                 'max':job.exp_req_max if job.exp_req_max else '',
@@ -717,7 +718,7 @@ class ForgotPassword(View):
                     msg.attach_alternative(html_content, "text/html")
                     msg.send()
                     context = {
-                        'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
+                        'message': 'An email has been sent to your registered email account. Please click on the link provided in the mail to reset your password.',
                     }
                     return render(request, 'forgot_password.html', context)
                     
@@ -986,8 +987,3 @@ class AppliedUsers(View):
             'profiles': profiles,
         }
         return render(request, 'applied_users.html', context)
-
-
-
-
-

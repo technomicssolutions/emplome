@@ -1298,6 +1298,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
         'company': '',
         'summary': '',
         'details': '',
+        'salary': '',
         'currency': '',
         'skills': '',
         'location': '-select-',
@@ -1377,6 +1378,10 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }  else if ($scope.jobpost.summary == '' || $scope.jobpost.summary == undefined) {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Job summary';
+      return false;
+    }  else if ($scope.jobpost.salary != '' && ($scope.jobpost.currency == '' || $scope.jobpost.currency == undefined)) {
+      $scope.error_flag = true;
+      $scope.error_message = 'Please provide the Currency';
       return false;
     } else if ($scope.jobpost.skills == '' || $scope.jobpost.skills == undefined) {
       $scope.error_flag = true;

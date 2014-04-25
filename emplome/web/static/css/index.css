@@ -92,14 +92,16 @@ a {
 
 .footer_block {
     float: left;
-    min-height: 100px;
+    height: auto;
+    /*min-height: 100px;*/
     padding: 5px;
     width: 21%;
 }
 
 .footer_block_function {
     float: left;
-    min-height: 100px;
+    height: auto;
+    /*min-height: 100px;*/
     padding: 5px;
     width: 32%;
 }
@@ -1013,4 +1015,8 @@ label textarea{
 
 .login_details .control {
     height: 35px;
+}
+
+.clear {
+    clear: both;
 }
