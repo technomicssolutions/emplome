@@ -693,6 +693,7 @@ YEARS = (
 )
 
 MONTHS =(
+    (0, '0'),
     (1, '1'),
     (2, '2'),
     (3, '3'),
@@ -790,7 +791,6 @@ EDUCATION_REQUIRED = (
     ('Master of Computer Application', 'Master of Computer Application'),
     ('MBA/PG Diploma in Business Mgmt ', 'MBA/PG Diploma in Business Mgmt '),
     ('Other', 'Other'),
-
 )
 
 CURRENCIES = (
@@ -888,7 +888,6 @@ class Education(models.Model):
     doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/resumes/", null=True, blank=True)
-    resume_text = models.TextField('Resume Text', null=True, blank=True)
     certificate = models.FileField(upload_to = "uploads/certificates/", null=True, blank=True)
 
     def __unicode__(self):
