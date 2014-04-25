@@ -138,9 +138,7 @@
 			</div>
 			<div class="formrow">
 				<label>Doctrate</label>
-				<input type="text" name="doctrate" ng-model="seeker.doctrate">
-				
-				
+				<input type="text" name="doctrate" ng-model="seeker.doctrate">				
 			</div>
 			<br>
 		</div>
@@ -154,15 +152,15 @@
 				<input type="text" name="resume_title" ng-model="seeker.resume_title">
 			</div>
 			<div class="formrow">
-				<label>Attach CV</label>
+				<label>Attach CV<span class="red">*</span></label>
 				<input type="file" fileread="resume_doc.src"/>
 				<input type="hidden" ng-model="resume_doc.src">
 				<a href="/site_media/[[seeker.resume]]" ng-show="seeker.resume" target="_blank">Resume</a>
 			</div>
-			<div class="formrow">
+			<!-- <div class="formrow">
 				<label>Copy and Paste Resume Here</label>
 				<textarea rows="4" cols="20" name="resume_text" ng-model="seeker.resume_text" ></textarea>
-			</div>
+			</div> -->
 			<br>
 		</div>
 		<div class="separation">

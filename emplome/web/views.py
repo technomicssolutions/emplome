@@ -530,7 +530,8 @@ class JobDetailsView(View):
                 'code': job.ref_code if job.ref_code else '',
                 'company': job.company.company_name if job.company else '',
                 'summary': job.summary if job.summary else '',            
-                'details': job.document.name if job.document else '',             
+                'details': job.document.name if job.document else '', 
+                'salary' : job.salary if job.salary else '',            
                 'skills': job.skills if job.skills else '',
                 'min':job.exp_req_min if job.exp_req_min else '',
                 'max':job.exp_req_max if job.exp_req_max else '',
@@ -638,7 +639,7 @@ class GetProfileDetails(View):
                     'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
                     'doctrate': jobseeker.education.doctrate if jobseeker.education else '' ,
                     'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
-                    'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
+                    # 'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
                     'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
                 })
 
@@ -792,7 +793,7 @@ class RecruiterProfileEdit(View):
             
             res = {
                 'result':'ok',
-                'message': 'successfully edited',
+                'message': 'Successfully Edited',
                 'user_id': user.id,
             }
             
@@ -800,7 +801,7 @@ class RecruiterProfileEdit(View):
         except Exception as ex:
             res = {
                 'result':'error',
-                'message': 'successfully edited',
+                'message': 'Successfully Edited',
                 'error_message': str(ex),
             }
             
@@ -891,8 +892,7 @@ class SearchCV(View):
             jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword)
         context = {
             'cvs': jobseeker_profiles,
-        }
-              
+        }              
         return render(request, 'search_cvs_result.html', context) 
 
 
@@ -908,8 +908,7 @@ class Companies(View):
                     'name': company.company_name,
                 })
         res = {
-            'companies': ctx_companies,
-            
+            'companies': ctx_companies,            
         } 
         response = simplejson.dumps(res)
         status_code = 200

@@ -1011,9 +1011,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please give a Title for your Resume';
             return false;
-        } else if (($scope.seeker.resume_text == '' || $scope.seeker.resume_text == undefined) && ($scope.seeker.resume == undefined || $scope.seeker.resume == '')){
+        } else if ($scope.seeker.resume == undefined || $scope.seeker.resume == ''){
             $scope.error_flag = true;
-            $scope.error_message = 'Please Attach or Copy & Paste your Resume';
+            $scope.error_message = 'Please Attach your Resume';
             return false;
         }
         return true;
@@ -1050,9 +1050,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             if ($scope.seeker.doctrate == null) {
                 $scope.seeker.doctrate = '';
             }
-            if ($scope.seeker.resume_text == null) {
-                $scope.seeker.resume_text = '';
-            }
+            // if ($scope.seeker.resume_text == null) {
+            //     $scope.seeker.resume_text = '';
+            // }
             if ($scope.seeker.alt_email == null) {
                 $scope.seeker.alt_email = '';
             }
