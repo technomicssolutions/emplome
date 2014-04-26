@@ -44,11 +44,12 @@
         {% for cv in cvs %}
             <div class="search_result_warning">
                
-                <h2><a href="{% url 'profile' user_id=cv.profile.user.id%}"> {{cv.profile.user.first_name}} {{cv.profile.user.last_name}} </a></h2>
+                <h2><a href="{% url 'view_cv' user_id=cv.profile.user.id%}"> {{cv.profile.user.first_name}} {{cv.profile.user.last_name}} </a></h2>
                 <p> Age: {{cv.age}} </p>
                 <p> Resume : <a href="/site_media/{{cv.education.resume.name}}" target="_blank">{{ cv.education.resume_title }}</a> </p>
                 <p> Skills: {{cv.employment.skills}} </p>
                 <p> Experience: {{cv.employment.exp_yrs}} Years - {{cv.employment.exp_mnths}} Months</p>
+
                 <br>
             </div>
         

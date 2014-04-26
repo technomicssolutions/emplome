@@ -407,7 +407,6 @@ class PostJobsView(View):
 
         jobPosting = Job.objects.create(recruiter = current_user)
         post_data = request.POST
-        print post_data
         jobpost = ast.literal_eval(post_data['jobpost'])
         
         profile = current_user.userprofile_set.all()[0]
@@ -419,7 +418,8 @@ class PostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
-        jobPosting.salary = jobpost['salary']
+        if jobpost['salary']:
+            jobPosting.salary = jobpost['salary']
         jobPosting.currency = jobpost['currency']    
         jobPosting.skills = jobpost['skills']
         jobPosting.industry = jobpost['industry']
@@ -640,7 +640,7 @@ class GetProfileDetails(View):
                     'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
                     'doctrate': jobseeker.education.doctrate if jobseeker.education else '' ,
                     'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
-                    # 'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
+                    'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
                     'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
                 })
 
@@ -987,3 +987,14 @@ class AppliedUsers(View):
             'profiles': profiles,
         }
         return render(request, 'applied_users.html', context)
+
+class ViewCV(View):
+
+    def get(self, request, *args, **kwargs):
+
+        user = User.objects.get(id = kwargs['user_id'])
+        profile = UserProfile.objects.get(user = user)
+        context = {
+            'profile': profile,
+        }
+        return render(request, 'view_cv.html', context)

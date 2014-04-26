@@ -42,8 +42,5 @@ urlpatterns = patterns('',
 	url(r'^apply/(?P<job_id>\d+)/$', login_required(ApplyJobs.as_view()), name='apply_jobs'),
 	url(r'^featured_job/(?P<job_id>\d+)/$', FeaturedJobView.as_view(), name='featured_job'),
 	url(r'^applied_users/(?P<job_id>\d+)/$', AppliedUsers.as_view(), name='applied_users'),
-
-
-	
-
+	url(r'^view_cv/(?P<user_id>\d+)/$', ViewCV.as_view(), name='view_cv'),
 )

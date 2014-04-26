@@ -1018,3 +1018,17 @@ label textarea{
 .clear {
     clear: both;
 }
+
+#personal_details {
+    line-height: 25px !important;
+}
+
+#personal_details textarea {
+    height: 110px;
+    width: 75%;
+}
+
+#user-image {
+    height: 80px;
+    margin-top: 15px;
+}
