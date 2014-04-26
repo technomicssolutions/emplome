@@ -936,8 +936,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             {
                 $scope.seeker = data.seeker[0]; 
                 $('#dob').val($scope.seeker.dob);
+                if ($scope.seeker.pass_year_masters == null) {
+                  $scope.seeker.pass_year_masters = '';
+                }
                 $scope.seeker1 = data.seeker1[0];
                 $scope.seeker.id = $scope.user_id;
+                console.log($scope.seeker1.years);
             }).error(function(data, status)
             {
                 console.log(data || "Request failed");
@@ -1336,8 +1340,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $http.get('/job/details/'+$scope.job_id+'/').success(function(data)
             {
                 $scope.jobpost = data.jobpost[0]; 
-                console.log(data.jobpost[0]);
-                console.log($scope.jobpost);
                 $('#last_date').val($scope.jobpost.last_date);
                 $('#post_date').val($scope.jobpost.post_date);
             }).error(function(data, status)
@@ -1450,9 +1452,9 @@ function  JobPostingController($scope,$element,$http,$timeout){
             var file = $scope.product_pdf.src;
             var edit =$scope.edit;
             params = {
-                    'jobpost':angular.toJson($scope.jobpost),
-                    "csrfmiddlewaretoken" : $scope.csrf_token,
-                }
+                'jobpost':angular.toJson($scope.jobpost),
+                "csrfmiddlewaretoken" : $scope.csrf_token,
+            }
             var fd = new FormData();
             fd.append('product_pdf', $scope.product_pdf.src);
             for(var key in params){

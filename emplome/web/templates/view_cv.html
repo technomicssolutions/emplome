@@ -70,9 +70,13 @@
 				{% endif %}
 				<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea>
 			</p>
+			<p id="personal_details">
+				{% if user.id == profile.user.id %}
+					<a href="{% url 'edit_profile' user_id=user.id%}"><input type="submit" name="edit" value="Update"></a>
+				{% endif %}
+			</p>
 		</div>
-		<div class="edit-button">
-	 	</div>
+
 	</div>
 	
 </div>

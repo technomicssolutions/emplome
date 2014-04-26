@@ -49,6 +49,9 @@
                         <li>
                             <a class="tabUnsel" id="active-applied" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
                         </li>
+                        <li>
+                            <a class="tabUnsel" id="active-applied" title="CV Preview" href="{% url 'view_cv' user_id=user.id %}">CV Preview</a>
+                        </li>
                         
                     {% endif %}
 
