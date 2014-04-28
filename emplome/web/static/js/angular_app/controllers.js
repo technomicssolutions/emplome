@@ -1034,14 +1034,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.form_validation_more_info = function(){     
         if ($scope.seeker1.years != 0 ) {
           if($scope.seeker1.years == '' || $scope.seeker1.years == undefined || $scope.seeker1.years == '-min-'){
-            console.log('$scope.seeker1.years', $scope.seeker1.years, $scope.seeker1.years == '' , $scope.seeker1.years == undefined, $scope.seeker1.years == '-min-');
+            // console.log('$scope.seeker1.years', $scope.seeker1.years, $scope.seeker1.years == '' , $scope.seeker1.years == undefined, $scope.seeker1.years == '-min-');
             $scope.error_flag = true;
             $scope.error_message = 'Please provide the your Work Experience';
             return false;
           }
         }
         else if (($scope.seeker1.salary != null || $scope.seeker1.salary != '' || $scope.seeker1.salary != undefined) && $scope.seeker1.salary != Number($scope.seeker1.salary)){
-              console.log($scope.seeker1.years);
+              // console.log($scope.seeker1.years);
               $scope.error_flag = true;
               $scope.error_message = 'Please enter a Valid Amount for Salary';
               return false;
@@ -1239,7 +1239,7 @@ function RecruiterController($scope, $element, $http, $timeout) {
             return false;
         } else if (!(validateEmail($scope.recruiter.email))){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide a valid Email Id';
+            $scope.error_message = 'Please provide a Valid Email Id';
             return false;
         } else if ($scope.recruiter.industry == '' || $scope.recruiter.industry == undefined) {
             $scope.error_flag = true;

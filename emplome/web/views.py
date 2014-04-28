@@ -320,8 +320,9 @@ class JobSeekerRegistration(View):
         resume = request.FILES.get('resume_doc', '')
         if resume:
             education.resume = resume
+            education.resume_text = ""
        
-        if seeker['resume_text'] != "":
+        elif seeker['resume_text'] != "":
             education.resume_text = seeker['resume_text']
         education.save()
         job_seeker.education = education

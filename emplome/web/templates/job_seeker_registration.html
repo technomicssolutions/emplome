@@ -114,11 +114,17 @@
 				</select>
 			</div>
 			<div class="formrow">
+				<label>Specialization<span class="red">*</span></label>
+				<select name="basic_specialization" ng-model="seeker.specialization">
+					<option value="">-----------Select---------</option>
+					<option ng-repeat="specialization in basic_specialization" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
+				</select>
+			</div>
+			<div class="formrow">
 				<label>Year of Passing<span class="red">*</span></label>
 				<select name="pass_year_basic" style="width: 14%" ng-model="seeker.pass_year_basic">
 					<option value="">--------Select-------</option>
 					<option ng-repeat="yr in year" value="[[yr]]" ng-selected="yr == seeker.pass_year_basic ">[[yr]]</option>
-
 				</select>
 			</div>
 
@@ -127,6 +133,13 @@
 				<select name="masters_edu" ng-model="seeker.masters_edu">
 					<option value="">---------Select---------</option>
 					<option ng-repeat="edu in masters_education" value="[[edu]]" ng-selected="edu == seeker.masters_edu">[[edu]]</option>
+				</select>
+			</div>
+			<div class="formrow">
+				<label>Specialization<span class="red">*</span></label>
+				<select name="basic_specialization" ng-model="seeker.specialization">
+					<option value="">-----------Select---------</option>
+					<option ng-repeat="specialization in basic_specialization" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
 				</select>
 			</div>
 			<div class="formrow">
