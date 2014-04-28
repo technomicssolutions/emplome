@@ -57,7 +57,7 @@
 			<div class="formrow">
 				<label>Salary</label>
 				<input style="width: 18%" type ="text" name="salary" ng-model="jobpost.salary">
-					<select style="width: 16%" name="currency" ng-model="jobpost.currency">
+				<select style="width: 16%" name="currency" ng-model="jobpost.currency">
 					<option value="">-Select Currency-</option>
 					<option ng-repeat="currency in currencies" value="[[currency]]" ng-selected="currency == jobpost.currency">[[currency]]</option>
 				</select>

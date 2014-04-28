@@ -864,6 +864,7 @@ class Employment(models.Model):
     exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
     exp_mnths = models.IntegerField('Experience in Months',null=True, blank=True, choices=MONTHS)
     salary = models.IntegerField('Salary', null=True, blank=True)
+    currency = models.CharField('Currency', max_length=30, null=True, blank=True, choices=CURRENCIES)
     designation = models.CharField('Designation', null=True, blank=True, max_length=50)
     skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
     curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)

@@ -365,6 +365,7 @@ class JobSeekerRegistrationMoreInfo(View):
             employment.exp_mnths = int(seeker1['months'])
         if seeker1['salary'] != "":
             employment.salary = int(seeker1['salary'])
+        employment.currency = seeker1['currency']
         if seeker1['designation'] != "":
             employment.designation = seeker1['designation']
         if seeker1['industry'] != "":
@@ -485,7 +486,8 @@ class EditPostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
-        jobPosting.salary = jobpost['salary']
+        if jobpost['salary']:
+            jobPosting.salary = jobpost['salary']
         jobPosting.currency = jobpost['currency'] 
         jobPosting.skills = jobpost['skills']
         jobPosting.industry = jobpost['industry']
@@ -645,9 +647,10 @@ class GetProfileDetails(View):
                 })
 
                 ctx_seeker1.append({
-                    'years': jobseeker.employment.exp_yrs if jobseeker.employment else '' ,
-                    'months': jobseeker.employment.exp_mnths if jobseeker.employment else '' ,
+                    'years': jobseeker.employment.exp_yrs if jobseeker.employment else 0 ,
+                    'months': jobseeker.employment.exp_mnths if jobseeker.employment else 0 ,
                     'salary': jobseeker.employment.salary if jobseeker.employment else '' ,
+                    'currency' : jobseeker.employment.currency if jobseeker.employment else '' ,
                     'designation': jobseeker.employment.designation if jobseeker.employment else '' ,
                     'skills': jobseeker.employment.skills if jobseeker.employment else '' ,
                     'industry': jobseeker.employment.curr_industry if jobseeker.employment else '' ,
