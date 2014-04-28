@@ -31,11 +31,10 @@
 			</div>	
 			<div class="formrow">
 				<label>Company Name<span class="red">*</span></label>
-				<select style="width: 14%" name="company" ng-model="jobpost.company" ng-change="get_company_name()" ng-hide="is_new_company">
+				<select style="width: 14%" name="company" ng-model="jobpost.company" >
 
 					<option value="">-Select-</option>
 					<option ng-repeat="company in companies" value="[[company.name]]" ng-selected="company.name == jobpost.company">[[company.name]]</option>
-					<option value="other">Other</option>
 				</select>
 				<input type ="text" name="title" ng-model="new_company" value="" ng-show="is_new_company">
 			</div>		

@@ -1094,6 +1094,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             }).error(function(data, status){
                 $scope.error_flag = true;
                 $scope.error_message = data.message;
+                
             });
         }
      
@@ -1334,9 +1335,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
     // console.log($('last_date').val(),$('post_date').val())
     $scope.jobpost.last_date = $('#last_date').val();
     $scope.jobpost.post_date = $('#post_date').val();
-    if ($scope.jobpost.company == 'other'){
-        $scope.jobpost.company = $scope.new_company 
-    }    
+        
     if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide a Job Title';
@@ -1345,7 +1344,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Reference Code';
       return false;
-    } else if ($scope.jobpost.company == 'other' || $scope.jobpost.company == '' || $scope.jobpost.company == undefined) {
+    } else if ($scope.jobpost.company == '' || $scope.jobpost.company == undefined) {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Company Name';
       return false; 
@@ -1466,12 +1465,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
         document.location.href = url;
     }
 
-    $scope.get_company_name = function(){
-        if($scope.jobpost.company == 'other'){
-          $scope.is_new_company = true;
-        }
-        
-    }
 }
 
 function  SearchController($scope,$element,$http,$timeout){
