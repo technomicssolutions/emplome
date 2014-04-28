@@ -66,9 +66,10 @@
 			<p id="personal_details">
 				{%if profile.jobseekerprofile_set.all.0.education.resume%}
 					Uploaded Resume
-					<a href="site_media/{{profile.jobseekerprofile_set.all.0.education.resume}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
-				{% endif %}
+					<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.resume.name}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
+				{% else %}
 				<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea>
+				{% endif %}
 			</p>
 			<p id="personal_details">
 				{% if user.id == profile.user.id %}

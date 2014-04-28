@@ -7,7 +7,7 @@
     <div class="menu_div">
         <ul>
             {% if user.is_authenticated %}
-                <li class="menu"> <a href="{% url 'profile' user_id=user.id %}"> {{ user.username }}
+                <li class="menu"> <a href="{% url 'view_cv' user_id=user.id %}"> {{ user.username }}
                     <em class="downArr"> </em>
                 </a> </a>
                     <ul>
@@ -43,14 +43,14 @@
            {% if user.is_authenticated %}
                 {% if user.userprofile_set.all %}
                     {% if user.userprofile_set.all.0.user_type == 'job_seeker' %}
-                        <li>
+                       <!--  <li>
                             <a class="tabUnsel" id="active-profile" title="Profile" href="{% url 'profile' user_id=user.id %}">Profile</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a class="tabUnsel" id="active-applied" title="Applied Jobs" href="{% url 'applied_jobs' user_id=user.id %}">Applied Jobs</a>
                         </li>
                         <li>
-                            <a class="tabUnsel" id="active-applied" title="CV Preview" href="{% url 'view_cv' user_id=user.id %}">CV Preview</a>
+                            <a class="tabUnsel" id="active-applied" title="CV Preview" href="{% url 'view_cv' user_id=user.id %}">Profile</a>
                         </li>
                         
                     {% endif %}

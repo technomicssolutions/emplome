@@ -57,18 +57,22 @@
 					
 					<h2>{{profile.recruiterprofile_set.all.0.company.company_name}}</h2>
 					<div class="label-box-left">
-						<label>Email id </label><br>
-						<label>Mobile</label><br>
+						
 						<label>Industry Type </label><br>
 				 		<label>Location </label><br>
 				 		<label>City</label><br>
+				 		<label>Email id </label><br>
+						<label>Mobile</label><br>
+						<label>Land Number</label><br>
 				 	</div>
 
 				 	<div class="label-box-right">
-				 		: {{profile.user.email}}<br>
-				 		: {{profile.mobile }}<br>
+				 		
 				 		: {{profile.recruiterprofile_set.all.0.company.industry_type}}<br>: {{profile.country}}<br>
 				 		: {{profile.city}}<br>
+				 		: {{profile.user.email}}<br>
+				 		: {{profile.mobile }}<br>
+				 		: {{profile.land_num }}<br>
 				 	</div>
 				 		
 			 		{% if user == profile.user %}

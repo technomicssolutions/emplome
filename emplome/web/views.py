@@ -140,7 +140,7 @@ class LoginView(View):
                     
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
             else:
-                return HttpResponseRedirect(reverse('profile',args=[user.id]))
+                return HttpResponseRedirect(reverse('view_cv',args=[user.id]))
         else:
             context = {
                 'message' : 'Username or Password cannot be null',

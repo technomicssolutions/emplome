@@ -1168,7 +1168,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
 
     $scope.view_profile = function() {
-        var url = '/profile/'+$scope.user_id+'/';
+        var url = '/view_cv/'+$scope.user_id+'/';
         document.location.href = url;
     }
 }
