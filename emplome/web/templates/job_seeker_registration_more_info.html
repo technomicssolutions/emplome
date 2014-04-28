@@ -20,11 +20,11 @@
 		<div class="formrow">
 			<label>Total Experience</label>
 			<select name="years" style="width: 14%" ng-model="seeker1.years">
-				<option value="">Years</option>
+				<!-- <option value="">Years</option> -->
 				<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == seeker1.years">[[expr]]</option>
 			</select> Year(s)
 			<select name="months" style="width: 14%" ng-model="seeker1.months">
-				<option value="">Months</option>
+				<!-- <option value="">Months</option> -->
 				<option value="0">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -41,7 +41,11 @@
 		</div>
 		<div class="formrow">
 			<label>Monthly Salary</label>
-			<input type="text" name="salary" ng-model="seeker1.salary">
+			<input style="width: 18%" type="text" name="salary" ng-model="seeker1.salary">
+			<select style="width: 16%" name="currency" ng-model="seeker1.currency">
+				<!-- <option value="">-Select Currency-</option> -->
+				<option ng-repeat="currency in currencies" value="[[currency]]" ng-selected="currency == seeker1.currency">[[currency]]</option>
+			</select>Currency
 		</div>
 		<div class="formrow">
 			<label>Current Designation</label>

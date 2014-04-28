@@ -863,6 +863,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.year = [];
     $scope.months =[];
     $scope.experience =[];
+    $scope.salary = '';
+    $scope.currency = '';
 
     $scope.is_valid = false;
     $scope.error_flag = false;
@@ -907,6 +909,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'years': '',
         'months': '',
         'salary': '',
+        'currency': '',
         'designation': '',
         'industry': '',
         'functions': '',
@@ -919,6 +922,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         $scope.csrf_token = csrf_token;
         $scope.user_id = user_id;
         $scope.profile_edit = profile_edit;
+        get_currencies($scope);
         get_countries($scope);
         get_nationalities($scope);
         get_industries($scope);
@@ -938,6 +942,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 $('#dob').val($scope.seeker.dob);
                 if ($scope.seeker.pass_year_masters == null) {
                   $scope.seeker.pass_year_masters = '';
+                }
+                if($scope.seeker1.salary == null) {
+                  $scope.seeker1.salary = '';
                 }
                 $scope.seeker1 = data.seeker1[0];
                 $scope.seeker.id = $scope.user_id;
@@ -1025,11 +1032,22 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
   
     $scope.form_validation_more_info = function(){     
-
-        if (($scope.seeker1.salary != '' || $scope.seeker1.salary != undefined) && $scope.seeker1.salary != Number($scope.seeker1.salary)){
-         
+        if ($scope.seeker1.years != 0 ) {
+          if($scope.seeker1.years == '' || $scope.seeker1.years == undefined || $scope.seeker1.years == '-min-'){
+            console.log('$scope.seeker1.years', $scope.seeker1.years, $scope.seeker1.years == '' , $scope.seeker1.years == undefined, $scope.seeker1.years == '-min-');
+            $scope.error_flag = true;
+            $scope.error_message = 'Please provide the your Work Experience';
+            return false;
+          }
+        }
+        else if (($scope.seeker1.salary != null || $scope.seeker1.salary != '' || $scope.seeker1.salary != undefined) && $scope.seeker1.salary != Number($scope.seeker1.salary)){
+              console.log($scope.seeker1.years);
               $scope.error_flag = true;
               $scope.error_message = 'Please enter a Valid Amount for Salary';
+              return false;
+        } else if ($scope.seeker1.salary != '' && ($scope.seeker1.currency == '' || $scope.seeker1.currency == undefined)) {
+              $scope.error_flag = true;
+              $scope.error_message = 'Please provide the Currency';
               return false;
         }   
         if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
@@ -1051,6 +1069,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         if ($scope.is_valid) {
             $scope.error_flag = false;
             $scope.error_message = '';
+
             if ($scope.seeker.doctrate == null) {
                 $scope.seeker.doctrate = '';
             }
@@ -1112,16 +1131,19 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.is_valid = $scope.form_validation_more_info();
         if ($scope.is_valid) {
             if ($scope.seeker1.years == null) {
-                $scope.seeker1.years = '';
+                $scope.seeker1.years = '0';
             }
             if ($scope.seeker1.months == null) {
-                $scope.seeker1.months = '';
+                $scope.seeker1.months = '0';
             }
             if($scope.seeker1.designation == null){
                 $scope.seeker1.designation = '';
             }
             if($scope.seeker1.salary == null){
                 $scope.seeker1.salary = '';
+            }
+            if($scope.seeker1.currency == null){
+                $scope.seeker1.currency = '';
             }
             if($scope.seeker1.functions == null){
                 $scope.seeker1.functions = '';
