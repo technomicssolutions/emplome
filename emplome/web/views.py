@@ -401,7 +401,7 @@ class PostJobsView(View):
         if request.user.is_superuser:
             return render(request, 'job_post.html', {}) 
         
-        elif userprofile.user_type == 'employer':
+        elif request.user.userprofile_set.all()[0].user_type == 'employer':
             userprofile = UserProfile.objects.get(user=request.user)
             recruiter, created = RecruiterProfile.objects.get_or_create(profile=userprofile)
             context = {
