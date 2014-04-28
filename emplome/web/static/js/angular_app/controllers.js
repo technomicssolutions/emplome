@@ -1081,6 +1081,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             }
             if ($scope.seeker.pass_year_masters == null) {
                 $scope.seeker.pass_year_masters = '';
+            } 
+            if ($scope.seeker.masters_edu == null) {
+                $scope.seeker.masters_edu = '';
             }           
 
             var file = $scope.resume_doc.src;
