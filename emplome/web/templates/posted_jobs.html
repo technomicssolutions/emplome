@@ -13,7 +13,8 @@
 			{% for job in jobs %}
 
 				<div class="posted_job_container">
-					<div class="sub_container"> <b><label id="job_title">{{job.job_title}}</label></b> - {{job.job_location}} </div>
+					<div class="sub_container"> 
+						<b> <label id="job_title"><a href="{% url 'applied_users' job_id=job.id%}">{{job.job_title}}</a></label></b> - {{job.job_location}} </div>
 					<label>From : {{job.company.company_name}}</label>
 					<div class="sub_container">
 						<div class="job_details">
@@ -29,9 +30,7 @@
 							<span>: {{job.specialization}}</span>
 						</div>
 					</div>
-				</div>
-
-				
+				</div>				
 				<br>
 				<a href="{% url 'post_jobs_edit' job_id=job.id %}"><input type="submit" name="edit" value="Edit"></a>
 				<a href="{% url 'delete_job' job_id=job.id %}"><input type="submit" name="edit" value="Delete"></a>
@@ -41,7 +40,7 @@
 				{{message}}
 			{% endfor %}
 		{% else %}
-			<p id="info_message"> You have no posted jobs. Please click on <a href="{% url 'postjobs' %}">Post job</a> to post a job</p>
+			<p id="info_message"> You have no posted jobs. Please click <a href="{% url 'postjobs' %}"> Here </a> to post a job</p>
 		{% endif %}
 
 	</div>

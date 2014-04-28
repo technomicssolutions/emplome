@@ -41,7 +41,7 @@
 			</div>
 		{% endif %}
 		<div class="formrow">
-			<label> Mobile</label>
+			<label> Mobile<span class="red">*</span></label>
 			<input type="text" name="mobile" ng-model="recruiter.mobile">
 		</div>
 		<div class="formrow">
@@ -69,7 +69,7 @@
 			<div class="buttons">
 
 				{% if user.is_authenticated %}
-					<input type="submit" value="Edit & Save" ng-click="save_profile()">	
+					<input type="submit" value="Save & Edit" ng-click="save_profile()">	
 				{% else %}
 					<input type="submit" value="Register" ng-click="save_profile()">
 				{% endif %}

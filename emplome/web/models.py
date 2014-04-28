@@ -515,7 +515,7 @@ NATIONALITY = (
 INDUSTRY = (
     ('Automotive/ Ancillaries', 'Automotive/ Ancillaries'),
     ('Banking/ Financial Services', 'Banking/ Financial Services'),
-    ('Bio Technology & Life Sciences', 'Bio Technology & Life Sciences'),
+    ('Bio Technology and Life Sciences', 'Bio Technology and Life Sciences'),
     ('Chemicals/Petrochemicals', 'Bio Technology & Life Sciences'),
     ('Construction', 'Construction'),
     ('FMCG', 'FMCG'),
@@ -540,7 +540,7 @@ INDUSTRY = (
     ('Beauty/Fitness/PersonalCare/SPA', 'Beauty/Fitness/PersonalCare/SPA'),
     ('Beverages/ Liquor', 'Beverages/ Liquor'),
     ('Cement', 'Cement'),
-    ('Ceramics & Sanitary Ware', 'Ceramics & Sanitary Ware'),
+    ('Ceramics and Sanitary Ware', 'Ceramics and Sanitary Ware'),
     ('Consultancy', 'Consultancy'),
     ('Courier/ Freight/ Transportation', 'Courier/ Freight/ Transportation'),
     ('Dotcom', 'Dotcom'),
@@ -549,9 +549,9 @@ INDUSTRY = (
     ('Environmental Service', 'Environmental Service'),
     ('Facility management', 'Facility management'),
     ('Fertilizer/ Pesticides', 'Fertilizer/ Pesticides'),
-    ('Food & Packaged Food', 'Food & Packaged Food'),
+    ('Food and Packaged Food', 'Food and Packaged Food'),
     ('Textiles / Yarn / Fabrics / Garments', 'Textiles / Yarn / Fabrics / Garments'),
-    ('Gems & Jewellery', 'Gems & Jewellery'),
+    ('Gems/ Jewellery', 'Gems/ Jewellery'),
     ('Government/ PSU/ Defence', 'Government/ PSU/ Defence'),
     ('Consumer Electronics/Appliances', 'Consumer Electronics/Appliances'),
     ('Hospitals/ Health Care', 'Hospitals/ Health Care'),
@@ -583,7 +583,7 @@ INDUSTRY = (
 FUNCTIONS = (
         ('Construction', 'Construction'),
         ('Banking/Financial Services/Broking', 'Banking/Financial Services/Broking'),
-        ('Oil & Gas/Petroleum', 'Oil & Gas/Petroleum'),
+        ('Oil/ Gas/ Petroleum', 'Oil/ Gas/ Petroleum'),
         ('IT - Software Services', 'IT - Software Services'),
         ('Medical/Healthcare/Diagnistics/Medical Devices', 'Medical/Healthcare/Diagnistics/Medical Devices'),
         ('Hotels/Hospitality/Tourism/Recreative', 'Hotels/Hospitality/Tourism/Recreative'),
@@ -603,11 +603,11 @@ FUNCTIONS = (
         ('Fertilizers/Pesticides', 'Fertilizers/Pesticides'),
         ('FMGG/Foods/Beverage', 'FMGG/Foods/Beverage'),
         ('Fresher - No industry Experience/Not Employed/Intern', 'Fresher - No industry Experience/Not Employed/Intern'),
-        ('Gems & Jwellery', 'Gems & Jwellery'),
+        ('Gems/ Jwellery', 'Gems/ Jwellery'),
         ('Industrial Products/Heavy Machinery', 'Industrial Products/Heavy Machinery'),
         ('Insurance', 'Insurance'),
         ('Internet/E-Commerece/Dotcom', 'Internet/E-Commerece/Dotcom'),
-        ('IT - Hardware & Networking', 'IT - Hardware & Networking'),
+        ('IT - Hardware and Networking', 'IT - Hardware and Networking'),
         ('Media/Entertainment/Publishing', 'Media/Entertainment/Publishing'),
         ('Metals/Steel/Iron/Aluminium/Foundry/Electroplating', 'Metals/Steel/Iron/Aluminium/Foundry/Electroplating'),
         ('Mining/Forestry/Fishing', 'Mining/Forestry/Fishing'),
@@ -638,21 +638,8 @@ MARITAL_STATUS = (
 
 )
 
-RELIGION = (
-    ('Islam', 'Islam'),
-    ('Christian', 'Christian'),
-    ('Hindu', 'Hindu'),
-    ('Buddhist', 'Buddhist'),
-    ('Sikh', 'Sikh'),
-    ('Jain', 'Jain'),
-    ('Zoroaster', 'Zoroaster'),
-    ('Other', 'Other'),
-    ('Do not wish to Disclose', 'Do not wish to Disclose'),
-)
-
-
 YEARS = (
-    (0,'0'),
+    (0, '0'),
     (1, '1'),
     (2, '2'),
     (3, '3'),
@@ -706,6 +693,7 @@ YEARS = (
 )
 
 MONTHS =(
+    (0, '0'),
     (1, '1'),
     (2, '2'),
     (3, '3'),
@@ -803,7 +791,20 @@ EDUCATION_REQUIRED = (
     ('Master of Computer Application', 'Master of Computer Application'),
     ('MBA/PG Diploma in Business Mgmt ', 'MBA/PG Diploma in Business Mgmt '),
     ('Other', 'Other'),
+)
 
+CURRENCIES = (
+    ('US Dollars', 'US Dollars'),
+    ('UK Pound', 'UK Pound'),
+    ('Indian Rupees', 'Indian Rupees'), 
+    ('UAE Dhirhams', 'UAE Dhirhams'),
+    ('Dinar', 'Dinar'),
+    ('Riyal', 'Riyal'),
+    ('Australian Dollars','Australian Dollars'),
+    ('Singapore Dollars','Singapore Dollars'),
+    ('Sri Lankan Rupee', 'Sri Lankan Rupee'),
+    ('Euro', 'Euro'),        
+    ('Yen', 'Yen'),       
 )
 
 class CompanyProfile(models.Model):
@@ -847,6 +848,8 @@ class Job(models.Model):
     is_featured = models.BooleanField('Is Featured', default=False)
     description = models.TextField('Description', null=True, blank=True)
     is_publish = models.BooleanField('Publish', default=False)
+    salary = models.IntegerField('Salary', null=True, blank=True)
+    currency = models.CharField('Currency', max_length=30, null=True, blank=True, choices=CURRENCIES)
 
     def __unicode__(self):
         return self.job_title
@@ -885,7 +888,7 @@ class Education(models.Model):
     doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/resumes/", null=True, blank=True)
-    resume_text = models.TextField('Resume Text', null=True, blank=True)
+    resume_text = models.TextField('Resume Text', blank=True, null=True)
     certificate = models.FileField(upload_to = "uploads/certificates/", null=True, blank=True)
 
     def __unicode__(self):
@@ -921,7 +924,6 @@ class JobSeekerProfile(models.Model):
     alt_mail = models.CharField('Alternate Email Id', null=True, blank=True, max_length=50)
     photo = models.FileField( upload_to = "uploads/photos/", null=True, blank=True)
     marital_status = models.CharField('Marital Status', null=True, blank=True, max_length=20, choices=MARITAL_STATUS)
-    religion = models.CharField('Religion', null=True, blank=True, max_length=20)
     dob = models.DateTimeField('DOB', null=True, blank=True)
     age = models.IntegerField('Age', null=True, blank=True)
     education = models.ForeignKey(Education, null=True, blank=True)

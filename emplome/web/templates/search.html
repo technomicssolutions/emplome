@@ -9,7 +9,8 @@
 {% block content %}
 
 	<div class="search_block">
-		{% if user.is_superuser %}
+		{% if user.userprofile_set.all.0.user_type == 'employer' %}
+
 			<h2> Search CV </h2>
 			<div class="search_container">
 					

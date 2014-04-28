@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}CV Details{% endblock title %}
+{% block body_id %}cv_details{% endblock body_id %}
+
+{% block content %}
+
+<div class="container">
+	<div class="content-box">
+
+		<!-- <h1>{{job.company.company_name}} </h1> -->
+
+		<div class="job_description">
+			<div id="job_description_text">
+				<h2>Uploaded Photo</h2>
+			</div> 
+			<div id="user-image">
+				<div class="rounded_photo" id="profile_image">
+					{% if profile.jobseekerprofile_set.all.0.photo %}
+		            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+		            {% else %}
+			            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
+			            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+			            
+			            {% else %}
+			            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+			            {% endif %}
+
+		            {% endif %}
+		        </div>
+		    </div>
+			<div id="job_description_text">
+				<h2>Personal Details</h2>
+			</div>
+			<p id="personal_details">
+				Name : {{profile.user.first_name}} <br/>
+				Date of Birth : {{ profile.jobseekerprofile_set.all.0.dob|date:"M d, Y"}} <br/>
+				Gender : {{ profile.jobseekerprofile_set.all.0.gender }} <br/>
+				Email-Id : {{profile.user.email}} <br/>
+				Current Location : {{profile.country}} <br/>
+				City : {{profile.city}} <br/>
+				Phone : {{profile.mobile}} <br/>
+				Nationality : {{profile.jobseekerprofile_set.all.0.nationality}} <br/>
+			</p>
+
+			<div id="job_description_text"><h2>Education</h2></div>
+			<div><br>
+				<span>
+				{{profile.jobseekerprofile_set.all.0.education.basic_edu}}<br/>
+				</span>
+			</div>
+			
+			<div id="job_description_text">
+				<h2>Industry Information</h2>
+			</div>
+			<p id="personal_details">
+				Industry: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br/>
+				Function: {{profile.jobseekerprofile_set.all.0.employment.function}}<br/>
+				Total Experience: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s) {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br/>
+				Salary: {{profile.jobseekerprofile_set.all.0.employment.salary}}<br/>
+				Key Skills: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
+			</p>
+
+			<div id="job_description_text">
+				<h2>Attached Resume</h2>
+			</div>
+			<p id="personal_details">
+				{%if profile.jobseekerprofile_set.all.0.education.resume%}
+					Uploaded Resume
+					<a href="site_media/{{profile.jobseekerprofile_set.all.0.education.resume}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
+				{% endif %}
+				<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea>
+			</p>
+			<p id="personal_details">
+				{% if user.id == profile.user.id %}
+					<a href="{% url 'edit_profile' user_id=user.id%}"><input type="submit" name="edit" value="Update"></a>
+				{% endif %}
+			</p>
+		</div>
+
+	</div>
+	
+</div>
+
+{% endblock content %}

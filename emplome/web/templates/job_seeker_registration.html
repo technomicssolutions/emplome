@@ -16,7 +16,6 @@
 			<h2 class="hd1">Job Seeker's Details</h2>
 			<p class="mandatory">* Mandatory Fields</p>
 			<br>
-			<!-- <form name="registration" method="post" action=""> -->
 			<h3>Create your Account</h3>
 			<br>
 			<div class="formrow">
@@ -54,22 +53,6 @@
 				<label>DOB<span class="red">*</span></label>
 
 				<input type="text" name="dob" id="dob" placeholder="DD-MM-YYY">
-			</div>
-
-			<div class="formrow">
-				<label>Religion<span class="red">*</span></label>
-				<select name="religion" ng-model="seeker.religion">
-					<option value="">------------------Select------------------</option>
-					<option value="Islam">Islam</option>
-					<option value="Christian">Christian</option>
-					<option value="Hindu">Hindu</option>
-					<option value="Buddhist">Buddhist</option>
-					<option value="Sikh">Sikh</option>
-					<option value="Jain">Jain</option>
-					<option value="Zoroaster">Zoroaster</option>
-					<option value="Other">Other</option>
-					<option value="Do not wish to Disclose">Do not wish to Disclose</option>
-				</select>
 			</div>
 
 			<div class="formrow">
@@ -126,7 +109,7 @@
 			<div class="formrow">
 				<label>Basic Education<span class="red">*</span></label>
 				<select name="basic_edu" ng-model="seeker.basic_edu">
-					<option value="">Select Bachelor's/Diploma/School</option>
+					<option value="">-----------Select---------</option>
 					<option ng-repeat="education in basic_education" value="[[education]]" ng-selected="education == seeker.basic_edu">[[education]]</option>
 				</select>
 			</div>
@@ -142,7 +125,7 @@
 			<div class="formrow">
 				<label>Masters Education</label>
 				<select name="masters_edu" ng-model="seeker.masters_edu">
-					<option value="">-------------Select-------------</option>
+					<option value="">---------Select---------</option>
 					<option ng-repeat="edu in masters_education" value="[[edu]]" ng-selected="edu == seeker.masters_edu">[[edu]]</option>
 				</select>
 			</div>
@@ -155,9 +138,7 @@
 			</div>
 			<div class="formrow">
 				<label>Doctrate</label>
-				<input type="text" name="doctrate" ng-model="seeker.doctrate">
-				
-				
+				<input type="text" name="doctrate" ng-model="seeker.doctrate">				
 			</div>
 			<br>
 		</div>
@@ -171,7 +152,7 @@
 				<input type="text" name="resume_title" ng-model="seeker.resume_title">
 			</div>
 			<div class="formrow">
-				<label>Attach CV</label>
+				<label>Attach CV<span class="red">*</span></label>
 				<input type="file" fileread="resume_doc.src"/>
 				<input type="hidden" ng-model="resume_doc.src">
 				<a href="/site_media/[[seeker.resume]]" ng-show="seeker.resume" target="_blank">Resume</a>
@@ -183,15 +164,13 @@
 			<br>
 		</div>
 		<div class="separation">
-			<br>
-		<!-- <div class="formrow"> -->
+			<br>		
 			<div class="btn">
 				<label></label>
 				<input class="button" type="submit" name="submit" value="Save & Edit" ng-click="save_reg()">
 				<input ng-show="user_id" class="button" type="submit" name="next" value="Next" ng-click="reg_next()">
 			</div>
 			<div class="message">
-				<!-- <p>{{message}}</p> -->
 				<p ng-show="error_flag">[[error_message]]</p>
 			</div>
 

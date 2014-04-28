@@ -16,10 +16,16 @@
 				
 			<p>{{ job.summary }}</p>
 			<span>
-				Salary : As per Industry Standard <br/>
+				{% if job.salary %}
+					Salary : {{job.salary}} {{job.currency}} <br/>					
+				{% else %}				
+					Salary : As per Company Norms <br/>
+				{% endif %}
+
 				Industry : {{job.industry}} <br/>
 				Location : {{ job.job_location }} <br/>
 				Role : {{ job.job_title }} <br/>
+				Last Date : {{job.last_date}} <br/>
 			</span>
 
 			<div id="job_description_text"><h2>Desired Candidate Profile</h2></div>
@@ -44,20 +50,15 @@
                 {% if job not in user.userprofile_set.all.0.jobseekerprofile_set.all.0.applied_jobs.all %}
                     <a href="{% url 'apply_jobs' job_id=job.id %}"><input type="submit" name="apply" value="Apply Job"></a>
                 {% else %}
-                    <p id="info_message">You have applied to this Job</p>
+                    <p id="info_message">You have applied for this Job</p>
                 {% endif %}
             {%endif %}
             {% if not user.is_authenticated %}
                 <a href="{% url 'apply_jobs' job_id=job.id %}" target="_blank"><input type="submit" name="apply" value="Login to apply"></a>
             {% endif %}
-		</div>
-
-		<div>
 
 		</div>
-
 		<div class="edit-button">
-			
 	 	</div>
 	</div>
 	

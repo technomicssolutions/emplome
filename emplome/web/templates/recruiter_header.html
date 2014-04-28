@@ -38,17 +38,20 @@
             </li>
             
             {% if user.is_authenticated %}
-                {% if user.is_superuser %}
-                    <li>
-                        <a class="tabUnsel" id="active-searchcv" title="Search CV" href="{% url 'search' %}">Search CV</a>
-                    </li>
-                {% endif %}
                 <li>
-                    <a class="tabUnsel" id="active-edit-profile" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile Recruiter</a>
+                    <a class="tabUnsel" id="active-searchcv" title="Search CV" href="{% url 'search' %}">Search CV</a>
+                </li>
+                <li>
+                    <a class="tabUnsel" id="active-edit-profile" title="Edit Profile" href="{% url 'edit_profile_recruiter' user_id=user.id %}">Edit Profile</a>
+                </li>
+                <li>
+                    <a class="tabUnsel" id="active-profile" title="View Profile" href="{% url 'profile' user_id=user.id %}">View Profile</a>
                 </li>
                 <li>
                    <a class="tabUnsel" id="active-posted-jobs" title="Posted Jobs" href="{% url 'posted_jobs' %}">Posted Jobs</a>
                 </li>
+                
+               
             {% else %}
                 <li>
                     <a class="tabUnsel" id="active-recruiter" title="Recruiter Login" href="{% url 'recruiter' %}">Recruiter</a>  

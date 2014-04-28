@@ -35,7 +35,6 @@
 
         <div class="search_box_content">
             <a href="" class="search_button" ng-click="job_search()">Search</a>
-            <!-- <input type="submit" value="Search"> -->
         </div>
         
     </div>
@@ -46,7 +45,6 @@
 	<div class="profile_container">
 
 		{% if user.userprofile_set.all.0.user_type == 'employer' %}
-
 			{% if user.id == profile.user.id %}
 
 				<div class="welcome-box">
@@ -90,7 +88,13 @@
 								{% if profile.jobseekerprofile_set.all.0.photo %}
 					            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
 					            {% else %}
-					            	<img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+						            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
+						            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+						            
+						            {% else %}
+						            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+						            {% endif %}
+
 					            {% endif %}
 					        </div> 
 					    </div>
@@ -143,11 +147,16 @@
 					<div class="rounded_photo" id="profile_image">
 			            {% if profile.jobseekerprofile_set.all.0.photo %}
 			            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+
 			            {% else %}
-			            	<img src="/static/images/user_img.jpg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
+				            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            
+				            {% else %}
+				            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            {% endif %}
 					    {% endif %}
 			        </div> 
-			        <!-- /site_media/[[seeker.resume]]  -->
 		    	</div>
 		    	<br>
 		    </div>
@@ -160,8 +169,7 @@
 					<label>Functional Area </label> <br>					
 					<label>Industry Type </label> 	<br>				
 					<label>Work Experience </label> <br>				
-					<label>Location </label> <br>
-			 			
+					<label>Location </label> <br>			 			
 		 		</div>
 
 			 	<div class="label-box-right">
@@ -177,8 +185,7 @@
 			 			<a href="{% url 'edit_profile' user_id=user.id %}"><input type="submit" name="edit" value="Edit Profile"></a>
 					{% endif %}
 				</div>
-			</div>
-			
+			</div>	
 			
 		</div>
 	

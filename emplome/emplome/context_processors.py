@@ -3,7 +3,10 @@ from django.db import models
 from web.models import *
 
 def site_variables(request):
-    current_site = Site.objects.get_current()
+    try:
+        current_site = Site.objects.get_current()
+    except:
+        current_site = Site.objects.all()[0]
     ctx_location = []
     ctx_function = []
     ctx_featured_job = []

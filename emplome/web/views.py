@@ -38,6 +38,7 @@ class SearchJobsView(View):
         search = False
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
+        print function
         skills = request.GET.get('skills', '')
         exp = request.GET.get('experience', '')
         industry = request.GET.get('industry', '')
@@ -93,8 +94,7 @@ class SearchJobsView(View):
             })
         
         return render(request, 'search_jobs.html', context) 
-
-        
+    
 
 class Logout(View):
     def get(self, request, *args, **kwargs):
@@ -143,13 +143,14 @@ class LoginView(View):
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
         else:
             context = {
-                'message' : 'Username and Password cannot be null',
+                'message' : 'Username or Password cannot be null',
             }
             context.update(request.POST)
             if request.POST['user_type'] == 'recruiter':
                 return render(request, 'recruiter_home.html', context)
             else:
                 return render(request, 'login_job_seeker.html', context)
+
 
 class ProfileView(View):
     def get(self, request, *args, **kwargs):
@@ -167,6 +168,7 @@ class ProfileView(View):
          
         return render(request, 'profile.html', context) 
 
+
 class RecruiterHomeView(View):
     def get(self, request, *args, **kwargs):
         
@@ -176,6 +178,7 @@ class RecruiterHomeView(View):
             'employer': employer,
         }
         return render(request, 'recruiter_home.html', {})
+
 
 class RecruiterRegistrationView(View):
 
@@ -195,6 +198,15 @@ class RecruiterRegistrationView(View):
         user.email = post_dict['email']
         if created:
             user.set_password(post_dict['password'])
+        else:
+            if request.is_ajax():
+                res = {
+                    'message': 'User already exists',
+                    'result': 'error',
+                }
+                response = simplejson.dumps(res)
+                status_code = 500
+                return HttpResponse(response, status = status_code, mimetype='application/json')
         user.save()
         userprofile, created = UserProfile.objects.get_or_create(user = user)
         userprofile.user_type = "employer"
@@ -213,15 +225,6 @@ class RecruiterRegistrationView(View):
             login_user = authenticate(username=post_dict['email'], password=post_dict['password'])
             if login_user and login_user.is_active:
                 login(request, login_user)
-        else:
-            if request.is_ajax():
-                res = {
-                    'message': 'This email id already exists, please login',
-                    'result': 'error',
-                }
-                response = simplejson.dumps(res)
-                status_code = 500
-                return HttpResponse(response, status = status_code, mimetype='application/json')
         if request.is_ajax():
             res = {
                 'user_id': user.id,
@@ -256,7 +259,7 @@ class JobSeekerRegistration(View):
                 if not user_created:
                     if request.is_ajax():
                         res = {
-                            'message': 'This email id already exists, please login',
+                            'message': 'User already exists',
                             'result': 'error',
                         }
                         response = simplejson.dumps(res)
@@ -273,7 +276,7 @@ class JobSeekerRegistration(View):
             status_code = 500
             response = simplejson.dumps({
                 'result': 'error', 
-                'message': 'This email already existing'
+                'message': 'User already exists'
             })
             return HttpResponse(response, status = status_code, mimetype = 'application/json')
         
@@ -282,17 +285,15 @@ class JobSeekerRegistration(View):
         userprofile.user_type = 'job_seeker'
         userprofile.country = seeker['country']
         userprofile.city = seeker['city']
-        userprofile.mobile = int(seeker['mobile'])
+        userprofile.mobile = seeker['mobile']
         userprofile.save()
 
         job_seeker, job_seeker_created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
 
         job_seeker.gender = seeker['gender']
-        job_seeker.religion = seeker['religion']
         job_seeker.dob = datetime.strptime(seeker['dob'], '%d-%m-%Y')
         current_year = dt.datetime.now().year        
         age = current_year - job_seeker.dob.year
-
         job_seeker.age = age
         job_seeker.marital_status = seeker['marital_status']
         job_seeker.nationality = seeker['nationality']
@@ -358,7 +359,8 @@ class JobSeekerRegistrationMoreInfo(View):
             employment = jobseeker.employment
         else:
             employment = Employment()
-        employment.exp_yrs = int(seeker1['years'])
+        if seeker1['years'] != "":
+            employment.exp_yrs = int(seeker1['years'])
         if seeker1['months'] != "":
             employment.exp_mnths = int(seeker1['months'])
         if seeker1['salary'] != "":
@@ -392,6 +394,7 @@ class JobSeekerRegistrationMoreInfo(View):
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype='application/json')
 
+
 class PostJobsView(View):
     def get(self, request,*args, **kwargs):
         context = {
@@ -404,7 +407,6 @@ class PostJobsView(View):
 
         jobPosting = Job.objects.create(recruiter = current_user)
         post_data = request.POST
-        print post_data
         jobpost = ast.literal_eval(post_data['jobpost'])
         
         profile = current_user.userprofile_set.all()[0]
@@ -416,7 +418,10 @@ class PostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
-        jobPosting.skills =jobpost['skills']
+        if jobpost['salary']:
+            jobPosting.salary = jobpost['salary']
+        jobPosting.currency = jobpost['currency']    
+        jobPosting.skills = jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
         jobPosting.education_req = jobpost['requirement']
@@ -445,7 +450,6 @@ class PostJobsView(View):
         return HttpResponse(response, status = status_code, mimetype="application/json")
 
 
-
 class PostedJobsView(View):
      def get(self, request,*args, **kwargs):
         jobs = []
@@ -454,7 +458,6 @@ class PostedJobsView(View):
           'jobs': jobs,
         }
         return render(request, 'posted_jobs.html', context)
-
 
 
 class EditPostJobsView(View):
@@ -482,7 +485,9 @@ class EditPostJobsView(View):
         document = request.FILES.get('product_pdf', '')
         if document:
             jobPosting.document = document
-        jobPosting.skills =jobpost['skills']
+        jobPosting.salary = jobpost['salary']
+        jobPosting.currency = jobpost['currency'] 
+        jobPosting.skills = jobpost['skills']
         jobPosting.industry = jobpost['industry']
         jobPosting.job_location = jobpost['location']
         jobPosting.function = jobpost['function']
@@ -509,6 +514,7 @@ class EditPostJobsView(View):
         status_code = 200
         return HttpResponse(response, status = status_code, mimetype="application/json")
 
+
 class JobDetailsView(View):
     def get(self, request, *args, **kwargs):
         job = Job.objects.get(id=kwargs['job_id'])
@@ -524,10 +530,12 @@ class JobDetailsView(View):
                 'code': job.ref_code if job.ref_code else '',
                 'company': job.company.company_name if job.company else '',
                 'summary': job.summary if job.summary else '',            
-                'details': job.document.name if job.document else '',             
+                'details': job.document.name if job.document else '', 
+                'salary' : job.salary if job.salary else '',                
+                'currency': job.currency if job.currency else '',
                 'skills': job.skills if job.skills else '',
-                'min':job.exp_req_min if job.exp_req_min else '',
-                'max':job.exp_req_max if job.exp_req_max else '',
+                'min':job.exp_req_min if job.exp_req_min else 0,
+                'max':job.exp_req_max if job.exp_req_max else 0,
                 'location':job.job_location if job.job_location else '',
                 'industry':job.industry if job.industry else '',
                 'function': job.function if job.function else '',            
@@ -551,6 +559,7 @@ class JobDetailsView(View):
             return HttpResponse(response, status=status_code, mimetype='application/json')
         else:
             return render(request, 'job_details.html', context)
+
 
 class SearchView(View):
 
@@ -594,6 +603,7 @@ class EditProfile(View):
         }
         return render(request, 'job_seeker_registration.html', context)
 
+
 class GetProfileDetails(View):
 
     def get(self, request, *args, **kwargs):
@@ -618,7 +628,6 @@ class GetProfileDetails(View):
                     'first_name': user.first_name,
                     'gender': jobseeker.gender if jobseeker else '',
                     'dob': jobseeker.dob.strftime('%d-%m-%Y') if jobseeker else '',
-                    'religion': jobseeker.religion if jobseeker else '',
                     'marital_status': jobseeker.marital_status if jobseeker else '',
                     'nationality': jobseeker.nationality if jobseeker else '',
                     'country': userprofile.country if userprofile else '',
@@ -675,6 +684,7 @@ class GetProfileDetails(View):
             
             return HttpResponse(response, status=status_code, mimetype='application/json')
 
+
 class ForgotPassword(View):
 
     def get(self, request, *args, **kwargs):
@@ -689,7 +699,11 @@ class ForgotPassword(View):
             subject = 'Reset Your Password'
             text_content = 'This is Important'
             from_email = settings.DEFAULT_FROM_EMAIL
-            url = 'http://%s%s'%(Site.objects.get_current().domain,'/reset_password/'+str(user.id)+'/') 
+            try:
+                site_url = Site.objects.get_current().domain
+            except:
+                site_url = Site.objects.all()[0]
+            url = 'http://%s%s'%(site_url,'/reset_password/'+str(user.id)+'/') 
             ctx = {
                 'url': url,
                 'user': user,
@@ -704,7 +718,7 @@ class ForgotPassword(View):
                     msg.attach_alternative(html_content, "text/html")
                     msg.send()
                     context = {
-                        'message': 'An email has been sent to your registered email address. Please click on the link provided in the mail to reset your password.',
+                        'message': 'An email has been sent to your registered email account. Please click on the link provided in the mail to reset your password.',
                     }
                     return render(request, 'forgot_password.html', context)
                     
@@ -713,6 +727,7 @@ class ForgotPassword(View):
                 'message': 'You have no matching profiles with this email id',
             }
             return render(request, 'forgot_password.html', context)
+
 
 class ResetPassword(View):
 
@@ -741,6 +756,7 @@ class ResetPassword(View):
                 'user_id': user_id,
             }
         return render(request, 'reset_password.html', context)
+
 
 class RecruiterProfileEdit(View):
 
@@ -778,7 +794,7 @@ class RecruiterProfileEdit(View):
             
             res = {
                 'result':'ok',
-                'message': 'successfully edited',
+                'message': 'Successfully Edited',
                 'user_id': user.id,
             }
             
@@ -786,7 +802,7 @@ class RecruiterProfileEdit(View):
         except Exception as ex:
             res = {
                 'result':'error',
-                'message': 'successfully edited',
+                'message': 'Successfully Edited',
                 'error_message': str(ex),
             }
             
@@ -795,6 +811,7 @@ class RecruiterProfileEdit(View):
         response = simplejson.dumps(res)
 
         return HttpResponse(response, status = status_code, mimetype="application/json")
+
 
 class SuccessStoriesView(View):
 
@@ -813,6 +830,7 @@ class SuccessStoriesView(View):
             'success_stories': stories,
         }
         return render(request, 'success_stories.html', context)
+
 
 class PublishJob(View):
 
@@ -833,6 +851,7 @@ class PublishJob(View):
 
         return HttpResponseRedirect(reverse('posted_jobs'))
 
+
 class DeleteJob(View):
 
     def get(self, request, *args, **kwargs):
@@ -848,8 +867,8 @@ class DeleteJob(View):
           'jobs': jobs,
           'message': 'Deleted',
         }
-
         return HttpResponseRedirect(reverse('posted_jobs'))
+
 
 class SearchCV(View):
 
@@ -867,15 +886,14 @@ class SearchCV(View):
             keyword = ''
 
         if len(age) > 0 and age != 'undefined': 
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
-
-        elif age == 'undefined' :
-            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword).distinct('id')
-        
+            # values_list('shared_note', flat=True)
+            # jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword).distinct('id')
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, age = age, employment__skills__icontains=keyword)
+        elif age == 'undefined' or age == '':
+            jobseeker_profiles = JobSeekerProfile.objects.filter(education__resume_title__icontains= cv_title, employment__skills__icontains=keyword)
         context = {
             'cvs': jobseeker_profiles,
-        }
-              
+        }              
         return render(request, 'search_cvs_result.html', context) 
 
 
@@ -891,12 +909,12 @@ class Companies(View):
                     'name': company.company_name,
                 })
         res = {
-            'companies': ctx_companies,
-            
+            'companies': ctx_companies,            
         } 
         response = simplejson.dumps(res)
         status_code = 200
         return HttpResponse(response, status=status_code, mimetype="application/json")
+
 
 class ApplyJobs(View):
 
@@ -933,6 +951,7 @@ class ApplyJobs(View):
 
         return render(request, 'job_details.html', context)
 
+
 class AppliedJobsView(View):
 
     def get(self, request, *args, **kwargs):
@@ -946,7 +965,8 @@ class AppliedJobsView(View):
         }
         
         return render(request, 'applied_jobs.html', context)
-    
+  
+
 class FeaturedJobView(View):
 
     def get(self, request, *args, **kwargs):
@@ -954,5 +974,27 @@ class FeaturedJobView(View):
         context = {
             'job': job,
         }
-
         return render(request, 'job_details.html', context)
+
+
+class AppliedUsers(View):
+
+    def get(self, request, *args, **kwargs):
+        job = Job.objects.get(id=kwargs['job_id'])
+        profiles = job.jobseekerprofile_set.all()
+        context = {
+            'job': job,
+            'profiles': profiles,
+        }
+        return render(request, 'applied_users.html', context)
+
+class ViewCV(View):
+
+    def get(self, request, *args, **kwargs):
+
+        user = User.objects.get(id = kwargs['user_id'])
+        profile = UserProfile.objects.get(user = user)
+        context = {
+            'profile': profile,
+        }
+        return render(request, 'view_cv.html', context)
