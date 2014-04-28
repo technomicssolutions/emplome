@@ -1033,3 +1033,16 @@ label textarea{
     height: 80px;
     margin-top: 15px;
 }
+
+.add_employers {
+    display: block;
+    float: right;
+    width: 55%;
+}
+.add_employers input {
+    width: 64% !important;
+}
+
+#add_top_margin {
+    margin-top: 20px;
+}
