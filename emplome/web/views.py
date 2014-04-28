@@ -248,6 +248,7 @@ class JobSeekerRegistration(View):
     def post(self, request, *args, **kwargs):
 
         post_data = request.POST
+        print post_data
         seeker = ast.literal_eval(post_data['seeker'])
         try:
             if request.user.is_authenticated():
@@ -307,25 +308,48 @@ class JobSeekerRegistration(View):
         else:
             education = job_seeker.education if job_seeker.education else Education()
             employment = job_seeker.employment if job_seeker.employment else Employment()
+
+        if seeker['years'] != "":
+            employment.exp_yrs = int(seeker['years'])
+        if seeker['months'] != "":
+            employment.exp_mnths = int(seeker['months'])
+        if seeker['salary'] != "":
+            employment.salary = int(seeker['salary'])
+        employment.currency = seeker['currency']
+        if seeker['designation'] != "":
+            employment.designation = seeker['designation']
+        if seeker['industry'] != "":
+            employment.curr_industry = seeker['industry']
+        if seeker['functions'] != "":
+            employment.function = seeker['functions']
+        employment.skills = seeker['skills']
+        employment.save()
+        previous_employers = ast.literal_eval(seeker['previous_company'])
+        if employment.previous_employer:
+            employment.previous_employer.clear()
+        if len(previous_employers) > 0:
+            for employer in previous_employers:
+                employer_obj, created = PreviousEmployer.objects.get_or_create(previous_employer_name = employer['employer'])
+                employment.previous_employer.add(employer_obj)
+        job_seeker.employment = employment
+        job_seeker.save()
         education.basic_edu = seeker['basic_edu']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":
             education.masters = seeker['masters_edu']
         if seeker['pass_year_masters'] != "":
             education.pass_year_masters = int(seeker['pass_year_masters'])
-        if seeker['doctrate'] != "":
-            education.doctrate = seeker['doctrate']
-        education.resume_title = seeker['resume_title']
-
-        resume = request.FILES.get('resume_doc', '')
-        if resume:
-            education.resume = resume
-       
-        # if seeker['resume_text'] != "":
-        education.resume_text = seeker['resume_text']
         education.save()
+        doctrate = ast.literal_eval(seeker['doctrate'])
+        if education.doctrate:
+            education.doctrate.clear()
+        if len(doctrate) > 0: 
+            for doctrate_name in doctrate:
+                doctorate, created = Doctorate.objects.get_or_create(doctorate_name = doctrate_name['name'])
+                education.doctrate.add(doctorate)
+        
         job_seeker.education = education
-        job_seeker.employment = employment
+        
         job_seeker.save()
         if user_created:
             login_user = authenticate(username=seeker['email'], password=seeker['password'])
@@ -354,27 +378,7 @@ class JobSeekerRegistrationMoreInfo(View):
         userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
         jobseeker, created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
         seeker1 = ast.literal_eval(post_data['seeker1'])
-        if jobseeker.employment:
-            employment = jobseeker.employment
-        else:
-            employment = Employment()
-        if seeker1['years'] != "":
-            employment.exp_yrs = int(seeker1['years'])
-        if seeker1['months'] != "":
-            employment.exp_mnths = int(seeker1['months'])
-        if seeker1['salary'] != "":
-            employment.salary = int(seeker1['salary'])
-        employment.currency = seeker1['currency']
-        if seeker1['designation'] != "":
-            employment.designation = seeker1['designation']
-        if seeker1['industry'] != "":
-            employment.curr_industry = seeker1['industry']
-        if seeker1['functions'] != "":
-            employment.function = seeker1['functions']
-        employment.skills = seeker1['skills']
-        employment.save()
-        jobseeker.employment = employment
-        jobseeker.save()
+        
         photo = request.FILES.get('photo_img', '')
         if photo:
             jobseeker.photo = photo
@@ -383,6 +387,15 @@ class JobSeekerRegistrationMoreInfo(View):
         certificate = request.FILES.get('certificate_img', '')
         if certificate:
             education.certificate = certificate
+
+        education.resume_title = seeker1['resume_title']
+
+        resume = request.FILES.get('resume_doc', '')
+        if resume:
+            education.resume = resume
+       
+        # if seeker['resume_text'] != "":
+        education.resume_text = seeker1['resume_text']
         education.save()
         jobseeker.education = education
         jobseeker.save()
@@ -625,6 +638,8 @@ class GetProfileDetails(View):
         ctx_seeker = []
         ctx_seeker1 = []
         ctx_recruiter = []
+        ctx_doctorate = []
+        ctx_previous_company = []
         education = []
         employment = []
         jobseeker = []
@@ -632,8 +647,19 @@ class GetProfileDetails(View):
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
             if userprofile.user_type == 'job_seeker':
-                if userprofile.jobseekerprofile_set.all().count() >0:
+                if userprofile.jobseekerprofile_set.all().count() > 0:
                     jobseeker = userprofile.jobseekerprofile_set.all()[0]
+
+                if jobseeker.education.doctrate.all().count() > 0: 
+                    for doctrate in jobseeker.education.doctrate.all():
+                        ctx_doctorate.append({
+                            'doctorate': doctrate.doctorate_name,
+                        })
+                if jobseeker.employment.previous_employer.all().count() > 0:
+                    for employer in jobseeker.employment.previous_employer.all():
+                        ctx_previous_company.append({
+                            'employer': employer.previous_employer_name,
+                        })
 
                 ctx_seeker.append ({
                     'email': user.email,
@@ -646,17 +672,6 @@ class GetProfileDetails(View):
                     'city': userprofile.city if userprofile else '',
                     'mobile': userprofile.mobile if userprofile else '',
                     'alt_email': jobseeker.alt_mail if jobseeker else '',
-                    'basic_edu': jobseeker.education.basic_edu if jobseeker.education else '' ,
-                    'pass_year_basic': jobseeker.education.pass_year_basic if jobseeker.education else '' ,
-                    'masters_edu': jobseeker.education.masters if jobseeker.education else '' ,
-                    'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
-                    'doctrate': jobseeker.education.doctrate if jobseeker.education else '' ,
-                    'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
-                    'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
-                    'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
-                })
-
-                ctx_seeker1.append({
                     'years': jobseeker.employment.exp_yrs if jobseeker.employment else 0 ,
                     'months': jobseeker.employment.exp_mnths if jobseeker.employment else 0 ,
                     'salary': jobseeker.employment.salary if jobseeker.employment else '' ,
@@ -664,7 +679,19 @@ class GetProfileDetails(View):
                     'designation': jobseeker.employment.designation if jobseeker.employment else '' ,
                     'skills': jobseeker.employment.skills if jobseeker.employment else '' ,
                     'industry': jobseeker.employment.curr_industry if jobseeker.employment else '' ,
+                    'previous_company': ctx_previous_company,
                     'functions': jobseeker.employment.function if jobseeker.employment else '' , 
+                    'basic_edu': jobseeker.education.basic_edu if jobseeker.education else '' ,
+                    'pass_year_basic': jobseeker.education.pass_year_basic if jobseeker.education else '' ,
+                    'masters_edu': jobseeker.education.masters if jobseeker.education else '' ,
+                    'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
+                    'doctrate': ctx_doctorate,
+                })
+
+                ctx_seeker1.append({
+                    'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
+                    'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
+                    'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
                     'certificate_img': jobseeker.education.certificate.name if jobseeker.education else '',
                     'profile_photo': jobseeker.photo.name if jobseeker else '',
                 })

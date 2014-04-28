@@ -895,17 +895,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'city': '',
         'mobile': '',
         'alt_email': '',
-        'basic_edu': '',
-        'pass_year_basic': '',
-        'masters_edu': '',
-        'pass_year_masters': '',
-        'doctrate': '',
-        'resume_title': '',
-        'resume_text': '',
-        'resume': '',
-    }
-
-    $scope.seeker1 = {
         'years': '',
         'months': '',
         'salary': '',
@@ -913,10 +902,31 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'designation': '',
         'industry': '',
         'functions': '',
+        'previous_company': [],
         'skills': '',
+        'basic_edu': '',
+        'pass_year_basic': '',
+        'masters_edu': '',
+        'pass_year_masters': '',
+        'doctrate': [],
+        
+    }
+
+    $scope.seeker1 = {
+        'resume_title': '',
+        'resume_text': '',
+        'resume': '',
         'certificate_img': '',
         'profile_photo': '',
     }
+
+    $scope.employers = [
+        {'employer': ''},
+    ]
+
+    $scope.doctorate = [
+        {'name': ''},
+    ]
 
     $scope.init = function(csrf_token, user_id, profile_edit) {
         $scope.csrf_token = csrf_token;
@@ -943,6 +953,63 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 if ($scope.seeker.pass_year_masters == null) {
                   $scope.seeker.pass_year_masters = '';
                 }
+                if ($scope.seeker.years == null) {
+                    $scope.seeker.years = '0';
+                }
+                if ($scope.seeker.months == null) {
+                    $scope.seeker.months = '0';
+                }
+                if ($scope.seeker.doctrate == null) {
+                    $scope.seeker.doctrate = '';
+                }
+                if ($scope.seeker.resume_text == null) {
+                    $scope.seeker.resume_text = '';
+                }
+                if ($scope.seeker.alt_email == null) {
+                    $scope.seeker.alt_email = '';
+                }
+                if ($scope.seeker.pass_year_masters == null) {
+                    $scope.seeker.pass_year_masters = '';
+                } 
+                if ($scope.seeker.masters_edu == null) {
+                    $scope.seeker.masters_edu = '';
+                }  
+                
+                if($scope.seeker.designation == null){
+                    $scope.seeker.designation = '';
+                }
+                if($scope.seeker.salary == null){
+                    $scope.seeker.salary = '';
+                }
+                if($scope.seeker.currency == null){
+                    $scope.seeker.currency = '';
+                }
+                if($scope.seeker.functions == null){
+                    $scope.seeker.functions = '';
+                }
+                if($scope.seeker.industry == null){
+                    $scope.seeker.industry = '';
+                }  
+                if ($scope.seeker.previous_company) {
+                    if($scope.seeker.previous_company.length > 1){
+                        for(var i=1; i < $scope.seeker.previous_company.length; i++){
+                            $scope.employers.push({'employer': ''});
+                        }
+                    }  
+                    for(var i=0; i< $scope.seeker.previous_company.length; i++) {
+                        $scope.employers[i].employer = $scope.seeker.previous_company[i].employer;
+                    }
+                } 
+                if ($scope.seeker.doctrate) {
+                    if($scope.seeker.doctrate.length > 1){
+                        for(var i=1; i < $scope.seeker.doctrate.length; i++){
+                            $scope.doctorate.push({'name': ''});
+                        }
+                    }  
+                    for(var i=0; i< $scope.seeker.doctrate.length; i++) {
+                        $scope.doctorate[i].name = $scope.seeker.doctrate[i].doctorate;
+                    }
+                } 
                 if($scope.seeker1.salary == null) {
                   $scope.seeker1.salary = '';
                 }
@@ -953,6 +1020,18 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             {
                 console.log(data || "Request failed");
             });
+        }
+    }
+
+    $scope.add_employer = function() {
+        if($scope.employers.length <3) {
+            $scope.employers.push({'employer':''});
+        }
+    }
+
+    $scope.add_doctorate = function() {
+        if($scope.doctorate.length <3) {
+            $scope.doctorate.push({'name':''});
         }
     }
     
@@ -1000,7 +1079,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.country == '' || $scope.seeker.country == undefined || $scope.seeker.country == 'select'){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select Country';
+            $scope.error_message = 'Please select Current Location';
             return false;
         } else if ($scope.seeker.city == '' || $scope.seeker.city == undefined){
             $scope.error_flag = true;
@@ -1010,7 +1089,27 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please enter a Valid Mobile Number';
             return false;
-        } else if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
+        } if ($scope.seeker.years != 0 ) {
+            if($scope.seeker.years == '' || $scope.seeker.years == undefined || $scope.seeker.years == '-min-'){
+                $scope.error_flag = true;
+                $scope.error_message = 'Please provide the your Work Experience';
+                return false;
+            }
+        } else if (($scope.seeker.salary != null || $scope.seeker.salary != '' || $scope.seeker.salary != undefined) && $scope.seeker.salary != Number($scope.seeker.salary)){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter a Valid Amount for Salary';
+            return false;
+        } else if ($scope.seeker.salary != '' && ($scope.seeker.currency == '' || $scope.seeker.currency == undefined)) {
+            $scope.error_flag = true;
+            $scope.error_message = 'Please provide the Currency';
+            return false;
+        }   
+        if ($scope.seeker.skills == '' || $scope.seeker.skills == undefined){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please enter Skills';
+            return false;
+        } 
+        if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
             $scope.error_flag = true;
             $scope.error_message = 'Please select Basic Education';
             return false;
@@ -1018,43 +1117,22 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_flag = true;
             $scope.error_message = 'Please select the Year of Passing';
             return false;
-        } else if ($scope.seeker.resume_title == '' || $scope.seeker.resume_title == undefined){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please give a Title for your Resume';
-            return false;
-        } else if (($scope.seeker.resume == undefined || $scope.seeker.resume == '') && ($scope.seeker.resume_text == undefined || $scope.seeker.resume_text == '')){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please Attach or Copy Paste your Resume';
-            return false;
-        }
+        } 
         return true;
     }
 
   
     $scope.form_validation_more_info = function(){     
-        if ($scope.seeker1.years != 0 ) {
-          if($scope.seeker1.years == '' || $scope.seeker1.years == undefined || $scope.seeker1.years == '-min-'){
-            console.log('$scope.seeker1.years', $scope.seeker1.years, $scope.seeker1.years == '' , $scope.seeker1.years == undefined, $scope.seeker1.years == '-min-');
+        if ($scope.seeker1.resume_title == '' || $scope.seeker1.resume_title == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please provide the your Work Experience';
+            $scope.error_message = 'Please give a Title for your Resume';
             return false;
-          }
+        } else if (($scope.seeker1.resume == undefined || $scope.seeker1.resume == '') && ($scope.seeker1.resume_text == undefined || $scope.seeker1.resume_text == '')){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please Attach or Copy Paste your Resume';
+            return false;
         }
-        else if (($scope.seeker1.salary != null || $scope.seeker1.salary != '' || $scope.seeker1.salary != undefined) && $scope.seeker1.salary != Number($scope.seeker1.salary)){
-              console.log($scope.seeker1.years);
-              $scope.error_flag = true;
-              $scope.error_message = 'Please enter a Valid Amount for Salary';
-              return false;
-        } else if ($scope.seeker1.salary != '' && ($scope.seeker1.currency == '' || $scope.seeker1.currency == undefined)) {
-              $scope.error_flag = true;
-              $scope.error_message = 'Please provide the Currency';
-              return false;
-        }   
-        if ($scope.seeker1.skills == '' || $scope.seeker1.skills == undefined){
-            $scope.error_flag = true;
-            $scope.error_message = 'Please enter Skills';
-            return false;
-        } else if ($scope.checkbox == false){
+        else if ($scope.checkbox == false){
             $scope.error_flag = true;
             $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
             return false;
@@ -1069,30 +1147,17 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         if ($scope.is_valid) {
             $scope.error_flag = false;
             $scope.error_message = '';
+            $scope.seeker.previous_company = JSON.stringify($scope.employers);
+            $scope.seeker.doctrate = JSON.stringify($scope.doctorate);
+                               
 
-            if ($scope.seeker.doctrate == null) {
-                $scope.seeker.doctrate = '';
-            }
-            if ($scope.seeker.resume_text == null) {
-                $scope.seeker.resume_text = '';
-            }
-            if ($scope.seeker.alt_email == null) {
-                $scope.seeker.alt_email = '';
-            }
-            if ($scope.seeker.pass_year_masters == null) {
-                $scope.seeker.pass_year_masters = '';
-            } 
-            if ($scope.seeker.masters_edu == null) {
-                $scope.seeker.masters_edu = '';
-            }           
-
-            var file = $scope.resume_doc.src;
+            
             params = {
                 'seeker':angular.toJson($scope.seeker),
                 "csrfmiddlewaretoken" : $scope.csrf_token,              
             }
             var fd = new FormData();
-            fd.append('resume_doc', $scope.resume_doc.src);
+            
             for(var key in params){
                 fd.append(key, params[key]);            
             }
@@ -1134,27 +1199,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
     $scope.is_valid = $scope.form_validation_more_info();
         if ($scope.is_valid) {
-            if ($scope.seeker1.years == null) {
-                $scope.seeker1.years = '0';
-            }
-            if ($scope.seeker1.months == null) {
-                $scope.seeker1.months = '0';
-            }
-            if($scope.seeker1.designation == null){
-                $scope.seeker1.designation = '';
-            }
-            if($scope.seeker1.salary == null){
-                $scope.seeker1.salary = '';
-            }
-            if($scope.seeker1.currency == null){
-                $scope.seeker1.currency = '';
-            }
-            if($scope.seeker1.functions == null){
-                $scope.seeker1.functions = '';
-            }
-            if($scope.seeker1.industry == null){
-                $scope.seeker1.industry = '';
-            }            
+            
             $scope.error_flag = false;
             $scope.error_message = '';
 
@@ -1169,6 +1214,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             var fd = new FormData();
             fd.append('photo_img', $scope.photo_img.src)
             fd.append('certificate_img', $scope.certificate_img.src)
+            fd.append('resume_doc', $scope.resume_doc.src);
             for(var key in params){
                 fd.append(key, params[key]);          
             }
