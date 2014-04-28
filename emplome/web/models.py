@@ -746,6 +746,7 @@ MASTERS_EDU = (
     ('Master of Education', 'Master of Education'),
     ('Master of Laws (LLM)', 'Master of Laws (LLM)'),
     ('Master of Pharmacy', 'Master of Pharmacy'),
+    ('Master of Science', 'Master of Science'),
     ('Master of Technology/Engineering', 'Master of Technology/Engineering'),
     ('Master of Vetirenary Science', 'Master of Vetirenary Science'),
     ('Master of Computer Application', 'Master of Computer Application'),
@@ -806,6 +807,8 @@ CURRENCIES = (
     ('Euro', 'Euro'),        
     ('Yen', 'Yen'),       
 )
+
+
 
 class CompanyProfile(models.Model):
 
@@ -891,8 +894,10 @@ class Employment(models.Model):
 class Education(models.Model):
     
     basic_edu = models.CharField('Basic Education', max_length=50, choices=BASIC_EDU)
+    
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
     masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
+    
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
     doctrate = models.CharField('Doctrate', null=True, blank=True, max_length=50)
     resume_title = models.CharField('Resume Title', max_length=50)

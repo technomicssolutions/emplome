@@ -368,6 +368,201 @@ function get_basic_education($scope){
     ]
 }
 
+function get_basic_education_specialization($scope){
+    $scope.basic_education = {
+
+      'Intermediate Schooling': [
+          'General (College Proprietary)',
+          'Other',
+      ]
+
+      'Secondary Schooling': [
+          
+          'Academic / General',
+          'Commercial',
+          'Technical',
+          'Vocational',
+          'Religion',
+          'Other',
+      ]
+
+      'Diploma' : [
+          'Aircraft Maintenance',
+          'Architecture',
+          'Autoclave Operation',
+          'Cement Technology',
+          'Chemical',
+          'Civil',
+          'Computers</option>Construction Technology',
+          'Drilling & Exploration Technology',
+          'Electrical',
+          'Electronics',
+          'Engineering',
+          'Export/Import',
+          'Fashion Designing/Other Designing',
+          'Foundry & Forging',
+          'Graphic/ Web Designing',
+          'Hotel Management',
+          'Instrumentation & Control',
+          'Insurance',
+          'Jewelery Design & Manufacturing',
+          'Machine Tool Maintenance & Repair',
+          'Management',
+          'Mechanical',
+          'Medical Instrumentation',
+          'Medical Lab Technology',
+          'Petrochemical Technology',
+          'Process Instrumentation',
+          'Production Technology',
+          'Refinery & Petro Chemical Technology',
+          'Refrigeration & Airconditioning',
+          'Surface Coating Technology',
+          'Survey Engineering',
+          'Telecommunication',
+          'Tool & Die Technology',
+          'Tourism',
+          'Videography',
+          'Visual Arts',
+          'Vocational Course',
+          'Welding Technology',
+          'Other',
+      ]
+
+      'Bachelor of Architecture': [
+          'Architecture',
+      ]
+
+      'Bachelor of Arts': [
+
+          'Arabic'
+          'Arts&Humanities'
+          'Communication'
+          'Economics'
+          'English'
+          'Film'
+          'Fine arts',
+          'Hindi',
+          'History',
+          'Journalism',
+          'Middle Eastern Studies',
+          'Political Science',
+          'PR/Advertising',
+          'Psychology',
+          'Religion',
+          'Sociology',
+          'Statistics',
+          'Urdu',
+          'Vocational Course',
+          'Other',
+      ]
+
+      'Bachelor of Business Administration': [
+          'Management',
+      ]
+
+      'Bachelor of Commerce'  : [
+          'Commerce',
+      ]
+
+      'Bachelor of Dental Sugery' : [
+
+          'Dentistry',
+      ]
+
+      'Bachelor of Education' : [
+          'Education',
+          'Religious Education',
+      ]
+
+      'Bachelor of Hotel Management'  : [
+          'Hotel Management',
+      ]
+
+      'Bachelor of Laws (LLB)'    : [
+          'Law',
+      ]
+
+      'Bachelor of Pharmacy'  : [
+          'Pharmacy',
+      ]
+
+      'Bachelor of Science'   : [
+          'Agriculture',
+          'Anthropology',
+          'Bio-Chemistry',
+          'Biology',
+          'Botany',
+          'Chemistry',
+          'Computers',
+          'Dairy',
+          'Technology',
+          'Electronics',
+          'Environmental science',
+          'Food Technology',
+          'Geology',
+          'Home Science',
+          'Maths',
+          'Microbiology',
+          'Nursing',
+          'Physics',
+          'Statistics',
+          'Zoology',
+          'General',
+          'Other',
+      ]
+
+      'Bachelor of Technology/Engineering' : [
+          'Agriculture',
+          'Automobile',
+          'Aviation',
+          'Bio-Chemistry',
+          'Bio-Technology',
+          'Biomedical',
+          'Ceramics',
+          'Chemical',
+          'Civil',
+          'Computers',
+          'Electrical',
+          'Electronics/Telecomunication',
+          'Energy',
+          'Environmental',
+          'Instrumentation',
+          'Marine',
+          'Mechanical',
+          'Metallurgy',
+          'Mineral',
+          'Mining',
+          'Nuclear',
+          'Paint/Oil',
+          'Petroleum',
+          'Plastics',
+          'Production/Industrial',
+          'Textile',
+          'Other Engineering',
+      ]
+
+      'Bachelor of Vetirenary Science': [
+          'Veterinary Sciences',
+      ]
+
+      'Bachelor of Computer Application'  : [
+          'Computers',
+      ]
+
+      'MBBS': [
+
+          'Medicine',
+      ]
+
+     
+  //     'Bachelor of Technology/Engineering'  : [
+  // 'cse',
+  // 'ece',
+  //      ]
+    }
+}
+
+
 function get_masters_education($scope){
     $scope.masters_education = [
         'Chartered Accountant',
@@ -392,6 +587,219 @@ function get_masters_education($scope){
     ]
 
 }
+
+function get_masters_specialization($scope){
+    $scope.masters_education = {
+        'Chartered Accountant': [
+            'Chartered Accountant',
+        ]
+
+        'CA Inter': [
+            'Chartered Accountant'
+        ]
+
+        'Chartered Financial Analyst': [
+            'Finance',
+        ]
+
+        'Company Secretary': [
+            'Company Secretary',
+        ]
+
+        'Doctor of Medicine (MD)': [
+            'Anatomy',
+            'Anesthesiology',
+            'Aviation Medicine',
+            'Biochemistry',
+            'Bio-Physics',
+            'Blood Banking & Immuno. Haem',
+            'Critical Care Medicine',
+            'Community Health Administration',
+            'Community Medicine',
+            'Dermatology',
+            'Forensic Medicine',
+            'General Medicine',
+            'Geriatrics',
+            'Gynecology',
+            'Health Administration',
+            'Hospital Administration',
+            'Lab Medicine',
+            'Leprosy',
+            'Maternity & Child Health',
+            'Microbiology',
+            'Nuclear Medicine',
+            'Obstetrics',
+            'Ophthalmology',
+            'Pathology',
+            'Pediatrics',
+            'Pharmacology',
+            'Physical Medicine & Rehabilitation',
+            'Physiology',
+            'Psychiatry',
+            'Pulmonary Medicine',
+            'R & D',
+            'Radio Diagnosis',
+            'Radio Therapy',
+            'Radiology',
+            'Social and Preventive Medicine',
+            'Tropical Medicine',
+            'Tuberculosis & Chest Diseases',
+            'Veneriology',
+            'Other',
+        ]
+
+        'Doctor of Surgery (MS)': [
+            'Anaesthesia',
+            'Anatomy',
+            'Cardiology',
+            'Dermatology',
+            'ENT',
+            'General Surgery',
+            'Gyneocology',
+            'Hepatology',
+            'Immunology Microbiology',
+            'Neonatal',
+            'Nephrology/Urology',
+            'Obstretrics',
+            'Oncology',
+            'Opthalmology',
+            'Orthopedic',
+            'Pathology',
+            'Pediatrics',
+            'Psychiatry/Psychology',
+            'Radiology',
+            'Rheumatology',
+            'Other',
+        ]
+
+        'Inst. of Cost & Works Accountants': [
+            'Cost & Works Accountant',
+        ]
+
+        'ICWA Inter': [
+            'Cost & Works Accountant',
+        ]
+
+        'Master of Architecture': [
+            'Architecture',
+        ]
+
+        'Master of Arts': [
+            'Anthropology',
+            'Arabic',
+            'Arts & Humanities',
+            'Communication',
+            'Economics',
+            'English',
+            'Film',
+            'Fine arts',
+            'Hindi',
+            'History',
+            'Journalism',
+            'Maths',
+            'Middle Eastern Studies',
+            'Political',
+            'Science',
+            'PR/ Advertising',
+            'Psychology',
+            'Religion',
+            'Sociology',
+            'Statistics',
+            'Urdu',
+            'Other',
+        ]
+
+        'Master of Commerce': [
+            'Commerce',
+        ]
+
+        'Master of Education': [
+            'Education',
+        ]
+
+        'Master of Laws (LLM)': [
+            'Law',
+        ]
+
+        'Master of Pharmacy': [
+            'Pharmacy',
+        ]
+
+        'Master of Science' : [
+
+            'Agriculture',
+            'Anthropology',
+            'Bio-Chemistry',
+            'Biology',
+            'Botany',
+            'Chemistry',
+            'Computers',
+            'Dairy',
+            'Electronics',
+            'Environmental Science',
+            'Food Technology',
+            'Geology',
+            'Home Science',
+            'Maths',
+            'Microbiology',
+            'Nursing',
+            'Physics',
+            'Statistics',
+            'Technology',
+            'Zoology',
+            'Other',
+        ]
+
+        'Master of Technology/Engineering': [
+
+            'Agriculture',
+            'Automobile',
+            'Aviation',
+            'Bio-Chemistry',
+            'Bio-Technology',
+            'Biomedical',
+            'Ceramics',
+            'Chemical',
+            'Civil',
+            'Computers',
+            'Electrical',
+            'Electronics/Telecommunication',
+            'Energy',
+            'Environmental',
+            'Instrumentation',
+            'Marine',
+            'Mechanical',
+            'Metallurgy',
+            'Mineral',
+            'Mining',
+            'Nuclear',
+            'Paint/Oil',
+            'Petroleum',
+            'Plastics',
+            'Production/Industrial',
+            'Textile',
+            'Other Engineering',
+        ]
+
+        'Master of Vetirenary Science': [
+            'Veterinary Sciences',
+        ]
+
+        'Master of Computer Application': [
+        ]
+
+        'MBA/PG Diploma in Business Mgmt ': [
+        ]
+
+        'Other',
+    }
+}
+
+function get_basic_spl($scope){
+    $scope.basic_spl = [
+        'Diploma',
+
+
 
 function get_education_required($scope){
     $scope.education_required = [
