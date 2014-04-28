@@ -242,6 +242,7 @@ class RecruiterRegistrationView(View):
 class JobSeekerRegistration(View):
 
     def get(self, request,*args, **kwargs):
+        logout(request)
         
         return render(request, 'job_seeker_registration.html', {})
 
