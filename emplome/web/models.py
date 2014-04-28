@@ -859,6 +859,13 @@ class Job(models.Model):
         verbose_name = 'JobPosting'
         verbose_name_plural = 'JobPosting'
 
+class PreviousEmployer(models.Model):
+    previous_employer_name = models.CharField('Employer name', max_length=100, null=True, blank=True)
+
+    def __unicode__(self):
+
+        return self.previous_employer_name
+
 class Employment(models.Model):
 
     exp_yrs = models.IntegerField('Experience in Years',null=True, blank=True, choices=YEARS)
@@ -869,6 +876,7 @@ class Employment(models.Model):
     skills = models.CharField('Key Skills', null=True, blank=True, max_length=50)
     curr_industry = models.CharField('Current Industry', null=True, blank=True, max_length=50, choices=INDUSTRY)
     function = models.CharField('Function', null=True, blank=True, max_length=50, choices=FUNCTIONS)
+    previous_employer = models.ManyToManyField(PreviousEmployer, null=True, blank=True)
 
 
     def __unicode__(self):

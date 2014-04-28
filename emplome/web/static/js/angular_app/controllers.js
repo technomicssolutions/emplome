@@ -1081,6 +1081,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             }
             if ($scope.seeker.pass_year_masters == null) {
                 $scope.seeker.pass_year_masters = '';
+            } 
+            if ($scope.seeker.masters_edu == null) {
+                $scope.seeker.masters_edu = '';
             }           
 
             var file = $scope.resume_doc.src;
@@ -1353,7 +1356,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
     } 
     $http.get('/companies/').success(function(data)
     {
-        $scope.companies = data.companies; 
+        $scope.companies = data.companies;
     }).error(function(data, status)
     {
         console.log(data || "Request failed");
@@ -1377,7 +1380,10 @@ function  JobPostingController($scope,$element,$http,$timeout){
     var letters = /^[A-Za-z]+$/;  
     $scope.jobpost.last_date = $('#last_date').val();
     $scope.jobpost.post_date = $('#post_date').val();
-        
+    if ($scope.jobpost.company == '' || $scope.jobpost.company == undefined) {
+      $scope.jobpost.company = $('#company_name').val();
+    }
+    
     if ($scope.jobpost.title == ''|| $scope.jobpost.title == undefined){
       $scope.error_flag = true;
       $scope.error_message = 'Please provide a Job Title';

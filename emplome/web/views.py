@@ -321,9 +321,10 @@ class JobSeekerRegistration(View):
         if resume:
             education.resume = resume
             education.resume_text = ""
-       
-        elif seeker['resume_text'] != "":
-            education.resume_text = seeker['resume_text']
+        
+        # if seeker['resume_text'] != "":
+        education.resume_text = seeker['resume_text']
+
         education.save()
         job_seeker.education = education
         job_seeker.employment = employment
@@ -398,9 +399,20 @@ class JobSeekerRegistrationMoreInfo(View):
 
 class PostJobsView(View):
     def get(self, request,*args, **kwargs):
-        context = {
-        }
-        return render(request, 'job_post.html', context)
+
+        if request.user.is_superuser:
+            return render(request, 'job_post.html', {}) 
+        
+        elif request.user.userprofile_set.all()[0].user_type == 'employer':
+            userprofile = UserProfile.objects.get(user=request.user)
+            recruiter, created = RecruiterProfile.objects.get_or_create(profile=userprofile)
+            context = {
+                'company_name': recruiter.company.company_name,
+            }
+            return render(request, 'job_post.html', context)
+        else:
+            logout(request)
+            return render(request, 'recruiter_home.html', {})
 
     def post(self, request, *args, **kwargs):
 
