@@ -11,7 +11,7 @@
 
 		<div class="job_description">
 			<div id="job_description_text">
-				<h2>Uploaded Photo</h2>
+				<h2>{{profile.user.first_name}}</h2>
 			</div> 
 			<div id="user-image">
 				<div class="rounded_photo" id="profile_image">
@@ -26,16 +26,17 @@
 			            {% endif %}
 
 		            {% endif %}
+
 		        </div>
 		    </div>
 			<div id="job_description_text">
 				<h2>Personal Details</h2>
 			</div>
 			<p id="personal_details">
-				Name : {{profile.user.first_name}} <br/>
-				Date of Birth : {{ profile.jobseekerprofile_set.all.0.dob|date:"M d, Y"}} <br/>
-				Gender : {{ profile.jobseekerprofile_set.all.0.gender }} <br/>
+				<!-- Name : {{profile.user.first_name}} <br/> -->
 				Email-Id : {{profile.user.email}} <br/>
+				Gender : {{ profile.jobseekerprofile_set.all.0.gender }} <br/>
+				Date of Birth : {{ profile.jobseekerprofile_set.all.0.dob|date:"M d, Y"}} <br/>		
 				Current Location : {{profile.country}} <br/>
 				City : {{profile.city}} <br/>
 				Phone : {{profile.mobile}} <br/>
@@ -45,7 +46,11 @@
 			<div id="job_description_text"><h2>Education</h2></div>
 			<div><br>
 				<span>
-				{{profile.jobseekerprofile_set.all.0.education.basic_edu}}<br/>
+					Basic Education: {{profile.jobseekerprofile_set.all.0.education.basic_edu}}<br/>
+					Specialization : {{profile.jobseekerprofile_set.all.0.education.basic_edu_specialization}}<br/>
+					Masters Education: {{profile.jobseekerprofile_set.all.0.education.masters}}<br/>
+					Specialization: {{profile.jobseekerprofile_set.all.0.education.masters_specialization}}<br/>
+
 				</span>
 			</div>
 			
@@ -53,11 +58,13 @@
 				<h2>Industry Information</h2>
 			</div>
 			<p id="personal_details">
+				
+				Total Experience: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s) {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br/>
+				Salary: {{profile.jobseekerprofile_set.all.0.employment.salary}}
+				{{profile.jobseekerprofile_set.all.0.employment.currency}}<br/>
+				Key Skills: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
 				Industry: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br/>
 				Function: {{profile.jobseekerprofile_set.all.0.employment.function}}<br/>
-				Total Experience: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s) {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br/>
-				Salary: {{profile.jobseekerprofile_set.all.0.employment.salary}}<br/>
-				Key Skills: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
 			</p>
 
 			<div id="job_description_text">
@@ -65,7 +72,7 @@
 			</div>
 			<p id="personal_details">
 				{%if profile.jobseekerprofile_set.all.0.education.resume%}
-					Uploaded Resume
+					Resume
 					<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.resume.name}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
 				{% else %}
 				<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea>

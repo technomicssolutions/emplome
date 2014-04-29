@@ -14,7 +14,7 @@
 				<h2>Job Description</h2>
 			</div>
 				
-			<p>{{ job.summary }}</p>
+			<p><h3>{{ job.summary }}</h3></p>
 			<span>
 				{% if job.salary %}
 					Salary : {{job.salary}} {{job.currency}} <br/>					
@@ -33,6 +33,7 @@
 				<span>
 				Skills : {{job.skills}} <br/>
 				Experience : {{job.exp_req_min}} - {{job.exp_req_max}}<br/>
+				Education Required : {{job.education_req}}<br/>
 				Specialization : {{ job.specialization }} <br/>
 				Nationality : {{job.nationality}} <br/>
 			</span>

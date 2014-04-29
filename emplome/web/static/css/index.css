@@ -1032,6 +1032,7 @@ label textarea{
 #user-image {
     height: 80px;
     margin-top: 15px;
+    float: right;
 }
 
 .add_employers {
