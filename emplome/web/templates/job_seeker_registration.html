@@ -109,7 +109,7 @@
 			<div class="formrow">
 				<label>Total Experience</label>
 				<select name="years" style="width: 14%" ng-model="seeker.years">
-					<!-- <option value="">Years</option> -->
+					<option value="">Years</option>
 					<option ng-repeat="expr in experience" value="[[expr]]" ng-selected="expr == seeker.years">[[expr]]</option>
 				</select> Year(s)
 				<select name="months" style="width: 14%" ng-model="seeker.months">
@@ -132,7 +132,7 @@
 				<label>Monthly Salary</label>
 				<input style="width: 18%" type="text" name="salary" ng-model="seeker.salary">
 				<select style="width: 16%" name="currency" ng-model="seeker.currency">
-					<!-- <option value="">-Select Currency-</option> -->
+					<option value="">Select Currency</option>
 					<option ng-repeat="currency in currencies" value="[[currency]]" ng-selected="currency == seeker.currency">[[currency]]</option>
 				</select>Currency
 			</div>
@@ -159,7 +159,7 @@
 				<label>Previous Employer</label>
 				<div class="add_employers">
 					<input type="text" name="previous_employer" ng-repeat="employer in employers" ng-model="employer.employer">
-					<a href="" ng-click="add_employer()">+</a>
+					<a href="" ng-click="add_employer()"><button>+</button></a>
 				</div>
 					
 				
@@ -211,7 +211,7 @@
 				<label>Doctrate</label>
 				<div class="add_employers">
 					<input type="text" ng-repeat="doctrate in doctorate" name="doctrate" ng-model="doctrate.name">	
-					<a href="" ng-click="add_doctorate()">+</a>	
+					<a href="" ng-click="add_doctorate()"><button>+</button></a>	
 				</div>		
 			</div>
 		</div>

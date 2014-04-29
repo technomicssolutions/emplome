@@ -895,8 +895,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'city': '',
         'mobile': '',
         'alt_email': '',
-        'years': '',
-        'months': '',
+        'years': '0',
+        'months': '0',
         'salary': '',
         'currency': '',
         'designation': '',
@@ -950,10 +950,11 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             {
                 $scope.seeker = data.seeker[0]; 
                 $('#dob').val($scope.seeker.dob);
+                console.log($scope.seeker.years);
                 if ($scope.seeker.pass_year_masters == null) {
                   $scope.seeker.pass_year_masters = '';
                 }
-                if ($scope.seeker.years == null) {
+                if ($scope.seeker.years == null || $scope.seeker.years == 0) {
                     $scope.seeker.years = '0';
                 }
                 if ($scope.seeker.months == null) {
@@ -1038,9 +1039,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.form_validation = function(){
         var letters = /^[A-Za-z]+$/;  
         $scope.seeker.dob = $('#dob').val();
-        if ($scope.resume_doc.src){
-            $scope.seeker.resume = $scope.resume_doc.src; 
-        }
+        
         if (!(validateEmail($scope.seeker.email))){
             $scope.error_flag = true;
             $scope.error_message = 'Please provide a Valid Email Id';
@@ -1122,7 +1121,11 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     }
 
   
-    $scope.form_validation_more_info = function(){     
+    $scope.form_validation_more_info = function(){    
+        if ($scope.resume_doc.src){
+            $scope.seeker1.resume = $scope.resume_doc.src; 
+        } 
+        
         if ($scope.seeker1.resume_title == '' || $scope.seeker1.resume_title == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please give a Title for your Resume';
