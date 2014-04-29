@@ -807,6 +807,16 @@ CURRENCIES = (
     ('Yen', 'Yen'),       
 )
 
+SPECIALIZATION = (
+    ('General (College Proprietary)', 'General (College Proprietary)'),
+    ('Academic / General', 'Academic / General'),
+    ('Commercial', 'Commercial'),
+    ('Technical','Technical'),
+    ('Vocational', 'Vocational'),
+    ('Religion', 'Religion'),
+    ('Architecture','Architecture'),
+)
+
 class CompanyProfile(models.Model):
 
     company_name = models.CharField('Company Name', max_length=50, null=True, blank=True)
@@ -899,8 +909,10 @@ class Education(models.Model):
     
     basic_edu = models.CharField('Basic Education', max_length=50, choices=BASIC_EDU)
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
+    basic_edu_specialization = models.CharField('Basic Education Specialization', null=True, blank=True, choices=SPECIALIZATION, max_length=100)
     masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
+    masters_specialization = models.CharField('Masters Specialization', null=True, blank=True, choices=SPECIALIZATION, max_length=100)
     doctrate = models.ManyToManyField(Doctorate,null=True, blank=True)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/resumes/", null=True, blank=True)
