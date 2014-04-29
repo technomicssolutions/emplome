@@ -336,9 +336,12 @@ class JobSeekerRegistration(View):
         job_seeker.employment = employment
         job_seeker.save()
         education.basic_edu = seeker['basic_edu']
+        education.basic_edu_specialization = seeker['basic_specialization']
         education.pass_year_basic = int(seeker['pass_year_basic'])
         if seeker['masters_edu'] != "":
             education.masters = seeker['masters_edu']
+        if seeker['master_specialization'] != "":
+            education.masters_specialization = seeker['master_specialization']
         if seeker['pass_year_masters'] != "":
             education.pass_year_masters = int(seeker['pass_year_masters'])
         education.save()
@@ -396,8 +399,9 @@ class JobSeekerRegistrationMoreInfo(View):
         resume = request.FILES.get('resume_doc', '')
         if resume:
             education.resume = resume
-       
-        # if seeker['resume_text'] != "":
+        
+        # if seeker1['resume_text'] != "":
+        # else:
         education.resume_text = seeker1['resume_text']
         education.save()
         jobseeker.education = education
@@ -685,8 +689,10 @@ class GetProfileDetails(View):
                     'previous_company': ctx_previous_company,
                     'functions': jobseeker.employment.function if jobseeker.employment else '' , 
                     'basic_edu': jobseeker.education.basic_edu if jobseeker.education else '' ,
+                    'basic_specialization': jobseeker.education.basic_edu_specialization if jobseeker.education else '' ,
                     'pass_year_basic': jobseeker.education.pass_year_basic if jobseeker.education else '' ,
                     'masters_edu': jobseeker.education.masters if jobseeker.education else '' ,
+                    'master_specialization': jobseeker.education.masters_specialization if jobseeker.education else '' ,
                     'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
                     'doctrate': ctx_doctorate,
                 })

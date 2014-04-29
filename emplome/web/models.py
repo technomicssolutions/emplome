@@ -817,7 +817,8 @@ EDUCATION_REQUIRED = (
 #           ('Cement Technology', 'Cement Technology'),
 #           ('Chemical', 'Chemical'),
 #           ('Civil', 'Civil'),
-#           ('Computers</option>Construction Technology', 'Computers</option>Construction Technology'),
+#           ('Computers
+    # Construction Technology', 
 #           ('Drilling & Exploration Technology', 'Drilling & Exploration Technology'),
 #           ('Electrical', 'Electrical'),
 #           ('Electronics', 'Electronics'),
@@ -850,7 +851,36 @@ EDUCATION_REQUIRED = (
 #           ('Vocational Course', 'Vocational Course'),
 #           ('Welding Technology', 'Welding Technology'),
 #           ('Other', 'Other'),
-#       ]
+# 
+# 
+#       ]'Bachelor of Technology/Engineering' : [
+#           'Agriculture',
+#           'Automobile',
+#           'Aviation',
+#           'Bio-Chemistry',
+#           'Bio-Technology',
+#           'Biomedical',
+#           'Ceramics',
+#          
+#          
+#           'Electronics/Telecomunication',
+#           'Energy',
+#           'Environmental',
+#           'Instrumentation',
+#           'Marine',
+#           
+#           'Metallurgy',
+#           'Mineral',
+#           'Mining',
+#           'Nuclear',
+#           'Paint/Oil',
+#           'Petroleum',
+#           'Plastics',
+#           'Production/Industrial',
+#           'Textile',
+#           'Other Engineering',
+
+
 
 #       'Bachelor of Architecture': [
 #           ('Architecture', 'Architecture'),
@@ -1125,6 +1155,7 @@ EDUCATION_REQUIRED = (
 #             'Chemistry',
 #             'Computers',
 #             'Dairy',
+            # 'Technology',
 #             'Electronics',
 #             'Environmental Science',
 #             'Food Technology',
@@ -1135,10 +1166,31 @@ EDUCATION_REQUIRED = (
 #             'Nursing',
 #             'Physics',
 #             'Statistics',
-#             'Technology',
+#             
 #             'Zoology',
 #             'Other',
-#         ]
+#         ]'Agriculture',
+#           'Anthropology',
+#           'Bio-Chemistry',
+#           'Biology',
+#           'Botany',
+#           'Chemistry',
+#           'Computers',
+#           'Dairy',
+#           'Technology',
+#           'Electronics',
+#           'Environmental science',
+#           'Food Technology',
+#           'Geology',
+#           'Home Science',
+#           'Maths',
+#           'Microbiology',
+#           'Nursing',
+#           'Physics',
+#           'Statistics',
+#           'Zoology',
+#           'General',
+#           'Other',
 
 #         'Master of Technology/Engineering': [
 
@@ -1146,7 +1198,7 @@ EDUCATION_REQUIRED = (
 #             'Automobile',
 #             'Aviation',
 #             'Bio-Chemistry',
-#             'Bio-Technology',
+#             'Bio-Technology'  ,
 #             'Biomedical',
 #             'Ceramics',
 #             'Chemical',
@@ -1156,7 +1208,7 @@ EDUCATION_REQUIRED = (
 #             'Electronics/Telecommunication',
 #             'Energy',
 #             'Environmental',
-#             'Instrumentation',
+#             'Instrumentat`ion',
 #             'Marine',
 #             'Mechanical',
 #             'Metallurgy',
@@ -1169,7 +1221,35 @@ EDUCATION_REQUIRED = (
 #             'Production/Industrial',
 #             'Textile',
 #             'Other Engineering',
-#         ]
+#         ]'Agriculture',
+#           'Automobile',
+#           'Aviation',
+#           'Bio-Chemistry',
+#           'Bio-Technology',
+#           'Biomedical',
+#           'Ceramics',
+#           'Chemical',
+#           'Civil',
+#           'Computers',
+#           'Electrical',
+#           'Electronics/Telecomunication',
+#           'Energy',
+#           'Environmental',
+#           'Instrumentation',
+#           'Marine',
+#           'Mechanical',
+#           'Metallurgy',
+#           'Mineral',
+#           'Mining',
+#           'Nuclear',
+#           'Paint/Oil',
+#           'Petroleum',
+#           'Plastics',
+#           'Production/Industrial',
+#           'Textile',
+#           'Other Engineering',
+
+
 
 #         'Master of Vetirenary Science': [
 #             'Veterinary Sciences',
@@ -1219,7 +1299,8 @@ SPECIALIZATION = (
     ('Cement Technology', 'Cement Technology'),
     ('Chemical', 'Chemical'),
     ('Civil', 'Civil'),
-    ('Computers</option>Construction Technology', 'Computers</option>Construction Technology'),
+    ('Computers', 'Computers'),
+    ('Construction Technology', 'Construction Technology'),
     ('Drilling & Exploration Technology', 'Drilling & Exploration Technology'),
     ('Electrical', 'Electrical'),
     ('Electronics', 'Electronics'),
@@ -1237,28 +1318,29 @@ SPECIALIZATION = (
     ('Mechanical', 'Mechanical'),
     ('Medical Instrumentation', 'Medical Instrumentation'),
     ('Medical Lab Technology', 'Medical Lab Technology'),
-    ('Petrochemical Technology'),
-    ('Process Instrumentation'),
-    ('Production Technology'),
-    ('Refinery & Petro Chemical Technology'),
-    ('Refrigeration & Airconditioning'),
-    ('Surface Coating Technology'),
+    ('Petrochemical Technology', 'Petrochemical Technology'),
+    ('Process Instrumentation', 'Process Instrumentation'),
+    ('Production Technology', 'Production Technology'),
+    ('Refinery & Petro Chemical Technology', 'Refinery & Petro Chemical Technology'),
+    ('Refrigeration & Airconditioning', 'Refrigeration & Airconditioning'),
+    ('Surface Coating Technology', 'Surface Coating Technology'),
     ('Survey Engineering', 'Survey Engineering'),
     ('Telecommunication', 'Telecommunication'),
     ('Tool & Die Technology', 'Tool & Die Technology'),
     ('Tourism', 'Tourism'),
     ('Videography', 'Videography'),
     ('Visual Arts', 'Visual Arts'),
+
+
     ('Vocational Course', 'Vocational Course'),
     ('Welding Technology', 'Welding Technology'),
-    ('Other', 'Other'),
     ('Architecture', 'Architecture'),
-    ('Arabic' 'Arabic'),
-    ('Arts&Humanities' 'Arts&Humanities'),
-    ('Communication' 'Communication'),
-    ('Economics' 'Economics'),
-    ('English' 'English'),
-    ('Film' 'Film'),
+    ('Arabic', 'Arabic'),
+    ('Arts&Humanities', 'Arts&Humanities'),
+    ('Communication', 'Communication'),
+    ('Economics', 'Economics'),
+    ('English', 'English'),
+    ('Film', 'Film'),
     ('Fine arts', 'Fine arts'),
     ('Hindi', 'Hindi'),
     ('History', 'History'),
@@ -1267,12 +1349,10 @@ SPECIALIZATION = (
     ('Political Science', 'Political Science'),
     ('PR/Advertising', 'PR/Advertising'),
     ('Psychology', 'Psychology'),
-    ('Religion', 'Religion'),
     ('Sociology', 'Sociology'),
     ('Statistics', 'Statistics'),
     ('Urdu', 'Urdu'),
     ('Vocational Course', 'Vocational Course'),
-    ('Other', 'Other'),
     ('Management', 'Management'),    
     ('Commerce', 'Commerce'),      
     ('Dentistry', 'Dentistry'),    
@@ -1302,263 +1382,105 @@ SPECIALIZATION = (
     ('Statistics', 'Statistics'),
     ('Zoology', 'Zoology'),
     ('General', 'General'),
-    ('Other', 'Other'),
-    ('Agriculture', 'Agriculture'),
+
+
     ('Automobile', 'Automobile'),
     ('Aviation', 'Aviation'),
     ('Bio-Chemistry', 'Bio-Chemistry'),
     ('Bio-Technology', 'Bio-Technology'),
     ('Biomedical', 'Biomedical'),
     ('Ceramics', 'Ceramics'),
-    ('Chemical', 'Chemical'),
-    ('Civil', 'Civil'),
-    ('Computers', 'Computers'),
-    ('Electrical', 'Electrical'),
+    ('Chemical', 'Chemical'),  
     ('Electronics/Telecomunication', 'Electronics/Telecomunication'),
     ('Energy', 'Energy'),
     ('Environmental', 'Environmental'),
     ('Instrumentation', 'Instrumentation'),
-    #   'Marine',
-    #   'Mechanical',
-    #   'Metallurgy',
-    #   'Mineral',
-    #   'Mining',
-    #   'Nuclear',
-    #   'Paint/Oil',
-    #   'Petroleum',
-    #   'Plastics',
-    #   'Production/Industrial',
-    #   'Textile',
-    #   'Other Engineering',
-    # ]
-
-    # 'Bachelor of Vetirenary Science': [
-    #   'Veterinary Sciences',
-    # ]
-
-    # 'Bachelor of Computer Application'  : [
-    #   'Computers',
-    # ]
-
-    # 'MBBS': [
-
-    #   'Medicine',
-    # ]
-    # )
-
-    # MASTER_SPL = (
-    # 'Chartered Accountant': [
-    #     'Chartered Accountant',
-    # ]
-
-    # 'CA Inter': [
-    #     'Chartered Accountant'
-    # ]
-
-    # 'Chartered Financial Analyst': [
-    #     'Finance',
-    # ]
-
-    # 'Company Secretary': [
-    #     'Company Secretary',
-    # ]
-
-    # 'Doctor of Medicine (MD)': [
-    #     'Anatomy',
-    #     'Anesthesiology',
-    #     'Aviation Medicine',
-    #     'Biochemistry',
-    #     'Bio-Physics',
-    #     'Blood Banking & Immuno. Haem',
-    #     'Critical Care Medicine',
-    #     'Community Health Administration',
-    #     'Community Medicine',
-    #     'Dermatology',
-    #     'Forensic Medicine',
-    #     'General Medicine',
-    #     'Geriatrics',
-    #     'Gynecology',
-    #     'Health Administration',
-    #     'Hospital Administration',
-    #     'Lab Medicine',
-    #     'Leprosy',
-    #     'Maternity & Child Health',
-    #     'Microbiology',
-    #     'Nuclear Medicine',
-    #     'Obstetrics',
-    #     'Ophthalmology',
-    #     'Pathology',
-    #     'Pediatrics',
-    #     'Pharmacology',
-    #     'Physical Medicine & Rehabilitation',
-    #     'Physiology',
-    #     'Psychiatry',
-    #     'Pulmonary Medicine',
-    #     'R & D',
-    #     'Radio Diagnosis',
-    #     'Radio Therapy',
-    #     'Radiology',
-    #     'Social and Preventive Medicine',
-    #     'Tropical Medicine',
-    #     'Tuberculosis & Chest Diseases',
-    #     'Veneriology',
-    #     'Other',
-    # ]
-
-    # 'Doctor of Surgery (MS)': [
-    #     'Anaesthesia',
-    #     'Anatomy',
-    #     'Cardiology',
-    #     'Dermatology',
-    #     'ENT',
-    #     'General Surgery',
-    #     'Gyneocology',
-    #     'Hepatology',
-    #     'Immunology Microbiology',
-    #     'Neonatal',
-    #     'Nephrology/Urology',
-    #     'Obstretrics',
-    #     'Oncology',
-    #     'Opthalmology',
-    #     'Orthopedic',
-    #     'Pathology',
-    #     'Pediatrics',
-    #     'Psychiatry/Psychology',
-    #     'Radiology',
-    #     'Rheumatology',
-    #     'Other',
-    # ]
-
-    # 'Inst. of Cost & Works Accountants': [
-    #     'Cost & Works Accountant',
-    # ]
-
-    # 'ICWA Inter': [
-    #     'Cost & Works Accountant',
-    # ]
-
-    # 'Master of Architecture': [
-    #     'Architecture',
-    # ]
-
-    # 'Master of Arts': [
-    #     'Anthropology',
-    #     'Arabic',
-    #     'Arts & Humanities',
-    #     'Communication',
-    #     'Economics',
-    #     'English',
-    #     'Film',
-    #     'Fine arts',
-    #     'Hindi',
-    #     'History',
-    #     'Journalism',
-    #     'Maths',
-    #     'Middle Eastern Studies',
-    #     'Political',
-    #     'Science',
-    #     'PR/ Advertising',
-    #     'Psychology',
-    #     'Religion',
-    #     'Sociology',
-    #     'Statistics',
-    #     'Urdu',
-    #     'Other',
-    # ]
-
-    # 'Master of Commerce': [
-    #     'Commerce',
-    # ]
-
-    # 'Master of Education': [
-    #     'Education',
-    # ]
-
-    # 'Master of Laws (LLM)': [
-    #     'Law',
-    # ]
-
-    # 'Master of Pharmacy': [
-    #     'Pharmacy',
-    # ]
-
-    # 'Master of Science' : [
-
-    #     'Agriculture',
-    #     'Anthropology',
-    #     'Bio-Chemistry',
-    #     'Biology',
-    #     'Botany',
-    #     'Chemistry',
-    #     'Computers',
-    #     'Dairy',
-    #     'Electronics',
-    #     'Environmental Science',
-    #     'Food Technology',
-    #     'Geology',
-    #     'Home Science',
-    #     'Maths',
-    #     'Microbiology',
-    #     'Nursing',
-    #     'Physics',
-    #     'Statistics',
-    #     'Technology',
-    #     'Zoology',
-    #     'Other',
-    # ]
-
-    # 'Master of Technology/Engineering': [
-
-    #     'Agriculture',
-    #     'Automobile',
-    #     'Aviation',
-    #     'Bio-Chemistry',
-    #     'Bio-Technology',
-    #     'Biomedical',
-    #     'Ceramics',
-    #     'Chemical',
-    #     'Civil',
-    #     'Computers',
-    #     'Electrical',
-    #     'Electronics/Telecommunication',
-    #     'Energy',
-    #     'Environmental',
-    #     'Instrumentation',
-    #     'Marine',
-    #     'Mechanical',
-    #     'Metallurgy',
-    #     'Mineral',
-    #     'Mining',
-    #     'Nuclear',
-    #     'Paint/Oil',
-    #     'Petroleum',
-    #     'Plastics',
-    #     'Production/Industrial',
-    #     'Textile',
-    #     'Other Engineering',
-    # ]
-
-    # 'Master of Vetirenary Science': [
-    #     'Veterinary Sciences',
-    # ]
-
-    # 'Master of Computer Application': [
-    #     'Computers',
-    # ]
-
-    # 'MBA/PG Diploma in Business Mgmt ': [
-    #     'Advertising/Mass Communication',
-    #     'Finance',
-    #     'HR/Industrial Relations',
-    #     'Information Technology',
-    #     'International Business',
-    #     'Marketing',
-    #     'Systems',
-    #     'Other',
-    # ]
-
-
+    ('Marine', 'Marine'),
+    ('Metallurgy', 'Metallurgy'),
+    ('Mineral', 'Mineral'),
+    ('Mining', 'Mining'),
+    ('Nuclear', 'Nuclear'),
+    ('Paint/Oil', 'Paint/Oil'),
+    ('Petroleum', 'Petroleum'),
+    ('Plastics', 'Plastics'),
+    ('Production/Industrial', 'Production/Industrial'),
+    ('Textile', 'Textile'),
+    ('Other Engineering', 'Other Engineering'),
+    ('Veterinary Sciences', 'Veterinary Sciences'),
+    ('Computers', 'Computers'),
+    ('Medicine', 'Medicine'),   
+    ('Chartered Accountant', 'Chartered Accountant'), 
+    ('Finance', 'Finance'),
+    ('Company Secretary', 'Company Secretary'),
+    ('Anatomy', 'Anatomy'),
+    ('Anesthesiology', 'Anesthesiology'),
+    ('Aviation Medicine', 'Aviation Medicine'),
+    ('Biochemistry', 'Biochemistry'),
+    ('Bio-Physics', 'Bio-Physics'),
+    ('Blood Banking & Immuno. Haem', 'Blood Banking & Immuno. Haem'),
+    ('Critical Care Medicine', 'Critical Care Medicine'),
+    ('Community Health Administration', 'Community Health Administration'),
+    ('Community Medicine', 'Community Medicine'),
+    ('Dermatology', 'Dermatology'),
+    ('Forensic Medicine', 'Forensic Medicine'),
+    ('General Medicine', 'General Medicine'),
+    ('Geriatrics', 'Geriatrics'),
+    ('Gynecology', 'Gynecology'),
+    ('Health Administration', 'Health Administration'),
+    ('Hospital Administration', 'Hospital Administration'),
+    ('Lab Medicine', 'Lab Medicine'),
+    ('Leprosy', 'Leprosy'),
+    ('Maternity & Child Health', 'Maternity & Child Health'),
+    ('Microbiology', 'Microbiology'),
+    ('Nuclear Medicine', 'Nuclear Medicine'),
+    ('Obstetrics', 'Obstetrics'),
+    ('Ophthalmology', 'Ophthalmology'),
+    ('Pathology', 'Pathology'),
+    ('Pediatrics', 'Pediatrics'),
+    ('Pharmacology', 'Pharmacology'),
+    ('Physical Medicine & Rehabilitation', 'Physical Medicine & Rehabilitation'),
+    ('Physiology', 'Physiology'),
+    ('Psychiatry', 'Psychiatry'),
+    ('Pulmonary Medicine', 'Pulmonary Medicine'),
+    ('R & D', 'R & D'),
+    ('Radio Diagnosis', 'Radio Diagnosis'),
+    ('Radio Therapy', 'Radio Therapy'),
+    ('Radiology', 'Radiology'),
+    ('Social and Preventive Medicine', 'Social and Preventive Medicine'),
+    ('Tropical Medicine', 'Tropical Medicine'),
+    ('Tuberculosis & Chest Diseases', 'Tuberculosis & Chest Diseases'),
+    ('Veneriology', 'Veneriology'),  
+    ('Anaesthesia', 'Anaesthesia'),
+    ('Anatomy', 'Anatomy'),
+    ('Cardiology', 'Cardiology'),
+    ('Dermatology', 'Dermatology'),
+    ('ENT', 'ENT'),
+    ('General Surgery', 'General Surgery'),
+    ('Gyneocology', 'Gyneocology'),
+    ('Hepatology', 'Hepatology'),
+    ('Immunology Microbiology', 'Immunology Microbiology'),
+    ('Neonatal', 'Neonatal'),
+    ('Nephrology/Urology', 'Nephrology/Urology'),
+    ('Obstretrics', 'Obstretrics'),
+    ('Oncology', 'Oncology'),
+    ('Opthalmology', 'Opthalmology'),
+    ('Orthopedic', 'Orthopedic'),
+    ('Pathology', 'Pathology'),
+    ('Pediatrics', 'Pediatrics'),
+    ('Psychiatry/Psychology', 'Psychiatry/Psychology'),
+    ('Radiology', 'Radiology'),
+    ('Rheumatology', 'Rheumatology'), 
+    ('Cost & Works Accountant', 'Cost & Works Accountant'),
+    ('Anthropology', 'Anthropology'),   
+    ('Advertising/Mass Communication', 'Advertising/Mass Communication'),
+    ('HR/Industrial Relations', 'HR/Industrial Relations'),
+    ('Information Technology', 'Information Technology'),
+    ('International Business', 'International Business'),
+    ('Marketing', 'Marketing'),
+    ('Systems', 'Systems'),
+    ('Other', 'Other'),
 )
+    
 
 class CompanyProfile(models.Model):
 

@@ -368,6 +368,193 @@ function get_basic_education($scope){
     ]
 }
 
+function get_basic_education_specialization($scope){
+    $scope.basic_education_specialization = {
+
+      'Intermediate Schooling': [
+          'General (College Proprietary)',
+          'Other',
+      ],
+
+      'Secondary Schooling': [
+          'Academic / General',
+          'Commercial',
+          'Technical',
+          'Vocational',
+          'Religion',
+          'Other',
+      ],
+
+      'Diploma': [
+          'Aircraft Maintenance',
+          'Architecture',
+          'Autoclave Operation',
+          'Cement Technology',
+          'Chemical',
+          'Civil',
+          'Computers</option>Construction Technology',
+          'Drilling & Exploration Technology',
+          'Electrical',
+          'Electronics',
+          'Engineering',
+          'Export/Import',
+          'Fashion Designing/Other Designing',
+          'Foundry & Forging',
+          'Graphic/ Web Designing',
+          'Hotel Management',
+          'Instrumentation & Control',
+          'Insurance',
+          'Jewelery Design & Manufacturing',
+          'Machine Tool Maintenance & Repair',
+          'Management',
+          'Mechanical',
+          'Medical Instrumentation',
+          'Medical Lab Technology',
+          'Petrochemical Technology',
+          'Process Instrumentation',
+          'Production Technology',
+          'Refinery & Petro Chemical Technology',
+          'Refrigeration & Airconditioning',
+          'Surface Coating Technology',
+          'Survey Engineering',
+          'Telecommunication',
+          'Tool & Die Technology',
+          'Tourism',
+          'Videography',
+          'Visual Arts',
+          'Vocational Course',
+          'Welding Technology',
+          'Other',
+      ],
+
+      'Bachelor of Architecture': [
+          'Architecture',
+      ],
+
+      'Bachelor of Arts': [
+
+          'Arabic',
+          'Arts&Humanities',
+          'Communication',
+          'Economics',
+          'English',
+          'Film',
+          'Fine arts',
+          'Hindi',
+          'History',
+          'Journalism',
+          'Middle Eastern Studies',
+          'Political Science',
+          'PR/Advertising',
+          'Psychology',
+          'Religion',
+          'Sociology',
+          'Statistics',
+          'Urdu',
+          'Vocational Course',
+          'Other',
+      ],
+
+      'Bachelor of Business Administration': [
+          'Management',
+      ],
+
+      'Bachelor of Commerce'  : [
+          'Commerce',
+      ],
+
+      'Bachelor of Dental Sugery' : [
+
+          'Dentistry',
+      ],
+
+      'Bachelor of Education' : [
+          'Education',
+          'Religious Education',
+      ],
+
+      'Bachelor of Hotel Management'  : [
+          'Hotel Management',
+      ],
+
+      'Bachelor of Laws (LLB)'    : [
+          'Law',
+      ],
+
+      'Bachelor of Pharmacy'  : [
+          'Pharmacy',
+      ],
+
+      'Bachelor of Science'   : [
+          'Agriculture',
+          'Anthropology',
+          'Bio-Chemistry',
+          'Biology',
+          'Botany',
+          'Chemistry',
+          'Computers',
+          'Dairy',
+          'Technology',
+          'Electronics',
+          'Environmental science',
+          'Food Technology',
+          'Geology',
+          'Home Science',
+          'Maths',
+          'Microbiology',
+          'Nursing',
+          'Physics',
+          'Statistics',
+          'Zoology',
+          'General',
+          'Other',
+      ],
+
+      'Bachelor of Technology/Engineering' : [
+          'Agriculture',
+          'Automobile',
+          'Aviation',
+          'Bio-Chemistry',
+          'Bio-Technology',
+          'Biomedical',
+          'Ceramics',
+          'Chemical',
+          'Civil',
+          'Computers',
+          'Electrical',
+          'Electronics/Telecomunication',
+          'Energy',
+          'Environmental',
+          'Instrumentation',
+          'Marine',
+          'Mechanical',
+          'Metallurgy',
+          'Mineral',
+          'Mining',
+          'Nuclear',
+          'Paint/Oil',
+          'Petroleum',
+          'Plastics',
+          'Production/Industrial',
+          'Textile',
+          'Other Engineering',
+      ],
+
+      'Bachelor of Vetirenary Science': [
+          'Veterinary Sciences',
+      ],
+
+      'Bachelor of Computer Application'  : [
+          'Computers',
+      ],
+
+      'MBBS': [
+
+          'Medicine',
+      ],
+  }
+}
+
 function get_masters_education($scope){
     $scope.masters_education = [
         'Chartered Accountant',
@@ -390,7 +577,220 @@ function get_masters_education($scope){
         'MBA/PG Diploma in Business Mgmt ',
         'Other',
     ]
+}
 
+function get_masters_education_specialization($scope){
+    $scope.masters_education_specialization = {
+        'Chartered Accountant': [
+            'Chartered Accountant',
+        ],
+
+        'CA Inter': [
+            'Chartered Accountant'
+        ],
+
+        'Chartered Financial Analyst': [
+            'Finance',
+        ],
+
+        'Company Secretary': [
+            'Company Secretary',
+        ],
+
+        'Doctor of Medicine (MD)': [
+            'Anatomy',
+            'Anesthesiology',
+            'Aviation Medicine',
+            'Biochemistry',
+            'Bio-Physics',
+            'Blood Banking & Immuno. Haem',
+            'Critical Care Medicine',
+            'Community Health Administration',
+            'Community Medicine',
+            'Dermatology',
+            'Forensic Medicine',
+            'General Medicine',
+            'Geriatrics',
+            'Gynecology',
+            'Health Administration',
+            'Hospital Administration',
+            'Lab Medicine',
+            'Leprosy',
+            'Maternity & Child Health',
+            'Microbiology',
+            'Nuclear Medicine',
+            'Obstetrics',
+            'Ophthalmology',
+            'Pathology',
+            'Pediatrics',
+            'Pharmacology',
+            'Physical Medicine & Rehabilitation',
+            'Physiology',
+            'Psychiatry',
+            'Pulmonary Medicine',
+            'R & D',
+            'Radio Diagnosis',
+            'Radio Therapy',
+            'Radiology',
+            'Social and Preventive Medicine',
+            'Tropical Medicine',
+            'Tuberculosis & Chest Diseases',
+            'Veneriology',
+            'Other',
+        ],
+
+        'Doctor of Surgery (MS)': [
+            'Anaesthesia',
+            'Anatomy',
+            'Cardiology',
+            'Dermatology',
+            'ENT',
+            'General Surgery',
+            'Gyneocology',
+            'Hepatology',
+            'Immunology Microbiology',
+            'Neonatal',
+            'Nephrology/Urology',
+            'Obstretrics',
+            'Oncology',
+            'Opthalmology',
+            'Orthopedic',
+            'Pathology',
+            'Pediatrics',
+            'Psychiatry/Psychology',
+            'Radiology',
+            'Rheumatology',
+            'Other',
+        ],
+
+        'Inst. of Cost & Works Accountants': [
+            'Cost & Works Accountant',
+        ],
+
+        'ICWA Inter': [
+            'Cost & Works Accountant',
+        ],
+
+        'Master of Architecture': [
+            'Architecture',
+        ],
+
+        'Master of Arts': [
+            'Anthropology',
+            'Arabic',
+            'Arts & Humanities',
+            'Communication',
+            'Economics',
+            'English',
+            'Film',
+            'Fine arts',
+            'Hindi',
+            'History',
+            'Journalism',
+            'Maths',
+            'Middle Eastern Studies',
+            'Political',
+            'Science',
+            'PR/ Advertising',
+            'Psychology',
+            'Religion',
+            'Sociology',
+            'Statistics',
+            'Urdu',
+            'Other',
+        ],
+
+        'Master of Commerce': [
+            'Commerce',
+        ],
+
+        'Master of Education': [
+            'Education',
+        ],
+
+        'Master of Laws (LLM)': [
+            'Law',
+        ],
+
+        'Master of Pharmacy': [
+            'Pharmacy',
+        ],
+
+        'Master of Science' : [
+
+            'Agriculture',
+            'Anthropology',
+            'Bio-Chemistry',
+            'Biology',
+            'Botany',
+            'Chemistry',
+            'Computers',
+            'Dairy',
+            'Electronics',
+            'Environmental Science',
+            'Food Technology',
+            'Geology',
+            'Home Science',
+            'Maths',
+            'Microbiology',
+            'Nursing',
+            'Physics',
+            'Statistics',
+            'Technology',
+            'Zoology',
+            'Other',
+        ],
+
+        'Master of Technology/Engineering': [
+
+            'Agriculture',
+            'Automobile',
+            'Aviation',
+            'Bio-Chemistry',
+            'Bio-Technology',
+            'Biomedical',
+            'Ceramics',
+            'Chemical',
+            'Civil',
+            'Computers',
+            'Electrical',
+            'Electronics/Telecommunication',
+            'Energy',
+            'Environmental',
+            'Instrumentation',
+            'Marine',
+            'Mechanical',
+            'Metallurgy',
+            'Mineral',
+            'Mining',
+            'Nuclear',
+            'Paint/Oil',
+            'Petroleum',
+            'Plastics',
+            'Production/Industrial',
+            'Textile',
+            'Other Engineering',
+        ],
+
+        'Master of Vetirenary Science': [
+            'Veterinary Sciences',
+        ],
+
+        'Master of Computer Application': [
+            'Computers',
+        ],
+
+        'MBA/PG Diploma in Business Mgmt ': [
+            'Advertising/Mass Communication',
+            'Finance',
+            'HR/Industrial Relations',
+            'Information Technology',
+            'International Business',
+            'Marketing',
+            'Systems',
+            'Other',
+        ],
+    }
 }
 
 function get_education_required($scope){
@@ -865,6 +1265,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.experience =[];
     $scope.salary = '';
     $scope.currency = '';
+    $scope.resume_text = '';
 
     $scope.is_valid = false;
     $scope.error_flag = false;
@@ -905,8 +1306,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'previous_company': [],
         'skills': '',
         'basic_edu': '',
+        'basic_specialization': '',
         'pass_year_basic': '',
         'masters_edu': '',
+        'master_specialization': '',
         'pass_year_masters': '',
         'doctrate': [],
         
@@ -938,7 +1341,9 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         get_industries($scope);
         get_functions($scope);
         get_basic_education($scope);
+        get_basic_education_specialization($scope);
         get_masters_education($scope);
+        get_masters_education_specialization($scope);
         for(var i=1970; i<=2014; i++){
             $scope.year.push(i);
         }
@@ -950,7 +1355,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             {
                 $scope.seeker = data.seeker[0]; 
                 $('#dob').val($scope.seeker.dob);
-                console.log($scope.seeker.years);
+                // console.log($scope.seeker.years);
                 if ($scope.seeker.pass_year_masters == null) {
                   $scope.seeker.pass_year_masters = '';
                 }
@@ -963,14 +1368,17 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 if ($scope.seeker.doctrate == null) {
                     $scope.seeker.doctrate = '';
                 }
-                if ($scope.seeker.resume_text == null) {
-                    $scope.seeker.resume_text = '';
+                if ($scope.seeker1.resume_text == null) {
+                    $scope.seeker1.resume_text = '';
                 }
                 if ($scope.seeker.alt_email == null) {
                     $scope.seeker.alt_email = '';
                 }
-                if ($scope.seeker.pass_year_masters == null) {
-                    $scope.seeker.pass_year_masters = '';
+                // if ($scope.seeker.pass_year_masters == null) {
+                //     $scope.seeker.pass_year_masters = '';
+                // } 
+                if ($scope.seeker.master_specialization == null) {
+                    $scope.seeker.master_specialization = '';
                 } 
                 if ($scope.seeker.masters_edu == null) {
                     $scope.seeker.masters_edu = '';
@@ -1011,18 +1419,30 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                         $scope.doctorate[i].name = $scope.seeker.doctrate[i].doctorate;
                     }
                 } 
-                if($scope.seeker1.salary == null) {
-                  $scope.seeker1.salary = '';
+                if($scope.seeker.salary == null) {
+                  $scope.seeker.salary = '';
                 }
+                console.log($scope.seeker.basic_specialization);
+                console.log($scope.seeker.master_specialization);
                 $scope.seeker1 = data.seeker1[0];
                 $scope.seeker.id = $scope.user_id;
-                console.log($scope.seeker1.years);
+                // console.log($scope.seeker.years);
             }).error(function(data, status)
             {
                 console.log(data || "Request failed");
             });
         }
     }
+
+    $scope.get_stream = function() {
+        var basic_edu = $scope.seeker.basic_edu;
+        $scope.basic_specializations = $scope.basic_education_specialization[basic_edu];
+    }
+
+    $scope.get_master_stream = function() {
+        var masters_edu = $scope.seeker.masters_edu;
+        $scope.specializations = $scope.masters_education_specialization[masters_edu];
+    }    
 
     $scope.add_employer = function() {
         if($scope.employers.length <3) {
@@ -1108,29 +1528,37 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_message = 'Please enter Skills';
             return false;
         } 
-        if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined || $scope.seeker.basic_edu == "select Bachelor's/Diploma/School" || $scope.basic_edu == "Bachelor's Course" || $scope.basic_edu == 'Diploma Course' || $scope.basic_edu == 'Schooling'){
+        if ($scope.seeker.basic_edu == '' || $scope.seeker.basic_edu == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please select Basic Education';
+            return false;
+        } 
+        if ($scope.seeker.basic_specialization == '' || $scope.seeker.basic_specialization == undefined || $scope.seeker.basic_specialization == 'select'){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please select Specialisation for Basic Education';
             return false;
         } else if ($scope.seeker.pass_year_basic == '' || $scope.seeker.pass_year_basic == undefined || $scope.seeker.pass_year_basic == 'select'){
             $scope.error_flag = true;
             $scope.error_message = 'Please select the Year of Passing';
             return false;
-        } 
+        } if ($scope.seeker.masters_edu != '' && ($scope.seeker.master_specialization == '' || $scope.seeker.master_specialization == undefined || $scope.seeker.master_specialization == 'select')){
+            $scope.error_flag = true;
+            $scope.error_message = 'Please select Specialisation for Masters Education ';
+            return false;
+        }
         return true;
     }
-
   
     $scope.form_validation_more_info = function(){    
         if ($scope.resume_doc.src){
             $scope.seeker1.resume = $scope.resume_doc.src; 
-        } 
-        
+        }         
         if ($scope.seeker1.resume_title == '' || $scope.seeker1.resume_title == undefined){
             $scope.error_flag = true;
             $scope.error_message = 'Please give a Title for your Resume';
             return false;
-        } else if (($scope.seeker1.resume == undefined || $scope.seeker1.resume == '') && ($scope.seeker1.resume_text == undefined || $scope.seeker1.resume_text == '')){
+        }         
+        else if (($scope.seeker1.resume == undefined || $scope.seeker1.resume == '') && ($scope.seeker1.resume_text == undefined || $scope.seeker1.resume_text == '')){
             $scope.error_flag = true;
             $scope.error_message = 'Please Attach or Copy Paste your Resume';
             return false;
@@ -1143,7 +1571,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         return true; 
     }
 
-
     $scope.save_reg = function(){
         
         $scope.is_valid = $scope.form_validation();
@@ -1152,8 +1579,6 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_message = '';
             $scope.seeker.previous_company = JSON.stringify($scope.employers);
             $scope.seeker.doctrate = JSON.stringify($scope.doctorate);
-                               
-
             
             params = {
                 'seeker':angular.toJson($scope.seeker),
@@ -1171,8 +1596,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 }
             }).success(function(data, status){
                 $scope.user_id = data.user_id;
-
-                
+               
                 if(data.result == 'error') {
                     $scope.error_flag = true;
                     $scope.error_message = data.message;

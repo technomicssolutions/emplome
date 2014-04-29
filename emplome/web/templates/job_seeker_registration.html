@@ -37,7 +37,7 @@
 
 		<div class="separation">
 			<br>
-			<h3>Personnal Details</h3>
+			<h3>Personal Details</h3>
 			<br>
 			<div class="formrow">
 				<label>Full Name<span class="red">*</span></label>
@@ -179,16 +179,16 @@
 			<br>
 			<div class="formrow">
 				<label>Basic Education<span class="red">*</span></label>
-				<select name="basic_edu" ng-model="seeker.basic_edu">
+				<select name="basic_edu" ng-model="seeker.basic_edu" ng-change="get_stream()">
 					<option value="">-----------Select---------</option>
 					<option ng-repeat="education in basic_education" value="[[education]]" ng-selected="education == seeker.basic_edu">[[education]]</option>
 				</select>
 			</div>
 			<div class="formrow">
 				<label>Specialization<span class="red">*</span></label>
-				<select name="basic_specialization" ng-model="seeker.specialization">
+				<select name="basic_specialization" ng-model="seeker.basic_specialization">
 					<option value="">-----------Select---------</option>
-					<option ng-repeat="specialization in basic_specialization" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
+					<option ng-repeat="specialization in basic_specializations" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
 				</select>
 
 			</div>
@@ -202,16 +202,16 @@
 
 			<div class="formrow">
 				<label>Masters Education</label>
-				<select name="masters_edu" ng-model="seeker.masters_edu">
+				<select name="masters_edu" ng-model="seeker.masters_edu" ng-change="get_master_stream()">
 					<option value="">---------Select---------</option>
 					<option ng-repeat="edu in masters_education" value="[[edu]]" ng-selected="edu == seeker.masters_edu">[[edu]]</option>
 				</select>
 			</div>
 			<div class="formrow">
 				<label>Specialization</label>
-				<select name="master_specialization" ng-model="seeker.specialization">
+				<select name="master_specialization" ng-model="seeker.master_specialization">
 					<option value="">-----------Select---------</option>
-					<option ng-repeat="specialization in master_specialization" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
+					<option ng-repeat="specialization in specializations" value="[[specialization]]" ng-selected="specialization == seeker.master_specialization">[[specialization]]</option>
 				</select>
 			</div>
 			<div class="formrow">
