@@ -330,8 +330,9 @@ class JobSeekerRegistration(View):
             employment.previous_employer.clear()
         if len(previous_employers) > 0:
             for employer in previous_employers:
-                employer_obj, created = PreviousEmployer.objects.get_or_create(previous_employer_name = employer['employer'])
-                employment.previous_employer.add(employer_obj)
+                if len(employer['employer']) > 0 and not employer['employer'].isspace():
+                    employer_obj, created = PreviousEmployer.objects.get_or_create(previous_employer_name = employer['employer'])
+                    employment.previous_employer.add(employer_obj)
         job_seeker.employment = employment
         job_seeker.save()
         education.basic_edu = seeker['basic_edu']
@@ -340,29 +341,15 @@ class JobSeekerRegistration(View):
             education.masters = seeker['masters_edu']
         if seeker['pass_year_masters'] != "":
             education.pass_year_masters = int(seeker['pass_year_masters'])
-
-        if seeker['doctrate'] != "":
-            education.doctrate = seeker['doctrate']
-        education.resume_title = seeker['resume_title']
-
-        resume = request.FILES.get('resume_doc', '')
-        if resume:
-            education.resume = resume
-            education.resume_text = ""
-        
-        # if seeker['resume_text'] != "":
-        education.resume_text = seeker['resume_text']
-
-
-
         education.save()
         doctrate = ast.literal_eval(seeker['doctrate'])
         if education.doctrate:
             education.doctrate.clear()
         if len(doctrate) > 0: 
             for doctrate_name in doctrate:
-                doctorate, created = Doctorate.objects.get_or_create(doctorate_name = doctrate_name['name'])
-                education.doctrate.add(doctorate)
+                if len(doctrate_name['name']) > 0 and not doctrate_name['name'].isspace():
+                    doctorate, created = Doctorate.objects.get_or_create(doctorate_name = doctrate_name['name'])
+                    education.doctrate.add(doctorate)
         
         job_seeker.education = education
         

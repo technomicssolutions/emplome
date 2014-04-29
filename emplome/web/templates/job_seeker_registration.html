@@ -188,44 +188,8 @@
 				<label>Specialization<span class="red">*</span></label>
 				<select name="basic_specialization" ng-model="seeker.specialization">
 					<option value="">-----------Select---------</option>
-					<!-- <option value="select">Select</option> -->
-					<!-- <option value="14.1">Agriculture</option>
-					<option value="14.2">Automobile</option>
-					<option value="14.3">Aviation</option>
-					<option value="14.4">Bio-Chemistry</option>
-					<option value="14.5">Bio-Technology</option>
-					<option value="14.6">Biomedical</option>
-					<option value="14.7">Ceramics</option>
-					<option value="14.8">Chemical</option>
-					<option value="14.9">Civil</option>
-					<option value="14.10">Computers</option>
-					<option value="14.11">Electrical</option>
-					<option value="14.12">Electronics/Telecomunication</option>
-					<option value="14.13">Energy</option>
-					<option value="14.14">Environmental</option>
-					<option value="14.15">Instrumentation</option>
-					<option value="14.16">Marine</option>
-					<option value="14.17">Mechanical</option>
-					<option value="14.18">Metallurgy</option>
-					<option value="14.19">Mineral</option>
-					<option value="14.20">Mining</option>
-					<option value="14.21">Nuclear</option>
-					<option value="14.22">Paint/Oil</option>
-					<option value="14.23">Petroleum</option>
-					<option value="14.24">Plastics</option>
-					<option value="14.25">Production/Industrial</option>
-					<option value="14.26">Textile</option>
-					<option value="14.1000">Other Engineering</option>
- -->
 					<option ng-repeat="specialization in basic_specialization" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
 				</select>
-
-
-				
-
-
-
-
 
 			</div>
 			<div class="formrow">
@@ -244,7 +208,7 @@
 				</select>
 			</div>
 			<div class="formrow">
-				<label>Specialization<span class="red">*</span></label>
+				<label>Specialization</label>
 				<select name="master_specialization" ng-model="seeker.specialization">
 					<option value="">-----------Select---------</option>
 					<option ng-repeat="specialization in master_specialization" value="[[specialization]]" ng-selected="specialization == seeker.basic_specialization">[[specialization]]</option>
