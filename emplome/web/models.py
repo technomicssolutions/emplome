@@ -1206,7 +1206,359 @@ CURRENCIES = (
     ('Yen', 'Yen'),       
 )
 
+SPECIALIZATION = (
+    ('General (College Proprietary)', 'General (College Proprietary)'),
+    ('Academic / General', 'Academic / General'),
+    ('Commercial', 'Commercial'),
+    ('Technical','Technical'),
+    ('Vocational', 'Vocational'),
+    ('Religion', 'Religion'),
+    ('Aircraft Maintenance', 'Aircraft Maintenance'),
+    ('Architecture','Architecture'),
+    ('Autoclave Operation', 'Autoclave Operation'),
+    ('Cement Technology', 'Cement Technology'),
+    ('Chemical', 'Chemical'),
+    ('Civil', 'Civil'),
+    ('Computers</option>Construction Technology', 'Computers</option>Construction Technology'),
+    ('Drilling & Exploration Technology', 'Drilling & Exploration Technology'),
+    ('Electrical', 'Electrical'),
+    ('Electronics', 'Electronics'),
+    ('Engineering', 'Engineering'),
+    ('Export/Import', 'Export/Import'),
+    ('Fashion Designing/Other Designing', 'Fashion Designing/Other Designing'),
+    ('Foundry & Forging', 'Foundry & Forging'),
+    ('Graphic/ Web Designing', 'Graphic/ Web Designing'),
+    ('Hotel Management', 'Hotel Management'),
+    ('Instrumentation & Control', 'Instrumentation & Control'),
+    ('Insurance', 'Insurance'),
+    ('Jewelery Design & Manufacturing', 'Jewelery Design & Manufacturing'),
+    ('Machine Tool Maintenance & Repair', 'Machine Tool Maintenance & Repair'),
+    ('Management', 'Management'),
+    ('Mechanical', 'Mechanical'),
+    ('Medical Instrumentation', 'Medical Instrumentation'),
+    ('Medical Lab Technology', 'Medical Lab Technology'),
+    ('Petrochemical Technology'),
+    ('Process Instrumentation'),
+    ('Production Technology'),
+    ('Refinery & Petro Chemical Technology'),
+    ('Refrigeration & Airconditioning'),
+    ('Surface Coating Technology'),
+    ('Survey Engineering', 'Survey Engineering'),
+    ('Telecommunication', 'Telecommunication'),
+    ('Tool & Die Technology', 'Tool & Die Technology'),
+    ('Tourism', 'Tourism'),
+    ('Videography', 'Videography'),
+    ('Visual Arts', 'Visual Arts'),
+    ('Vocational Course', 'Vocational Course'),
+    ('Welding Technology', 'Welding Technology'),
+    ('Other', 'Other'),
+    ('Architecture', 'Architecture'),
+    ('Arabic' 'Arabic'),
+    ('Arts&Humanities' 'Arts&Humanities'),
+    ('Communication' 'Communication'),
+    ('Economics' 'Economics'),
+    ('English' 'English'),
+    ('Film' 'Film'),
+    ('Fine arts', 'Fine arts'),
+    ('Hindi', 'Hindi'),
+    ('History', 'History'),
+    ('Journalism', 'Journalism'),
+    ('Middle Eastern Studies', 'Middle Eastern Studies'),
+    ('Political Science', 'Political Science'),
+    ('PR/Advertising', 'PR/Advertising'),
+    ('Psychology', 'Psychology'),
+    ('Religion', 'Religion'),
+    ('Sociology', 'Sociology'),
+    ('Statistics', 'Statistics'),
+    ('Urdu', 'Urdu'),
+    ('Vocational Course', 'Vocational Course'),
+    ('Other', 'Other'),
+    ('Management', 'Management'),    
+    ('Commerce', 'Commerce'),      
+    ('Dentistry', 'Dentistry'),    
+    ('Education', 'Education'),
+    ('Religious Education', 'Religious Education'),     
+    ('Hotel Management', 'Hotel Management'),     
+    ('Law', 'Law'),
+    ('Pharmacy', 'Pharmacy'),
+    ('Agriculture', 'Agriculture'),
+    ('Anthropology', 'Anthropology'),
+    ('Bio-Chemistry', 'Bio-Chemistry'),
+    ('Biology', 'Biology'),
+    ('Botany', 'Botany'),
+    ('Chemistry', 'Chemistry'),
+    ('Computers', 'Computers'),
+    ('Dairy', 'Dairy'),
+    ('Technology', 'Technology'),
+    ('Electronics', 'Electronics'),
+    ('Environmental science', 'Environmental science'),
+    ('Food Technology', 'Food Technology'),
+    ('Geology', 'Geology'),
+    ('Home Science', 'Home Science'),
+    ('Maths', 'Maths'),
+    ('Microbiology', 'Microbiology'),
+    ('Nursing', 'Nursing'),
+    ('Physics', 'Physics'),
+    ('Statistics', 'Statistics'),
+    ('Zoology', 'Zoology'),
+    ('General', 'General'),
+    ('Other', 'Other'),
+    ('Agriculture', 'Agriculture'),
+    ('Automobile', 'Automobile'),
+    ('Aviation', 'Aviation'),
+    ('Bio-Chemistry', 'Bio-Chemistry'),
+    ('Bio-Technology', 'Bio-Technology'),
+    ('Biomedical', 'Biomedical'),
+    ('Ceramics', 'Ceramics'),
+    ('Chemical', 'Chemical'),
+    ('Civil', 'Civil'),
+    ('Computers', 'Computers'),
+    ('Electrical', 'Electrical'),
+    ('Electronics/Telecomunication', 'Electronics/Telecomunication'),
+    ('Energy', 'Energy'),
+    ('Environmental', 'Environmental'),
+    ('Instrumentation', 'Instrumentation'),
+    #   'Marine',
+    #   'Mechanical',
+    #   'Metallurgy',
+    #   'Mineral',
+    #   'Mining',
+    #   'Nuclear',
+    #   'Paint/Oil',
+    #   'Petroleum',
+    #   'Plastics',
+    #   'Production/Industrial',
+    #   'Textile',
+    #   'Other Engineering',
+    # ]
 
+    # 'Bachelor of Vetirenary Science': [
+    #   'Veterinary Sciences',
+    # ]
+
+    # 'Bachelor of Computer Application'  : [
+    #   'Computers',
+    # ]
+
+    # 'MBBS': [
+
+    #   'Medicine',
+    # ]
+    # )
+
+    # MASTER_SPL = (
+    # 'Chartered Accountant': [
+    #     'Chartered Accountant',
+    # ]
+
+    # 'CA Inter': [
+    #     'Chartered Accountant'
+    # ]
+
+    # 'Chartered Financial Analyst': [
+    #     'Finance',
+    # ]
+
+    # 'Company Secretary': [
+    #     'Company Secretary',
+    # ]
+
+    # 'Doctor of Medicine (MD)': [
+    #     'Anatomy',
+    #     'Anesthesiology',
+    #     'Aviation Medicine',
+    #     'Biochemistry',
+    #     'Bio-Physics',
+    #     'Blood Banking & Immuno. Haem',
+    #     'Critical Care Medicine',
+    #     'Community Health Administration',
+    #     'Community Medicine',
+    #     'Dermatology',
+    #     'Forensic Medicine',
+    #     'General Medicine',
+    #     'Geriatrics',
+    #     'Gynecology',
+    #     'Health Administration',
+    #     'Hospital Administration',
+    #     'Lab Medicine',
+    #     'Leprosy',
+    #     'Maternity & Child Health',
+    #     'Microbiology',
+    #     'Nuclear Medicine',
+    #     'Obstetrics',
+    #     'Ophthalmology',
+    #     'Pathology',
+    #     'Pediatrics',
+    #     'Pharmacology',
+    #     'Physical Medicine & Rehabilitation',
+    #     'Physiology',
+    #     'Psychiatry',
+    #     'Pulmonary Medicine',
+    #     'R & D',
+    #     'Radio Diagnosis',
+    #     'Radio Therapy',
+    #     'Radiology',
+    #     'Social and Preventive Medicine',
+    #     'Tropical Medicine',
+    #     'Tuberculosis & Chest Diseases',
+    #     'Veneriology',
+    #     'Other',
+    # ]
+
+    # 'Doctor of Surgery (MS)': [
+    #     'Anaesthesia',
+    #     'Anatomy',
+    #     'Cardiology',
+    #     'Dermatology',
+    #     'ENT',
+    #     'General Surgery',
+    #     'Gyneocology',
+    #     'Hepatology',
+    #     'Immunology Microbiology',
+    #     'Neonatal',
+    #     'Nephrology/Urology',
+    #     'Obstretrics',
+    #     'Oncology',
+    #     'Opthalmology',
+    #     'Orthopedic',
+    #     'Pathology',
+    #     'Pediatrics',
+    #     'Psychiatry/Psychology',
+    #     'Radiology',
+    #     'Rheumatology',
+    #     'Other',
+    # ]
+
+    # 'Inst. of Cost & Works Accountants': [
+    #     'Cost & Works Accountant',
+    # ]
+
+    # 'ICWA Inter': [
+    #     'Cost & Works Accountant',
+    # ]
+
+    # 'Master of Architecture': [
+    #     'Architecture',
+    # ]
+
+    # 'Master of Arts': [
+    #     'Anthropology',
+    #     'Arabic',
+    #     'Arts & Humanities',
+    #     'Communication',
+    #     'Economics',
+    #     'English',
+    #     'Film',
+    #     'Fine arts',
+    #     'Hindi',
+    #     'History',
+    #     'Journalism',
+    #     'Maths',
+    #     'Middle Eastern Studies',
+    #     'Political',
+    #     'Science',
+    #     'PR/ Advertising',
+    #     'Psychology',
+    #     'Religion',
+    #     'Sociology',
+    #     'Statistics',
+    #     'Urdu',
+    #     'Other',
+    # ]
+
+    # 'Master of Commerce': [
+    #     'Commerce',
+    # ]
+
+    # 'Master of Education': [
+    #     'Education',
+    # ]
+
+    # 'Master of Laws (LLM)': [
+    #     'Law',
+    # ]
+
+    # 'Master of Pharmacy': [
+    #     'Pharmacy',
+    # ]
+
+    # 'Master of Science' : [
+
+    #     'Agriculture',
+    #     'Anthropology',
+    #     'Bio-Chemistry',
+    #     'Biology',
+    #     'Botany',
+    #     'Chemistry',
+    #     'Computers',
+    #     'Dairy',
+    #     'Electronics',
+    #     'Environmental Science',
+    #     'Food Technology',
+    #     'Geology',
+    #     'Home Science',
+    #     'Maths',
+    #     'Microbiology',
+    #     'Nursing',
+    #     'Physics',
+    #     'Statistics',
+    #     'Technology',
+    #     'Zoology',
+    #     'Other',
+    # ]
+
+    # 'Master of Technology/Engineering': [
+
+    #     'Agriculture',
+    #     'Automobile',
+    #     'Aviation',
+    #     'Bio-Chemistry',
+    #     'Bio-Technology',
+    #     'Biomedical',
+    #     'Ceramics',
+    #     'Chemical',
+    #     'Civil',
+    #     'Computers',
+    #     'Electrical',
+    #     'Electronics/Telecommunication',
+    #     'Energy',
+    #     'Environmental',
+    #     'Instrumentation',
+    #     'Marine',
+    #     'Mechanical',
+    #     'Metallurgy',
+    #     'Mineral',
+    #     'Mining',
+    #     'Nuclear',
+    #     'Paint/Oil',
+    #     'Petroleum',
+    #     'Plastics',
+    #     'Production/Industrial',
+    #     'Textile',
+    #     'Other Engineering',
+    # ]
+
+    # 'Master of Vetirenary Science': [
+    #     'Veterinary Sciences',
+    # ]
+
+    # 'Master of Computer Application': [
+    #     'Computers',
+    # ]
+
+    # 'MBA/PG Diploma in Business Mgmt ': [
+    #     'Advertising/Mass Communication',
+    #     'Finance',
+    #     'HR/Industrial Relations',
+    #     'Information Technology',
+    #     'International Business',
+    #     'Marketing',
+    #     'Systems',
+    #     'Other',
+    # ]
+
+
+)
 
 class CompanyProfile(models.Model):
 
@@ -1301,9 +1653,11 @@ class Education(models.Model):
     basic_edu = models.CharField('Basic Education', max_length=50, choices=BASIC_EDU)
     
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
+    basic_edu_specialization = models.CharField('Basic Education Specialization', null=True, blank=True, choices=SPECIALIZATION, max_length=100)
     masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
     
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
+    masters_specialization = models.CharField('Masters Specialization', null=True, blank=True, choices=SPECIALIZATION, max_length=100)
     doctrate = models.ManyToManyField(Doctorate,null=True, blank=True)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/resumes/", null=True, blank=True)
