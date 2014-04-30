@@ -65,8 +65,9 @@
 	<div class="separation">
 		<br>
 		<div class="formrow">
-			
-			<input type="checkbox" name="checkbox" ng-model="checkbox">I have read and agree to the privacy statement and terms of use
+			{% if not user.is_authenticated %}
+				<input type="checkbox" name="checkbox" ng-model="checkbox">I have read and agree to the privacy statement and terms of use
+			{% endif %}
 		</div>
 
 			<div class="btn">

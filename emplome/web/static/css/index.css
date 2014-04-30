@@ -238,7 +238,8 @@ a {
 
 .formrow label {
   float: left;
-  width: 45%;"
+  padding: 15px;
+  width: 35%;
 }
 
 .formrow input {
@@ -747,12 +748,14 @@ label textarea{
 
 /**************************   Profile module ********************************/
 .rounded_photo img {
-  height :50px;
-  width :50px;
-  border-radius: 500px 500px 500px 500px;
+    /*height :50px;
+    width :50px;*/
+    height: 75px;
+    width: 75px;
+    border-radius: 500px 500px 500px 500px;
 }
 #profile_image {
-    float: left;
+    float: right;
 }
 
 #photos {
@@ -1037,7 +1040,7 @@ label textarea{
 
 .add_employers {
     display: block;
-    float: right;
+    float: left;
     width: 55%;
 }
 .add_employers input {

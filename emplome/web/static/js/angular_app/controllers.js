@@ -1664,7 +1664,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.currency = '';
     $scope.resume_text = '';
 
-    $scope.hide = false;
+    $scope.hide = true;
 
     $scope.is_valid = false;
     $scope.error_flag = false;
@@ -1734,6 +1734,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         $scope.csrf_token = csrf_token;
         $scope.user_id = user_id;
         $scope.profile_edit = profile_edit;
+
         get_currencies($scope);
         get_countries($scope);
         get_nationalities($scope);
@@ -1847,14 +1848,17 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         if($scope.employers.length <3) {
             $scope.employers.push({'employer':''});
         }
+        if($scope.doctorate.length == 3){
+          $scope.hide = false;
+        }
     }
 
     $scope.add_doctorate = function() {
         if($scope.doctorate.length <3) {
             $scope.doctorate.push({'name':''});
         }
-        if($scope.doctorate.length = 3){
-          $scope.hide = true;
+        if($scope.doctorate.length == 3){
+          $scope.hide = false;
         }
     }
     
@@ -1972,10 +1976,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_message = 'Please Attach or Copy Paste your Resume';
             return false;
         }
-        else if ($scope.checkbox == false){
+        else if(!($scope.profile_edit)){
+          if ($scope.checkbox == false){
             $scope.error_flag = true;
             $scope.error_message = 'Please Agree with our Privacy Policy and Terms & Conditions';
             return false;
+          }
         } 
         return true; 
     }
@@ -2010,8 +2016,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                     $scope.error_flag = true;
                     $scope.error_message = data.message;
                 } else {
-                    $scope.error_flag = true;
-                    $scope.error_message = 'Successfully Completed the First Step of Registration. Proceed to the Next Step';
+                    if($scope.profile_edit){
+                      $scope.error_flag = true;
+                      $scope.error_message = 'Successfully Updated your Profile.';
+                    } else {
+                      $scope.error_flag = true;
+                      $scope.error_message = 'Successfully Completed the First Step of Registration. Proceed to the Next Step';
+                      
+                    }
                     $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
                     {
                         $scope.seeker = data.seeker[0]; 
@@ -2060,8 +2072,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 headers: {'Content-Type': undefined
                 }
             }).success(function(data, status){ 
+              if($scope.profile_edit){
                 $scope.error_flag = true;
-                $scope.error_message = 'Successfully Completed Registration';            
+                $scope.error_message = 'Successfully Updated';
+              }
+              else {
+                $scope.error_flag = true;
+                $scope.error_message = 'Successfully Completed Registration';
+              }            
                 console.log("Successfully Saved");
               
             }).error(function(data, status){           

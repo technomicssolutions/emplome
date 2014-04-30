@@ -55,10 +55,25 @@
 
             <br>
         {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if applied_jobs.has_previous %}
+                    <a href="?page={{ applied_jobs.previous_page_number }}" >Previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ applied_jobs.number }} of {{ applied_jobs.paginator.num_pages }}.
+                </span>
+
+                {% if applied_jobs.has_next %}
+                    <a href="?page={{ applied_jobs.next_page_number }}" >Next</a>
+                {% endif %}
+            </span>
+        </div>
     {% else %}
         <div class="search_result_warning">
-                <p id="info_message">You have no applied jobs</p>
-            </div>
+            <p id="info_message">You have no applied jobs</p>
+        </div>
 
             <br>
     {% endif %}

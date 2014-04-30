@@ -982,6 +982,7 @@ class ApplyJobs(View):
                         context = {
                             'message' : 'Time expired, you cannot apply',
                             'job' : job,
+                            'not_able_to_apply': True
                         }
                         return render(request, 'job_details.html', context)
 
@@ -1009,13 +1010,21 @@ class AppliedJobsView(View):
         profile = UserProfile.objects.get(user_id = kwargs['user_id'])
         jobseeker_profile = profile.jobseekerprofile_set.all()[0]
         applied_jobs = jobseeker_profile.applied_jobs.all()
-        context = {
-            'applied_jobs':applied_jobs,
-        }
-        
-        return render(request, 'applied_jobs.html', context)
-  
 
+        paginator = Paginator(applied_jobs, 2)
+        page = request.GET.get('page')
+        try:
+            applied = paginator.page(page)
+        except PageNotAnInteger:
+            applied = paginator.page(1)
+        except EmptyPage:
+            applied = paginator.page(paginator.num_pages)
+        context = {
+            'applied_jobs': applied,
+        }
+        return render(request, 'applied_jobs.html', context)
+
+    
 class FeaturedJobView(View):
 
     def get(self, request, *args, **kwargs):

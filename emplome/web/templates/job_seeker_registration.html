@@ -13,10 +13,14 @@
 
 		<div class="separation">
 			<br>
-			<h2 class="hd1">Job Seeker's Details</h2>
+			{% if not user.is_authenticated %}
+				<h2 class="hd1">Create your Account</h2>
+			{% else %}
+				<h2 class="hd1">Update your Account</h2>
+			{% endif %}
 			<p class="mandatory">* Mandatory Fields</p>
 			<br>
-			<h3>Create your Account</h3>
+			<!-- <h3>Create your Account</h3> -->
 			<br>
 			<div class="formrow">
 				<label>Email Id<span class="red">*</span></label>
@@ -159,7 +163,7 @@
 				<label>Previous Employer</label>
 				<div class="add_employers">
 					<input type="text" name="previous_employer" ng-repeat="employer in employers" ng-model="employer.employer">
-					<a href="" ng-click="add_employer()"><button>+</button></a>
+					<a ng-show="hide" href="" ng-click="add_employer()"><button>+</button></a>
 				</div>
 					
 				
@@ -225,7 +229,7 @@
 				<label>Doctrate</label>
 				<div class="add_employers">
 					<input type="text" ng-repeat="doctrate in doctorate" name="doctrate" ng-model="doctrate.name">	
-					<a ng-show="hide" href="" ng-click="add_doctorate()"><button>+</button></a>	
+					<a ng-show="hide" href="" ng-click="add_doctorate()"><button>+</button></a>	<br/>
 				</div>		
 			</div>
 		</div>

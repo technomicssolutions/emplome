@@ -29,6 +29,7 @@
 
 		        </div>
 		    </div>
+		
 			<div id="job_description_text">
 				<h2>Personal Details</h2>
 			</div>
@@ -43,13 +44,17 @@
 				Nationality : {{profile.jobseekerprofile_set.all.0.nationality}} <br/>
 			</p>
 
-			<div id="job_description_text"><h2>Education</h2></div>
+			<div id="job_description_text">
+				<h2>Education</h2>
+			</div>
 			<div><br>
 				<span>
 					Basic Education: {{profile.jobseekerprofile_set.all.0.education.basic_edu}}<br/>
 					Specialization : {{profile.jobseekerprofile_set.all.0.education.basic_edu_specialization}}<br/>
+					Pass Year : {{profile.jobseekerprofile_set.all.0.education.pass_year_basic}}<br/>
 					Masters Education: {{profile.jobseekerprofile_set.all.0.education.masters}}<br/>
 					Specialization: {{profile.jobseekerprofile_set.all.0.education.masters_specialization}}<br/>
+					Pass Year : {{profile.jobseekerprofile_set.all.0.education.pass_year_masters}}<br/>
 
 				</span>
 			</div>
