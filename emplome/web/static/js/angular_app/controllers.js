@@ -1915,7 +1915,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } else if ($scope.seeker.city == '' || $scope.seeker.city == undefined){
             $scope.error_flag = true;
-            $scope.error_message = 'Please enter your city';
+            $scope.error_message = 'Please enter your City';
             return false;
         } else if ($scope.seeker.mobile == '' || $scope.seeker.mobile == undefined || $scope.seeker.mobile.match(letters)) {
             $scope.error_flag = true;
@@ -1956,7 +1956,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             return false;
         } if ($scope.seeker.masters_edu != '' && ($scope.seeker.master_specialization == '' || $scope.seeker.master_specialization == undefined || $scope.seeker.master_specialization == 'select')){
             $scope.error_flag = true;
-            $scope.error_message = 'Please select Specialisation for Masters Education ';
+            $scope.error_message = 'Please select Specialization for Masters Education ';
             return false;
         }
         return true;
@@ -2273,8 +2273,7 @@ function  JobPostingController($scope,$element,$http,$timeout){
             {
                 console.log(data || "Request failed");
             });
-    }
-		
+    }		
   }
 
   $scope.get_req_stream = function(){
@@ -2305,6 +2304,10 @@ function  JobPostingController($scope,$element,$http,$timeout){
     }  else if ($scope.jobpost.summary == '' || $scope.jobpost.summary == undefined) {
       $scope.error_flag = true;
       $scope.error_message = 'Please provide Job summary';
+      return false;
+    } else if (($scope.jobpost.salary != null || $scope.jobpost.salary != '' || $scope.jobpost.salary != undefined) && $scope.jobpost.salary != Number($scope.jobpost.salary)){
+      $scope.error_flag = true;
+      $scope.error_message = 'Please enter a Valid Amount for Salary';
       return false;
     }  else if ($scope.jobpost.salary != '' && ($scope.jobpost.currency == '' || $scope.jobpost.currency == undefined)) {
       $scope.error_flag = true;
@@ -2425,7 +2428,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
         var url = '/posted_jobs/';
         document.location.href = url;
     }
-
 }
 
 function  SearchController($scope,$element,$http,$timeout){

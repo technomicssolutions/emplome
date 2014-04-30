@@ -7,8 +7,6 @@
 <div class="container">
 	<div class="content-box">
 
-		<!-- <h1>{{job.company.company_name}} </h1> -->
-
 		<div class="job_description">
 			<div id="job_description_text">
 				<h2>{{profile.user.first_name}}</h2>
@@ -38,10 +36,13 @@
 				Email-Id : {{profile.user.email}} <br/>
 				Gender : {{ profile.jobseekerprofile_set.all.0.gender }} <br/>
 				Date of Birth : {{ profile.jobseekerprofile_set.all.0.dob|date:"M d, Y"}} <br/>		
-				Current Location : {{profile.country}} <br/>
+				Marital Status : {{profile.jobseekerprofile_set.all.0.marital_status}} <br/>
+				Nationality : {{profile.jobseekerprofile_set.all.0.nationality}} <br/>
+				Residing Country : {{profile.country}} <br/>
 				City : {{profile.city}} <br/>
 				Phone : {{profile.mobile}} <br/>
-				Nationality : {{profile.jobseekerprofile_set.all.0.nationality}} <br/>
+				Alternate Email : {{profile.jobseekerprofile_set.all.0.alt_mail}} <br/>
+				
 			</p>
 
 			<div id="job_description_text">
@@ -65,7 +66,8 @@
 			<p id="personal_details">
 				
 				Total Experience: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s) {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br/>
-				Salary: {{profile.jobseekerprofile_set.all.0.employment.salary}}
+				Current Designation : {{profile.jobseekerprofile_set.all.0.employment.designation}} <br/>
+				Monthly Salary: {{profile.jobseekerprofile_set.all.0.employment.salary}}
 				{{profile.jobseekerprofile_set.all.0.employment.currency}}<br/>
 				Key Skills: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
 				Industry: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br/>
@@ -73,7 +75,7 @@
 			</p>
 
 			<div id="job_description_text">
-				<h2>Attached Resume</h2>
+				<h2>Attachments</h2>
 			</div>
 			<p id="personal_details">
 				{%if profile.jobseekerprofile_set.all.0.education.resume%}
@@ -81,6 +83,8 @@
 					<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.resume.name}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
 				{% else %}
 				<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea>
+				<!-- Certificates
+				<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.certificate.name}}">{{profile.jobseekerprofile_set.all.0.education.certificate}} </a><br/> -->
 				{% endif %}
 			</p>
 			<p id="personal_details">

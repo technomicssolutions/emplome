@@ -20,6 +20,7 @@ COUNTRY_CHOICES = (
     ('American Samoa','American Samoa'),
     ('Andorra','Andorra'),
     ('Anguilla','Anguilla'),
+    ('Angola', 'Angola'),
     ('Antartica','Antartica'),
     ('Antigua and Barbuda','Antigua and Barbuda'),
     ('Argentina','Argentina'),

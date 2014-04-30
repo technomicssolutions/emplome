@@ -104,6 +104,19 @@ a {
     width: 32%;
 }
 
+.footer_block_in {
+    float: left;
+    min-height: 100px;
+    padding: 5px;
+    width: 30%;
+}
+
+.footer_block_func_in {
+    float: left;
+    min-height: 100px;
+    padding: 5px;
+    width: 40%;
+}
 
 .footer_bottom p {
     margin: auto;
