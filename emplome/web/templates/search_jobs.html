@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Search Jobs{% endblock title %}
 {% block body_id %}search_jobs{% endblock body_id %}
-{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}', '{{search_location}}', '{{search_keyword}}', '{{search_experience}}', '{{search_function_name}}', '{{search_flag}}')" {% endblock controller %}
 {% block search %}
 	<div class="search_box">
-        <div class="search_box_content">
+        <div class="search_box_content">lag
             <label>Keywords</label>
             <input type="text" name="search" placeholder="skills" ng-model="skill">
             <p ng-show="is_keyword" class="error_message">Please enter the skills</p>
@@ -18,7 +18,7 @@
             <label>Exp</label><br>
             <select ng-model="experience">
                 <option value="select" >Exp</option>
-                <option value="[[exp]]" ng-repeat="exp in experiences">[[exp]]</option>
+                <option value="[[exp]]" ng-repeat="exp in experiences" ng-selected="exp == experience">[[exp]]</option>
             </select>
             <p ng-show="is_exp" class="error_message">Please Choose the Exp</p>
         </div>
@@ -26,7 +26,7 @@
             <label>Functional Area</label><br>
             <select ng-model="functional_area">
                 <option value="select">Select</option>
-                <option value="[[function]]" ng-repeat="function in functions">[[function]]</option>
+                <option value="[[function]]" ng-repeat="function in functions" ng-selected="function == functional_area">[[function]]</option>
             </select>
             <p ng-show="is_function" class="error_message">Please choose the Functional area</p>
         </div>
@@ -40,7 +40,7 @@
 {% endblock search %}
 
 {% block content %}
-	{% if jobs|length%}
+	{% if jobs|length %}
 		{% for job in jobs %}
 			<div class="search_result_warning">
 				<h2><a href="{% url 'job_details' job_id=job.id %}">{{job.job_title}} </a></h2>
@@ -63,17 +63,15 @@
             </div>
             <br>
 		{% endfor %}
-	{% else %}
+	<!-- {% else %}
 		<div class="search_result_warning">
             <p class="error_message">No Jobs found for this criteria. </p>
 			<p>Your search {{searched_for}} did not match any documents.</p>
 			<p>Suggestions:</p>
             <ul>
                 <li>Please check your spelling and try some different Keywords.</li>
-            </ul>
-				
-				
-		</div>
+            </ul>				
+		</div> -->
 	{% endif %}
 		
 {% endblock %}

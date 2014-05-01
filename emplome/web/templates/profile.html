@@ -2,7 +2,7 @@
 {% block title %}Profile{% endblock title %}
 {% block body_id %}profile{% endblock body_id %}
 
-{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+{% block controller %}ng-controller="HomeController" ng-init="init('{{csrf_token}}','{{search_location}}', '{{search_keyword}}', '{{search_experience}}', '{{search_function_name}}', '{{search_flag}}')"{% endblock controller %}
 {% block search %}
 	<div class="search_box">
         <!-- <h3> SEARCH JOBS </h3> -->

@@ -958,7 +958,7 @@ label textarea{
 .sub_container {
     margin-top: 16px;
 }
-#profile #active-profile {
+#cv_details #active-profile {
     background: none repeat scroll 0 0 #2466AF;
     border-radius: 0.417em;
     text-decoration: none;

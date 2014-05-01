@@ -3,7 +3,8 @@
 {% endblock title %}
 {% block body_id %}search{% endblock body_id %}
 
-{% block controller %}ng-controller="SearchController" ng-init="init('{{csrf_token}}')"{% endblock controller %}
+{% block controller %}ng-controller="SearchController" ng-init="init('{{csrf_token}}','{{search_location}}','{{search_keyword}}','{{search_experience}}','{{search_function_name}}','{{search_industry}}')"{% endblock controller %}
+
 {% block search %}
 {% endblock search %}
 {% block content %}
@@ -80,17 +81,20 @@
 						<input type="text" ng-style="alert_style" name="location" ng-model="search.location" id="location">
 					</div>
 					<div class="formrow">
+
+<option ng-repeat="country in countries" value="[[country]]" ng-selected="country== seeker.country">[[country]]</option>
+
 						<label>Experience</label>
 						<select name="experience" ng-style="alert_style" style="width: 14%" ng-model="search.experience" id="experience">
 							<option value="">Years</option>
-							<option ng-repeat="expr in experiences" value="[[expr]]">[[expr]]</option>
+							<option ng-repeat="expr in experiences" value="[[expr]]" ng-selected="expr==search.experience">[[expr]]</option>
 						</select>						
 					</div>
 					<div class="formrow">
 						<label>Functional Area</label>
 						<select name ="function" ng-style="alert_style" ng-model="search.function_name" id="function">
 							<option value="">------Select-----</option>
-							<option ng-repeat="function in functions" value="[[function]]">[[function]]</option>
+							<option ng-repeat="function in functions" value="[[function]]" ng-selected="function==search.function_name">[[function]]</option>
 						</select>
 					</div>
 
@@ -98,7 +102,7 @@
 						<label>Industry Type</label>
 						<select name="industry" ng-model="search.industry"> 
 							<option value="">------Select------</option>
-							<option ng-repeat="industry in industries" value="[[industry]]">[[industry]]</option>
+							<option ng-repeat="industry in industries" value="[[industry]]" ng-selected="industry==search.industry">[[industry]]</option>
 						</select>
 					</div>
 					<br><br><br>
@@ -106,7 +110,19 @@
 						<input class="button" type="submit" name="submit" value="Search Jobs" ng-click="search('search_jobs')">
 						<br>
 						<p ng-show="error_flag" class="error_message">[[error_message]]</p>
+						
 					</div>
+					{% if jobs_not_exist %}
+						<div class="search_result_warning">
+				            <p class="error_message">No Jobs found for this criteria. </p>
+							<p>Your search {{searched_for}} did not match any documents.</p>
+							<p>Suggestions:</p>
+				            <ul>
+				                <li>Please check your spelling and try some different Keywords.</li>
+				            </ul>				
+						</div>
+					{% endif %}
+
 					<br>
 				</div>
 			{% endif %}

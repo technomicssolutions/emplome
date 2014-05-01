@@ -36,6 +36,7 @@ class SearchJobsView(View):
     def get(self, request, *args, **kwargs):
 
         search = False
+        jobs_not_exist = False
         location = request.GET.get('location', '')
         function = request.GET.get('function', '')
         skills = request.GET.get('skills', '')
@@ -90,9 +91,24 @@ class SearchJobsView(View):
         if len(jobs) == 0:
             context.update({
                 'searched_for': searched_for,
+                'jobs_not_exist' : True,
+                'search_location' : location if location else '',
+                'search_keyword' : skills if skills else '',
+                'search_experience' : exp if exp else '',
+                'search_function_name' : function if function else '',
+                'search_industry' : industry if industry else '',
             })
-        
-        return render(request, 'search_jobs.html', context) 
+            return render(request, 'search.html', context)
+        else:
+            context.update({
+                'search_location' : location if location else '',
+                'search_keyword' : skills if skills else '',
+                'search_experience': exp if exp else '',
+                'search_function_name' : function if function else '',
+                'search_flag': search,
+            })
+            print context
+            return render(request, 'search_jobs.html', context) 
     
 
 class Logout(View):
@@ -400,8 +416,7 @@ class JobSeekerRegistrationMoreInfo(View):
         if resume:
             education.resume = resume
         
-        # if seeker1['resume_text'] != "":
-        # else:
+       
         education.resume_text = seeker1['resume_text']
         education.save()
         jobseeker.education = education
@@ -651,6 +666,7 @@ class GetProfileDetails(View):
         employment = []
         jobseeker = []
         company = []
+       
         if user.userprofile_set.all().count() > 0:
             userprofile = user.userprofile_set.all()[0]
             if userprofile.user_type == 'job_seeker':
@@ -925,7 +941,7 @@ class SearchCV(View):
 
         search = False
         cv_title = request.GET.get('cv_title', '')
-        age = request.GET.get('age', '')
+        # age = request.GET.get('age', '')
         keyword = request.GET.get('keyword', '')
         jobseeker_profiles = []
 
