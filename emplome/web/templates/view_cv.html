@@ -56,7 +56,12 @@
 					Masters Education: {{profile.jobseekerprofile_set.all.0.education.masters}}<br/>
 					Specialization: {{profile.jobseekerprofile_set.all.0.education.masters_specialization}}<br/>
 					Pass Year : {{profile.jobseekerprofile_set.all.0.education.pass_year_masters}}<br/>
+					
+					Doctrate : 
+					{% for doctrate in profile.jobseekerprofile_set.all.0.education.doctrate.all %}
 
+						{{doctrate.doctorate_name}}, 
+					{% endfor %}
 				</span>
 			</div>
 			
@@ -72,19 +77,31 @@
 				Key Skills: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
 				Industry: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br/>
 				Function: {{profile.jobseekerprofile_set.all.0.employment.function}}<br/>
+				Previous Employers:
+				{% for previous_employer in profile.jobseekerprofile_set.all.0.employment.previous_employer.all %}
+					{{previous_employer.previous_employer_name}}, 
+				{% endfor %}
+
 			</p>
 
 			<div id="job_description_text">
 				<h2>Attachments</h2>
 			</div>
 			<p id="personal_details">
-				{%if profile.jobseekerprofile_set.all.0.education.resume%}
+				{% if profile.jobseekerprofile_set.all.0.education.resume %}
 					Resume
 					<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.resume.name}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
 				{% else %}
-				<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea>
-				<!-- Certificates
-				<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.certificate.name}}">{{profile.jobseekerprofile_set.all.0.education.certificate}} </a><br/> -->
+					<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea><br/>
+				{% endif %}
+				{% if profile.jobseekerprofile_set.all.0.education.certificate %}
+					Certificates
+					{% for certificate in profile.jobseekerprofile_set.all.0.education.certificate.all %}
+						<a href="/site_media/{{certificate.certificate_name}}"> </a><br/>
+						<!-- {{certificate.certificate_name}},  -->
+					{% endfor %}
+
+					<!-- <a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.certificate}}">Certificate </a><br/> -->
 				{% endif %}
 			</p>
 			<p id="personal_details">

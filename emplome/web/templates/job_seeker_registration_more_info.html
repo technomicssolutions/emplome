@@ -51,15 +51,27 @@
 			<label>Attach Photo</label>
 			<input type="file" fileread="photo_img.src"/>
 			<input type="hidden" ng-model="photo_img.src">
-
 		</div>
-		<div class="formrow">
-			<label>Attach Computer Education Certificates</label>
-			<input type="file" fileread="certificate_img.src"/>
-			<input type="hidden" ng-model="certificate_img.src">
 
-			<a href="/site_media/[[seeker1.certificate_img]]" ng-show="seeker1.certificate_img" target="_blank">Certificate</a>
-		</div>
+		<div class="formrow" ng-repeat="file_name in certificate_file">
+			<label>Attach Computer Education Certificates</label>	
+            <input class="file_picker" id="certificate_file_[[$index]]" type="file" fileread="file_name.certificate_attachment.src"/>
+            <input type="hidden" ng-model="file_name.certificate_attachment.src" >
+
+            <a id="remove_file_link_[[$index]]" ng-show="file_name.certificate_attachment.src" href="" ng-click="remove_certificate_files(file_name)" >Remove Attachment</a>             
+        </div>
+
+        <!-- <p ng-show="show_certificate_attachment">  -->
+            <label> </label>
+            <input type="button" value="Add Certificate Files"  ng-click="add_new_certificate_file()"/>   
+        </p>
+
+		<!-- <div class="formrow">
+			<label>Attach Computer Education Certificates</label>		
+				<input type="file" fileread="certificate_img.src"/>
+				<input type="hidden" ng-model="certificate_img.src">
+				<a href="/site_media/[[seeker1.certificate_img]]" ng-show="seeker1.certificate_img" target="_blank">Certificate</a>	<br/>
+		</div> -->
 	</div>
 		
 	<div class="separation">

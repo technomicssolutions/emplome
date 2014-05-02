@@ -1082,11 +1082,16 @@ class Employment(models.Model):
         verbose_name_plural = 'Employment'
 
 class Doctorate(models.Model):
-
     doctorate_name = models.CharField('Doctorate name', null=True, blank=True, max_length=100)
 
     def __unicode__(self):
         return self.doctorate_name
+
+class Certificates(models.Model):
+    certificate_name = models.FileField(upload_to = "uploads/certificates/", null=True, blank=True)
+
+    def __unicode__(self):
+        return self.certificate_name
 
 
 class Education(models.Model):
@@ -1096,14 +1101,13 @@ class Education(models.Model):
     pass_year_basic = models.IntegerField('Basic Pass Year', null=True, blank=True)
     basic_edu_specialization = models.CharField('Basic Education Specialization', null=True, blank=True, choices=SPECIALIZATION, max_length=100)
     masters = models.CharField('Masters', null=True, blank=True, max_length=50, choices=MASTERS_EDU)
-    
     pass_year_masters = models.IntegerField('Masters pass Year', null=True, blank=True)
     masters_specialization = models.CharField('Masters Specialization', null=True, blank=True, choices=SPECIALIZATION, max_length=100)
     doctrate = models.ManyToManyField(Doctorate,null=True, blank=True)
     resume_title = models.CharField('Resume Title', max_length=50)
     resume = models.FileField(upload_to = "uploads/resumes/", null=True, blank=True)
     resume_text = models.TextField('Resume Text', blank=True, null=True)
-    certificate = models.FileField(upload_to = "uploads/certificates/", null=True, blank=True)
+    certificate = models.ManyToManyField(Certificates, null=True, blank=True)
 
     def __unicode__(self):
         return str(self.basic_edu)

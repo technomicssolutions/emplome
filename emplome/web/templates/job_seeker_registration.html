@@ -163,7 +163,7 @@
 				<label>Previous Employer</label>
 				<div class="add_employers">
 					<input type="text" name="previous_employer" ng-repeat="employer in employers" ng-model="employer.employer">
-					<a ng-show="hide" href="" ng-click="add_employer()"><button>+</button></a>
+					<a ng-show="hide_emp" href="" ng-click="add_employer()"><button>+</button></a>
 				</div>
 					
 				
@@ -229,7 +229,7 @@
 				<label>Doctrate</label>
 				<div class="add_employers">
 					<input type="text" ng-repeat="doctrate in doctorate" name="doctrate" ng-model="doctrate.name">	
-					<a ng-show="hide" href="" ng-click="add_doctorate()"><button>+</button></a>	<br/>
+					<a ng-show="hide_doc" href="" ng-click="add_doctorate()"><button>+</button></a>	<br/>
 				</div>		
 			</div>
 		</div>

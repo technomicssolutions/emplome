@@ -1684,7 +1684,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.currency = '';
     $scope.resume_text = '';
 
-    $scope.hide = true;
+    $scope.hide_doc = true;
+    $scope.hide_emp = true;
 
     $scope.is_valid = false;
     $scope.error_flag = false;
@@ -1700,6 +1701,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.resume_doc.src = "";
 
   $scope.checkbox = false;
+
+  $scope.show_certificate_attachment = false;
+
+  $scope.certificate_file = [
+        {'certificate_attachment.src': ''},
+    ]
 
     $scope.seeker = {
         'id': 0,
@@ -1869,7 +1876,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.employers.push({'employer':''});
         }
         if($scope.employers.length == 3){
-          $scope.hide = false;
+          $scope.hide_emp = false;
         }
     }
 
@@ -1878,7 +1885,20 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.doctorate.push({'name':''});
         }
         if($scope.doctorate.length == 3){
-          $scope.hide = false;
+          $scope.hide_doc = false;
+        }
+    }
+
+    $scope.add_new_certificate_file = function(){
+        
+        $scope.certificate_file.push({'certificate_attachment.src': ''});
+    }
+
+    $scope.remove_certificate_files = function(file_name){
+        var index = $scope.certificate_file.indexOf(file_name)
+        $scope.certificate_file.splice(index, 1);
+        if ($scope.certificate_file.length == 0){
+            $scope.certificate_file.push({'certificate_attachment.src': ''});
         }
     }
     
@@ -2081,16 +2101,27 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             params = {
                 'seeker1':angular.toJson($scope.seeker1),
                 'user_id': $scope.user_id,
-                "csrfmiddlewaretoken" : $scope.csrf_token,              
+                "csrfmiddlewaretoken" : $scope.csrf_token,
+                'certificate_attachment_length': $scope.certificate_file.length,              
             }
+            console.log($scope.certificate_file.length);
             var fd = new FormData();
             fd.append('photo_img', $scope.photo_img.src)
-            fd.append('certificate_img', $scope.certificate_img.src)
+
+            if($scope.certificate_file.length > 0) {
+                for(var i=0;i<$scope.certificate_file.length; i++){
+                    if ($scope.certificate_file[i]['certificate_attachment']) {
+                        file_name = 'certificate_attachment' + i.toString();
+                        fd.append(file_name, $scope.certificate_file[i]['certificate_attachment'].src);
+                    } 
+                }
+            }
             fd.append('resume_doc', $scope.resume_doc.src);
             for(var key in params){
                 fd.append(key, params[key]);          
             }
             var url = "/job_seeker_registration_more_info/"+$scope.user_id+'/';
+            console.log(fd);
             $http.post(url, fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined
@@ -2393,7 +2424,6 @@ function  JobPostingController($scope,$element,$http,$timeout){
     } 
     return true;
   }
-
 
   $scope.save_job = function(){
       $scope.jobpost.last_date = $('#last_date').val();

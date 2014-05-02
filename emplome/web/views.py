@@ -397,6 +397,7 @@ class JobSeekerRegistrationMoreInfo(View):
 
     def post(self, request, *args, **kwargs):
         post_data = request.POST
+        print request.FILES
         userprofile = UserProfile.objects.get(user_id=kwargs['user_id'])
         jobseeker, created = JobSeekerProfile.objects.get_or_create(profile = userprofile)
         seeker1 = ast.literal_eval(post_data['seeker1'])
@@ -421,6 +422,24 @@ class JobSeekerRegistrationMoreInfo(View):
         education.save()
         jobseeker.education = education
         jobseeker.save()
+
+        no_of_attachment_files = request.POST['certificate_attachment_length']
+        i = 0
+        for i in range(int(no_of_attachment_files)):
+            file_name = 'certificate_attachment' + str(i)
+            certificate_attachment_file = request.FILES.get(file_name,'')
+            if certificate_attachment_file:
+                print certificate_attachment_file
+                certificates = Certificates()
+                print 'HI'
+                certificates.certificate_attachment = certificate_attachment_file
+                certificates.save()
+                education.certificate.add(certificates)
+                education.save()
+                # estoppelcertificate.guarantor_attachment.add(guarantorattachment)
+            else:
+                pass
+
         res = {
             'result': 'ok',
             'user_id': kwargs['user_id'],
@@ -717,7 +736,7 @@ class GetProfileDetails(View):
                     'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
                     'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
                     'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
-                    'certificate_img': jobseeker.education.certificate.name if jobseeker.education else '',
+                    # 'certificate_img': jobseeker.education.certificate.name if jobseeker.education else '',
                     'profile_photo': jobseeker.photo.name if jobseeker else '',
                 })
             else:
