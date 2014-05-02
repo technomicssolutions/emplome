@@ -94,15 +94,15 @@
 				{% else %}
 					<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea><br/>
 				{% endif %}
-				{% if profile.jobseekerprofile_set.all.0.education.certificate %}
+				<!-- {% if profile.jobseekerprofile_set.all.0.education.certificate %}
 					Certificates
 					{% for certificate in profile.jobseekerprofile_set.all.0.education.certificate.all %}
 						<a href="/site_media/{{certificate.certificate_name}}"> </a><br/>
-						<!-- {{certificate.certificate_name}},  -->
-					{% endfor %}
+						
+					{% endfor %} -->
 
 					<!-- <a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.certificate}}">Certificate </a><br/> -->
-				{% endif %}
+				<!-- {% endif %} -->
 			</p>
 			<p id="personal_details">
 				{% if user.id == profile.user.id %}

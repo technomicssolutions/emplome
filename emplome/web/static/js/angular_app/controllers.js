@@ -1745,7 +1745,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         'resume_title': '',
         'resume_text': '',
         'resume': '',
-        'certificate_img': '',
+        'certificate_file': '',
         'profile_photo': '',
     }
 
@@ -1801,16 +1801,12 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 if ($scope.seeker.alt_email == null) {
                     $scope.seeker.alt_email = '';
                 }
-                // if ($scope.seeker.pass_year_masters == null) {
-                //     $scope.seeker.pass_year_masters = '';
-                // } 
                 if ($scope.seeker.master_specialization == null) {
                     $scope.seeker.master_specialization = '';
                 } 
                 if ($scope.seeker.masters_edu == null) {
                     $scope.seeker.masters_edu = '';
-                }  
-                
+                }                  
                 if($scope.seeker.designation == null){
                     $scope.seeker.designation = '';
                 }
