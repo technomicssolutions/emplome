@@ -292,6 +292,10 @@ a {
     font-size: 14px;
 }
 
+.remove_attachment {
+    padding-left: 35px;
+}
+
 /*******************End Job SeekerStyles*************/
 
 .job span {

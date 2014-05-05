@@ -43,4 +43,5 @@ urlpatterns = patterns('',
 	url(r'^featured_job/(?P<job_id>\d+)/$', FeaturedJobView.as_view(), name='featured_job'),
 	url(r'^applied_users/(?P<job_id>\d+)/$', AppliedUsers.as_view(), name='applied_users'),
 	url(r'^view_cv/(?P<user_id>\d+)/$', ViewCV.as_view(), name='view_cv'),
+	url(r'^delete_certificate/$', DeleteCertificate.as_view(), name='delete_certificate'),
 )

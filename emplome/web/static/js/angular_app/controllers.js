@@ -1219,7 +1219,7 @@ function get_req_education_specialization($scope){
             'Computers',
         ],
 
-        'MBA/PG Diploma in Business Mgmt ': [
+        'MBA/PG Diploma in Business Mgmt': [
             'Advertising/Mass Communication',
             'Finance',
             'HR/Industrial Relations',
@@ -1757,8 +1757,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         {'name': ''},
     ]
 
-    $scope.certificate = [
-        {'certificate': ''},
+    $scope.certificate_file = [
+        {'certificate': '', 'id': ''},
     ]
 
     $scope.init = function(csrf_token, user_id, profile_edit) {
@@ -1787,7 +1787,14 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 $scope.seeker = data.seeker[0]; 
                 $scope.seeker1 = data.seeker1[0];
                 $('#dob').val($scope.seeker.dob);
-                // console.log($scope.seeker.years);
+
+
+                var basic_edu = $scope.seeker.basic_edu;
+                $scope.basic_specializations = $scope.basic_education_specialization[basic_edu];
+                
+                var masters_edu = $scope.seeker.masters_edu;
+                $scope.specializations = $scope.masters_education_specialization[masters_edu];
+                
                 if ($scope.seeker.pass_year_masters == null) {
                   $scope.seeker.pass_year_masters = '';
                 }
@@ -1849,23 +1856,24 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                 }
 
                 if ($scope.seeker1.certificate_file) {
+                  console.log($scope.seeker1.certificate_file.length);
                     if($scope.seeker1.certificate_file.length > 1){
                         for(var i=1; i < $scope.seeker1.certificate_file.length; i++){
-                            $scope.certificate_file.push({'certificate': ''});
+                            $scope.certificate_file.push({'certificate': '', 'id': ''});
                         }
-                    }  
+                    }
+                    console.log($scope.seeker1.certificate_file); 
                     for(var i=0; i< $scope.seeker1.certificate_file.length; i++) {
-                        $scope.certificate_file[i].certificate = $scope.seeker1.certificate_file[i].certificate_name;
+                        $scope.certificate_file[i].certificate = $scope.seeker1.certificate_file[i].certificate;
+                        $scope.certificate_file[i].id = $scope.seeker1.certificate_file[i].id;
                     }
                 } 
                 if($scope.seeker.salary == null) {
                   $scope.seeker.salary = '';
                 }
-                // console.log($scope.seeker.basic_specialization);
-                // console.log($scope.seeker.master_specialization);
                 
                 $scope.seeker.id = $scope.user_id;
-                // console.log($scope.seeker.years);
+
             }).error(function(data, status)
             {
                 console.log(data || "Request failed");
@@ -1897,21 +1905,45 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.doctorate.push({'name':''});
         }
         if($scope.doctorate.length == 3){
+          console.log($scope.doctorate.length);
           $scope.hide_doc = false;
         }
     }
 
     $scope.add_new_certificate_file = function(){
         
-        $scope.certificate_file.push({'certificate_attachment.src': ''});
+        $scope.certificate_file.push({'certificate_attachment.src': '', 'id': ''});
     }
 
     $scope.remove_certificate_files = function(file_name){
         var index = $scope.certificate_file.indexOf(file_name)
         $scope.certificate_file.splice(index, 1);
+        console.log($scope.certificate_file);
         if ($scope.certificate_file.length == 0){
-            $scope.certificate_file.push({'certificate_attachment.src': ''});
+            $scope.certificate_file.push({'certificate_attachment.src': '', 'id': ''});
         }
+    }
+
+    $scope.delete_certificate_file = function(file_name) {
+        var index = $scope.certificate_file.indexOf(file_name)
+        $scope.certificate_file.splice(index, 1);
+        if ($scope.certificate_file.length == 0){
+            $scope.certificate_file.push({'certificate_attachment.src': '', 'id':''});
+        }
+        params = {
+          'id': file_name.id, 
+          'csrfmiddlewaretoken': $scope.csrf_token,
+        }
+        $http({
+            method : 'post',
+            url : "/delete_certificate/",
+            data : $.param(params),
+            headers : {
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            }
+        }).success(function(data, status) {
+            $scope.check_flag = false;
+        });
     }
     
     $scope.form_validation = function(){

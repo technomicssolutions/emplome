@@ -58,7 +58,9 @@
             <input class="file_picker" id="certificate_file_[[$index]]" type="file" name="certificate_name" fileread="file_name.certificate_attachment.src"/>
             <input type="hidden" ng-model="file_name.certificate_attachment.src" >
 
-            <a id="remove_file_link_[[$index]]" ng-show="file_name.certificate_attachment.src" href="" ng-click="remove_certificate_files(file_name)" >Remove Attachment</a>             
+            <a id="remove_file_link_[[$index]]" class="remove_attachment" ng-show="file_name.certificate_attachment.src" href="" ng-click="remove_certificate_files(file_name)" >Remove </a>
+            <a id="remove_file_link_[[$index]]" ng-show="file_name.certificate" target="_blank" href="/site_media/[[file_name.certificate]]" >View </a> 
+            <a id="remove_file_link_[[$index]]" class="remove_attachment" ng-show="file_name.certificate" href="" ng-click="delete_certificate_file(file_name)">Remove </a>            
         </div>
 
         <!-- <p ng-show="show_certificate_attachment">  -->

@@ -121,12 +121,13 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         context = {}
         next_url = request.GET.get('next', '')
-        name_of_url = next_url.split("/")
-        job_id = name_of_url[2]
-        if name_of_url[1] == 'apply':
-            context.update({
-                'job_id': job_id,
-        })
+        if next_url:
+            name_of_url = next_url.split("/")
+            job_id = name_of_url[2]
+            if name_of_url[1] == 'apply':
+                context.update({
+                    'job_id': job_id,
+            })
         return render(request, 'login_job_seeker.html', context)    
 
     def post(self, request, *args, **kwargs):
@@ -158,7 +159,7 @@ class LoginView(View):
                     
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
             else:
-                if request.POST['job_id'] is not None:
+                if request.POST['job_id']:
                     return HttpResponseRedirect(reverse('apply_jobs',args=[request.POST['job_id']]))
                 return HttpResponseRedirect(reverse('view_cv',args=[user.id]))
         else:
@@ -430,8 +431,8 @@ class JobSeekerRegistrationMoreInfo(View):
 
         no_of_attachment_files = request.POST['certificate_attachment_length']
         i = 0
-        if no_of_attachment_files > 0:
-            education.certificate.clear()
+        # if no_of_attachment_files > 0:
+            # education.certificate.clear()
         for i in range(int(no_of_attachment_files)):
             file_name = 'certificate_attachment' + str(i)
             certificate_attachment_file = request.FILES.get(file_name,'')
@@ -711,6 +712,7 @@ class GetProfileDetails(View):
                     for certificate in jobseeker.education.certificate.all():
                         ctx_certificate.append({
                             'certificate': certificate.certificate_name.name,
+                            'id': certificate.id,
                         })
 
                 ctx_seeker.append ({
@@ -748,7 +750,7 @@ class GetProfileDetails(View):
                     'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
                     'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
                     'profile_photo': jobseeker.photo.name if jobseeker else '',
-                    'certificate_name': ctx_certificate,
+                    'certificate_file': ctx_certificate,
 
                 })
             else:
@@ -1103,3 +1105,18 @@ class ViewCV(View):
             'profile': profile,
         }
         return render(request, 'view_cv.html', context)
+
+class DeleteCertificate(View):
+
+    def post(self, request, *args, **kwargs):       
+
+        certificate_id = request.POST['id']
+        certificate = Certificates.objects.get(id = int(certificate_id))
+        certificate.delete()
+        res = {
+            'result': 'ok'
+        }
+        response = simplejson.dumps(res)
+
+        return HttpResponse(response, status=200, mimetype='application/json')
+        
