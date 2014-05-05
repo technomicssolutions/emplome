@@ -9,28 +9,32 @@
 
 		<div class="job_description">
 			<div id="job_description_text">
-				<h2>{{profile.user.first_name}}</h2>
+				<h2>{{profile.user.first_name}}</h2>				
 			</div> 
-			<div id="user-image">
-				<div class="rounded_photo" id="profile_image">
-					{% if profile.jobseekerprofile_set.all.0.photo %}
-		            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
-		            {% else %}
-			            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
-			            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
-			            
+			<!-- <div id="job_description_text"> -->
+				<div id="user-image">
+					<div class="rounded_photo" id="profile_image">
+						{% if profile.jobseekerprofile_set.all.0.photo %}
+			            	<img src="/site_media/{{profile.jobseekerprofile_set.all.0.photo.name}}" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
 			            {% else %}
-			            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            {% if profile.jobseekerprofile_set.all.0.gender == 'male' %}
+				            	<img src="/static/images/user5.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            
+				            {% else %}
+				            	<img src="/static/images/user6.jpeg" alt="" class="img-circle" style="border: 10px solid rgba(50, 50, 50, 0.1);" id="profile_picture">
+				            {% endif %}
+
 			            {% endif %}
 
-		            {% endif %}
+			        </div>
+		       	</div>
 
-		        </div>
-		    </div>
+		    <!-- </div> -->
 		
 			<div id="job_description_text">
 				<h2>Personal Details</h2>
 			</div>
+
 			<p id="personal_details">
 				<!-- Name : {{profile.user.first_name}} <br/> -->
 				Email-Id : {{profile.user.email}} <br/>
@@ -50,13 +54,12 @@
 			</div>
 			<div><br>
 				<span>
-					Basic Education: {{profile.jobseekerprofile_set.all.0.education.basic_edu}}<br/>
+					Basic Education : {{profile.jobseekerprofile_set.all.0.education.basic_edu}}<br/>
 					Specialization : {{profile.jobseekerprofile_set.all.0.education.basic_edu_specialization}}<br/>
 					Pass Year : {{profile.jobseekerprofile_set.all.0.education.pass_year_basic}}<br/>
-					Masters Education: {{profile.jobseekerprofile_set.all.0.education.masters}}<br/>
-					Specialization: {{profile.jobseekerprofile_set.all.0.education.masters_specialization}}<br/>
-					Pass Year : {{profile.jobseekerprofile_set.all.0.education.pass_year_masters}}<br/>
-					
+					Masters Education : {{profile.jobseekerprofile_set.all.0.education.masters}}<br/>
+					Specialization : {{profile.jobseekerprofile_set.all.0.education.masters_specialization}}<br/>
+					Pass Year : {{profile.jobseekerprofile_set.all.0.education.pass_year_masters}}<br/>					
 					Doctrate : 
 					{% for doctrate in profile.jobseekerprofile_set.all.0.education.doctrate.all %}
 
@@ -70,14 +73,14 @@
 			</div>
 			<p id="personal_details">
 				
-				Total Experience: {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s) {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br/>
+				Total Experience : {{profile.jobseekerprofile_set.all.0.employment.exp_yrs}} Year(s) {{profile.jobseekerprofile_set.all.0.employment.exp_mnths}} Month(s)<br/>
 				Current Designation : {{profile.jobseekerprofile_set.all.0.employment.designation}} <br/>
-				Monthly Salary: {{profile.jobseekerprofile_set.all.0.employment.salary}}
+				Monthly Salary : {{profile.jobseekerprofile_set.all.0.employment.salary}}
 				{{profile.jobseekerprofile_set.all.0.employment.currency}}<br/>
-				Key Skills: {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
-				Industry: {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br/>
-				Function: {{profile.jobseekerprofile_set.all.0.employment.function}}<br/>
-				Previous Employers:
+				Key Skills : {{profile.jobseekerprofile_set.all.0.employment.skills}}<br/>
+				Industry : {{profile.jobseekerprofile_set.all.0.employment.curr_industry}}<br/>
+				Function : {{profile.jobseekerprofile_set.all.0.employment.function}}<br/>
+				Previous Employers :
 				{% for previous_employer in profile.jobseekerprofile_set.all.0.employment.previous_employer.all %}
 					{{previous_employer.previous_employer_name}}, 
 				{% endfor %}
@@ -89,17 +92,17 @@
 			</div>
 			<p id="personal_details">
 				{% if profile.jobseekerprofile_set.all.0.education.resume %}
-					Resume
+					Resume :
 					<a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.resume.name}}">{{profile.jobseekerprofile_set.all.0.education.resume_title}} </a><br/>
 				{% else %}
 					<textarea readonly>{{profile.jobseekerprofile_set.all.0.education.resume_text}}</textarea><br/>
 				{% endif %}
-				<!-- {% if profile.jobseekerprofile_set.all.0.education.certificate %}
-					Certificates
+				<!-- {% if profile.jobseekerprofile_set.all.0.education.certificate %} -->
+					Certificates :<br/>
 					{% for certificate in profile.jobseekerprofile_set.all.0.education.certificate.all %}
-						<a href="/site_media/{{certificate.certificate_name}}"> </a><br/>
+						<a href="/site_media/{{certificate.certificate_name}}"> Click Here for Certificate</a><br/>
 						
-					{% endfor %} -->
+					{% endfor %}
 
 					<!-- <a href="/site_media/{{profile.jobseekerprofile_set.all.0.education.certificate}}">Certificate </a><br/> -->
 				<!-- {% endif %} -->

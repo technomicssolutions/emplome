@@ -857,7 +857,7 @@ SPECIALIZATION = (
     ('Welding Technology', 'Welding Technology'),
     ('Architecture', 'Architecture'),
     ('Arabic', 'Arabic'),
-    ('Arts&Humanities', 'Arts&Humanities'),
+    ('Arts & Humanities', 'Arts & Humanities'),
     ('Communication', 'Communication'),
     ('Economics', 'Economics'),
     ('English', 'English'),
@@ -1090,8 +1090,8 @@ class Doctorate(models.Model):
 class Certificates(models.Model):
     certificate_name = models.FileField(upload_to = "uploads/certificates/", null=True, blank=True)
 
-    def __unicode__(self):
-        return self.certificate_name
+    # def __unicode__(self):
+    #     return self.certificate_name
 
 
 class Education(models.Model):

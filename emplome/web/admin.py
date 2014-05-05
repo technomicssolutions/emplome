@@ -19,6 +19,7 @@ admin.site.register(SuccessStory)
 admin.site.register(Recommendation)
 admin.site.register(PreviousEmployer)
 admin.site.register(Doctorate)
+admin.site.register(Certificates)
 
 
 

@@ -121,9 +121,12 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         context = {}
         next_url = request.GET.get('next', '')
-        context = {
-            'next': next_url,
-        }
+        name_of_url = next_url.split("/")
+        job_id = name_of_url[2]
+        if name_of_url[1] == 'apply':
+            context.update({
+                'job_id': job_id,
+        })
         return render(request, 'login_job_seeker.html', context)    
 
     def post(self, request, *args, **kwargs):
@@ -155,6 +158,8 @@ class LoginView(View):
                     
                 return HttpResponseRedirect(reverse('profile',args=[user.id]))
             else:
+                if request.POST['job_id'] is not None:
+                    return HttpResponseRedirect(reverse('apply_jobs',args=[request.POST['job_id']]))
                 return HttpResponseRedirect(reverse('view_cv',args=[user.id]))
         else:
             context = {
@@ -407,9 +412,9 @@ class JobSeekerRegistrationMoreInfo(View):
             jobseeker.photo = photo
         jobseeker.save()
         education = jobseeker.education
-        certificate = request.FILES.get('certificate_img', '')
-        if certificate:
-            education.certificate = certificate
+        # certificate = request.FILES.get('certificate_img', '')
+        # if certificate:
+        #     education.certificate = certificate
 
         education.resume_title = seeker1['resume_title']
 
@@ -425,18 +430,17 @@ class JobSeekerRegistrationMoreInfo(View):
 
         no_of_attachment_files = request.POST['certificate_attachment_length']
         i = 0
+        if no_of_attachment_files > 0:
+            education.certificate.clear()
         for i in range(int(no_of_attachment_files)):
             file_name = 'certificate_attachment' + str(i)
             certificate_attachment_file = request.FILES.get(file_name,'')
             if certificate_attachment_file:
-                print certificate_attachment_file
                 certificates = Certificates()
-                print 'HI'
-                certificates.certificate_attachment = certificate_attachment_file
+                certificates.certificate_name = certificate_attachment_file
                 certificates.save()
                 education.certificate.add(certificates)
                 education.save()
-                # estoppelcertificate.guarantor_attachment.add(guarantorattachment)
             else:
                 pass
 
@@ -681,6 +685,7 @@ class GetProfileDetails(View):
         ctx_recruiter = []
         ctx_doctorate = []
         ctx_previous_company = []
+        ctx_certificate = []
         education = []
         employment = []
         jobseeker = []
@@ -701,6 +706,11 @@ class GetProfileDetails(View):
                     for employer in jobseeker.employment.previous_employer.all():
                         ctx_previous_company.append({
                             'employer': employer.previous_employer_name,
+                        })
+                if jobseeker.education.certificate.all().count() > 0:
+                    for certificate in jobseeker.education.certificate.all():
+                        ctx_certificate.append({
+                            'certificate': certificate.certificate_name.name,
                         })
 
                 ctx_seeker.append ({
@@ -730,14 +740,16 @@ class GetProfileDetails(View):
                     'master_specialization': jobseeker.education.masters_specialization if jobseeker.education else '' ,
                     'pass_year_masters': jobseeker.education.pass_year_masters if jobseeker.education else '' ,
                     'doctrate': ctx_doctorate,
+                    
                 })
 
                 ctx_seeker1.append({
                     'resume_title': jobseeker.education.resume_title if jobseeker.education else '' ,
                     'resume_text': jobseeker.education.resume_text if jobseeker.education else '' ,
                     'resume': jobseeker.education.resume.name if jobseeker.education else '' ,
-                    # 'certificate_img': jobseeker.education.certificate.name if jobseeker.education else '',
                     'profile_photo': jobseeker.photo.name if jobseeker else '',
+                    'certificate_name': ctx_certificate,
+
                 })
             else:
                 if userprofile.recruiterprofile_set.all().count() > 0:

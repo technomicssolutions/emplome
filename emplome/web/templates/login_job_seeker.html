@@ -20,7 +20,7 @@
 	<h4>User Login</h4>
 	<form name="" method="post" action="{% url 'login' %}">
 		{% csrf_token %}
-		<input type="hidden" value="{{next}}" name="next">
+		<input type="hidden" value="{{job_id}}" name="job_id">
 		<div class="login_details">
 			<div class="control">
 				<label > Email</label>  

@@ -1691,8 +1691,8 @@ function JobSeekerController($scope, $element, $http, $timeout) {
     $scope.error_flag = false;
     $scope.error_message = '';
 
-    $scope.certificate_img = {};
-    $scope.certificate_img.src = "";
+    // $scope.certificate_img = {};
+    // $scope.certificate_img.src = "";
 
     $scope.photo_img = {};
     $scope.photo_img.src = "";
@@ -1757,6 +1757,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
         {'name': ''},
     ]
 
+    $scope.certificate = [
+        {'certificate': ''},
+    ]
+
     $scope.init = function(csrf_token, user_id, profile_edit) {
         $scope.csrf_token = csrf_token;
         $scope.user_id = user_id;
@@ -1781,6 +1785,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $http.get('/profile/details/'+$scope.user_id+'/').success(function(data)
             {
                 $scope.seeker = data.seeker[0]; 
+                $scope.seeker1 = data.seeker1[0];
                 $('#dob').val($scope.seeker.dob);
                 // console.log($scope.seeker.years);
                 if ($scope.seeker.pass_year_masters == null) {
@@ -1841,13 +1846,24 @@ function JobSeekerController($scope, $element, $http, $timeout) {
                     for(var i=0; i< $scope.seeker.doctrate.length; i++) {
                         $scope.doctorate[i].name = $scope.seeker.doctrate[i].doctorate;
                     }
+                }
+
+                if ($scope.seeker1.certificate_file) {
+                    if($scope.seeker1.certificate_file.length > 1){
+                        for(var i=1; i < $scope.seeker1.certificate_file.length; i++){
+                            $scope.certificate_file.push({'certificate': ''});
+                        }
+                    }  
+                    for(var i=0; i< $scope.seeker1.certificate_file.length; i++) {
+                        $scope.certificate_file[i].certificate = $scope.seeker1.certificate_file[i].certificate_name;
+                    }
                 } 
                 if($scope.seeker.salary == null) {
                   $scope.seeker.salary = '';
                 }
-                console.log($scope.seeker.basic_specialization);
-                console.log($scope.seeker.master_specialization);
-                $scope.seeker1 = data.seeker1[0];
+                // console.log($scope.seeker.basic_specialization);
+                // console.log($scope.seeker.master_specialization);
+                
                 $scope.seeker.id = $scope.user_id;
                 // console.log($scope.seeker.years);
             }).error(function(data, status)
@@ -2034,9 +2050,10 @@ function JobSeekerController($scope, $element, $http, $timeout) {
             $scope.error_message = '';
             $scope.seeker.previous_company = JSON.stringify($scope.employers);
             $scope.seeker.doctrate = JSON.stringify($scope.doctorate);
-            
+            $scope.seeker1.certificate_name = JSON.stringify($scope.certificate_name);
             params = {
                 'seeker':angular.toJson($scope.seeker),
+                'seeker1':angular.toJson($scope.seeker1),
                 "csrfmiddlewaretoken" : $scope.csrf_token,              
             }
             var fd = new FormData();
@@ -2093,7 +2110,7 @@ function JobSeekerController($scope, $element, $http, $timeout) {
 
 
             var file = $scope.photo_img.src;
-            var file = $scope.certificate_img.src;
+            // var file = $scope.certificate_img.src;
             params = {
                 'seeker1':angular.toJson($scope.seeker1),
                 'user_id': $scope.user_id,

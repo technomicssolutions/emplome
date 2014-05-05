@@ -55,7 +55,7 @@
 
 		<div class="formrow" ng-repeat="file_name in certificate_file">
 			<label>Attach Computer Education Certificates</label>	
-            <input class="file_picker" id="certificate_file_[[$index]]" type="file" fileread="file_name.certificate_attachment.src"/>
+            <input class="file_picker" id="certificate_file_[[$index]]" type="file" name="certificate_name" fileread="file_name.certificate_attachment.src"/>
             <input type="hidden" ng-model="file_name.certificate_attachment.src" >
 
             <a id="remove_file_link_[[$index]]" ng-show="file_name.certificate_attachment.src" href="" ng-click="remove_certificate_files(file_name)" >Remove Attachment</a>             
